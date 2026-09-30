@@ -9,14 +9,13 @@ pre: " <b> 2. </b> "
 
 
 # Serverless House Price Prediction API
-
 ## Giải pháp AWS Serverless cho dự đoán giá nhà
 
 ### 1. Tóm tắt điều hành
 
 **Serverless House Price Prediction API** là một hệ thống được xây dựng nhằm triển khai mô hình Machine Learning dưới dạng dịch vụ dự đoán Serverless trên nền tảng AWS.
 
-Mô hình dự đoán được huấn luyện bằng **Python và Scikit-learn trên Google Colab** sử dụng dữ liệu nhà ở. Sau quá trình huấn luyện, mô hình được export dưới dạng file `.pkl` hoặc `.joblib` và upload lên **Amazon S3** để lưu trữ.
+Mô hình dự đoán được huấn luyện bằng **Python và Scikit-learn trên Google Colab** sử dụng dữ liệu nhà ở. Sau quá trình huấn luyện, mô hình được export dưới dạng file .pkl hoặc .joblib và upload lên **Amazon S3** để lưu trữ.
 
 Khi người dùng truy cập web application thông qua **AWS Amplify**, các thông tin về căn nhà được gửi dưới dạng HTTP POST request tới **Amazon API Gateway**. API Gateway invoke **AWS Lambda** để thực hiện prediction. Lambda tải trained model từ S3 và sử dụng model để dự đoán giá nhà.
 
@@ -24,9 +23,7 @@ Kết quả dự đoán sau đó được trả về thông qua API Gateway tớ
 
 Kiến trúc Serverless giúp giảm nhu cầu quản lý server truyền thống, đồng thời cung cấp một giải pháp có khả năng mở rộng và tiết kiệm chi phí cho một ứng dụng Machine Learning quy mô nhỏ.
 
----
-
-# 2. Tuyên bố vấn đề
+### 2. Tuyên bố vấn đề
 
 ### *Vấn đề hiện tại*
 
@@ -40,7 +37,7 @@ Ngoài ra, việc triển khai một Machine Learning model dưới dạng API c
 
 Project đề xuất xây dựng **Serverless House Price Prediction API** sử dụng các dịch vụ AWS.
 
-Machine Learning model được training bên ngoài AWS bằng **Google Colab, Python và Scikit-learn**. Sau khi training và đánh giá, model được export dưới dạng file `.pkl` hoặc `.joblib` và upload lên **Amazon S3**.
+Machine Learning model được training bên ngoài AWS bằng **Google Colab, Python và Scikit-learn**. Sau khi training và đánh giá, model được export dưới dạng file .pkl hoặc .joblib và upload lên **Amazon S3**.
 
 Khi người dùng truy cập web application được triển khai bằng **AWS Amplify**, frontend gửi thông tin về căn nhà thông qua HTTP POST request tới **Amazon API Gateway**. API Gateway invoke **AWS Lambda**, sau đó Lambda tải trained model từ S3 và thực hiện prediction.
 
@@ -58,13 +55,12 @@ Project cũng tạo nền tảng cho việc mở rộng trong tương lai, chẳ
 
 Chi phí vận hành dự kiến tương đối thấp đối với workload quy mô nhỏ do các dịch vụ AWS chính được tính phí dựa trên mức độ sử dụng. Chi phí hàng tháng và hàng năm cuối cùng sẽ được ước tính bằng **AWS Pricing Calculator** dựa trên số lượng prediction request và mức sử dụng tài nguyên thực tế.
 
----
 
-# 3. Kiến trúc giải pháp
+### 3. Kiến trúc giải pháp
 
 Hệ thống sử dụng kiến trúc **AWS Serverless** để triển khai mô hình dự đoán giá nhà.
 
-Machine Learning model được training bên ngoài AWS bằng Google Colab. Housing Dataset được sử dụng trong quá trình training. Sau khi training, model được export dưới dạng file `.pkl` hoặc `.joblib` và upload lên Amazon S3.
+Machine Learning model được training bên ngoài AWS bằng Google Colab. Housing Dataset được sử dụng trong quá trình training. Sau khi training, model được export dưới dạng file .pkl hoặc .joblib và upload lên Amazon S3.
 
 Trong môi trường AWS, người dùng truy cập web application được hosting bằng AWS Amplify. Frontend gửi thông tin căn nhà tới Amazon API Gateway thông qua HTTP POST request. API Gateway invoke AWS Lambda để xử lý prediction request.
 
@@ -74,13 +70,12 @@ Lambda Execution Role cung cấp các quyền S3 cần thiết, trong khi Amazon
 
 ### *Kiến trúc hệ thống*
 
-**[Chèn hình kiến trúc hệ thống tại đây]**
-
-*Kiến trúc Serverless House Price Prediction API*
+System Architecture
+![Serverless House Price Prediction API Architecture](/images/2-Proposal/platform_architecture.jpeg)
 
 ### *Các dịch vụ AWS sử dụng*
 
-- **Amazon S3**: Lưu trữ trained Machine Learning model (`.pkl` / `.joblib`).
+- **Amazon S3**: Lưu trữ trained Machine Learning model (.pkl / .joblib).
 - **AWS Lambda**: Thực hiện prediction function bằng trained model.
 - **Amazon API Gateway**: Cung cấp REST API và nhận HTTP requests từ frontend.
 - **AWS Amplify**: Hosting và triển khai web frontend.
@@ -90,16 +85,15 @@ Lambda Execution Role cung cấp các quyền S3 cần thiết, trong khi Amazon
 ### *Thiết kế thành phần*
 
 - **Model Training**: Google Colab, Python và Scikit-learn được sử dụng để preprocessing housing dataset và training regression model.
-- **Model Storage**: Trained model được export dưới dạng `.pkl` hoặc `.joblib` và upload lên Amazon S3.
+- **Model Storage**: Trained model được export dưới dạng .pkl hoặc .joblib và upload lên Amazon S3.
 - **Web Frontend**: AWS Amplify hosting web application cho phép người dùng nhập các đặc trưng của căn nhà.
 - **API Layer**: Amazon API Gateway cung cấp REST API để nhận prediction requests.
 - **Prediction Function**: AWS Lambda load trained model từ S3 và thực hiện dự đoán giá nhà.
 - **Security**: IAM Lambda Execution Role cung cấp các quyền S3 cần thiết theo nguyên tắc Least Privilege.
 - **Monitoring**: Amazon CloudWatch thu thập Lambda logs và metrics để troubleshooting và monitoring.
 
----
 
-# 4. Triển khai kỹ thuật
+### 4. Triển khai kỹ thuật
 
 ### *Các giai đoạn triển khai*
 
@@ -116,7 +110,7 @@ Project bao gồm hai phần chính: **phát triển Machine Learning model** v�
 ### *Yêu cầu kỹ thuật*
 
 - **Machine Learning**: Python, Pandas, Scikit-learn và các thư viện cần thiết cho data preprocessing, training và evaluation.
-- **Model**: Regression model được export dưới dạng `.pkl` hoặc `.joblib`.
+- **Model**: Regression model được export dưới dạng .pkl hoặc .joblib.
 - **Storage**: Amazon S3 dùng để lưu trữ trained model.
 - **Backend**: AWS Lambda xử lý prediction requests.
 - **API**: Amazon API Gateway cung cấp REST API.
@@ -125,9 +119,8 @@ Project bao gồm hai phần chính: **phát triển Machine Learning model** v�
 - **Security**: IAM Lambda Execution Role với các quyền tối thiểu cần thiết để truy cập S3.
 - **Monitoring**: Amazon CloudWatch Logs và Metrics.
 
----
 
-# 5. Lộ trình & Mốc triển khai
+### 5. Lộ trình & Mốc triển khai
 
 Project sẽ được thực hiện trong **12 tuần thực tập**, kết hợp quá trình học AWS, phát triển Machine Learning model, triển khai Serverless, kiểm thử và hoàn thiện tài liệu.
 
@@ -257,7 +250,7 @@ Project sẽ được thực hiện trong **12 tuần thực tập**, kết hợ
 
 **Mốc hoàn thành:** Hoàn thành và trình bày **Serverless House Price Prediction API**.
 
-# 6. Ước tính ngân sách
+### 6. Ước tính ngân sách
 
 Chi phí của hệ thống phụ thuộc vào số lượng prediction requests, thời gian thực thi Lambda, dung lượng trained model trên S3, số lượng API Gateway requests, frontend hosting và data transfer.
 
@@ -286,9 +279,8 @@ Có thể tiếp tục tối ưu chi phí bằng cách:
 
 Chi phí hàng tháng và hàng năm cuối cùng sẽ được tính toán sau khi xác định workload dự kiến bằng AWS Pricing Calculator.
 
----
 
-# 7. Đánh giá rủi ro
+### 7. Đánh giá rủi ro
 
 ### *Ma trận rủi ro*
 
@@ -312,9 +304,8 @@ Nếu AWS prediction API không hoạt động, trained model vẫn có thể đ
 
 Nếu model mới được deployment tạo ra kết quả không mong muốn, có thể khôi phục phiên bản model trước đó và sử dụng phiên bản này cho đến khi model mới được sửa lỗi.
 
----
 
-# 8. Kết quả kỳ vọng
+### 8. Kết quả kỳ vọng
 
 ### *Cải tiến kỹ thuật*
 
