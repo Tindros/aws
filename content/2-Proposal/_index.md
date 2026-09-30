@@ -21,7 +21,6 @@ The prediction result is then returned through API Gateway to the frontend and d
 
 The serverless architecture reduces the need to manage traditional servers and provides a scalable and cost-efficient solution for a small-scale Machine Learning application.
 
---
 
 ### 2. Problem Statement
 ### What’s the Problem?
@@ -50,8 +49,6 @@ Using a serverless architecture reduces infrastructure management requirements b
 The project also provides a foundation for future improvements, such as using larger datasets, improving model accuracy, adding additional house features, or developing other Machine Learning APIs.
 
 The expected operating cost is relatively low for a small-scale workload because the main AWS services use usage-based pricing. The final monthly and yearly cost will be estimated using the AWS Pricing Calculator based on the expected number of prediction requests and resource usage.
-
---
 
 ### 3. Solution Architecture
 The system uses an AWS Serverless architecture to deploy the house price prediction model.
@@ -84,8 +81,6 @@ System Architecture
 - **Security**: An IAM Lambda Execution Role provides the required S3 permissions following the principle of least privilege.
 - **Monitoring**: Amazon CloudWatch collects Lambda logs and metrics for troubleshooting and monitoring.
 
----
-
 
 ### 4. Technical Implementation
 **Implementation Phases**
@@ -106,8 +101,6 @@ The project consists of two major parts: Machine Learning model development and 
 - Deployment: AWS Amplify for hosting the frontend application.
 - Security: IAM Lambda Execution Role with the minimum permissions required to access S3.
 - Monitoring: Amazon CloudWatch Logs and Metrics.
-
---
 
 ### 5. Timeline & Milestones
 **Project Timeline**
@@ -234,8 +227,6 @@ The project will be developed throughout the **12-week internship**, combining A
 
 **Milestone**: Complete and present the Serverless House Price Prediction API.
 
---
-
 ### 6. Budget Estimation
 The cost of the system depends on the number of prediction requests, Lambda execution time, model storage size in S3, API Gateway requests, frontend hosting, and data transfer.
 
@@ -262,8 +253,6 @@ Additional cost optimization can be achieved by:
 
 The final monthly and annual cost will be calculated after defining the expected workload using the AWS Pricing Calculator.
 
---
-
 ### 7. Risk Assessment
 #### Risk Matrix
 - Low prediction accuracy: High impact, medium probability.
@@ -283,8 +272,6 @@ The final monthly and annual cost will be calculated after defining the expected
 If the AWS prediction API becomes unavailable, the trained model can still be executed directly in the Python/Google Colab environment for prediction.
 
 If a newly deployed model produces unexpected results, the previous model version can be restored and used until the new model is corrected.
-
---
 
 ### 8. Expected Outcomes
 #### Technical Improvements: 
