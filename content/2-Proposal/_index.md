@@ -151,7 +151,7 @@ The project will be developed throughout the **12-week internship**, combining A
 
 ### Week 5 – Model Packaging & Amazon S3
 
-- Export the trained model as `.pkl` or `.joblib`.
+- Export the trained model as .pkl or .joblib.
 - Create and configure the Amazon S3 bucket.
 - Upload the trained model to S3.
 - Test downloading and loading the model from S3.
