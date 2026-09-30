@@ -1,6 +1,6 @@
 ---
 title: "Internship Report"
-date: 2024-01-01
+date: 2026-09-09
 weight: 1
 chapter: false
 ---
@@ -13,6 +13,7 @@ chapter: false
 &emsp; **Full Name:** Huynh Minh Man
 
 &emsp; **Phone Number:** 0869243313
+
 &emsp; **Email:** huynhminhman84@gmail.com
 
 &emsp; **University:** Ho Chi Minh City University of Foreign Languages – Information Technology
