@@ -1,57 +1,38 @@
 ---
 title: "Week 2 Worklog"
-date: 2024-01-01
-weight: 1
+date: 2026-09-16
+weight: 2
 chapter: false
 pre: " <b> 1.2. </b> "
 ---
-{{% notice warning %}} 
-⚠️ **Note:** The following information is for reference purposes only. Please **do not copy verbatim** for your own report, including this warning.
-{{% /notice %}}
-
 
 ### Week 2 Objectives:
 
-* Connect and get acquainted with members of First Cloud AI Journey.
-* Understand basic AWS services, how to use the console & CLI.
+* Continue learning AWS services after completing the fundamental AWS concepts in Week 1.
+* Understand how to use IAM Roles to grant AWS resource permissions to EC2 instances.
+* Become familiar with the AWS Cloud9 development environment.
+* Learn how to use Amazon S3 for storage and static website hosting.
+* Learn the fundamentals of relational databases using Amazon RDS.
+* Understand the Serverless model and how AWS Lambda executes code without requiring server management.
+* Build the necessary AWS knowledge to prepare for developing the Serverless House Price Prediction API project.
 
 ### Tasks to be carried out this week:
-| Day | Task                                                                                                                                                                                                   | Start Date | Completion Date | Reference Material                        |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------- | --------------- | ----------------------------------------- |
-| 2   | - Get acquainted with FCAJ members <br> - Read and take note of internship unit rules and regulations                                                                                                   | 08/11/2025 | 08/11/2025      |
-| 3   | - Learn about AWS and its types of services <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                              | 08/12/2025 | 08/12/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Create AWS Free Tier account <br> - Learn about AWS Console & AWS CLI <br> - **Practice:** <br>&emsp; + Create AWS account <br>&emsp; + Install & configure AWS CLI <br> &emsp; + How to use AWS CLI | 08/13/2025 | 08/13/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Learn basic EC2: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - SSH connection methods to EC2 <br> - Learn about Elastic IP   <br>                            | 08/14/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Practice:** <br>&emsp; + Launch an EC2 instance <br>&emsp; + Connect via SSH <br>&emsp; + Attach an EBS volume                                                                                     | 08/15/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
 
+| Day | Task | Start Date | Completion Date | Reference Material |
+| --- | --- | --- | --- | --- |
+| 4 | - Study Instance Profiling with IAM Roles for EC2. <br> - Learn about IAM Roles and how to grant EC2 access to AWS services. <br> - Understand how IAM Roles can be used instead of storing credentials directly on an EC2 instance. | 09/16/2026 | 09/16/2026 | [IAM Roles for EC2](https://000048.awsstudygroup.com/) |
+| 4 | - Study Cloud Development with AWS Cloud9. <br> - Become familiar with the AWS Cloud9 development environment. <br> - Learn how to develop and manage source code directly in a cloud-based development environment. | 09/16/2026 | 09/16/2026 | [AWS Cloud9](https://000049.awsstudygroup.com/) |
+| 4 | - Study Static Website Hosting with Amazon S3. <br> - Learn how to use Amazon S3 for static website hosting. <br> - Practice deploying a static website using Amazon S3. | 09/16/2026 | 09/16/2026 | [Amazon S3](https://000057.awsstudygroup.com/) |
+| 6 | - Study Database Essentials with Amazon Relational Database Service (RDS). <br> - Learn the fundamental concepts of relational databases on AWS. <br> - Understand the role of Amazon RDS in deploying and managing relational databases on AWS. | 09/18/2026 | 09/18/2026 | [Amazon RDS](https://000005.awsstudygroup.com/) |
+| 6 | - Study Serverless Automation with AWS Lambda. <br> - Learn about Serverless architecture and how AWS Lambda executes code without requiring server management. <br> - Learn the basic concepts of Lambda Functions and how Lambda can be used in Serverless applications. | 09/18/2026 | 09/18/2026 | [AWS Lambda](https://000022.awsstudygroup.com/) |
 
 ### Week 2 Achievements:
 
-* Understood what AWS is and mastered the basic service groups: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
-
-* Successfully created and configured an AWS Free Tier account.
-
-* Became familiar with the AWS Management Console and learned how to find, access, and use services via the web interface.
-
-* Installed and configured AWS CLI on the computer, including:
-  * Access Key
-  * Secret Key
-  * Default Region
-  * ...
-
-* Used AWS CLI to perform basic operations such as:
-
-  * Check account & configuration information
-  * Retrieve the list of regions
-  * View EC2 service
-  * Create and manage key pairs
-  * Check information about running services
-  * ...
-
-* Acquired the ability to connect between the web interface and CLI to manage AWS resources in parallel.
-* ...
+* Understood how to use IAM Roles to grant AWS resource permissions to EC2 instances.
+* Learned the role of IAM Roles in managing permissions without storing credentials directly on EC2 instances.
+* Became familiar with the AWS Cloud9 development environment and cloud-based development workflows.
+* Learned how to use Amazon S3 for data storage and static website hosting.
+* Completed the fundamental content on Amazon RDS and understood the role of managed relational databases on AWS.
+* Understood the concept of Serverless Computing and the role of AWS Lambda in executing code without managing servers.
+* Became familiar with Lambda Functions and the basic concepts involved in building Serverless applications.
+* Strengthened AWS knowledge and began planning how to apply Serverless services to the personal Serverless House Price Prediction API project.
