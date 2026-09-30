@@ -1,115 +1,299 @@
 ---
 title: "Proposal"
-date: 2024-01-01
+date: 2026-09-30
 weight: 2
 chapter: false
 pre: " <b> 2. </b> "
 ---
-{{% notice warning %}}
-⚠️ **Note:** The information below is for reference purposes only. Please **do not copy verbatim** for your report, including this warning.
-{{% /notice %}}
 
-In this section, you need to summarize the contents of the workshop that you **plan** to conduct.
 
-# IoT Weather Platform for Lab Research
-## A Unified AWS Serverless Solution for Real-Time Weather Monitoring
+# Serverless House Price Prediction API
+## AWS Serverless Solution for House Price Prediction
 
 ### 1. Executive Summary
-The IoT Weather Platform is designed for the ITea Lab team in Ho Chi Minh City to enhance weather data collection and analysis. It supports up to 5 weather stations, with potential scalability to 10-15, utilizing Raspberry Pi edge devices with ESP32 sensors to transmit data via MQTT. The platform leverages AWS Serverless services to deliver real-time monitoring, predictive analytics, and cost efficiency, with access restricted to 5 lab members via Amazon Cognito.
+The Serverless House Price Prediction API is a system designed to deploy a Machine Learning model as a serverless prediction service on AWS.
+
+The prediction model is trained using Python and Scikit-learn on Google Colab with a housing dataset. After training, the model is exported as a .pkl or .joblib file and uploaded to Amazon S3 for storage.
+
+When a user accesses the web application through AWS Amplify, the user's house features are submitted as an HTTP POST request to Amazon API Gateway. API Gateway invokes an AWS Lambda prediction function. Lambda retrieves the trained model from S3 and uses it to predict the house price.
+    
+The prediction result is then returned through API Gateway to the frontend and displayed to the user.
+
+The serverless architecture reduces the need to manage traditional servers and provides a scalable and cost-efficient solution for a small-scale Machine Learning application.
 
 ### 2. Problem Statement
 ### What’s the Problem?
-Current weather stations require manual data collection, becoming unmanageable with multiple units. There is no centralized system for real-time data or analytics, and third-party platforms are costly and overly complex.
+House price prediction models are often developed and tested in environments such as Google Colab or local computers. However, after training, the model does not provide a convenient way for users to submit house information and obtain predictions through a web application.
+
+Running the model directly on a personal computer also makes it difficult to provide the prediction service to multiple users or integrate the model into a web application.
+
+In addition, deploying a Machine Learning model as an API requires an appropriate backend architecture. Using a traditional continuously running server such as an EC2 instance may introduce unnecessary infrastructure management and costs for a small-scale prediction service.
 
 ### The Solution
-The platform uses AWS IoT Core to ingest MQTT data, AWS Lambda and API Gateway for processing, Amazon S3 for storage (including a data lake), and AWS Glue Crawlers and ETL jobs to extract, transform, and load data from the S3 data lake to another S3 bucket for analysis. AWS Amplify with Next.js provides the web interface, and Amazon Cognito ensures secure access. Similar to Thingsboard and CoreIoT, users can register new devices and manage connections, though this platform operates on a smaller scale and is designed for private use. Key features include real-time dashboards, trend analysis, and low operational costs.
+The project proposes a Serverless House Price Prediction API using AWS services.
+
+The Machine Learning model is trained outside AWS using Google Colab, Python, and Scikit-learn. After training and evaluation, the model is exported as a .pkl or .joblib file and uploaded to Amazon S3.
+
+When a user accesses the web application hosted by AWS Amplify, the frontend sends the house features through an HTTP POST request to Amazon API Gateway. API Gateway invokes AWS Lambda, which retrieves the trained model from S3 and performs the prediction.
+
+The predicted house price is returned through API Gateway to the frontend and displayed to the user.
+
+An AWS IAM Execution Role provides Lambda with the required permissions to access the model stored in S3 following the principle of least privilege. Amazon CloudWatch is used for logging and monitoring Lambda execution.
 
 ### Benefits and Return on Investment
-The solution establishes a foundational resource for lab members to develop a larger IoT platform, serving as a study resource, and provides a data foundation for AI enthusiasts for model training or analysis. It reduces manual reporting for each station via a centralized platform, simplifying management and maintenance, and improves data reliability. Monthly costs are $0.66 USD per the AWS Pricing Calculator, with a 12-month total of $7.92 USD. All IoT equipment costs are covered by the existing weather station setup, eliminating additional development expenses. The break-even period of 6-12 months is achieved through significant time savings from reduced manual work.
+The solution transforms a Machine Learning model from a development environment into a web-based prediction service, allowing users to access the model without directly running Python or Google Colab.
+
+Using a serverless architecture reduces infrastructure management requirements because there is no need to maintain a continuously running server. AWS Lambda executes the prediction function only when requests are received.
+
+The project also provides a foundation for future improvements, such as using larger datasets, improving model accuracy, adding additional house features, or developing other Machine Learning APIs.
+
+The expected operating cost is relatively low for a small-scale workload because the main AWS services use usage-based pricing. The final monthly and yearly cost will be estimated using the AWS Pricing Calculator based on the expected number of prediction requests and resource usage.
 
 ### 3. Solution Architecture
-The platform employs a serverless AWS architecture to manage data from 5 Raspberry Pi-based stations, scalable to 15. Data is ingested via AWS IoT Core, stored in an S3 data lake, and processed by AWS Glue Crawlers and ETL jobs to transform and load it into another S3 bucket for analysis. Lambda and API Gateway handle additional processing, while Amplify with Next.js hosts the dashboard, secured by Cognito. The architecture is detailed below:
+The system uses an AWS Serverless architecture to deploy the house price prediction model.
 
-![IoT Weather Station Architecture](/images/2-Proposal/edge_architecture.jpeg)
+The Machine Learning model is trained outside AWS using Google Colab. A housing dataset is used during the training process. After training, the model is exported as a .pkl or .joblib file and uploaded to Amazon S3.
 
-![IoT Weather Platform Architecture](/images/2-Proposal/platform_architecture.jpeg)
+Within AWS, users access the web application hosted by AWS Amplify. The frontend sends house features to Amazon API Gateway through an HTTP POST request. API Gateway invokes AWS Lambda to process the prediction request.
+
+Lambda retrieves the trained model from Amazon S3, performs the prediction, and returns the result through API Gateway to the frontend.
+
+The Lambda Execution Role provides the required S3 permissions, while Amazon CloudWatch collects Lambda logs and metrics for monitoring.
+
+System Architecture
+![Serverless House Price Prediction API Architecture](/images/2-Proposal/platform_architecture.jpeg)
 
 ### AWS Services Used
-- **AWS IoT Core**: Ingests MQTT data from 5 stations, scalable to 15.
-- **AWS Lambda**: Processes data and triggers Glue jobs (two functions).
-- **Amazon API Gateway**: Facilitates web app communication.
-- **Amazon S3**: Stores raw data in a data lake and processed outputs (two buckets).
-- **AWS Glue**: Crawlers catalog data, and ETL jobs transform and load it.
-- **AWS Amplify**: Hosts the Next.js web interface.
-- **Amazon Cognito**: Secures access for lab users.
+- **Amazon S3**: Stores the trained Machine Learning model (.pkl / .joblib).
+- **AWS Lambda**: Executes the prediction function using the trained model.
+- **Amazon API Gateway**: Provides the REST API and receives HTTP requests from the frontend.
+- **AWS Amplify**: Hosts and deploys the web frontend.
+- **AWS IAM**: Provides the Lambda Execution Role with the permissions required to access the model in S3.
+- **Amazon CloudWatch**: Provides logging and monitoring for Lambda execution.
 
 ### Component Design
-- **Edge Devices**: Raspberry Pi collects and filters sensor data, sending it to IoT Core.
-- **Data Ingestion**: AWS IoT Core receives MQTT messages from the edge devices.
-- **Data Storage**: Raw data is stored in an S3 data lake; processed data is stored in another S3 bucket.
-- **Data Processing**: AWS Glue Crawlers catalog the data, and ETL jobs transform it for analysis.
-- **Web Interface**: AWS Amplify hosts a Next.js app for real-time dashboards and analytics.
-- **User Management**: Amazon Cognito manages user access, allowing up to 5 active accounts.
+- **Model Training**: Google Colab, Python, and Scikit-learn are used to preprocess the housing dataset and train the regression model.
+- **Model Storage**: The trained model is exported as a .pkl or .joblib file and uploaded to Amazon S3.
+- **Web Frontend**: AWS Amplify hosts the web application where users enter house features.
+- **API Layer**: Amazon API Gateway provides the REST API used to receive prediction requests.
+- **Prediction Function**: AWS Lambda loads the trained model from S3 and performs the house price prediction.
+- **Security**: An IAM Lambda Execution Role provides the required S3 permissions following the principle of least privilege.
+- **Monitoring**: Amazon CloudWatch collects Lambda logs and metrics for troubleshooting and monitoring.
 
 ### 4. Technical Implementation
 **Implementation Phases**
-This project has two parts—setting up weather edge stations and building the weather platform—each following 4 phases:
-- Build Theory and Draw Architecture: Research Raspberry Pi setup with ESP32 sensors and design the AWS serverless architecture (1 month pre-internship)
-- Calculate Price and Check Practicality: Use AWS Pricing Calculator to estimate costs and adjust if needed (Month 1).
-- Fix Architecture for Cost or Solution Fit: Tweak the design (e.g., optimize Lambda with Next.js) to stay cost-effective and usable (Month 2).
-- Develop, Test, and Deploy: Code the Raspberry Pi setup, AWS services with CDK/SDK, and Next.js app, then test and release to production (Months 2-3).
+The project consists of two major parts: Machine Learning model development and AWS Serverless deployment. The implementation can be divided into four phases:
+
+- Model research and development: Study the house price prediction problem, prepare the housing dataset, and develop a regression model using Python and Scikit-learn on - Google Colab.
+- Model evaluation and deployment preparation: Evaluate the model using appropriate metrics, select the final model, and export it as a .pkl or .joblib file.
+- Serverless API development: Upload the trained model to Amazon S3, implement the AWS Lambda prediction function, and configure Amazon API Gateway as the REST API endpoint.
+- Frontend development, testing, and deployment: Build the web interface, connect the frontend to API Gateway, deploy the frontend using AWS Amplify, and perform end-to-end testing.
 
 **Technical Requirements**
-- Weather Edge Station: Sensors (temperature, humidity, rainfall, wind speed), a microcontroller (ESP32), and a Raspberry Pi as the edge device. Raspberry Pi runs Raspbian, handles Docker for filtering, and sends 1 MB/day per station via MQTT over Wi-Fi.
-- Weather Platform: Practical knowledge of AWS Amplify (hosting Next.js), Lambda (minimal use due to Next.js), AWS Glue (ETL), S3 (two buckets), IoT Core (gateway and rules), and Cognito (5 users). Use AWS CDK/SDK to code interactions (e.g., IoT Core rules to S3). Next.js reduces Lambda workload for the fullstack web app.
+- Machine Learning: Python, Pandas, Scikit-learn, and other required libraries for data preprocessing, training, and evaluation.
+- Model: A regression model exported as .pkl or .joblib.
+- Storage: Amazon S3 for storing the trained model.
+- Backend: AWS Lambda for processing prediction requests.
+- API: Amazon API Gateway for providing the REST API.
+- Frontend: A web application that allows users to enter house features and view the predicted house price.
+- Deployment: AWS Amplify for hosting the frontend application.
+- Security: IAM Lambda Execution Role with the minimum permissions required to access S3.
+- Monitoring: Amazon CloudWatch Logs and Metrics.
 
 ### 5. Timeline & Milestones
 **Project Timeline**
-- Pre-Internship (Month 0): 1 month for planning and old station review.
-- Internship (Months 1-3): 3 months.
-    - Month 1: Study AWS and upgrade hardware.
-    - Month 2: Design and adjust architecture.
-    - Month 3: Implement, test, and launch.
-- Post-Launch: Up to 1 year for research.
+The project will be developed throughout the **12-week internship**, combining AWS learning, Machine Learning development, serverless implementation, testing, and documentation.
+
+### Week 1 – AWS Fundamentals
+
+- Create and configure an AWS account.
+- Learn AWS cost management and AWS Support.
+- Study AWS IAM and access management.
+- Learn networking fundamentals with Amazon VPC.
+- Study Amazon EC2 fundamentals.
+- Understand the basic concepts of AWS infrastructure and cloud services.
+
+**Milestone:** Complete the fundamental AWS learning modules and understand the basic AWS environment.
+
+### Week 2 – AWS Compute, Storage & Database Services
+
+- Learn IAM Roles for EC2.
+- Study AWS Cloud9.
+- Learn Amazon S3 and static website hosting.
+- Study Amazon RDS.
+- Learn AWS Lambda and serverless computing.
+- Understand how AWS storage, database, and serverless services can be used in the project.
+
+**Milestone:** Identify the AWS services required for the House Price Prediction project.
+
+### Week 3 – Project Planning & Machine Learning Preparation
+
+- Finalize the project requirements and system architecture.
+- Prepare the housing dataset.
+- Perform data cleaning and preprocessing.
+- Explore the dataset and identify relevant house features.
+- Establish a baseline regression model.
+- Continue studying AWS services related to the project.
+
+**Milestone:** Complete the initial Machine Learning pipeline and finalize the project architecture.
+
+### Week 4 – Machine Learning Model Development
+
+- Train regression models for house price prediction.
+- Compare different model approaches.
+- Evaluate model performance using appropriate metrics.
+- Perform feature selection and preprocessing improvements.
+- Select the initial model for deployment.
+
+**Milestone:** Obtain a working House Price Prediction model with acceptable performance.
+
+### Week 5 – Model Packaging & Amazon S3
+
+- Export the trained model as `.pkl` or `.joblib`.
+- Create and configure the Amazon S3 bucket.
+- Upload the trained model to S3.
+- Test downloading and loading the model from S3.
+- Study S3 permissions and access control.
+
+**Milestone:** Successfully store and retrieve the trained model from Amazon S3.
+
+### Week 6 – AWS Lambda Prediction Function
+
+- Develop the Lambda prediction function.
+- Load the trained model from S3.
+- Process input house features.
+- Perform prediction using the trained model.
+- Return the predicted house price.
+- Test Lambda with sample input data.
+
+**Milestone:** Complete a working serverless prediction function.
+
+### Week 7 – API Gateway Integration
+
+- Create an Amazon API Gateway REST API.
+- Configure the HTTP POST endpoint.
+- Connect API Gateway to AWS Lambda.
+- Test requests and responses.
+- Handle invalid or missing input data.
+
+**Milestone:** Complete the backend prediction API.
+
+### Week 8 – Frontend Development
+- Design the web interface for house price prediction.
+- Create input fields for house features.
+- Implement frontend validation.
+- Connect the frontend to API Gateway.
+- Display the predicted house price.
+
+**Milestone**: Complete a functional frontend connected to the prediction API.
+
+### Week 9 – AWS Amplify Deployment
+- Configure AWS Amplify for frontend hosting.
+- Deploy the web application.
+- Configure the frontend to communicate with the production API.
+- Test the application through the deployed web interface.
+
+**Milestone**: Deploy the first working version of the House Price Prediction web application.
+
+### Week 10 – Security, Monitoring & Optimization
+- Configure the Lambda Execution Role using IAM.
+- Apply the principle of least privilege.
+- Verify Lambda access to the S3 model.
+- Configure and review Amazon CloudWatch logs.
+- Monitor Lambda execution and errors.
+- Optimize Lambda execution and model loading where possible.
+
+**Milestone**: Complete the security and monitoring configuration.
+
+### Week 11 – System Testing & Evaluation
+- Perform end-to-end testing.
+- Test different house feature combinations.
+- Test invalid and incomplete input.
+- Evaluate prediction accuracy.
+- Identify and fix API, Lambda, S3, or frontend issues.
+- Review AWS resource usage and estimated costs.
+
+**Milestone**: Complete system testing and resolve major issues.
+
+### Week 12 – Finalization & Documentation
+- Finalize the Machine Learning model and AWS architecture.
+- Review the complete system.
+- Evaluate project results against the original objectives.
+- Document the implementation process.
+- Complete the internship Worklog and project documentation.
+- Prepare the final project presentation and demonstration.
+
+**Milestone**: Complete and present the Serverless House Price Prediction API.
 
 ### 6. Budget Estimation
-You can find the budget estimation on the [AWS Pricing Calculator](https://calculator.aws/#/estimate?id=621f38b12a1ef026842ba2ddfe46ff936ed4ab01).  
-Or you can download the [Budget Estimation File](../attachments/budget_estimation.pdf).
+The cost of the system depends on the number of prediction requests, Lambda execution time, model storage size in S3, API Gateway requests, frontend hosting, and data transfer.
+
+The AWS Pricing Calculator will be used to estimate the expected monthly and yearly cost based on the actual project workload.
 
 ### Infrastructure Costs
-- AWS Services:
-    - AWS Lambda: $0.00/month (1,000 requests, 512 MB storage).
-    - S3 Standard: $0.15/month (6 GB, 2,100 requests, 1 GB scanned).
-    - Data Transfer: $0.02/month (1 GB inbound, 1 GB outbound).
-    - AWS Amplify: $0.35/month (256 MB, 500 ms requests).
-    - Amazon API Gateway: $0.01/month (2,000 requests).
-    - AWS Glue ETL Jobs: $0.02/month (2 DPUs).
-    - AWS Glue Crawlers: $0.07/month (1 crawler).
-    - MQTT (IoT Core): $0.08/month (5 devices, 45,000 messages).
+- AWS Lambda: Cost depends on the number of prediction requests and Lambda execution time.
+- Amazon S3: Cost depends on the storage size of the trained model and the number of requests used to access it.
+- Amazon API Gateway: Cost depends on the number of API requests.
+- AWS Amplify: Cost depends on frontend hosting, storage, and data transfer.
+- Amazon CloudWatch: Cost depends on the amount of logs and metrics generated and retained.
+- AWS IAM: IAM roles do not have a separate charge.
 
-Total: $0.7/month, $8.40/12 months
+### Cost Optimization
+Because the project is designed for a small-scale prediction workload, the expected number of requests is relatively low. The serverless architecture avoids the cost of maintaining an EC2 instance continuously when the system is not receiving requests.
 
-- Hardware: $265 one-time (Raspberry Pi 5 and sensors).
+Additional cost optimization can be achieved by:
+
+- Keeping the trained model at an appropriate size.
+- Optimizing Lambda execution time.
+- Setting an appropriate CloudWatch log retention period.
+- Monitoring S3 storage and API request usage.
+- Using AWS Budgets to monitor and control spending.
+
+The final monthly and annual cost will be calculated after defining the expected workload using the AWS Pricing Calculator.
 
 ### 7. Risk Assessment
 #### Risk Matrix
-- Network Outages: Medium impact, medium probability.
-- Sensor Failures: High impact, low probability.
-- Cost Overruns: Medium impact, low probability.
+- Low prediction accuracy: High impact, medium probability.
+- Lambda cannot access the trained model in S3: High impact, low probability.
+- API or frontend failure: Medium impact, low probability.
+- Unexpected AWS cost increase: Medium impact, low probability.
+- Unexpected model or data changes: High impact, low probability.
 
 #### Mitigation Strategies
-- Network: Local storage on Raspberry Pi with Docker.
-- Sensors: Regular checks and spares.
-- Cost: AWS budget alerts and optimization.
+- Model accuracy: Evaluate the model using appropriate performance metrics and test it on data that was not used during training.
+- S3/Lambda access: Verify IAM permissions and monitor Lambda logs to identify model access errors.
+- API reliability: Test API Gateway with both valid and invalid requests before deployment.
+- Cost control: Use AWS Budgets and monitor Lambda, S3, API Gateway, and Amplify usage.
+- Model management: Keep previous model versions during development and verify a new model before deployment.
 
 #### Contingency Plans
-- Revert to manual methods if AWS fails.
-- Use CloudFormation for cost-related rollbacks.
+If the AWS prediction API becomes unavailable, the trained model can still be executed directly in the Python/Google Colab environment for prediction.
+
+If a newly deployed model produces unexpected results, the previous model version can be restored and used until the new model is corrected.
 
 ### 8. Expected Outcomes
 #### Technical Improvements: 
-Real-time data and analytics replace manual processes.  
-Scalable to 10-15 stations.
+The project is expected to transform the House Price Prediction model from a Machine Learning development environment into a Serverless Web API that can be accessed through a web browser.
+
+Users will be able to:
+
+- Access the web application.
+- Enter house features.
+- Submit a prediction request.
+- Receive the predicted house price directly through the web interface.
+
+Users will not need to install Python or manually run Google Colab to use the prediction service.
 #### Long-term Value
-1-year data foundation for AI research.  
-Reusable for future projects.
+The architecture is designed to be modular, allowing the trained model to be replaced or updated without requiring major changes to the frontend or overall system.
+
+Future improvements may include:
+
+- Developing a more accurate Machine Learning model.
+- Supporting multiple prediction models.
+- Adding more housing features.
+- Implementing model versioning.
+- Adding user authentication.
+- Improving monitoring and analytics.
+- Expanding the system into other Machine Learning prediction APIs.
+
+The project also provides practical experience combining Data Science, Machine Learning, AWS Cloud, and Serverless Architecture, which is aligned with a Data Science specialization.
