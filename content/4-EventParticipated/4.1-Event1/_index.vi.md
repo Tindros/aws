@@ -1,125 +1,135 @@
 ---
 title: "Event 1"
-date: 2024-01-01
+date: 2026-09-29
 weight: 1
 chapter: false
 pre: " <b> 4.1. </b> "
 ---
 
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
-
-# Bài thu hoạch “GenAI-powered App-DB Modernization workshop”
+# Bài thu hoạch “AWS Cloud & AI Day Vietnam 2026 – Watch Party”
 
 ### Mục Đích Của Sự Kiện
 
-- Chia sẻ best practices trong thiết kế ứng dụng hiện đại
-- Giới thiệu phương pháp DDD và event-driven architecture
-- Hướng dẫn lựa chọn compute services phù hợp
-- Giới thiệu công cụ AI hỗ trợ development lifecycle
+- Cập nhật những xu hướng mới trong lĩnh vực **Cloud Computing và Artificial Intelligence**
+- Tìm hiểu cách AWS đang hỗ trợ doanh nghiệp ứng dụng **AI và Cloud** vào thực tế
+- Giới thiệu những hướng phát triển mới của **Generative AI và Agentic AI**
+- Tìm hiểu cách xây dựng và hiện đại hóa các ứng dụng trên nền tảng AWS
+- Tạo cơ hội kết nối, trao đổi với cộng đồng công nghệ và các AWS enthusiasts tại khu vực phía Nam
 
 ### Danh Sách Diễn Giả
 
-- **Jignesh Shah** - Director, Open Source Databases
-- **Erica Liu** - Sr. GTM Specialist, AppMod
-- **Fabrianne Effendi** - Assc. Specialist SA, Serverless Amazon Web Services
+- **Dr. Werner Vogels** - CTO, Amazon.com
+- **Eric Yeo** - Country General Manager, Malaysia, Vietnam & Indochina, Amazon Web Services
+- Cùng các diễn giả đến từ AWS và các doanh nghiệp trong lĩnh vực công nghệ
 
 ### Nội Dung Nổi Bật
 
-#### Đưa ra các ảnh hưởng tiêu cực của kiến trúc ứng dụng cũ
+#### Xu hướng phát triển của Cloud và AI
 
-- Thời gian release sản phẩm lâu → Mất doanh thu/bỏ lỡ cơ hội
-- Hoạt động kém hiệu quả → Mất năng suất, tốn kém chi phí
-- Không tuân thủ các quy định về bảo mật → Mất an ninh, uy tín
+- **Cloud Computing và AI** ngày càng được kết hợp chặt chẽ trong quá trình phát triển các ứng dụng hiện đại.
+- AWS cung cấp nhiều dịch vụ hỗ trợ từ **compute, storage, database, networking** đến các công nghệ phục vụ AI.
+- Cloud giúp doanh nghiệp có thể triển khai các ứng dụng AI với khả năng **scalability, flexibility và cost optimization**.
+- AI không chỉ được sử dụng cho các bài toán thử nghiệm mà đang dần được đưa vào các hệ thống và quy trình thực tế.
 
-#### Chuyển đổi sang kiến trúc ứng dụng mới - Microservice Architecture
+#### Agentic AI
 
-Chuyển đổi thành hệ thống modular – từng chức năng là một **dịch vụ độc lập** giao tiếp với nhau qua **sự kiện** với 3 trụ cột cốt lõi:
+- Tìm hiểu về xu hướng phát triển của **Agentic AI** và các hệ thống AI có khả năng thực hiện nhiều bước để hoàn thành một mục tiêu.
+- Agent có thể kết hợp với **tools, APIs, data và các dịch vụ khác** để thực hiện các tác vụ phức tạp hơn.
+- Khác với việc chỉ sử dụng AI để trả lời câu hỏi, Agentic AI hướng đến việc xây dựng các hệ thống có khả năng **reasoning, planning và action**.
+- Đây là một hướng phát triển quan trọng trong quá trình xây dựng các ứng dụng AI thế hệ mới.
 
-- **Queue Management**: Xử lý tác vụ bất đồng bộ
-- **Caching Strategy:** Tối ưu performance
-- **Message Handling:** Giao tiếp linh hoạt giữa services
+#### Builders x AI
 
-#### Domain-Driven Design (DDD)
+- Track **Builders x AI** tập trung vào việc xây dựng các ứng dụng và giải pháp AI mang tính thực tế.
+- Tìm hiểu cách kết hợp **AI với Cloud services** để xây dựng các ứng dụng có khả năng triển khai và mở rộng.
+- Việc xây dựng một ứng dụng AI không chỉ tập trung vào model mà còn cần quan tâm đến **data, infrastructure, APIs, security và scalability**.
+- Qua các nội dung này, em có thêm góc nhìn về quá trình đưa một ý tưởng AI từ giai đoạn thử nghiệm thành một ứng dụng thực tế.
 
-- **Phương pháp 4 bước**: Xác định domain events → sắp xếp timeline → identify actors → xác định bounded contexts
-- **Case study bookstore**: Minh họa cách áp dụng DDD thực tế
-- **Context mapping**: 7 patterns tích hợp bounded contexts
+#### Data và Analytics
 
-#### Event-Driven Architecture
+- Tìm hiểu vai trò của **data foundation** trong quá trình xây dựng các ứng dụng AI.
+- Dữ liệu cần được lưu trữ, quản lý và xử lý phù hợp trước khi có thể được sử dụng hiệu quả cho AI và Machine Learning.
+- Nhận ra mối liên hệ giữa **Data Science, Data Engineering, Cloud Computing và AI** trong một hệ thống thực tế.
+- Chất lượng dữ liệu và hạ tầng dữ liệu có ảnh hưởng trực tiếp đến khả năng triển khai các ứng dụng AI.
 
-- **3 patterns tích hợp**: Publish/Subscribe, Point-to-point, Streaming
-- **Lợi ích**: Loose coupling, scalability, resilience
-- **So sánh sync vs async**: Hiểu rõ trade-offs (sự đánh đổi)
+#### Hiện đại hóa ứng dụng trên AWS
 
-#### Compute Evolution
-
-- **Shared Responsibility Model**: Từ EC2 → ECS → Fargate → Lambda
-- **Serverless benefits**: No server management, auto-scaling, pay-for-value
-- **Functions vs Containers**: Criteria lựa chọn phù hợp
-
-#### Amazon Q Developer
-
-- **SDLC automation**: Từ planning đến maintenance
-- **Code transformation**: Java upgrade, .NET modernization
-- **AWS Transform agents**: VMware, Mainframe, .NET migration
+- Tìm hiểu cách AWS hỗ trợ doanh nghiệp hiện đại hóa các ứng dụng và hệ thống hiện có.
+- Có thể kết hợp nhiều mô hình triển khai khác nhau như **virtual machines, containers và serverless** tùy thuộc vào yêu cầu của từng bài toán.
+- **Serverless architecture** giúp giảm công việc quản lý infrastructure và hỗ trợ khả năng tự động scaling.
+- Các dịch vụ AWS có thể được kết hợp để xây dựng những hệ thống có khả năng mở rộng và phục vụ người dùng thực tế.
 
 ### Những Gì Học Được
 
-#### Tư Duy Thiết Kế
+#### Tư Duy Về Cloud và AI
 
-- **Business-first approach**: Luôn bắt đầu từ business domain, không phải technology
-- **Ubiquitous language**: Importance của common vocabulary giữa business và tech teams
-- **Bounded contexts**: Cách identify và manage complexity trong large systems
+- **Cloud không chỉ là infrastructure**: Cloud có thể trở thành nền tảng để xây dựng toàn bộ hệ thống AI.
+- **AI cần một hệ thống hoàn chỉnh**: Một Machine Learning model chỉ là một thành phần trong toàn bộ hệ thống.
+- Cần quan tâm đến **data, compute, storage, API, security và deployment** khi đưa một ứng dụng AI vào thực tế.
+- Việc kết hợp **Cloud + Data + AI** mở ra nhiều hướng phát triển cho các ứng dụng Machine Learning.
 
 #### Kiến Trúc Kỹ Thuật
 
-- **Event storming technique**: Phương pháp thực tế để mô hình hóa quy trình kinh doanh
-- Sử dụng **Event-driven communication** thay vì synchronous calls
-- **Integration patterns**: Hiểu khi nào dùng sync, async, pub/sub, streaming
-- **Compute spectrum**: Criteria chọn từ VM → containers → serverless
+- Hiểu rõ hơn về vai trò của các thành phần như **compute, storage, database và API** trong một hệ thống Cloud.
+- Nhận ra lợi ích của **serverless architecture** trong việc giảm công việc quản lý server và hỗ trợ auto-scaling.
+- Hiểu rằng việc lựa chọn AWS services cần dựa trên **requirements của bài toán** thay vì chỉ lựa chọn dịch vụ theo công nghệ mới.
+- Có thêm góc nhìn về cách các AWS services có thể được kết hợp để tạo thành một hệ thống hoàn chỉnh.
 
-#### Chiến Lược Hiện Đại Hóa
+#### AI và Data Science
 
-- **Phased approach**: Không rush, phải có roadmap rõ ràng
-- **7Rs framework**: Nhiều con đường khác nhau tùy thuộc vào đặc điểm của mỗi ứng dụng
-- **ROI measurement**: Cost reduction + business agility
+- Nhận ra rằng việc xây dựng **Machine Learning model** chỉ là một bước trong quá trình phát triển một sản phẩm AI.
+- Cần quan tâm đến toàn bộ lifecycle từ **data preparation → model development → deployment → API → user application**.
+- Hiểu rõ hơn vai trò của Cloud trong việc đưa các sản phẩm Data Science từ môi trường thử nghiệm vào ứng dụng thực tế.
+- Có thêm định hướng kết hợp kiến thức **Data Science với Cloud Computing** trong quá trình học tập và thực tập.
 
 ### Ứng Dụng Vào Công Việc
 
-- **Áp dụng DDD** cho project hiện tại: Event storming sessions với business team
-- **Refactor microservices**: Sử dụng bounded contexts để identify service boundaries
-- **Implement event-driven patterns**: Thay thế một số sync calls bằng async messaging
-- **Serverless adoption**: Pilot AWS Lambda cho một số use cases phù hợp
-- **Try Amazon Q Developer**: Integrate vào development workflow để boost productivity
+- **Phát triển Serverless House Price Prediction API**: Áp dụng kiến thức Cloud và Data Science vào project đang thực hiện.
+- **Amazon S3**: Có thể sử dụng để lưu trữ model hoặc các file dữ liệu cần thiết cho project.
+- **AWS Lambda**: Sử dụng để xử lý logic prediction mà không cần quản lý server trực tiếp.
+- **Amazon API Gateway**: Xây dựng API để frontend có thể gửi thông tin căn nhà và nhận kết quả dự đoán.
+- **IAM**: Quản lý permissions giữa các AWS services và kiểm soát quyền truy cập.
+- **Frontend integration**: Kết nối frontend với API để tạo thành một ứng dụng hoàn chỉnh thay vì chỉ chạy model trong notebook.
+- Tiếp tục tìm hiểu cách kết hợp các AWS services để xây dựng hệ thống **scalable và cost-effective**.
 
 ### Trải nghiệm trong event
 
-Tham gia workshop **“GenAI-powered App-DB Modernization”** là một trải nghiệm rất bổ ích, giúp tôi có cái nhìn toàn diện về cách hiện đại hóa ứng dụng và cơ sở dữ liệu bằng các phương pháp và công cụ hiện đại. Một số trải nghiệm nổi bật:
+Tham gia **AWS Cloud & AI Day Vietnam 2026 – Watch Party** là một trải nghiệm bổ ích trong quá trình thực tập tại AWS, giúp em có cơ hội tiếp cận với những xu hướng mới trong lĩnh vực Cloud và AI.
 
 #### Học hỏi từ các diễn giả có chuyên môn cao
-- Các diễn giả đến từ AWS và các tổ chức công nghệ lớn đã chia sẻ **best practices** trong thiết kế ứng dụng hiện đại.
-- Qua các case study thực tế, tôi hiểu rõ hơn cách áp dụng **Domain-Driven Design (DDD)** và **Event-Driven Architecture** vào các project lớn.
 
-#### Trải nghiệm kỹ thuật thực tế
-- Tham gia các phiên trình bày về **event storming** giúp tôi hình dung cách **mô hình hóa quy trình kinh doanh** thành các domain events.
-- Học cách **phân tách microservices** và xác định **bounded contexts** để quản lý sự phức tạp của hệ thống lớn.
-- Hiểu rõ trade-offs giữa **synchronous và asynchronous communication** cũng như các pattern tích hợp như **pub/sub, point-to-point, streaming**.
+- Em có cơ hội theo dõi các keynote từ các chuyên gia và lãnh đạo trong lĩnh vực Cloud và AI.
+- **Dr. Werner Vogels**, CTO của Amazon.com, là một trong những diễn giả nổi bật của chương trình.
+- Em cũng đặc biệt chú ý đến phần trình bày của **Eric Yeo**, Country General Manager, Malaysia, Vietnam & Indochina, AWS.
+- Những nội dung được chia sẻ giúp em có thêm góc nhìn về hướng phát triển của Cloud và AI cũng như quá trình đưa AI vào các ứng dụng thực tế.
 
-#### Ứng dụng công cụ hiện đại
-- Trực tiếp tìm hiểu về **Amazon Q Developer**, công cụ AI hỗ trợ SDLC từ lập kế hoạch đến maintenance.
-- Học cách **tự động hóa code transformation** và pilot serverless với **AWS Lambda**, từ đó nâng cao năng suất phát triển.
+#### Trải nghiệm về Cloud và AI
+
+- Được theo dõi các nội dung về **Agentic AI, Cloud Computing, Data & Analytics và Modern Applications**.
+- Có thêm góc nhìn về cách AI đang chuyển từ giai đoạn thử nghiệm sang việc được ứng dụng trong các hệ thống thực tế.
+- Hiểu rõ hơn rằng để xây dựng một sản phẩm AI hoàn chỉnh cần kết hợp nhiều thành phần như **data, model, infrastructure, APIs và application**.
+- Những kiến thức này giúp em liên hệ trực tiếp với project **Serverless House Price Prediction API** đang định hướng thực hiện trong quá trình thực tập.
 
 #### Kết nối và trao đổi
-- Workshop tạo cơ hội trao đổi trực tiếp với các chuyên gia, đồng nghiệp và team business, giúp **nâng cao ngôn ngữ chung (ubiquitous language)** giữa business và tech.
-- Qua các ví dụ thực tế, tôi nhận ra tầm quan trọng của **business-first approach**, luôn bắt đầu từ nhu cầu kinh doanh thay vì chỉ tập trung vào công nghệ.
+
+- Watch Party tạo cơ hội để em gặp gỡ và giao lưu với những người đang quan tâm đến **AWS, Cloud và AI** tại khu vực phía Nam.
+- Có cơ hội quan sát cách cộng đồng công nghệ trao đổi và chia sẻ về những xu hướng công nghệ mới.
+- Qua hoạt động networking, em nhận thấy việc học công nghệ không chỉ giới hạn trong việc học lý thuyết mà còn cần chủ động trao đổi và cập nhật kiến thức từ cộng đồng.
 
 #### Bài học rút ra
-- Việc áp dụng DDD và event-driven patterns giúp giảm **coupling**, tăng **scalability** và **resilience** cho hệ thống.
-- Chiến lược hiện đại hóa cần **phased approach** và đo lường **ROI**, không nên vội vàng chuyển đổi toàn bộ hệ thống.
-- Các công cụ AI như Amazon Q Developer có thể **boost productivity** nếu được tích hợp vào workflow phát triển hiện tại.
+
+- **Cloud + AI + Data** là sự kết hợp quan trọng trong quá trình phát triển các sản phẩm công nghệ hiện đại.
+- Một **Machine Learning model** tốt chưa đủ để tạo ra một sản phẩm thực tế; cần quan tâm đến deployment, infrastructure, API, security và scalability.
+- Việc học AWS theo từng service cần được kết hợp với khả năng **thiết kế kiến trúc và giải quyết bài toán thực tế**.
+- Với định hướng **Data Science**, em cần tiếp tục phát triển thêm kiến thức Cloud để có thể đưa các model và sản phẩm Machine Learning vào môi trường thực tế.
+- Những kiến thức từ sự kiện giúp em có thêm định hướng để phát triển **Serverless House Price Prediction API** trong các tuần tiếp theo.
 
 #### Một số hình ảnh khi tham gia sự kiện
-* Thêm các hình ảnh của các bạn tại đây
-> Tổng thể, sự kiện không chỉ cung cấp kiến thức kỹ thuật mà còn giúp tôi thay đổi cách tư duy về thiết kế ứng dụng, hiện đại hóa hệ thống và phối hợp hiệu quả hơn giữa các team.
+
+* Thêm hình ảnh tại đây
+
+* Thêm hình ảnh tại đây
+
+* Thêm hình ảnh tại đây
+
+> Tổng thể, AWS Cloud & AI Day Vietnam 2026 – Watch Party không chỉ giúp em cập nhật thêm những xu hướng mới về Cloud và AI mà còn giúp em hiểu rõ hơn cách kiến thức Data Science có thể được kết hợp với AWS để xây dựng các ứng dụng Machine Learning có khả năng triển khai và sử dụng trong thực tế.
