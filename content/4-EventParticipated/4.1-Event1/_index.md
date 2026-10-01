@@ -1,126 +1,137 @@
 ---
 title: "Event 1"
-date: 2024-01-01
+date: 2026-09-29
 weight: 1
 chapter: false
 pre: " <b> 4.1. </b> "
 ---
 
-{{% notice warning %}}
-⚠️ **Note:** The information below is for reference purposes only. Please **do not copy it verbatim** into your report, including this warning.
-{{% /notice %}}
 
-# Summary Report: “GenAI-powered App-DB Modernization workshop”
+# Reflection “AWS Cloud & AI Day Vietnam 2026 – Watch Party”
 
-### Event Objectives
+### Purpose of the Event
 
-- Share best practices in modern application design
-- Introduce Domain-Driven Design (DDD) and event-driven architecture
-- Provide guidance on selecting the right compute services
-- Present AI tools to support the development lifecycle
+* Update knowledge about the latest trends in **Cloud Computing and Artificial Intelligence**
+* Learn how AWS is helping organizations apply **AI and Cloud technologies** in real-world scenarios
+* Learn about new developments in **Generative AI and Agentic AI**
+* Explore modern approaches to building and modernizing applications on AWS
+* Create opportunities to connect and exchange knowledge with the technology community and AWS enthusiasts in Southern Vietnam
 
-### Speakers
+### List of Speakers
 
-- **Jignesh Shah** – Director, Open Source Databases
-- **Erica Liu** – Sr. GTM Specialist, AppMod
-- **Fabrianne Effendi** – Assc. Specialist SA, Serverless Amazon Web Services
+* **Dr. Werner Vogels** - CTO, Amazon.com
+* **Eric Yeo** - Country General Manager, Malaysia, Vietnam & Indochina, Amazon Web Services
+* Other speakers from AWS and organizations in the technology industry
 
-### Key Highlights
+### Highlights
 
-#### Identifying the drawbacks of legacy application architecture
+#### Cloud and AI Trends
 
-- Long product release cycles → Lost revenue/missed opportunities  
-- Inefficient operations → Reduced productivity, higher costs  
-- Non-compliance with security regulations → Security breaches, loss of reputation  
+* **Cloud Computing and AI** are becoming increasingly connected in the development of modern applications.
+* AWS provides various services covering **compute, storage, databases, and networking**, as well as technologies for AI development.
+* Cloud enables organizations to deploy AI applications with greater **scalability, flexibility, and cost optimization**.
+* AI is no longer limited to experimentation but is increasingly being integrated into real-world systems and business processes.
 
-#### Transitioning to modern application architecture – Microservices
+#### Agentic AI
 
-Migrating to a modular system — each function is an **independent service** communicating via **events**, built on three core pillars:
+* Learned about the development of **Agentic AI** and AI systems that can perform multiple steps to achieve a specific goal.
+* Agents can work with **tools, APIs, data, and other services** to perform more complex tasks.
+* Unlike using AI only to answer questions, Agentic AI focuses on building systems capable of **reasoning, planning, and taking actions**.
+* This represents an important direction for developing next-generation AI applications.
 
-- **Queue Management**: Handle asynchronous tasks  
-- **Caching Strategy**: Optimize performance  
-- **Message Handling**: Flexible inter-service communication  
+#### Builders x AI
 
-#### Domain-Driven Design (DDD)
+* The **Builders x AI** track focused on building practical AI applications and solutions.
+* Learned how **AI can be combined with Cloud services** to build applications that can be deployed and scaled.
+* Building an AI application is not only about the model but also requires consideration of **data, infrastructure, APIs, security, and scalability**.
+* These sessions gave me a broader perspective on how an AI idea can be developed from an experimental stage into a practical application.
 
-- **Four-step method**: Identify domain events → arrange timeline → identify actors → define bounded contexts  
-- **Bookstore case study**: Demonstrates real-world DDD application  
-- **Context mapping**: 7 patterns for integrating bounded contexts  
+#### Data and Analytics
 
-#### Event-Driven Architecture
+* Learned about the importance of a **data foundation** in developing AI applications.
+* Data needs to be properly stored, managed, and processed before it can be effectively used for AI and Machine Learning.
+* Gained a better understanding of the relationship between **Data Science, Data Engineering, Cloud Computing, and AI** in a real-world system.
+* Data quality and data infrastructure can have a significant impact on the ability to deploy AI applications effectively.
 
-- **3 integration patterns**: Publish/Subscribe, Point-to-point, Streaming  
-- **Benefits**: Loose coupling, scalability, resilience  
-- **Sync vs async comparison**: Understanding the trade-offs  
+#### Application Modernization on AWS
 
-#### Compute Evolution
+* Learned how AWS can support organizations in modernizing existing applications and systems.
+* Different deployment approaches such as **virtual machines, containers, and serverless** can be selected depending on the requirements of each use case.
+* **Serverless architecture** can reduce infrastructure management responsibilities and support automatic scaling.
+* AWS services can be combined to build systems that are scalable and capable of serving real-world users.
 
-- **Shared Responsibility Model**: EC2 → ECS → Fargate → Lambda  
-- **Serverless benefits**: No server management, auto-scaling, pay-for-value  
-- **Functions vs Containers**: Criteria for appropriate choice  
+### What I Learned
 
-#### Amazon Q Developer
+#### Cloud and AI Mindset
 
-- **SDLC automation**: From planning to maintenance  
-- **Code transformation**: Java upgrade, .NET modernization  
-- **AWS Transform agents**: VMware, Mainframe, .NET migration  
-
-### Key Takeaways
-
-#### Design Mindset
-
-- **Business-first approach**: Always start from the business domain, not the technology  
-- **Ubiquitous language**: Importance of a shared vocabulary between business and tech teams  
-- **Bounded contexts**: Identifying and managing complexity in large systems  
+* **Cloud is more than infrastructure**: Cloud can serve as a platform for building an entire AI system.
+* **AI requires a complete system**: A Machine Learning model is only one component of a larger system.
+* When deploying an AI application in practice, it is necessary to consider **data, compute, storage, APIs, security, and deployment**.
+* Combining **Cloud + Data + AI** creates many opportunities for developing Machine Learning applications.
 
 #### Technical Architecture
 
-- **Event storming technique**: Practical method for modeling business processes  
-- Use **event-driven communication** instead of synchronous calls  
-- **Integration patterns**: When to use sync, async, pub/sub, streaming  
-- **Compute spectrum**: Criteria for choosing between VM, containers, and serverless  
+* Gained a better understanding of the roles of components such as **compute, storage, databases, and APIs** in a Cloud system.
+* Learned more about the benefits of **serverless architecture**, including reduced server management and automatic scaling.
+* Realized that AWS services should be selected based on the **requirements of the problem** rather than simply choosing the newest technology.
+* Gained a broader perspective on how AWS services can be combined to create a complete system.
 
-#### Modernization Strategy
+#### AI and Data Science
 
-- **Phased approach**: No rushing — follow a clear roadmap  
-- **7Rs framework**: Multiple modernization paths depending on the application  
-- **ROI measurement**: Cost reduction + business agility  
+* Realized that building a **Machine Learning model** is only one step in developing an AI product.
+* It is necessary to consider the entire lifecycle from **data preparation → model development → deployment → API → user application**.
+* Gained a better understanding of the role of Cloud in bringing Data Science products from experimental environments into real-world applications.
+* Developed a stronger interest in combining **Data Science with Cloud Computing** during my studies and internship.
 
-### Applying to Work
+### Application to My Work
 
-- **Apply DDD** to current projects: Event storming sessions with business teams  
-- **Refactor microservices**: Use bounded contexts to define service boundaries  
-- **Implement event-driven patterns**: Replace some sync calls with async messaging  
-- **Adopt serverless**: Pilot AWS Lambda for suitable use cases  
-- **Try Amazon Q Developer**: Integrate into the dev workflow to boost productivity  
+* **Developing a Serverless House Price Prediction API**: Apply Cloud and Data Science knowledge to the project I am planning during my internship.
+* **Amazon S3**: Use it to store the trained model or required data files.
+* **AWS Lambda**: Handle prediction logic without directly managing servers.
+* **Amazon API Gateway**: Provide an API that allows the frontend to send house information and receive prediction results.
+* **IAM**: Manage permissions between AWS services and control access to resources.
+* **Frontend integration**: Connect the frontend with the API to build a complete application instead of only running the model in a notebook.
+* Continue learning how to combine AWS services to build a **scalable and cost-effective** system.
 
-### Event Experience
+### Experience at the Event
 
-Attending the **“GenAI-powered App-DB Modernization”** workshop was extremely valuable, giving me a comprehensive view of modernizing applications and databases using advanced methods and tools. Key experiences included:
+Participating in **AWS Cloud & AI Day Vietnam 2026 – Watch Party** was a valuable experience during my AWS internship. It gave me an opportunity to learn about new trends in Cloud and AI and to gain a broader perspective beyond the AWS courses I was studying.
 
-#### Learning from highly skilled speakers
-- Experts from AWS and major tech organizations shared **best practices** in modern application design.  
-- Through real-world case studies, I gained a deeper understanding of applying **DDD** and **Event-Driven Architecture** to large projects.  
+#### Learning from Experienced Speakers
 
-#### Hands-on technical exposure
-- Participating in **event storming** sessions helped me visualize how to **model business processes** into domain events.  
-- Learned how to **split microservices** and define **bounded contexts** to manage large-system complexity.  
-- Understood trade-offs between **synchronous and asynchronous communication** and integration patterns like **pub/sub, point-to-point, streaming**.  
+* I had the opportunity to follow keynote sessions presented by experts and leaders in the Cloud and AI industry.
+* **Dr. Werner Vogels**, CTO of Amazon.com, was one of the prominent speakers at the event.
+* I also paid particular attention to the presentation by **Eric Yeo**, Country General Manager, Malaysia, Vietnam & Indochina, AWS.
+* The presentations gave me a broader perspective on the development of Cloud and AI and how AI can be brought into real-world applications.
 
-#### Leveraging modern tools
-- Explored **Amazon Q Developer**, an AI tool for SDLC support from planning to maintenance.  
-- Learned to **automate code transformation** and pilot serverless with **AWS Lambda** to improve productivity.  
+#### Cloud and AI Experience
 
-#### Networking and discussions
-- The workshop offered opportunities to exchange ideas with experts, peers, and business teams, enhancing the **ubiquitous language** between business and tech.  
-- Real-world examples reinforced the importance of the **business-first approach** rather than focusing solely on technology.  
+* Learned about **Agentic AI, Cloud Computing, Data & Analytics, and Modern Applications**.
+* Gained a broader perspective on how AI is moving from experimentation toward real-world implementation.
+* Understood more clearly that building a complete AI product requires multiple components, including **data, models, infrastructure, APIs, and applications**.
+* These topics helped me connect what I learned from the event with my **Serverless House Price Prediction API** project during my internship.
 
-#### Lessons learned
-- Applying DDD and event-driven patterns reduces **coupling** while improving **scalability** and **resilience**.  
-- Modernization requires a **phased approach** with **ROI measurement**; rushing the process can be risky.  
-- AI tools like Amazon Q Developer can significantly **boost productivity** when integrated into the current workflow.  
+#### Networking and Knowledge Exchange
 
-#### Some event photos
-*Add your event photos here*  
+* The Watch Party provided an opportunity to meet and interact with people interested in **AWS, Cloud, and AI** in Southern Vietnam.
+* I had the opportunity to observe how members of the technology community exchange ideas and discuss emerging technologies.
+* Through the networking activities, I realized that learning technology is not limited to studying theory but also requires actively exchanging knowledge and learning from the community.
 
-> Overall, the event not only provided technical knowledge but also helped me reshape my thinking about application design, system modernization, and cross-team collaboration.
+#### Key Takeaways
+
+* **Cloud + AI + Data** is an important combination in developing modern technology products.
+* A good **Machine Learning model** is not enough to create a real-world product; deployment, infrastructure, APIs, security, and scalability must also be considered.
+* Learning AWS services individually should be combined with the ability to **design architectures and solve real-world problems**.
+* As a **Data Science student**, I need to continue developing my Cloud knowledge so that I can bring Machine Learning models and products into real-world environments.
+* The knowledge gained from the event provides additional direction for developing the **Serverless House Price Prediction API** in the following weeks.
+
+#### Some Photos from the Event
+
+* Add a photo here
+
+* Add a photo here
+
+* Add a photo here
+
+> Overall, AWS Cloud & AI Day Vietnam 2026 – Watch Party not only helped me learn about new trends in Cloud and AI but also gave me a better understanding of how Data Science knowledge can be combined with AWS to build Machine Learning applications that can be deployed and used in real-world environments.
+
