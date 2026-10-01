@@ -62,7 +62,7 @@ Lambda retrieves the trained model from Amazon S3, performs the prediction, and 
 The Lambda Execution Role provides the required S3 permissions, while Amazon CloudWatch collects Lambda logs and metrics for monitoring.
 
 System Architecture
-![Serverless House Price Prediction API Architecture](/images/2-Proposal/platform_architecture.jpeg)
+![Serverless House Price Prediction API Architecture](/images/2-Proposal/architecture.jpeg)
 
 ### AWS Services Used
 - **Amazon S3**: Stores the trained Machine Learning model (.pkl / .joblib).
