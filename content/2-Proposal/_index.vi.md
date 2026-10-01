@@ -71,7 +71,7 @@ Lambda Execution Role cung cấp các quyền S3 cần thiết, trong khi Amazon
 ### *Kiến trúc hệ thống*
 
 System Architecture
-![Serverless House Price Prediction API Architecture](/images/2-Proposal/platform_architecture.jpeg)
+![Serverless House Price Prediction API Architecture](/images/2-Proposal/architecture.jpeg)
 
 ### *Các dịch vụ AWS sử dụng*
 
