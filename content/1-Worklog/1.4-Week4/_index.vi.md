@@ -1,59 +1,50 @@
 ---
 title: "Worklog Tuần 4"
-date: 2024-01-01
+date: 2026-10-01
 weight: 1
 chapter: false
 pre: " <b> 1.4. </b> "
 ---
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
 
 
 ### Mục tiêu tuần 4:
 
-* Kết nối, làm quen với các thành viên trong First Cloud AI Journey.
-* Hiểu dịch vụ AWS cơ bản, cách dùng console & CLI.
+* Mở rộng kiến thức về AWS Cloud và AI thông qua các hoạt động và sự kiện của AWS.
+* Tìm hiểu các công nghệ và giải pháp Cloud & AI được ứng dụng trong thực tế.
+* Tiếp tục phát triển và hoàn thiện project proposal.
+* Tiếp tục nghiên cứu kiến trúc hệ thống và các AWS services phù hợp với dự án.
+* Áp dụng kiến thức đã học vào quá trình phát triển dự án thực tập.
 
-### Các công việc cần triển khai trong tuần này:
-| Thứ | Công việc                                                                                                                                                                                   | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu                            |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | --------------- | ----------------------------------------- |
-| 2   | - Làm quen với các thành viên FCAJ <br> - Đọc và lưu ý các nội quy, quy định tại đơn vị thực tập                                                                                             | 11/08/2025   | 11/08/2025      |
-| 3   | - Tìm hiểu AWS và các loại dịch vụ <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                            | 12/08/2025   | 12/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Tạo AWS Free Tier account <br> - Tìm hiểu AWS Console & AWS CLI <br> - **Thực hành:** <br>&emsp; + Tạo AWS account <br>&emsp; + Cài AWS CLI & cấu hình <br> &emsp; + Cách sử dụng AWS CLI | 13/08/2025   | 13/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Tìm hiểu EC2 cơ bản: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - Các cách remote SSH vào EC2 <br> - Tìm hiểu Elastic IP   <br>                  | 14/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Thực hành:** <br>&emsp; + Tạo EC2 instance <br>&emsp; + Kết nối SSH <br>&emsp; + Gắn EBS volume                                                                                         | 15/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
+### Các công việc thực hiện trong tuần:
 
+| Ngày | Công việc | Ngày bắt đầu | Ngày hoàn thành | Tài liệu tham khảo |
+| --- | --- | --- | --- | --- |
+| 1 | - Tham gia **AWS Cloud & AI Day Vietnam 2026 – Watch Party tại TP. Hồ Chí Minh** <br> - Tham dự các phiên chia sẻ về Cloud và AI <br> - Tìm hiểu các xu hướng, công nghệ và giải pháp AWS được giới thiệu tại sự kiện <br> - Ghi chú và tổng hợp các nội dung quan trọng từ sự kiện | 29/09/2026 | 29/09/2026 | AWS Cloud & AI Day Vietnam 2026 |
+| 2 | - Tiếp tục nghiên cứu và hoàn thiện project proposal <br> - Review kiến trúc hệ thống và các AWS services được lựa chọn <br> - Kiểm tra data flow giữa các thành phần trong kiến trúc <br> - Tìm hiểu thêm về IAM Roles và quyền truy cập giữa các AWS services <br> - Trao đổi và nhận feedback về kiến trúc dự án | 30/09/2026 | 30/09/2026 | [https://workshop-sample.awsfcaj.com/vi/2-proposal/](https://workshop-sample.awsfcaj.com/vi/2-proposal/) |
+| 3 | - Tiếp tục phát triển project <br> - Review các yêu cầu và tiêu chí đánh giá của project <br> - Nghiên cứu cách các AWS services có thể được tích hợp trong hệ thống <br> - Điều chỉnh và hoàn thiện kiến trúc dự án dựa trên feedback <br> - Tiếp tục chuẩn bị cho giai đoạn implementation | 01/10/2026 | 01/10/2026 | [https://hcm-rules.awsfcaj.com/3-project/](https://hcm-rules.awsfcaj.com/3-project/) |
 
-### Kết quả đạt được tuần 4:
+### Kết quả đạt được trong tuần 4:
 
-* Hiểu AWS là gì và nắm được các nhóm dịch vụ cơ bản: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
+* Tham gia **AWS Cloud & AI Day Vietnam 2026 – Watch Party tại TP. Hồ Chí Minh**.
 
-* Đã tạo và cấu hình AWS Free Tier account thành công.
+* Mở rộng kiến thức về các công nghệ và giải pháp liên quan đến **AWS Cloud và Artificial Intelligence**.
 
-* Làm quen với AWS Management Console và biết cách tìm, truy cập, sử dụng dịch vụ từ giao diện web.
+* Có thêm góc nhìn thực tế về cách Cloud và AI được ứng dụng trong các hệ thống và sản phẩm.
 
-* Cài đặt và cấu hình AWS CLI trên máy tính bao gồm:
-  * Access Key
-  * Secret Key
-  * Region mặc định
-  * ...
+* Tiếp tục hoàn thiện project proposal dựa trên yêu cầu của chương trình AWS FCAJ.
 
-* Sử dụng AWS CLI để thực hiện các thao tác cơ bản như:
+* Tiếp tục review và cải thiện kiến trúc hệ thống của project.
 
-  * Kiểm tra thông tin tài khoản & cấu hình
-  * Lấy danh sách region
-  * Xem dịch vụ EC2
-  * Tạo và quản lý key pair
-  * Kiểm tra thông tin dịch vụ đang chạy
-  * ...
+* Cải thiện hiểu biết về:
+  * Data flow giữa các thành phần trong hệ thống.
+  * Vai trò của Amazon API Gateway và AWS Lambda.
+  * Authentication với Amazon Cognito.
+  * IAM Roles và Permissions.
+  * Database integration.
+  * AWS Amplify trong việc triển khai frontend.
 
-* Có khả năng kết nối giữa giao diện web và CLI để quản lý tài nguyên AWS song song.
-* ...
+* Tiếp nhận feedback về architecture và điều chỉnh cách thể hiện các luồng dữ liệu cũng như mối quan hệ permission giữa các AWS services.
+
+* Hoàn thiện hơn phần chuẩn bị cho giai đoạn implementation của project.
 
 
