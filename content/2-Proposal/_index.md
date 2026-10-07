@@ -75,7 +75,7 @@ The Lambda Execution Role provides Lambda with the required permissions to acces
 
 System Architecture
 
-![Serverless Personal Expense Tracker Architecture](/images/2-Proposal/architecture.jpeg)
+![Serverless Personal Expense Tracker Architecture](../../static/images/2-Proposal/architecture.jpeg)
 
 ### AWS Services Used
 - **AWS Amplify**: Hosts and deploys the web frontend and serves the static frontend files.
