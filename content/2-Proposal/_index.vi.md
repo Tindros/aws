@@ -91,7 +91,7 @@ Lambda Execution Role cung cấp cho Lambda các quyền cần thiết để tru
 
 Kiến trúc hệ thống
 
-![Serverless Personal Expense Tracker Architecture](/images/2-Proposal/architecture.jpeg)
+![Serverless Personal Expense Tracker Architecture](../../static/images/2-Proposal/architecture.jpeg)
 
 ### Các dịch vụ AWS được sử dụng
 
