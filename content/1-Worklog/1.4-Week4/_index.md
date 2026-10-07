@@ -1,57 +1,49 @@
 ---
 title: "Week 4 Worklog"
-date: 2024-01-01
+date: 2026-10-01
 weight: 1
 chapter: false
 pre: " <b> 1.4. </b> "
 ---
-{{% notice warning %}} 
-⚠️ **Note:** The following information is for reference purposes only. Please **do not copy verbatim** for your own report, including this warning.
-{{% /notice %}}
+
 
 
 ### Week 4 Objectives:
 
-* Connect and get acquainted with members of First Cloud AI Journey.
-* Understand basic AWS services, how to use the console & CLI.
+* Expand knowledge of AWS Cloud and AI through AWS activities and events.
+* Learn about Cloud and AI technologies and solutions used in real-world applications.
+* Continue developing and improving the project proposal.
+* Continue researching the system architecture and suitable AWS services for the project.
+* Apply the knowledge gained to the development of the internship project.
 
 ### Tasks to be carried out this week:
-| Day | Task                                                                                                                                                                                                   | Start Date | Completion Date | Reference Material                        |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------- | --------------- | ----------------------------------------- |
-| 2   | - Get acquainted with FCAJ members <br> - Read and take note of internship unit rules and regulations                                                                                                   | 08/11/2025 | 08/11/2025      |
-| 3   | - Learn about AWS and its types of services <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                              | 08/12/2025 | 08/12/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Create AWS Free Tier account <br> - Learn about AWS Console & AWS CLI <br> - **Practice:** <br>&emsp; + Create AWS account <br>&emsp; + Install & configure AWS CLI <br> &emsp; + How to use AWS CLI | 08/13/2025 | 08/13/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Learn basic EC2: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - SSH connection methods to EC2 <br> - Learn about Elastic IP   <br>                            | 08/14/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Practice:** <br>&emsp; + Launch an EC2 instance <br>&emsp; + Connect via SSH <br>&emsp; + Attach an EBS volume                                                                                     | 08/15/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
 
+| Day | Task | Start Date | Completion Date | Reference Material |
+| --- | --- | ---------- | --------------- | ------------------ |
+| 1 | - Participate in **AWS Cloud & AI Day Vietnam 2026 – Watch Party in Ho Chi Minh City** <br> - Attend sessions about Cloud and AI <br> - Learn about the AWS technologies, solutions, and trends introduced at the event <br> - Take notes and summarize important information from the event | 09/29/2026 | 09/29/2026 | AWS Cloud & AI Day Vietnam 2026 |
+| 2 | - Continue researching and improving the project proposal <br> - Review the system architecture and selected AWS services <br> - Check the data flow between system components <br> - Learn more about IAM Roles and permissions between AWS services <br> - Discuss the architecture and receive feedback | 09/30/2026 | 09/30/2026 | [https://workshop-sample.awsfcaj.com/vi/2-proposal/](https://workshop-sample.awsfcaj.com/vi/2-proposal/) |
+| 3 | - Continue developing the project <br> - Review project requirements and evaluation criteria <br> - Research how AWS services can be integrated into the system <br> - Adjust and improve the project architecture based on feedback <br> - Continue preparing for the implementation phase | 10/01/2026 | 10/01/2026 | [https://hcm-rules.awsfcaj.com/3-project/](https://hcm-rules.awsfcaj.com/3-project/) |
 
 ### Week 4 Achievements:
 
-* Understood what AWS is and mastered the basic service groups: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
+* Participated in **AWS Cloud & AI Day Vietnam 2026 – Watch Party in Ho Chi Minh City**.
 
-* Successfully created and configured an AWS Free Tier account.
+* Expanded knowledge of technologies and solutions related to **AWS Cloud and Artificial Intelligence**.
 
-* Became familiar with the AWS Management Console and learned how to find, access, and use services via the web interface.
+* Gained additional insights into how Cloud and AI technologies can be applied to real-world systems and products.
 
-* Installed and configured AWS CLI on the computer, including:
-  * Access Key
-  * Secret Key
-  * Default Region
-  * ...
+* Continued improving the project proposal based on the requirements of the AWS FCAJ program.
 
-* Used AWS CLI to perform basic operations such as:
+* Continued reviewing and improving the project's system architecture.
 
-  * Check account & configuration information
-  * Retrieve the list of regions
-  * View EC2 service
-  * Create and manage key pairs
-  * Check information about running services
-  * ...
+* Improved understanding of:
+  * Data flow between system components.
+  * The roles of Amazon API Gateway and AWS Lambda.
+  * Authentication using Amazon Cognito.
+  * IAM Roles and Permissions.
+  * Database integration.
+  * AWS Amplify for frontend deployment.
 
-* Acquired the ability to connect between the web interface and CLI to manage AWS resources in parallel.
-* ...
+* Received architecture feedback and adjusted the representation of data flows and permission relationships between AWS services.
+
+* Made further progress in preparing the project for the implementation phase.
