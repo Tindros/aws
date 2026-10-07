@@ -8,8 +8,8 @@ pre: " <b> 2. </b> "
 
 
 
-**# Serverless Personal Expense Tracker**
-**## Giải Pháp Serverless Trên AWS Cho Quản Lý Chi Tiêu Cá Nhân**
+# Serverless Personal Expense Tracker
+## Giải Pháp Serverless Trên AWS Cho Quản Lý Chi Tiêu Cá Nhân
 
 ### 1. Tóm tắt điều hành
 
