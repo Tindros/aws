@@ -7,101 +7,169 @@ pre: " <b> 2. </b> "
 ---
 
 
-# Serverless House Price Prediction API
-## AWS Serverless Solution for House Price Prediction
+# Serverless Personal Expense Tracker
+## AWS Serverless Solution for Personal Expense Management
 
 ### 1. Executive Summary
-The Serverless House Price Prediction API is a system designed to deploy a Machine Learning model as a serverless prediction service on AWS.
+The Serverless Personal Expense Tracker is a web-based application designed to help users record, manage, review, and summarize their personal expenses through a serverless architecture on AWS.
 
-The prediction model is trained using Python and Scikit-learn on Google Colab with a housing dataset. After training, the model is exported as a .pkl or .joblib file and uploaded to Amazon S3 for storage.
+The application provides core expense management features including user registration and login, adding expenses, viewing expense records, editing and deleting expenses, filtering expenses, and viewing a summary dashboard.
 
-When a user accesses the web application through AWS Amplify, the user's house features are submitted as an HTTP POST request to Amazon API Gateway. API Gateway invokes an AWS Lambda prediction function. Lambda retrieves the trained model from S3 and uses it to predict the house price.
-    
-The prediction result is then returned through API Gateway to the frontend and displayed to the user.
+The web frontend is hosted by AWS Amplify. After the frontend files are delivered to the user's browser, the browser communicates directly with Amazon Cognito for authentication and directly with Amazon API Gateway for application API requests. Amazon Cognito provides authentication and issues JWT tokens that are included in API requests.
 
-The serverless architecture reduces the need to manage traditional servers and provides a scalable and cost-efficient solution for a small-scale Machine Learning application.
+Amazon API Gateway is configured as an HTTP API with a JWT authorizer using the Amazon Cognito User Pool. Authenticated requests are forwarded to AWS Lambda, which contains the application business logic and performs read and write operations on Amazon DynamoDB.
+
+Amazon DynamoDB stores expense records, while Amazon CloudWatch provides logging and monitoring for Lambda execution. An IAM Lambda Execution Role provides Lambda with the permissions required to access DynamoDB and CloudWatch following the principle of least privilege.
+
+The serverless architecture reduces the need to manage traditional servers and provides a scalable and cost-efficient solution for a small-scale personal expense management application.
 
 
 ### 2. Problem Statement
 ### What’s the Problem?
-House price prediction models are often developed and tested in environments such as Google Colab or local computers. However, after training, the model does not provide a convenient way for users to submit house information and obtain predictions through a web application.
+Personal expense information is often recorded manually in notebooks, spreadsheets, or simple note-taking applications. These approaches can make it difficult to consistently organize expenses and quickly understand spending patterns.
 
-Running the model directly on a personal computer also makes it difficult to provide the prediction service to multiple users or integrate the model into a web application.
+Users may also need to calculate monthly spending, compare expenses by category, or search for transactions within a specific period. Performing these tasks manually can be time-consuming and may lead to inconsistent records or calculation errors.
 
-In addition, deploying a Machine Learning model as an API requires an appropriate backend architecture. Using a traditional continuously running server such as an EC2 instance may introduce unnecessary infrastructure management and costs for a small-scale prediction service.
+In addition, a web-based expense management application requires an appropriate backend architecture for authentication, data storage, and API processing. Using a traditional continuously running server such as an EC2 instance may introduce unnecessary infrastructure management and costs for a small-scale personal application.
+
 
 ### The Solution
-The project proposes a Serverless House Price Prediction API using AWS services.
+he project proposes a Serverless Personal Expense Tracker using AWS services.
 
-The Machine Learning model is trained outside AWS using Google Colab, Python, and Scikit-learn. After training and evaluation, the model is exported as a .pkl or .joblib file and uploaded to Amazon S3.
+Users access the web application through a browser. AWS Amplify hosts and deploys the frontend application, while the browser communicates directly with Amazon Cognito for user registration and login. After successful authentication, Cognito returns JWT tokens to the browser.
 
-When a user accesses the web application hosted by AWS Amplify, the frontend sends the house features through an HTTP POST request to Amazon API Gateway. API Gateway invokes AWS Lambda, which retrieves the trained model from S3 and performs the prediction.
+The browser sends authenticated expense requests to Amazon API Gateway using the JWT token in the Authorization header. API Gateway validates the JWT using a Cognito-based JWT authorizer and invokes AWS Lambda for valid requests.
 
-The predicted house price is returned through API Gateway to the frontend and displayed to the user.
+AWS Lambda processes the expense management logic and performs create, read, update, and delete operations on Amazon DynamoDB. DynamoDB stores expense records associated with the authenticated user.
 
-An AWS IAM Execution Role provides Lambda with the required permissions to access the model stored in S3 following the principle of least privilege. Amazon CloudWatch is used for logging and monitoring Lambda execution.
+The application can also provide filtering and summary functions, allowing users to review total expenses and analyze spending by date or category.
+
+An AWS IAM Lambda Execution Role provides Lambda with the required permissions to access DynamoDB and write logs to CloudWatch following the principle of least privilege. Amazon CloudWatch is used for logging and monitoring Lambda execution.
+
 
 ### Benefits and Return on Investment
-The solution transforms a Machine Learning model from a development environment into a web-based prediction service, allowing users to access the model without directly running Python or Google Colab.
+The solution transforms personal expense tracking from a manual process into a web-based application that allows authenticated users to manage their expense records from a browser.
 
-Using a serverless architecture reduces infrastructure management requirements because there is no need to maintain a continuously running server. AWS Lambda executes the prediction function only when requests are received.
+Using a serverless architecture reduces infrastructure management requirements because there is no need to maintain a continuously running application server. AWS Lambda executes application logic when API requests are received.
 
-The project also provides a foundation for future improvements, such as using larger datasets, improving model accuracy, adding additional house features, or developing other Machine Learning APIs.
+Amazon Cognito provides user authentication, while API Gateway and the JWT authorizer help protect application API routes so that expense data can be accessed only through authenticated requests.
 
-The expected operating cost is relatively low for a small-scale workload because the main AWS services use usage-based pricing. The final monthly and yearly cost will be estimated using the AWS Pricing Calculator based on the expected number of prediction requests and resource usage.
+The project also provides a foundation for future improvements, such as budget tracking, budget alerts, advanced analytics, expense visualization, recurring expenses, or additional notification services.
+
+The expected operating cost is relatively low for a small-scale workload because the main AWS services use usage-based pricing. The final monthly and yearly cost will be estimated using the AWS Pricing Calculator based on the expected number of users, API requests, database operations, frontend usage, and monitoring activity.
 
 ### 3. Solution Architecture
-The system uses an AWS Serverless architecture to deploy the house price prediction model.
+The system uses an AWS Serverless architecture to provide authenticated personal expense management.
 
-The Machine Learning model is trained outside AWS using Google Colab. A housing dataset is used during the training process. After training, the model is exported as a .pkl or .joblib file and uploaded to Amazon S3.
+AWS Amplify hosts and deploys the frontend application. The user / web browser accesses the frontend through Amplify and runs the frontend code locally in the browser.
 
-Within AWS, users access the web application hosted by AWS Amplify. The frontend sends house features to Amazon API Gateway through an HTTP POST request. API Gateway invokes AWS Lambda to process the prediction request.
+The browser communicates directly with Amazon Cognito for sign in and sign up. After successful authentication, Cognito returns a JWT token to the browser.
 
-Lambda retrieves the trained model from Amazon S3, performs the prediction, and returns the result through API Gateway to the frontend.
+The browser sends API requests with the JWT token to Amazon API Gateway through an HTTP API. API Gateway uses a JWT authorizer configured with the Cognito User Pool to validate the token before invoking AWS Lambda.
 
-The Lambda Execution Role provides the required S3 permissions, while Amazon CloudWatch collects Lambda logs and metrics for monitoring.
+AWS Lambda contains the expense service and business logic. It performs create, read, update, and delete operations on Amazon DynamoDB and can generate expense summaries for the authenticated user.
+
+Amazon DynamoDB stores expense data. Amazon CloudWatch collects Lambda logs and metrics for monitoring, troubleshooting, and operational visibility.
+
+The Lambda Execution Role provides Lambda with the required permissions to access DynamoDB and CloudWatch.
 
 System Architecture
-![Serverless House Price Prediction API Architecture](/images/2-Proposal/architecture.jpeg)
+
+![Serverless Personal Expense Tracker Architecture](/images/2-Proposal/architecture.jpeg)
 
 ### AWS Services Used
-- **Amazon S3**: Stores the trained Machine Learning model (.pkl / .joblib).
-- **AWS Lambda**: Executes the prediction function using the trained model.
-- **Amazon API Gateway**: Provides the REST API and receives HTTP requests from the frontend.
-- **AWS Amplify**: Hosts and deploys the web frontend.
-- **AWS IAM**: Provides the Lambda Execution Role with the permissions required to access the model in S3.
-- **Amazon CloudWatch**: Provides logging and monitoring for Lambda execution.
+- **AWS Amplify**: Hosts and deploys the web frontend and serves the static frontend files.
+
+- **Amazon Cognito**: Provides user registration, sign in, and authentication through a User Pool and issues JWT tokens.
+
+- **Amazon API Gateway**: Provides the HTTP API, receives API requests from the user's browser, and uses a JWT authorizer to validate authenticated requests.
+
+- **AWS Lambda**: Executes the expense management business logic and processes API requests.
+
+- **Amazon DynamoDB**: Stores expense records and supports create, read, update, and delete operations.
+
+- **AWS IAM**: Provides the Lambda Execution Role with the permissions required to access DynamoDB and CloudWatch.
+
+- **Amazon CloudWatch**: Provides logging, metrics, and monitoring for Lambda execution.
 
 ### Component Design
-- **Model Training**: Google Colab, Python, and Scikit-learn are used to preprocess the housing dataset and train the regression model.
-- **Model Storage**: The trained model is exported as a .pkl or .joblib file and uploaded to Amazon S3.
-- **Web Frontend**: AWS Amplify hosts the web application where users enter house features.
-- **API Layer**: Amazon API Gateway provides the REST API used to receive prediction requests.
-- **Prediction Function**: AWS Lambda loads the trained model from S3 and performs the house price prediction.
-- **Security**: An IAM Lambda Execution Role provides the required S3 permissions following the principle of least privilege.
-- **Monitoring**: Amazon CloudWatch collects Lambda logs and metrics for troubleshooting and monitoring.
+- **Web Frontend**: AWS Amplify hosts the web application. The user's browser runs the frontend code after receiving the static files.
+
+- **User Authentication**: Amazon Cognito User Pool handles user registration and login and returns JWT tokens to the browser.
+
+- **API Layer**: Amazon API Gateway provides the HTTP API used by the frontend. A Cognito-based JWT authorizer validates the JWT included in the Authorization header.
+
+- **Expense Service**: AWS Lambda contains the application business logic for creating, reading, updating, deleting, filtering, and summarizing expense records.
+
+- **Data Storage**: Amazon DynamoDB stores expense records. Each record is associated with the authenticated user so that users can manage their own expense data.
+
+- **Security**: Amazon Cognito authenticates users and API Gateway validates JWT tokens. An IAM Lambda Execution Role provides Lambda with the minimum required permissions to access DynamoDB and CloudWatch.
+
+- **Monitoring**: Amazon CloudWatch collects Lambda logs and metrics for troubleshooting, monitoring, and operational review.
+
+### Core Expense Data
+
+The application can store expense records with fields such as:
+
+- **userId**: Identifies the authenticated user who owns the expense record.
+
+- **expenseId**: Unique identifier for the expense record.
+
+- **amount**: Expense amount.
+
+- **category**: Expense category such as Food, Transportation, Shopping, Bills, or Other.
+
+- **description**: Optional description of the expense.
+
+- **date**: Expense date.
+
+- **createdAt**: Timestamp used to record when the expense was created.
+
+### Core API Endpoints
+
+The HTTP API can provide endpoints such as:
+
+- **GET /expenses**: Retrieve expense records for the authenticated user.
+
+- **POST /expenses**: Create a new expense record.
+
+- **PUT /expenses/{id}**: Update an existing expense record.
+
+- **DELETE /expenses/{id}**: Delete an expense record.
+
+- **GET /summary**: Return expense summary information such as total spending and category-based totals.
 
 
 ### 4. Technical Implementation
 **Implementation Phases**
-The project consists of two major parts: Machine Learning model development and AWS Serverless deployment. The implementation can be divided into four phases:
+The project focuses on building a complete serverless expense management application. The implementation can be divided into four phases:
 
-- Model research and development: Study the house price prediction problem, prepare the housing dataset, and develop a regression model using Python and Scikit-learn on - Google Colab.
-- Model evaluation and deployment preparation: Evaluate the model using appropriate metrics, select the final model, and export it as a .pkl or .joblib file.
-- Serverless API development: Upload the trained model to Amazon S3, implement the AWS Lambda prediction function, and configure Amazon API Gateway as the REST API endpoint.
-- Frontend development, testing, and deployment: Build the web interface, connect the frontend to API Gateway, deploy the frontend using AWS Amplify, and perform end-to-end testing.
+- Requirements and architecture design: Define the expense management requirements, identify the required AWS services, finalize the architecture, and design the DynamoDB data structure and API endpoints.
+
+- Authentication and backend development: Configure Amazon Cognito, create the API Gateway HTTP API with a JWT authorizer, implement AWS Lambda business logic, and configure DynamoDB operations.
+
+- Frontend development and integration: Build the web interface, implement authentication flows, create expense management screens, connect the frontend directly to Cognito and API Gateway, and display expense and summary information.
+
+- Testing, monitoring, optimization, and deployment: Perform end-to-end testing, configure IAM permissions and CloudWatch monitoring, handle errors, optimize the application, deploy the final frontend, and document the complete system.
 
 **Technical Requirements**
-- Machine Learning: Python, Pandas, Scikit-learn, and other required libraries for data preprocessing, training, and evaluation.
-- Model: A regression model exported as .pkl or .joblib.
-- Storage: Amazon S3 for storing the trained model.
-- Backend: AWS Lambda for processing prediction requests.
-- API: Amazon API Gateway for providing the REST API.
-- Frontend: A web application that allows users to enter house features and view the predicted house price.
-- Deployment: AWS Amplify for hosting the frontend application.
-- Security: IAM Lambda Execution Role with the minimum permissions required to access S3.
-- Monitoring: Amazon CloudWatch Logs and Metrics.
+- **Machine Learning:** Not required for the current MVP.
 
+- **Database:** Amazon DynamoDB for storing expense records.
+
+- **Backend:** AWS Lambda for processing expense management requests.
+
+- **API:** Amazon API Gateway HTTP API with a JWT authorizer.
+
+- **Authentication:** Amazon Cognito User Pool for user registration, login, and JWT-based authentication.
+
+- **Frontend:** A web application that allows authenticated users to add, view, edit, delete, filter, and summarize expenses.
+
+- **Deployment:** AWS Amplify for frontend hosting and deployment.
+
+- **Security:** Cognito-based authentication, API Gateway JWT authorization, and an IAM Lambda Execution Role with minimum required permissions.
+
+- **Monitoring:** Amazon CloudWatch Logs and Metrics.
 ### 5. Timeline & Milestones
 **Project Timeline**
 The project will be developed throughout the **12-week internship**, combining AWS learning, Machine Learning development, serverless implementation, testing, and documentation.
@@ -109,10 +177,15 @@ The project will be developed throughout the **12-week internship**, combining A
 ### Week 1 – AWS Fundamentals
 
 - Create and configure an AWS account.
+
 - Learn AWS cost management and AWS Support.
+
 - Study AWS IAM and access management.
+
 - Learn networking fundamentals with Amazon VPC.
+
 - Study Amazon EC2 fundamentals.
+
 - Understand the basic concepts of AWS infrastructure and cloud services.
 
 **Milestone:** Complete the fundamental AWS learning modules and understand the basic AWS environment.
@@ -120,182 +193,283 @@ The project will be developed throughout the **12-week internship**, combining A
 ### Week 2 – AWS Compute, Storage & Database Services
 
 - Learn IAM Roles for EC2.
+
 - Study AWS Cloud9.
+
 - Learn Amazon S3 and static website hosting.
+
 - Study Amazon RDS.
+
 - Learn AWS Lambda and serverless computing.
-- Understand how AWS storage, database, and serverless services can be used in the project.
 
-**Milestone:** Identify the AWS services required for the House Price Prediction project.
+- Understand how AWS storage, database, and serverless services can be used in a project.
 
-### Week 3 – Project Planning & Machine Learning Preparation
+**Milestone:** Build foundational knowledge of the AWS services relevant to the serverless project.
 
-- Finalize the project requirements and system architecture.
-- Prepare the housing dataset.
-- Perform data cleaning and preprocessing.
-- Explore the dataset and identify relevant house features.
-- Establish a baseline regression model.
-- Continue studying AWS services related to the project.
+### Week 3 – AWS Serverless Learning & Project Direction
 
-**Milestone:** Complete the initial Machine Learning pipeline and finalize the project architecture.
+- Continue studying AWS serverless and API-related services.
 
-### Week 4 – Machine Learning Model Development
+- Review AWS Lambda and API Gateway concepts.
 
-- Train regression models for house price prediction.
-- Compare different model approaches.
-- Evaluate model performance using appropriate metrics.
-- Perform feature selection and preprocessing improvements.
-- Select the initial model for deployment.
+- Identify the requirements for the Personal Expense Tracker.
 
-**Milestone:** Obtain a working House Price Prediction model with acceptable performance.
+- Compare possible project architectures and confirm the serverless approach.
 
-### Week 5 – Model Packaging & Amazon S3
+- Start defining the core application features.
 
-- Export the trained model as .pkl or .joblib.
-- Create and configure the Amazon S3 bucket.
-- Upload the trained model to S3.
-- Test downloading and loading the model from S3.
-- Study S3 permissions and access control.
+**Milestone:** Confirm the Serverless Personal Expense Tracker concept and the main AWS services.
 
-**Milestone:** Successfully store and retrieve the trained model from Amazon S3.
+### Week 4 – Project Requirements & Architecture Design
 
-### Week 6 – AWS Lambda Prediction Function
+- Finalize the project requirements.
 
-- Develop the Lambda prediction function.
-- Load the trained model from S3.
-- Process input house features.
-- Perform prediction using the trained model.
-- Return the predicted house price.
-- Test Lambda with sample input data.
+- Finalize the AWS architecture.
 
-**Milestone:** Complete a working serverless prediction function.
+- Define the authentication flow using Amazon Cognito.
 
-### Week 7 – API Gateway Integration
+- Design the DynamoDB expense data structure.
 
-- Create an Amazon API Gateway REST API.
-- Configure the HTTP POST endpoint.
-- Connect API Gateway to AWS Lambda.
-- Test requests and responses.
-- Handle invalid or missing input data.
+- Define the API endpoints for expense management.
 
-**Milestone:** Complete the backend prediction API.
+- Document the browser, authentication, API, backend, database, IAM, and monitoring flows.
 
-### Week 8 – Frontend Development
-- Design the web interface for house price prediction.
-- Create input fields for house features.
-- Implement frontend validation.
-- Connect the frontend to API Gateway.
-- Display the predicted house price.
+**Milestone:** Complete the initial project architecture and technical design.
 
-**Milestone**: Complete a functional frontend connected to the prediction API.
+### Week 5 – AWS Cognito & Frontend Foundation
 
-### Week 9 – AWS Amplify Deployment
-- Configure AWS Amplify for frontend hosting.
-- Deploy the web application.
-- Configure the frontend to communicate with the production API.
-- Test the application through the deployed web interface.
+- Configure the Amazon Cognito User Pool.
 
-**Milestone**: Deploy the first working version of the House Price Prediction web application.
+- Implement user registration and sign in.
 
-### Week 10 – Security, Monitoring & Optimization
+- Test JWT token generation and authentication.
+
+- Create the initial frontend application.
+
+- Configure AWS Amplify for frontend hosting and deployment.
+
+**Milestone:** Complete the authentication flow and establish the initial frontend environment.
+
+### Week 6 – API Gateway, Lambda & DynamoDB
+
+- Create the Amazon API Gateway HTTP API.
+
+- Configure the JWT authorizer using Amazon Cognito.
+
+- Create the DynamoDB ExpenseTable.
+
+- Develop AWS Lambda functions for expense management.
+
+- Implement create, read, update, and delete operations.
+
+- Test authenticated API requests.
+
+**Milestone:** Complete the core authenticated serverless backend.
+
+### Week 7 – Expense Management Frontend
+
+- Build the expense entry interface.
+
+- Implement forms for amount, category, date, and description.
+
+- Connect the frontend directly to API Gateway using authenticated requests.
+
+- Implement expense listing, editing, and deletion.
+
+- Implement frontend validation and error handling.
+
+**Milestone:** Complete the main expense management features.
+
+### Week 8 – Filtering & Dashboard
+
+- Implement filtering by date or month.
+
+- Implement filtering by expense category.
+
+- Calculate total expense information.
+
+- Create a dashboard for spending summaries.
+
+- Display category-based expense breakdowns.
+
+- Improve the usability of the frontend.
+
+**Milestone:** Complete the main expense review and summary functions.
+
+### Week 9 – Security & Monitoring
+
 - Configure the Lambda Execution Role using IAM.
+
 - Apply the principle of least privilege.
-- Verify Lambda access to the S3 model.
-- Configure and review Amazon CloudWatch logs.
-- Monitor Lambda execution and errors.
-- Optimize Lambda execution and model loading where possible.
 
-**Milestone**: Complete the security and monitoring configuration.
+- Verify Lambda access to DynamoDB.
 
-### Week 11 – System Testing & Evaluation
+- Verify Lambda permissions required for CloudWatch logging.
+
+- Review Amazon CloudWatch logs and metrics.
+
+- Test unauthorized and invalid API requests.
+
+**Milestone:** Complete the security and monitoring configuration.
+
+### Week 10 – System Testing & Error Handling
+
 - Perform end-to-end testing.
-- Test different house feature combinations.
-- Test invalid and incomplete input.
-- Evaluate prediction accuracy.
-- Identify and fix API, Lambda, S3, or frontend issues.
-- Review AWS resource usage and estimated costs.
 
-**Milestone**: Complete system testing and resolve major issues.
+- Test user registration and authentication.
+
+- Test expense CRUD operations.
+
+- Test filtering and summary functions.
+
+- Test invalid, missing, and unauthorized requests.
+
+- Identify and fix frontend, API Gateway, Lambda, and DynamoDB issues.
+
+**Milestone:** Complete system testing and resolve major application issues.
+
+### Week 11 – Optimization & Production Deployment
+
+- Optimize Lambda functions and API processing.
+
+- Review DynamoDB access patterns and data retrieval.
+
+- Review CloudWatch logs and monitoring.
+
+- Deploy the latest frontend version using AWS Amplify.
+
+- Test the application through the production web interface.
+
+- Review expected AWS resource usage and costs.
+
+**Milestone:** Deploy a stable production version of the Personal Expense Tracker.
 
 ### Week 12 – Finalization & Documentation
-- Finalize the Machine Learning model and AWS architecture.
-- Review the complete system.
+
+- Finalize the AWS architecture and system implementation.
+
+- Review the complete application.
+
 - Evaluate project results against the original objectives.
+
 - Document the implementation process.
+
 - Complete the internship Worklog and project documentation.
+
 - Prepare the final project presentation and demonstration.
 
-**Milestone**: Complete and present the Serverless House Price Prediction API.
+**Milestone:** Complete and present the Serverless Personal Expense Tracker.
 
 ### 6. Budget Estimation
-The cost of the system depends on the number of prediction requests, Lambda execution time, model storage size in S3, API Gateway requests, frontend hosting, and data transfer.
+The cost of the system depends on the number of authenticated users, API requests, Lambda execution time, DynamoDB storage and requests, frontend hosting usage, and CloudWatch logs and metrics.
 
 The AWS Pricing Calculator will be used to estimate the expected monthly and yearly cost based on the actual project workload.
 
 ### Infrastructure Costs
-- AWS Lambda: Cost depends on the number of prediction requests and Lambda execution time.
-- Amazon S3: Cost depends on the storage size of the trained model and the number of requests used to access it.
-- Amazon API Gateway: Cost depends on the number of API requests.
+- AWS Lambda: Cost depends on the number of API requests and Lambda execution time.
+
+- Amazon API Gateway: Cost depends on the number of HTTP API requests.
+
+- Amazon DynamoDB: Cost depends on storage and database read/write usage.
+
+- Amazon Cognito: Cost depends on the number of monthly active users and authentication usage.
+
 - AWS Amplify: Cost depends on frontend hosting, storage, and data transfer.
+
 - Amazon CloudWatch: Cost depends on the amount of logs and metrics generated and retained.
+
 - AWS IAM: IAM roles do not have a separate charge.
 
 ### Cost Optimization
-Because the project is designed for a small-scale prediction workload, the expected number of requests is relatively low. The serverless architecture avoids the cost of maintaining an EC2 instance continuously when the system is not receiving requests.
+Because the project is designed for a small-scale personal expense workload, the expected number of users and requests is relatively low. The serverless architecture avoids the cost of maintaining an EC2 instance continuously when the application is not receiving requests.
 
 Additional cost optimization can be achieved by:
 
-- Keeping the trained model at an appropriate size.
-- Optimizing Lambda execution time.
+- Keeping the DynamoDB design simple and retrieving only the required expense data.
+
+- Optimizing Lambda execution time and reducing unnecessary processing.
+
 - Setting an appropriate CloudWatch log retention period.
-- Monitoring S3 storage and API request usage.
+
+- Monitoring Cognito, DynamoDB, API Gateway, Lambda, and Amplify usage.
+
 - Using AWS Budgets to monitor and control spending.
 
 The final monthly and annual cost will be calculated after defining the expected workload using the AWS Pricing Calculator.
 
+
 ### 7. Risk Assessment
 #### Risk Matrix
-- Low prediction accuracy: High impact, medium probability.
-- Lambda cannot access the trained model in S3: High impact, low probability.
+- Unauthorized access to expense data: High impact, low probability.
+
+- Lambda cannot access DynamoDB because of incorrect IAM permissions: High impact, low probability.
+
 - API or frontend failure: Medium impact, low probability.
+
 - Unexpected AWS cost increase: Medium impact, low probability.
-- Unexpected model or data changes: High impact, low probability.
+
+- Data loss or incorrect expense records: High impact, low probability.
+
+- Authentication or JWT configuration errors: High impact, low probability.
 
 #### Mitigation Strategies
-- Model accuracy: Evaluate the model using appropriate performance metrics and test it on data that was not used during training.
-- S3/Lambda access: Verify IAM permissions and monitor Lambda logs to identify model access errors.
-- API reliability: Test API Gateway with both valid and invalid requests before deployment.
-- Cost control: Use AWS Budgets and monitor Lambda, S3, API Gateway, and Amplify usage.
-- Model management: Keep previous model versions during development and verify a new model before deployment.
+- Authentication and authorization: Use Amazon Cognito for user authentication and configure API Gateway JWT authorization for protected API routes.
+
+- DynamoDB/Lambda access: Verify IAM permissions and ensure the Lambda Execution Role follows the principle of least privilege.
+
+- API reliability: Test API Gateway with valid, invalid, missing, and unauthorized requests before deployment.
+
+- Data integrity: Validate expense input and test create, update, and delete operations carefully.
+
+- Cost control: Use AWS Budgets and monitor Lambda, DynamoDB, API Gateway, Cognito, CloudWatch, and Amplify usage.
+
+- Monitoring: Review CloudWatch logs and metrics to identify application errors and operational issues.
 
 #### Contingency Plans
-If the AWS prediction API becomes unavailable, the trained model can still be executed directly in the Python/Google Colab environment for prediction.
+If the deployed web application becomes unavailable, the project team can use the development environment to continue testing and debugging while restoring the deployed version.
 
-If a newly deployed model produces unexpected results, the previous model version can be restored and used until the new model is corrected.
+If an application update produces unexpected behavior, the previous working frontend or Lambda version can be restored while the issue is corrected.
+
+If database or authentication configuration causes problems during development, the affected component can be isolated and tested independently before re-integrating it into the complete application.
 
 ### 8. Expected Outcomes
 #### Technical Improvements: 
-The project is expected to transform the House Price Prediction model from a Machine Learning development environment into a Serverless Web API that can be accessed through a web browser.
+The project is expected to transform personal expense tracking from a manual process into a Serverless Web Application that can be accessed through a web browser.
 
 Users will be able to:
 
 - Access the web application.
-- Enter house features.
-- Submit a prediction request.
-- Receive the predicted house price directly through the web interface.
 
-Users will not need to install Python or manually run Google Colab to use the prediction service.
+- Register and sign in securely.
+
+- Add new expense records.
+
+- View their expense history.
+
+- Edit and delete expense records.
+
+- Filter expenses by date or category.
+
+- View total spending and category-based summaries.
+
+Users will be able to manage their expenses without installing a dedicated desktop application or maintaining a personal backend server.
 #### Long-term Value
-The architecture is designed to be modular, allowing the trained model to be replaced or updated without requiring major changes to the frontend or overall system.
+The architecture is designed to be modular, allowing additional features to be added without requiring major changes to the overall system.
 
 Future improvements may include:
 
-- Developing a more accurate Machine Learning model.
-- Supporting multiple prediction models.
-- Adding more housing features.
-- Implementing model versioning.
-- Adding user authentication.
-- Improving monitoring and analytics.
-- Expanding the system into other Machine Learning prediction APIs.
+- Budget management and budget alerts.
 
-The project also provides practical experience combining Data Science, Machine Learning, AWS Cloud, and Serverless Architecture, which is aligned with a Data Science specialization.
+- Recurring expense support.
+
+- More advanced analytics and visualizations.
+
+- Additional expense categories and custom categories.
+
+- Notifications using additional AWS services.
+
+- Exporting expense data.
+
+- More advanced monitoring and reporting.
+
+The project also provides practical experience combining web development, AWS Cloud, authentication, database design, serverless computing, and monitoring, which is aligned with a Data Science specialization.
