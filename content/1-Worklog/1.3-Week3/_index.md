@@ -1,57 +1,56 @@
 ---
 title: "Week 3 Worklog"
-date: 2024-01-01
+date: 2026-09-25
 weight: 1
 chapter: false
 pre: " <b> 1.3. </b> "
 ---
-{{% notice warning %}} 
-⚠️ **Note:** The following information is for reference purposes only. Please **do not copy verbatim** for your own report, including this warning.
-{{% /notice %}}
-
 
 ### Week 3 Objectives:
 
-* Connect and get acquainted with members of First Cloud AI Journey.
-* Understand basic AWS services, how to use the console & CLI.
+* Continue studying AWS services related to serverless application development.
+* Apply the knowledge gained from the Cloud Journey curriculum to the internship project.
+* Develop the project proposal and initial system architecture.
+* Understand how AWS services interact with each other in a serverless application.
 
 ### Tasks to be carried out this week:
-| Day | Task                                                                                                                                                                                                   | Start Date | Completion Date | Reference Material                        |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------- | --------------- | ----------------------------------------- |
-| 2   | - Get acquainted with FCAJ members <br> - Read and take note of internship unit rules and regulations                                                                                                   | 08/11/2025 | 08/11/2025      |
-| 3   | - Learn about AWS and its types of services <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                              | 08/12/2025 | 08/12/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Create AWS Free Tier account <br> - Learn about AWS Console & AWS CLI <br> - **Practice:** <br>&emsp; + Create AWS account <br>&emsp; + Install & configure AWS CLI <br> &emsp; + How to use AWS CLI | 08/13/2025 | 08/13/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Learn basic EC2: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - SSH connection methods to EC2 <br> - Learn about Elastic IP   <br>                            | 08/14/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Practice:** <br>&emsp; + Launch an EC2 instance <br>&emsp; + Connect via SSH <br>&emsp; + Attach an EBS volume                                                                                     | 08/15/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
 
+| Day | Task | Start Date | Completion Date | Reference Material |
+| --- | ---- | ---------- | --------------- | ------------------ |
+| 1 | - Continue studying AWS services for serverless application development <br>&emsp; + Amazon RDS <br>&emsp; + AWS Lambda <br>&emsp; + Amazon API Gateway <br> - Review the relationship between frontend, API Gateway, Lambda, and database services <br> - Study the project requirements and scoring criteria <br> - Start preparing the project proposal | 09/23/2026 | 09/23/2026 | [https://cloudjourney.awsstudygroup.com/](https://cloudjourney.awsstudygroup.com/) |
+| 2 | - Continue working on the internship project proposal <br> - Design the initial AWS architecture <br>&emsp; + User / Web Browser <br>&emsp; + Amazon Cognito <br>&emsp; + Amazon API Gateway <br>&emsp; + AWS Lambda <br>&emsp; + Database <br>&emsp; + AWS Amplify <br>&emsp; + IAM Roles <br>&emsp; + Amazon CloudWatch <br> - Review data flow between components <br> - Review IAM roles and permission relationships between AWS services | 09/25/2026 | 09/25/2026 | [https://workshop-sample.awsfcaj.com/vi/2-proposal/](https://workshop-sample.awsfcaj.com/vi/2-proposal/) |
 
 ### Week 3 Achievements:
 
-* Understood what AWS is and mastered the basic service groups: 
-  * Compute
-  * Storage
-  * Networking 
+* Continued studying AWS services and their roles in serverless application development.
+
+* Improved understanding of:
+  * Amazon RDS
+  * AWS Lambda
+  * Amazon API Gateway
+  * Amazon Cognito
+  * AWS Amplify
+  * Amazon CloudWatch
+  * IAM Roles and permissions
+
+* Reviewed the internship project requirements and scoring criteria.
+
+* Started developing the project proposal based on the AWS FCAJ project requirements.
+
+* Designed the initial system architecture for the project.
+
+* Identified the main components of the architecture:
+  * User / Web Browser
+  * Amazon Cognito
+  * Amazon API Gateway
+  * AWS Lambda
   * Database
-  * ...
+  * AWS Amplify
+  * IAM Roles
+  * Amazon CloudWatch
 
-* Successfully created and configured an AWS Free Tier account.
+* Reviewed the data flow between the user, frontend, API Gateway, Lambda, and database.
 
-* Became familiar with the AWS Management Console and learned how to find, access, and use services via the web interface.
+* Improved understanding of how IAM roles provide permissions for AWS services to access other AWS resources.
 
-* Installed and configured AWS CLI on the computer, including:
-  * Access Key
-  * Secret Key
-  * Default Region
-  * ...
-
-* Used AWS CLI to perform basic operations such as:
-
-  * Check account & configuration information
-  * Retrieve the list of regions
-  * View EC2 service
-  * Create and manage key pairs
-  * Check information about running services
-  * ...
-
-* Acquired the ability to connect between the web interface and CLI to manage AWS resources in parallel.
-* ...
+* Gained practical experience in translating AWS Cloud Journey knowledge into an actual project architecture.
