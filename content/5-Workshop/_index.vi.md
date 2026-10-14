@@ -14,7 +14,7 @@ pre: " <b> 5. </b> "
 
 Trong bài workshop thực hành này, bạn sẽ từng bước triển khai và tích hợp toàn diện các thành phần trong kiến trúc:
 + **Quản lý Định danh & Xác thực:** Khởi tạo **Amazon Cognito User Pool** cùng App Client dành cho Single Page Application (SPA), bảo mật bằng cơ chế JWT token.
-+ **Thiết kế Cơ sở Dữ liệu:** Xây dựng bảng **Amazon DynamoDB** theo chế độ On-Demand, phân vùng dữ liệu an toàn dựa trên khóa phân vùng (`userId`) và khóa sắp xếp (`expenseId`).
++ **Thiết kế Cơ sở Dữ liệu:** Xây dựng bảng **Amazon DynamoDB** theo chế độ On-Demand, phân vùng dữ liệu theo từng người dùng dựa trên khóa phân vùng (`userId`) và khóa sắp xếp (`expenseId`).
 + **Xử lý Logic Nghiệp vụ:** Triển khai hàm **AWS Lambda** (Node.js 22.x, AWS SDK v3) được cấp quyền tối thiểu thông qua **IAM Execution Role**.
 + **Cổng Giao tiếp API:** Thiết lập **Amazon API Gateway HTTP API** bảo vệ bằng **JWT Authorizer** liên kết với Cognito, cấu hình CORS và tích hợp Lambda proxy.
 + **Tích hợp Ứng dụng Frontend:** Kết nối giao diện người dùng xây dựng bằng **React + Vite + TypeScript** với luồng xác thực và API thực tế.
