@@ -14,7 +14,7 @@ Trong phần này, bạn sẽ thực hiện một chuỗi các kịch bản ki�
 
 Kiểm tra một yêu cầu API mang token JWT hợp lệ từ Cognito có thể truy cập thành công vào hàm Lambda và đọc dữ liệu từ DynamoDB:
 
-1. Lấy mã `idToken` từ phiên đăng nhập Cognito đang hoạt động của bạn.
+1. Lấy **Access Token** mới từ phiên Cognito đang hoạt động. Gửi token trong tiêu đề `Authorization: Bearer <ACCESS_TOKEN>` khi gọi API được bảo vệ.
 2. Mở cửa sổ dòng lệnh (terminal) và gửi một yêu cầu HTTP `GET` đến Invoke URL của API Gateway:
 
 ```bash
@@ -81,4 +81,4 @@ Chứng minh rằng người dùng không thể xem, chỉnh sửa hay xóa các
 4. Đăng xuất và đăng nhập lại bằng tài khoản ban đầu: `demo-user@example.com`.
 5. Quan sát bảng **Expenses** và **Dashboard**:
    + `demo-user@example.com` chỉ nhìn thấy các khoản chi của chính mình. Khoản chi của User B hoàn toàn không hiển thị.
-   + **Nguyên lý Bảo mật:** Hàm Lambda truy vấn dữ liệu từ DynamoDB tuyệt đối dựa trên điều kiện `KeyConditionExpression: "userId = :uid"`, với `:uid` được lấy từ trường `sub` do JWT Authorizer tin cậy trích xuất. Vì client không thể can thiệp hay giả mạo chữ ký số của JWT, tính toàn vẹn và cô lập dữ liệu giữa các người dùng được bảo đảm tuyệt đối.
+   + **Nguyên lý Bảo mật:** Hàm Lambda truy vấn dữ liệu từ DynamoDB tuyệt đối dựa trên điều kiện `KeyConditionExpression: "userId = :uid"`, với `:uid` được lấy từ trường `sub` do JWT Authorizer tin cậy trích xuất. Chữ ký số ngăn client tự sửa các claim đã xác thực, nhưng việc cô lập dữ liệu vẫn phụ thuộc vào việc Lambda luôn sử dụng claim `sub` đã xác thực cho mọi thao tác đọc, cập nhật và xóa.
