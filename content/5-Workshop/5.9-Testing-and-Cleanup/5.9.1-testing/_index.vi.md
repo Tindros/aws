@@ -6,7 +6,7 @@ chapter : false
 pre : " <b> 5.9.1 </b> "
 ---
 
-Trong phần này, bạn sẽ thực hiện một chuỗi các kịch bản kiểm thử chức năng và bảo mật nhằm xác minh cơ chế ủy quyền, xử lý mã lỗi và chứng minh tính cô lập dữ liệu tuyệt đối giữa các người dùng.
+Trong phần này, bạn sẽ thực hiện một chuỗi các kịch bản kiểm thử chức năng và bảo mật nhằm xác minh cơ chế ủy quyền, xử lý mã lỗi và kiểm tra tính cô lập dữ liệu giữa các người dùng.
 
 ---
 
