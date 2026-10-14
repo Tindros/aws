@@ -15,7 +15,7 @@ Trong phần này, bạn sẽ triển khai bản phát hành hoàn thiện của
 1. Truy cập [AWS Amplify Console](https://us-east-1.console.aws.amazon.com/amplify/home?region=us-east-1).
 2. Nhấn nút **Deploy an app** (hoặc **Host web app**).
 3. Lựa chọn nguồn mã nguồn triển khai:
-   + **Triển khai qua Git (khuyến nghị cho workshop này):** Kết nối nhà cung cấp Git chứa repository. Ứng dụng React nằm trong thư mục con `frontend/`, vì vậy hãy cấu hình monorepo app root của Amplify là `frontend` và đặt `AMPLIFY_MONOREPO_APP_ROOT=frontend` nếu Console yêu cầu.
+   + **Triển khai qua Git (khuyến nghị cho workshop này):** Kết nối nhà cung cấp Git chứa repository. Ứng dụng React nằm trong thư mục con `frontend/`, vì vậy hãy cấu hình monorepo app root của Amplify là `frontend` và thêm biến môi trường `AMPLIFY_MONOREPO_APP_ROOT=frontend` trong phần environment settings của ứng dụng.
    + **Phương án tải lên trực tiếp:** Chạy `npm run build` trong thư mục `frontend/`, sau đó tải nội dung build trong `frontend/dist/` lên theo quy trình manual deployment hiện hành của Amplify. Tệp `amplify.yml` dưới đây dành cho build qua Git, không dùng cho phương án ZIP.
 4. **App name:** Nhập `expense-tracker-frontend`.
 
