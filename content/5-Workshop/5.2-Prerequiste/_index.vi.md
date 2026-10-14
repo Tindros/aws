@@ -135,7 +135,7 @@ Chính sách dưới đây chỉ là ví dụ khởi đầu cho tài khoản h�
 
 {{% notice info %}}
 📸 **Pending Screenshot:** `static/images/5-Workshop/5.2-Prerequiste/prereq-iam-policy.png`  
-*(Cần chụp khi triển khai: Giao diện IAM Console hiển thị chính sách cấp quyền thực hành được gán vào tài khoản)*
+*(Cần chụp khi triển khai: IAM Console hiển thị quyền workshop đã được phê duyệt gắn với role hoặc danh tính phù hợp)*
 {{% /notice %}}
 <!-- ![Thiết lập IAM Policy](/images/5-Workshop/5.2-Prerequiste/prereq-iam-policy.png) -->
 
