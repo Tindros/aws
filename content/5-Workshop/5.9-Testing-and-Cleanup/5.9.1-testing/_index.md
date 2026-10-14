@@ -14,7 +14,7 @@ In this module, you will execute a series of functional and security verificatio
 
 Verify that an API request with a valid Cognito JWT token successfully reaches the Lambda function and queries DynamoDB:
 
-1. Obtain a fresh `idToken` from your active Cognito session.
+1. Obtain a fresh Cognito **Access Token** from your active session. Send it as `Authorization: Bearer <ACCESS_TOKEN>` when calling the protected API.
 2. In your terminal, issue an HTTP `GET` request to your API Gateway Invoke URL:
 
 ```bash
@@ -81,4 +81,4 @@ Verify that users cannot inspect, modify, or delete another user's expenses:
 4. Sign out and sign back in as `demo-user@example.com`.
 5. Observe the **Expenses** table and **Dashboard**:
    + `demo-user@example.com` sees only their own expense records. The record created by User B is completely invisible.
-   + **Security Architecture Explanation:** The Lambda function queries DynamoDB strictly using `KeyConditionExpression: "userId = :uid"`, where `:uid` is injected by the trusted JWT authorizer from `event.requestContext.authorizer.jwt.claims.sub`. Because clients cannot modify the cryptographic JWT signature, tenant isolation is mathematically guaranteed.
+   + **Security Architecture Explanation:** The Lambda function queries DynamoDB strictly using `KeyConditionExpression: "userId = :uid"`, where `:uid` is injected by the trusted JWT authorizer from `event.requestContext.authorizer.jwt.claims.sub`. The signature prevents clients from changing verified token claims, but isolation still depends on Lambda consistently using the verified `sub` claim for every read, update, and delete operation.
