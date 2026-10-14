@@ -15,7 +15,7 @@ In this module, you will deploy the production build of your **React + Vite** fr
 1. Open the [AWS Amplify Console](https://us-east-1.console.aws.amazon.com/amplify/home?region=us-east-1).
 2. Choose **Deploy an app** (or **Host web app**).
 3. Select your deployment source:
-   + **Git-based deployment (recommended for this workshop):** Connect the Git provider that contains the repository. The React app is in the repository subdirectory `frontend/`, so configure Amplify's monorepo app root as `frontend` in the console and set `AMPLIFY_MONOREPO_APP_ROOT=frontend` if prompted.
+   + **Git-based deployment (recommended for this workshop):** Connect the Git provider that contains the repository. The React app is in the repository subdirectory `frontend/`, so configure Amplify's monorepo app root as `frontend` in the console and add the environment variable `AMPLIFY_MONOREPO_APP_ROOT=frontend` in the app's environment settings.
    + **Direct upload alternative:** Build the frontend locally with `npm run build` from `frontend/`, then upload the generated `frontend/dist/` output using the current Amplify manual deployment flow. The `amplify.yml` below is for Git-based builds, not the ZIP upload path.
 4. Enter **App name:** `expense-tracker-frontend`.
 
