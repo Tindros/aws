@@ -142,7 +142,7 @@ Quay lại trang **Overview** của `expense-tracker-user-pool` để xác nhậ
 {{% notice info %}}
 **Phân biệt User Pool ID và App Client ID:**  
 - **User Pool ID** (`us-east-1_...`): Định danh toàn bộ thư mục tài khoản người dùng và đóng vai trò là nhà phát hành token OIDC (`iss`).
-- **App Client ID** (chuỗi 26 ký tự chữ và số): Định danh ứng dụng khách (React SPA) gửi yêu cầu xác thực và xuất hiện trong trường đối tượng người nhận của token (`aud`).
+- **App Client ID** (thường là chuỗi 26 ký tự chữ và số): Định danh ứng dụng client yêu cầu token. ID token của Cognito thường chứa giá trị này trong claim `aud`; Access Token của Cognito thường chứa nó trong `client_id`. JWT authorizer của API Gateway HTTP API kiểm tra `aud` nếu claim này tồn tại và có thể kiểm tra `client_id` nếu không có `aud`.
 - Không nhầm lẫn hoặc hoán đổi vị trí của hai giá trị này khi cấu hình hệ thống.
 {{% /notice %}}
 
