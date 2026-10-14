@@ -102,7 +102,7 @@ const validateExpensePayload = (payload, { partial = false } = {}) => {
     }
   }
   if (!partial || has("date")) {
-    if (typeof payload.date !== "string" || !/^\\d{4}-\\d{2}-\\d{2}$/.test(payload.date)) {
+    if (typeof payload.date !== "string" || !/^\d{4}-\d{2}-\d{2}$/.test(payload.date)) {
       return "date must use YYYY-MM-DD format";
     }
     const parsedDate = new Date(`${payload.date}T00:00:00.000Z`);
