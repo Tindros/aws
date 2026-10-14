@@ -84,13 +84,13 @@ export const authService = {
           const accessToken = result.getAccessToken().getJwtToken();
 
           // Store active JWT in localStorage for API requests
-          localStorage.setItem('auth_token', idToken);
+          localStorage.setItem('auth_token', accessToken);
           localStorage.setItem('access_token', accessToken);
           localStorage.setItem('user_email', credentials.email);
 
           resolve({
             success: true,
-            token: idToken,
+            token: accessToken,
             message: 'Login successful'
           });
         },
@@ -159,7 +159,7 @@ export const authService = {
 2. Navigate to `http://localhost:5173/login` in your browser.
 3. Enter the test account credentials created in Section 5.3.2 (`demo-user@example.com` and your password).
 4. Click **Sign in**.
-5. Verify that authentication succeeds and the browser stores the token in `localStorage`.
+5. Verify that authentication succeeds and the browser stores the Access Token used for API requests. For production apps, prefer a secure session design over long-lived tokens in `localStorage`; this workshop keeps the example simple for learning.
 
 {{% notice tip %}}
 **Troubleshooting Vite & Node Global Compatibility:**  
