@@ -321,6 +321,10 @@ export const handler = async (event) => {
 
 ---
 
+{{% notice warning %}}
+**Giới hạn kết quả Query:** Các ví dụ `GET /expenses` và `GET /summary` chỉ gửi một yêu cầu DynamoDB `Query`. DynamoDB có thể dừng phản hồi ở mức 1 MB và trả về `LastEvaluatedKey`; mã mẫu này chưa phân trang, vì vậy danh sách hoặc số liệu tổng hợp có thể không đầy đủ khi tài khoản có nhiều dữ liệu. Hãy bổ sung phân trang trước khi sử dụng với tập dữ liệu lớn hơn.
+{{% /notice %}}
+
 #### Bước 4: Kiểm thử Thực thi Hàm
 
 1. Tại Lambda console, chuyển sang thẻ **Test**.
