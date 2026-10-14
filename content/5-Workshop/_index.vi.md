@@ -10,7 +10,7 @@ pre: " <b> 5. </b> "
 
 #### Tổng quan
 
-**Serverless Personal Expense Tracker** là một ứng dụng web đám mây (cloud-native) hoàn chỉnh được thiết kế để hỗ trợ người dùng ghi chép, phân loại, theo dõi và tổng hợp các khoản chi tiêu cá nhân hằng ngày. Được xây dựng dựa trên kiến trúc Serverless hiện đại của AWS, giải pháp này loại bỏ hoàn toàn gánh nặng quản lý máy chủ hoặc chi phí duy trì tài nguyên nhàn rỗi, tự động co giãn về 0 khi không có lưu lượng và tối ưu hóa chi phí vận hành.
+**Serverless Personal Expense Tracker** là ứng dụng đám mây hỗ trợ ghi chép, phân loại, theo dõi và tổng hợp chi tiêu cá nhân. Ứng dụng sử dụng các dịch vụ AWS được quản lý để bạn không phải tự vận hành máy chủ ảo. Khả năng sẵn sàng, co giãn và chi phí thực tế còn phụ thuộc vào cấu hình và mức sử dụng; kiến trúc serverless không đồng nghĩa mọi tài nguyên đều miễn phí khi nhàn rỗi.
 
 Trong bài workshop thực hành này, bạn sẽ từng bước triển khai và tích hợp toàn diện các thành phần trong kiến trúc:
 + **Quản lý Định danh & Xác thực:** Khởi tạo **Amazon Cognito User Pool** cùng App Client dành cho Single Page Application (SPA), bảo mật bằng cơ chế JWT token.
@@ -22,7 +22,7 @@ Trong bài workshop thực hành này, bạn sẽ từng bước triển khai v�
 + **Kiểm thử & Dọn dẹp:** Thực hiện kiểm thử toàn trình (E2E), xác thực cơ chế chặn truy cập trái phép và tiến hành giải phóng tài nguyên AWS.
 
 {{% notice info %}}
-**Lưu ý về Trạng thái Triển khai:** Tài liệu workshop này là hướng dẫn thực hành chi tiết theo kế hoạch kiến trúc của dự án. Mọi thông số kỹ thuật, cấu hình IAM, mã nguồn Lambda và định tuyến API đều là các thiết kế thực tế và có thể tái tạo. Các ảnh chụp màn hình tương ứng với các bước chưa thao tác trên AWS Console được đánh dấu rõ ràng là **`[Pending Deployment]`** và sẽ được bổ sung khi triển khai thực tế.
+**Lưu ý về Trạng thái Triển khai:** Tài liệu workshop này là hướng dẫn thực hành chi tiết theo kế hoạch kiến trúc của dự án. Tài liệu cung cấp ví dụ triển khai và hướng dẫn cấu hình cần được kiểm chứng trong tài khoản AWS của bạn. Hãy rà soát quyền IAM trước khi áp dụng và chỉ triển khai sau khi đã hiểu chi phí dự kiến cũng như các bước dọn dẹp tài nguyên. Các ảnh chụp màn hình tương ứng với các bước chưa thao tác trên AWS Console được đánh dấu rõ ràng là **`[Pending Deployment]`** và sẽ được bổ sung khi triển khai thực tế.
 {{% /notice %}}
 
 #### Nội dung
