@@ -6,7 +6,7 @@ chapter : false
 pre : " <b> 5.7.2 </b> "
 ---
 
-In this module, you will replace the local mock data in `src/services/expenseService.ts` with real asynchronous HTTP requests to your **Amazon API Gateway HTTP API**, passing the JWT authentication token and persisting data to **Amazon DynamoDB**.
+In this module, you will replace the local mock data in `src/services/expenseService.ts` with real asynchronous HTTP requests to your **Amazon API Gateway HTTP API**, passing the Cognito Access Token and persisting data to **Amazon DynamoDB**.
 
 ---
 
