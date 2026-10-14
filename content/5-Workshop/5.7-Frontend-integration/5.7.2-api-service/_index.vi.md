@@ -6,7 +6,7 @@ chapter : false
 pre : " <b> 5.7.2 </b> "
 ---
 
-Trong phần này, bạn sẽ thay thế toàn bộ mảng dữ liệu giả lập trong tệp `src/services/expenseService.ts` bằng các yêu cầu HTTP bất đồng bộ thực tế gửi đến **Amazon API Gateway HTTP API**, truyền kèm mã định danh JWT và lưu trữ dữ liệu thực vào **Amazon DynamoDB**.
+Trong phần này, bạn sẽ thay thế toàn bộ mảng dữ liệu giả lập trong tệp `src/services/expenseService.ts` bằng các yêu cầu HTTP bất đồng bộ thực tế gửi đến **Amazon API Gateway HTTP API**, truyền kèm Cognito Access Token và lưu trữ dữ liệu thực vào **Amazon DynamoDB**.
 
 ---
 
