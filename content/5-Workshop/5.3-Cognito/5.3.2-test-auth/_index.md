@@ -44,7 +44,7 @@ You can provision a test account directly from the AWS Console without requiring
 The App Client in this workshop is configured for **choice-based sign-in** and **Secure Remote Password (SRP)**. It does not enable the legacy `USER_PASSWORD_AUTH` flow, so do not use a `USER_PASSWORD_AUTH` CLI example here. That command will fail unless you change the App Client configuration, which is not part of this workshop.
 
 ```text
-Authentication is tested through the React SPA in Section 5.7.1, which uses Cognito's SRP-compatible client flow. After a successful sign-in, inspect the returned ID and access tokens in the browser's developer tools or application debugging output. Never paste real tokens into a public issue, repository, or screenshot.
+Authentication is tested through the React SPA in Section 5.7.1, which uses Cognito's SRP-compatible client flow. This sample stores the Access Token in the browser's `localStorage` under `auth_token`; to confirm that a token exists, open Developer Tools → Application (or Storage) → Local Storage for `http://localhost:5173`. Do not copy, share, or screenshot the real token. The sample does not print tokens to the console or provide a token-debugging screen.
 ```
 
 After successful sign-in through the SPA, Cognito returns an authentication result containing tokens. The exact response depends on the selected sign-in flow. Treat the following as a redacted illustration, not output to copy:
