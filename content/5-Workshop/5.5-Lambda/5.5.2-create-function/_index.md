@@ -321,6 +321,10 @@ export const handler = async (event) => {
 
 ---
 
+{{% notice warning %}}
+**Query result limit:** The `GET /expenses` and `GET /summary` examples each issue one DynamoDB `Query` request. DynamoDB can stop a Query response at 1 MB and return `LastEvaluatedKey`; this sample does not paginate, so larger accounts may see incomplete lists or summaries. Add pagination before using this implementation with larger datasets.
+{{% /notice %}}
+
 #### Step 4: Test Function Execution
 
 1. In the Lambda console, select the **Test** tab.
