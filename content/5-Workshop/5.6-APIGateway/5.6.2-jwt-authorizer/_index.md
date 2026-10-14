@@ -19,8 +19,7 @@ When a client sends an HTTP request containing an `Authorization: Bearer <TOKEN>
 4. **Context Injection:** Extracts the verified claims (such as `sub` and `email`) and injects them into the Lambda event payload at `event.requestContext.authorizer.jwt.claims`.
 
 {{% notice note %}}
-**Why Send the ID Token? (Authentication vs. Authorization)**
-* **ID Token vs. Access Token:** In Amazon Cognito, the **ID Token** contains an `aud` (Audience) claim holding the App Client ID, adhering to the OpenID Connect (OIDC) identity standard. In contrast, Cognito **Access Tokens** contain a `client_id` claim instead of an `aud` claim (unless custom resource servers and OAuth scopes are configured). Because API Gateway HTTP API JWT Authorizers validate the `aud` claim against the configured Audience list, the frontend client sends the Cognito ID Token in the `Authorization: Bearer <TOKEN>` header.
+**Use the Access Token for API Requests:** The ID Token communicates user identity to the client application; the Access Token is intended for API authorization. API Gateway HTTP API JWT authorizers check `aud` when present and can check `client_id` when `aud` is absent. Cognito Access Tokens commonly contain `client_id`, so set the authorizer's Audience to the Cognito App Client ID and send the Access Token in `Authorization: Bearer <TOKEN>`. Do not send the ID Token as a substitute for the Access Token.
 * **Authentication (AuthN):** Handled at the gateway boundary by the JWT Authorizer. It verifies *who you are* by checking token signature, issuer, and expiration, and blocks unauthenticated requests from reaching Lambda.
 * **Authorization (AuthZ):** Handled in the Lambda business logic and DynamoDB design. It determines *what you can access*. Lambda extracts the verified `sub` (User ID) from the request context and scopes all database operations exclusively to that user partition, ensuring complete multi-tenant tenant isolation.
 {{% /notice %}}
