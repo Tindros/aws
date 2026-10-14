@@ -135,7 +135,7 @@ The policy below is an illustrative starting point for a dedicated training acco
 
 {{% notice info %}}
 📸 **Pending Screenshot:** `static/images/5-Workshop/5.2-Prerequiste/prereq-iam-policy.png`  
-*(To be captured during deployment: IAM Console showing the workshop deployment policy attached to the active user)*
+*(To be captured during deployment: IAM Console showing the approved workshop permissions attached to the intended role or identity)*
 {{% /notice %}}
 <!-- ![IAM Policy Setup](/images/5-Workshop/5.2-Prerequiste/prereq-iam-policy.png) -->
 
