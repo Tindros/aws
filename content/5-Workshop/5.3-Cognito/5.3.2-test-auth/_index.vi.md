@@ -44,7 +44,7 @@ Bạn có thể chủ động tạo một tài khoản người dùng trực ti�
 App Client trong workshop này được cấu hình với **Choice-based sign-in** và **Secure Remote Password (SRP)**. Luồng cũ `USER_PASSWORD_AUTH` không được bật, vì vậy không sử dụng ví dụ AWS CLI `USER_PASSWORD_AUTH` tại đây. Lệnh đó sẽ thất bại nếu bạn không thay đổi cấu hình App Client, điều không nằm trong phạm vi workshop này.
 
 ```text
-Việc đăng nhập sẽ được kiểm thử thông qua React SPA ở Phần 5.7.1, sử dụng luồng client tương thích SRP của Cognito. Sau khi đăng nhập thành công, kiểm tra ID token và access token được trả về trong công cụ phát triển của trình duyệt hoặc phần debug ứng dụng. Không dán token thật vào issue công khai, repository hay ảnh chụp màn hình.
+Việc đăng nhập sẽ được kiểm thử thông qua React SPA ở Phần 5.7.1, sử dụng luồng client tương thích SRP của Cognito. Mẫu này lưu Access Token trong `localStorage` của trình duyệt với khóa `auth_token`; để xác nhận token đã được lưu, mở Developer Tools → Application (hoặc Storage) → Local Storage của `http://localhost:5173`. Không sao chép, chia sẻ hoặc chụp ảnh token thật. Mẫu này không in token ra console và không có màn hình debug token.
 ```
 
 Sau khi đăng nhập thành công qua SPA, Cognito trả về kết quả xác thực chứa các token. Phản hồi chính xác phụ thuộc vào luồng đăng nhập được chọn. Ví dụ dưới đây chỉ minh họa đã lược bỏ dữ liệu nhạy cảm, không phải kết quả để sao chép:
