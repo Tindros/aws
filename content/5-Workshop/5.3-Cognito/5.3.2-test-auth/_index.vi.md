@@ -39,7 +39,7 @@ Bạn có thể chủ động tạo một tài khoản người dùng trực ti�
 
 ---
 
-#### Bước 2: Kiểm tra Đăng nhập Bằng AWS CLI
+#### Bước 2: Kiểm tra Đăng nhập qua React SPA
 
 App Client trong workshop này được cấu hình với **Choice-based sign-in** và **Secure Remote Password (SRP)**. Luồng cũ `USER_PASSWORD_AUTH` không được bật, vì vậy không sử dụng ví dụ AWS CLI `USER_PASSWORD_AUTH` tại đây. Lệnh đó sẽ thất bại nếu bạn không thay đổi cấu hình App Client, điều không nằm trong phạm vi workshop này.
 
