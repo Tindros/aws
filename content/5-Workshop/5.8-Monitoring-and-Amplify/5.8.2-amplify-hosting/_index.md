@@ -15,7 +15,8 @@ In this module, you will deploy the production build of your **React + Vite** fr
 1. Open the [AWS Amplify Console](https://us-east-1.console.aws.amazon.com/amplify/home?region=us-east-1).
 2. Choose **Deploy an app** (or **Host web app**).
 3. Select your deployment source:
-   + Choose your Git provider (GitHub, AWS CodeCommit, GitLab, Bitbucket), or select **Deploy without Git provider** (for direct ZIP uploads of the `dist/` directory).
+   + **Git-based deployment (recommended for this workshop):** Connect the Git provider that contains the repository. The React app is in the repository subdirectory `frontend/`, so configure Amplify's monorepo app root as `frontend` in the console and set `AMPLIFY_MONOREPO_APP_ROOT=frontend` if prompted.
+   + **Direct upload alternative:** Build the frontend locally with `npm run build` from `frontend/`, then upload the generated `frontend/dist/` output using the current Amplify manual deployment flow. The `amplify.yml` below is for Git-based builds, not the ZIP upload path.
 4. Enter **App name:** `expense-tracker-frontend`.
 
 {{% notice info %}}
@@ -28,25 +29,27 @@ In this module, you will deploy the production build of your **React + Vite** fr
 
 #### Step 2: Configure Build Settings (`amplify.yml`)
 
-1. During repository setup, Amplify automatically detects Vite and React. Ensure your build configuration matches:
+1. Because this repository is a monorepo-style layout with the app in `frontend/`, configure the app root as `frontend` and use this build specification for the Git-based deployment:
 
 ```yaml
 version: 1
-frontend:
-  phases:
-    preBuild:
-      commands:
-        - npm ci
-    build:
-      commands:
-        - npm run build
-  artifacts:
-    baseDirectory: dist
-    files:
-      - '**/*'
-  cache:
-    paths:
-      - node_modules/**/*
+applications:
+  - appRoot: frontend
+    frontend:
+      phases:
+        preBuild:
+          commands:
+            - npm ci
+        build:
+          commands:
+            - npm run build
+      artifacts:
+        baseDirectory: dist
+        files:
+          - '**/*'
+      cache:
+        paths:
+          - node_modules/**/*
 ```
 
 {{% notice info %}}
@@ -65,6 +68,8 @@ frontend:
    + `VITE_COGNITO_USER_POOL_ID`: `<YOUR_USER_POOL_ID>`
    + `VITE_COGNITO_CLIENT_ID`: `<YOUR_APP_CLIENT_ID>`
    + `VITE_API_BASE_URL`: `<YOUR_API_GATEWAY_INVOKE_URL>`
+
+> All `VITE_*` values are included in the browser build and are visible to users. Only put public configuration such as region, User Pool ID, App Client ID, and API URL here—never access keys, client secrets, passwords, or other credentials.
 3. Choose **Save and deploy**.
 
 ---
@@ -86,7 +91,7 @@ Because React Router handles client-side routing (`/login`, `/expenses`, `/dashb
 1. Watch the automated deployment stages proceed through:
    + **Provision** -> **Build** -> **Deploy** -> **Verify**.
 2. Once the build finishes, click the generated HTTPS URL (e.g., `https://main.xxxx.amplifyapp.com`).
-3. Verify that the production application loads instantly, authenticates with Cognito, and displays live expense data from DynamoDB.
+3. Verify that the deployed frontend loads, can sign in with a confirmed Cognito user, and can retrieve/create expenses through the configured API. If the build succeeds but API calls fail, check the environment variables, API URL, CORS allowlist, and JWT authorizer settings.
 
 {{% notice info %}}
 📸 **Pending Screenshot:** `static/images/5-Workshop/5.8-Monitoring-and-Amplify/amplify-03-deployed-overview.png`  
