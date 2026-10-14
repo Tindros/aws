@@ -80,12 +80,10 @@ export const authService = {
 
       cognitoUser.authenticateUser(authenticationDetails, {
         onSuccess: (result) => {
-          const idToken = result.getIdToken().getJwtToken();
           const accessToken = result.getAccessToken().getJwtToken();
 
-          // Store active JWT in localStorage for API requests
+          // Store the Access Token used for protected API requests
           localStorage.setItem('auth_token', accessToken);
-          localStorage.setItem('access_token', accessToken);
           localStorage.setItem('user_email', credentials.email);
 
           resolve({
@@ -159,7 +157,7 @@ export const authService = {
 2. Navigate to `http://localhost:5173/login` in your browser.
 3. Enter the test account credentials created in Section 5.3.2 (`demo-user@example.com` and your password).
 4. Click **Sign in**.
-5. Verify that authentication succeeds and the browser stores the Access Token used for API requests. For production apps, prefer a secure session design over long-lived tokens in `localStorage`; this workshop keeps the example simple for learning.
+5. Verify that authentication succeeds and the browser stores the Access Token used for API requests. This sample checks only whether a token string exists; it does not proactively refresh expired sessions. When the Access Token expires, API calls may return `401` and the app redirects to login. For production apps, use a stronger session design and avoid persisting tokens in `localStorage` where possible.
 
 {{% notice tip %}}
 **Troubleshooting Vite & Node Global Compatibility:**  
