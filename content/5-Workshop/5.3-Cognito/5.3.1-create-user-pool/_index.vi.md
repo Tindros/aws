@@ -77,7 +77,7 @@ Sau khi User Pool được khởi tạo thành công, bạn có thể kiểm tra
    + Tại mục **User pool name**, nhập `expense-tracker-user-pool`.
    + Nhấn **Save changes** để lưu thay đổi.
 
-![Đổi tên User Pool thành expense-tracker-user-pool](/images/5-Workshop/5.3-Cognito/cognito-03-user-pool-name.png)
+![Hộp thoại Đổi tên User Pool](/images/5-Workshop/5.3-Cognito/cognito-03-user-pool-name.png)
 
 ---
 
@@ -142,7 +142,7 @@ Quay lại trang **Overview** của `expense-tracker-user-pool` để xác nhậ
 {{% notice info %}}
 **Phân biệt User Pool ID và App Client ID:**  
 - **User Pool ID** (`us-east-1_...`): Định danh toàn bộ thư mục tài khoản người dùng và đóng vai trò là nhà phát hành token OIDC (`iss`).
-- **App Client ID** (chuỗi 26 ký tự chữ và số): Định danh ứng dụng khách (React SPA) gửi yêu cầu xác thực và xuất hiện trong trường đối tượng người nhận của token (`aud`).
+- **App Client ID** (thường là chuỗi 26 ký tự chữ và số): Định danh ứng dụng client yêu cầu token. ID token của Cognito thường chứa giá trị này trong claim `aud`; Access Token của Cognito thường chứa nó trong `client_id`. JWT authorizer của API Gateway HTTP API kiểm tra `aud` nếu claim này tồn tại và có thể kiểm tra `client_id` nếu không có `aud`.
 - Không nhầm lẫn hoặc hoán đổi vị trí của hai giá trị này khi cấu hình hệ thống.
 {{% /notice %}}
 
@@ -152,7 +152,7 @@ Quay lại trang **Overview** của `expense-tracker-user-pool` để xác nhậ
 
 {{% notice info %}}
 **Điểm Kiểm soát Triển khai Tài nguyên:**  
-Tại bước này, Amazon Cognito User Pool và App Client công khai đã được khởi tạo và cấu hình thành công tại `us-east-1`. Việc tạo các tài nguyên này chỉ mới thiết lập hạ tầng danh tính, chưa bao gồm việc tích hợp mã nguồn frontend hay xác thực người dùng thực tế. Việc tạo tài khoản thử nghiệm và kiểm tra cấu trúc JWT token sẽ được thực hiện trong bài học kế tiếp.
+Tại bước này, Amazon Cognito User Pool và App Client công khai cần được tạo và cấu hình tại `us-east-1`. Hãy xác nhận tên User Pool đã được lưu trên trang Overview trước khi tiếp tục. Việc tạo các tài nguyên này chỉ mới thiết lập hạ tầng danh tính, chưa bao gồm việc tích hợp mã nguồn frontend hay xác thực người dùng thực tế. Việc tạo tài khoản thử nghiệm và kiểm tra cấu trúc JWT token sẽ được thực hiện trong bài học kế tiếp.
 {{% /notice %}}
 
 Chuyển sang phần tiếp theo: [5.3.2 Đăng ký Người dùng, Xác thực & Kiểm tra JWT Token](../5.3.2-test-auth/) để tiến hành tạo tài khoản người dùng thử nghiệm và phân tích cấu trúc token JWT.

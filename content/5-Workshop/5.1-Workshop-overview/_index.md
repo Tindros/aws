@@ -10,7 +10,7 @@ pre : " <b> 5.1. </b> "
 
 Managing personal finances effectively requires quick logging, clear categorization, and instant visibility into monthly spending habits. Traditional approaches involving physical notebooks or spreadsheets often suffer from manual calculation errors and poor accessibility across devices. On the other hand, deploying traditional continuously running servers (such as an always-on EC2 instance or container cluster) introduces disproportionate administrative overhead and unnecessary idle infrastructure expenses for a personal utility.
 
-The **Serverless Personal Expense Tracker** solves this challenge by leveraging modern AWS managed serverless services. The backend architecture automatically provisions compute and database capacity only when API requests are initiated by the user, achieving near-zero idle cost while maintaining robust enterprise-grade security.
+The **Serverless Personal Expense Tracker** solves this challenge by leveraging modern AWS managed serverless services. The backend architecture automatically provisions compute and database capacity only when API requests are initiated by the user, which can reduce the need to manage always-on compute. Actual costs depend on usage and configuration, and security depends on correctly implementing and testing each control.
 
 ---
 
@@ -22,7 +22,7 @@ The system follows a decoupled, three-tier cloud-native architecture:
    + **Amazon Cognito:** Manages user registration, sign-in, password policies, and issues industry-standard JSON Web Tokens (JWT).
    + **Amazon API Gateway (HTTP API):** Serves as the single API entry point, exposing RESTful endpoints, enforcing CORS rules, and validating user JWT claims using a native **JWT Authorizer**.
 3. **Compute & Data Persistence Layer:**
-   + **AWS Lambda:** Hosts the serverless backend business logic (Node.js 22.x). Validates payload data, enforces user data boundaries using the authenticated `userId` claim, and performs CRUD and summary computations.
+   + **AWS Lambda:** Hosts backend business logic (Node.js 22.x). Validates payload data, reads the verified Cognito `sub` claim from the API Gateway request context, and uses that value as the DynamoDB `userId` partition key for CRUD and summary operations.
    + **Amazon DynamoDB:** A fully managed NoSQL document store operating in On-Demand capacity mode, persisting expense records partitioned by user identity.
    + **Amazon CloudWatch:** Automatically collects Lambda execution logs, runtime metrics, invocation rates, and error traces.
    + **AWS IAM:** Binds the Lambda function to an execution role implementing least-privilege security policies.
@@ -34,11 +34,11 @@ The system follows a decoupled, three-tier cloud-native architecture:
 #### Architecture Workflow & Data Flow
 
 1. **User Sign-In:** The user opens the web application hosted on AWS Amplify. The browser communicates directly with the **Amazon Cognito User Pool** via SRP (Secure Remote Password) protocol. Upon successful verification, Cognito returns a JWT `idToken` and `accessToken`.
-2. **Authorized API Call:** When the user performs an action (e.g., adding an expense or requesting dashboard summaries), the frontend dispatches an HTTPS request to **Amazon API Gateway** with the header `Authorization: Bearer <JWT_TOKEN>`.
-3. **JWT Verification:** API Gateway inspects the token against the Cognito User Pool issuer URL and App Client audience. Requests without valid tokens are immediately rejected with an HTTP `401 Unauthorized` before reaching compute resources.
+2. **Authorized API Call:** When the user performs an action (e.g., adding an expense or requesting dashboard summaries), the frontend dispatches an HTTPS request to **Amazon API Gateway** with the header `Authorization: Bearer <ACCESS_TOKEN>`. The API Gateway JWT authorizer in this workshop is configured for Cognito Access Tokens.
+3. **JWT Verification:** API Gateway inspects the token against the Cognito User Pool issuer URL and App Client audience. Requests with missing or invalid tokens should be rejected with HTTP `401 Unauthorized` by the JWT authorizer before Lambda is invoked.
 4. **Lambda Execution:** For verified requests, API Gateway invokes the **AWS Lambda** function through proxy integration, injecting the decoded identity claims (`sub`) into the request context.
-5. **Database Interaction:** The Lambda function queries or mutates records in **Amazon DynamoDB** using the user's unique `userId` as the partition key.
-6. **Logging & Observability:** Every execution outputs structured logs to **Amazon CloudWatch Logs** for auditing and troubleshooting.
+5. **Database Interaction:** The Lambda function queries or mutates records in **Amazon DynamoDB** using the verified Cognito `sub` value as the `userId` partition key.
+6. **Logging & Observability:** Lambda execution logs and service metrics are available in **Amazon CloudWatch** for troubleshooting. Avoid logging access tokens, full JWT claims, passwords, or other sensitive user data.
 
 ---
 

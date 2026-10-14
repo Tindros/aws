@@ -6,7 +6,7 @@ chapter : false
 pre : " <b> 5.7.1 </b> "
 ---
 
-Trong phần này, bạn sẽ cấu hình ứng dụng React frontend tại máy cục bộ kết nối trực tiếp với **Amazon Cognito User Pool**, thay thế hoàn toàn dịch vụ giả lập bằng cơ chế xác thực SRP tiêu chuẩn.
+Trong phần này, bạn sẽ cấu hình ứng dụng React frontend tại máy cục bộ kết nối trực tiếp với **Amazon Cognito User Pool**, thay thế hoàn toàn dịch vụ giả lập bằng luồng xác thực tương thích SRP của Cognito.
 
 ---
 
@@ -80,17 +80,15 @@ export const authService = {
 
       cognitoUser.authenticateUser(authenticationDetails, {
         onSuccess: (result) => {
-          const idToken = result.getIdToken().getJwtToken();
           const accessToken = result.getAccessToken().getJwtToken();
 
-          // Lưu token JWT vào localStorage để gắn vào tiêu đề Authorization của các request sau
-          localStorage.setItem('auth_token', idToken);
-          localStorage.setItem('access_token', accessToken);
+          // Lưu Access Token dùng cho các API yêu cầu xác thực
+          localStorage.setItem('auth_token', accessToken);
           localStorage.setItem('user_email', credentials.email);
 
           resolve({
             success: true,
-            token: idToken,
+            token: accessToken,
             message: 'Đăng nhập thành công'
           });
         },
@@ -150,6 +148,10 @@ export const authService = {
 
 ---
 
+> **Xác nhận đăng ký:** Ví dụ này gửi thông báo mã xác nhận sau khi đăng ký nhưng chưa có màn hình nhập mã hoặc lời gọi `confirmRegistration`. Trong workshop này, hãy dùng tài khoản thử nghiệm đã ở trạng thái Confirmed được tạo ở Phần 5.3.2 để kiểm tra đăng nhập. Luồng tự đăng ký hoàn chỉnh cần có bước xác nhận trước khi người dùng mới có thể đăng nhập.
+
+---
+
 #### Bước 4: Kiểm thử Đăng nhập Thực tế Cục bộ
 
 1. Khởi chạy máy chủ phát triển Vite:
@@ -159,7 +161,7 @@ export const authService = {
 2. Mở trình duyệt và truy cập `http://localhost:5173/login`.
 3. Nhập thông tin tài khoản thử nghiệm đã tạo ở Phần 5.3.2 (`demo-user@example.com` và mật khẩu tương ứng).
 4. Nhấn **Sign in**.
-5. Xác nhận quá trình đăng nhập thành công và mã token được lưu an toàn trong `localStorage` của trình duyệt.
+5. Xác nhận quá trình đăng nhập thành công và Access Token dùng cho API được lưu trong `localStorage`. Ví dụ này chỉ kiểm tra sự tồn tại của chuỗi token và không chủ động làm mới phiên đã hết hạn. Khi Access Token hết hạn, API có thể trả `401` và ứng dụng chuyển hướng về trang đăng nhập. Với ứng dụng thực tế, hãy sử dụng thiết kế phiên an toàn hơn và tránh lưu token trong `localStorage` nếu có thể.
 
 {{% notice tip %}}
 **Xử lý Sự cố Tương thích Vite & Node Global:**  

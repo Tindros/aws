@@ -8,7 +8,7 @@ pre : " <b> 5.4. </b> "
 
 #### Tại sao Chọn Amazon DynamoDB cho Ứng dụng Serverless?
 
-**Amazon DynamoDB** là dịch vụ cơ sở dữ liệu NoSQL không máy chủ được quản lý toàn diện bởi AWS, cung cấp độ trễ phản hồi tính bằng mili-giây ổn định ở bất kỳ quy mô nào. Các cơ sở dữ liệu quan hệ truyền thống (như MySQL hay PostgreSQL) yêu cầu duy trì kết nối liên tục (connection pool) và máy chủ vận hành thường trực, điều này dễ gây nghẽn tài nguyên và phát sinh chi phí cao khi kết hợp với mô hình hàm Lambda có vòng đời ngắn. DynamoDB tích hợp tự nhiên với AWS Lambda qua các lệnh gọi HTTPS API và cơ chế xác thực IAM, trở thành lựa chọn lưu trữ tối ưu nhất cho các ứng dụng Serverless.
+**Amazon DynamoDB** là dịch vụ cơ sở dữ liệu NoSQL không máy chủ được quản lý toàn diện bởi AWS, được thiết kế để truy cập dữ liệu với độ trễ thấp; hiệu năng thực tế còn phụ thuộc vào mẫu truy cập và khối lượng công việc. Các cơ sở dữ liệu quan hệ truyền thống (như MySQL hay PostgreSQL) yêu cầu duy trì kết nối liên tục (connection pool) và máy chủ vận hành thường trực, điều này dễ gây nghẽn tài nguyên và phát sinh chi phí cao khi kết hợp với mô hình hàm Lambda có vòng đời ngắn. DynamoDB tích hợp tự nhiên với AWS Lambda qua các lệnh gọi HTTPS API và cơ chế xác thực IAM, trở thành lựa chọn lưu trữ tối ưu nhất cho các ứng dụng Serverless.
 
 ---
 
@@ -38,11 +38,11 @@ Trong DynamoDB, hiệu năng truy vấn tối ưu và cơ chế cô lập dữ l
 1. **Lấy danh sách tất cả chi tiêu của người dùng hiện tại:**
    + **Thao tác:** `Query`
    + **Điều kiện:** `KeyConditionExpression: "userId = :uid"`
-   + **Hiệu năng:** Chỉ quét trong phạm vi phân vùng của người dùng đang đăng nhập, không quét bảng và không đọc dữ liệu của người dùng khác.
+   + **Hiệu năng:** Truy vấn các mục khớp với partition key của người dùng đã xác thực; đây là thao tác `Query`, không phải `Scan` toàn bảng. Việc cô lập dữ liệu vẫn phụ thuộc vào việc Lambda lấy `userId` từ token đã xác thực và sử dụng nhất quán cho mọi thao tác.
 2. **Lấy chi tiết một khoản chi cụ thể theo ID:**
    + **Thao tác:** `GetItem`
    + **Khóa:** `{ userId: "<UID>", expenseId: "<EXPENSE_ID>" }`
-   + **Hiệu năng:** Truy xuất điểm trực tiếp O(1) với độ trễ thấp nhất.
+   + **Hiệu năng:** Truy xuất trực tiếp một mục bằng đầy đủ khóa chính (`userId` và `expenseId`), không cần truy vấn toàn bảng.
 3. **Thêm mới khoản chi:**
    + **Thao tác:** `PutItem`
 4. **Cập nhật khoản chi:**
@@ -75,7 +75,7 @@ Trong DynamoDB, hiệu năng truy vấn tối ưu và cơ chế cô lập dữ l
 1. Tại mục **Table settings**, chọn **Customize settings**.
 2. Tại mục **Capacity calculator**, chọn chế độ **On-demand**:
    + Tự động co giãn theo khối lượng đọc ghi thực tế của ứng dụng.
-   + Chỉ tính phí theo số lượng yêu cầu đọc/ghi phát sinh, hoàn toàn không tốn chi phí khi ứng dụng ở trạng thái nhàn rỗi.
+   + Chế độ On-demand tính phí theo lượng request đọc/ghi cùng chi phí lưu trữ và các khoản phí áp dụng khác. Chế độ này không bảo đảm chi phí bằng 0 khi nhàn rỗi; hãy kiểm tra bảng giá AWS và Billing hiện hành.
 3. Giữ nguyên các thiết lập mặc định về **Secondary indexes**, **Encryption at rest** (Amazon DynamoDB owned key) và **Deletion protection**.
 
 {{% notice info %}}

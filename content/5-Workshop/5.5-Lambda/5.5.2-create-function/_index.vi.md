@@ -57,6 +57,8 @@ Môi trường Node.js 22.x trên Lambda đã được AWS tích hợp sẵn b�
 1. Chuyển sang thẻ **Code**.
 2. Trong cây thư mục mã nguồn, nhấp đúp vào tệp `index.mjs` và thay thế toàn bộ nội dung bằng đoạn mã sau:
 
+> **CORS:** Cấu hình CORS tại API Gateway (mục 5.6.1). Vì vậy Lambda không tự thêm `Access-Control-Allow-Origin: *` hoặc xử lý preflight `OPTIONS`. Khi triển khai thực tế, chỉ cho phép các origin frontend cần thiết.
+
 ```javascript
 import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
 import { 
@@ -74,10 +76,41 @@ const docClient = DynamoDBDocumentClient.from(client);
 const TABLE_NAME = process.env.TABLE_NAME || "ExpenseTable";
 
 const corsHeaders = {
-  "Access-Control-Allow-Origin": "*",
-  "Access-Control-Allow-Headers": "Content-Type,Authorization",
-  "Access-Control-Allow-Methods": "GET,POST,PUT,DELETE,OPTIONS",
   "Content-Type": "application/json"
+};
+
+const validateExpensePayload = (payload, { partial = false } = {}) => {
+  if (!payload || typeof payload !== "object" || Array.isArray(payload)) {
+    return "Request body must be a JSON object";
+  }
+  const has = (key) => Object.prototype.hasOwnProperty.call(payload, key);
+
+  if (!partial || has("description")) {
+    if (typeof payload.description !== "string" || payload.description.trim().length === 0 || payload.description.trim().length > 200) {
+      return "description must be a non-empty string of at most 200 characters";
+    }
+  }
+  if (!partial || has("amount")) {
+    const amount = Number(payload.amount);
+    if (payload.amount === "" || payload.amount === null || !Number.isFinite(amount) || amount <= 0) {
+      return "amount must be a finite number greater than 0";
+    }
+  }
+  if (!partial || has("category")) {
+    if (typeof payload.category !== "string" || payload.category.trim().length === 0 || payload.category.trim().length > 50) {
+      return "category must be a non-empty string of at most 50 characters";
+    }
+  }
+  if (!partial || has("date")) {
+    if (typeof payload.date !== "string" || !/^\d{4}-\d{2}-\d{2}$/.test(payload.date)) {
+      return "date must use YYYY-MM-DD format";
+    }
+    const parsedDate = new Date(`${payload.date}T00:00:00.000Z`);
+    if (Number.isNaN(parsedDate.getTime()) || parsedDate.toISOString().slice(0, 10) !== payload.date) {
+      return "date must be a valid calendar date";
+    }
+  }
+  return null;
 };
 
 const buildResponse = (statusCode, body) => ({
@@ -87,17 +120,15 @@ const buildResponse = (statusCode, body) => ({
 });
 
 export const handler = async (event) => {
+  // Chỉ ghi metadata định tuyến; không ghi JWT claims hay thông tin định danh người dùng vào log.
   console.log("Incoming request:", JSON.stringify({
+    requestId: event.requestContext?.requestId,
     routeKey: event.routeKey,
     rawPath: event.rawPath,
-    httpMethod: event.requestContext?.http?.method,
-    authorizer: event.requestContext?.authorizer
+    httpMethod: event.requestContext?.http?.method
   }));
 
-  // Xử lý yêu cầu kiểm tra trước CORS (pre-flight OPTIONS)
-  if (event.requestContext?.http?.method === "OPTIONS") {
-    return buildResponse(200, { message: "OK" });
-  }
+  // CORS của HTTP API được cấu hình tại API Gateway; API Gateway xử lý preflight của trình duyệt.
 
   // Trích xuất định danh người dùng độc quyền từ Cognito JWT claims đã xác thực
   const userId = event.requestContext?.authorizer?.jwt?.claims?.sub;
@@ -129,16 +160,17 @@ export const handler = async (event) => {
     // ROUTE: POST /expenses - Tạo mới một khoản chi tiêu
     if (routeKey === "POST /expenses" || (method === "POST" && path.endsWith("/expenses"))) {
       const payload = JSON.parse(event.body || "{}");
-      if (!payload.description || payload.amount === undefined || !payload.category || !payload.date) {
-        return buildResponse(400, { message: "Missing required fields: description, amount, category, date" });
+      const validationError = validateExpensePayload(payload);
+      if (validationError) {
+        return buildResponse(400, { message: validationError });
       }
 
       const newExpense = {
         userId,
         expenseId: randomUUID(),
-        description: String(payload.description).trim(),
+        description: payload.description.trim(),
         amount: Number(payload.amount),
-        category: payload.category,
+        category: payload.category.trim(),
         date: payload.date,
         createdAt: new Date().toISOString()
       };
@@ -166,6 +198,10 @@ export const handler = async (event) => {
     // ROUTE: PUT /expenses/{id} - Cập nhật thông tin khoản chi
     if (routeKey === "PUT /expenses/{id}" || (method === "PUT" && expenseId)) {
       const payload = JSON.parse(event.body || "{}");
+      const validationError = validateExpensePayload(payload, { partial: true });
+      if (validationError) {
+        return buildResponse(400, { message: validationError });
+      }
       const updateExp = [];
       const expValues = {};
       const expNames = {};
@@ -181,7 +217,7 @@ export const handler = async (event) => {
       }
       if (payload.category !== undefined) {
         updateExp.push("category = :cat");
-        expValues[":cat"] = payload.category;
+        expValues[":cat"] = payload.category.trim();
       }
       if (payload.date !== undefined) {
         updateExp.push("#dt = :dt");
@@ -267,7 +303,10 @@ export const handler = async (event) => {
     if (error.name === "ConditionalCheckFailedException") {
       return buildResponse(404, { message: "Expense not found" });
     }
-    return buildResponse(500, { message: "Internal server error", error: error.message });
+    if (error instanceof SyntaxError) {
+      return buildResponse(400, { message: "Request body must contain valid JSON" });
+    }
+    return buildResponse(500, { message: "Internal server error" });
   }
 };
 ```
@@ -281,6 +320,10 @@ export const handler = async (event) => {
 <!-- ![Triển khai Mã nguồn Lambda](/images/5-Workshop/5.5-Lambda/lambda-05-code-editor.png) -->
 
 ---
+
+{{% notice warning %}}
+**Giới hạn kết quả Query:** Các ví dụ `GET /expenses` và `GET /summary` chỉ gửi một yêu cầu DynamoDB `Query`. DynamoDB có thể dừng phản hồi ở mức 1 MB và trả về `LastEvaluatedKey`; mã mẫu này chưa phân trang, vì vậy danh sách hoặc số liệu tổng hợp có thể không đầy đủ khi tài khoản có nhiều dữ liệu. Hãy bổ sung phân trang trước khi sử dụng với tập dữ liệu lớn hơn.
+{{% /notice %}}
 
 #### Bước 4: Kiểm thử Thực thi Hàm
 

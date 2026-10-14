@@ -15,7 +15,8 @@ Trong phần này, bạn sẽ triển khai bản phát hành hoàn thiện của
 1. Truy cập [AWS Amplify Console](https://us-east-1.console.aws.amazon.com/amplify/home?region=us-east-1).
 2. Nhấn nút **Deploy an app** (hoặc **Host web app**).
 3. Lựa chọn nguồn mã nguồn triển khai:
-   + Kết nối với nhà cung cấp Git của bạn (GitHub, AWS CodeCommit, GitLab, Bitbucket), hoặc chọn **Deploy without Git provider** (để tải lên trực tiếp tệp nén ZIP của thư mục `dist/`).
+   + **Triển khai qua Git (khuyến nghị cho workshop này):** Kết nối nhà cung cấp Git chứa repository. Ứng dụng React nằm trong thư mục con `frontend/`, vì vậy hãy cấu hình monorepo app root của Amplify là `frontend` và thêm biến môi trường `AMPLIFY_MONOREPO_APP_ROOT=frontend` trong phần environment settings của ứng dụng.
+   + **Phương án tải lên trực tiếp:** Chạy `npm run build` trong thư mục `frontend/`, sau đó tải nội dung build trong `frontend/dist/` lên theo quy trình manual deployment hiện hành của Amplify. Tệp `amplify.yml` dưới đây dành cho build qua Git, không dùng cho phương án ZIP.
 4. **App name:** Nhập `expense-tracker-frontend`.
 
 {{% notice info %}}
@@ -28,25 +29,27 @@ Trong phần này, bạn sẽ triển khai bản phát hành hoàn thiện của
 
 #### Bước 2: Cấu hình Quá trình Xây dựng (`amplify.yml`)
 
-1. Trong quá trình kết nối kho mã nguồn, Amplify sẽ tự động nhận diện cấu trúc dự án React và Vite. Đảm bảo cấu hình xây dựng trong tệp `amplify.yml` khớp với mẫu sau:
+1. Vì ứng dụng nằm trong thư mục con `frontend/` của repository, hãy đặt app root của Amplify là `frontend` và dùng cấu hình build sau cho triển khai qua Git:
 
 ```yaml
 version: 1
-frontend:
-  phases:
-    preBuild:
-      commands:
-        - npm ci
-    build:
-      commands:
-        - npm run build
-  artifacts:
-    baseDirectory: dist
-    files:
-      - '**/*'
-  cache:
-    paths:
-      - node_modules/**/*
+applications:
+  - appRoot: frontend
+    frontend:
+      phases:
+        preBuild:
+          commands:
+            - npm ci
+        build:
+          commands:
+            - npm run build
+      artifacts:
+        baseDirectory: dist
+        files:
+          - '**/*'
+      cache:
+        paths:
+          - node_modules/**/*
 ```
 
 {{% notice info %}}
@@ -65,6 +68,8 @@ frontend:
    + `VITE_COGNITO_USER_POOL_ID`: `<YOUR_USER_POOL_ID>`
    + `VITE_COGNITO_CLIENT_ID`: `<YOUR_APP_CLIENT_ID>`
    + `VITE_API_BASE_URL`: `<YOUR_API_GATEWAY_INVOKE_URL>`
+
+> Mọi biến `VITE_*` đều được đóng gói vào frontend và người dùng có thể xem được. Chỉ đặt các cấu hình công khai như Region, User Pool ID, App Client ID và API URL ở đây—tuyệt đối không đặt access key, client secret, mật khẩu hoặc thông tin xác thực khác.
 3. Nhấn **Save and deploy**.
 
 ---
@@ -86,7 +91,7 @@ Vì React Router quản lý việc chuyển trang phía client (`/login`, `/expe
 1. Theo dõi chu trình tự động hóa của Amplify qua các giai đoạn:
    + **Provision** -> **Build** -> **Deploy** -> **Verify**.
 2. Sau khi quá trình hoàn tất thành công, bấm vào đường dẫn HTTPS công khai được cấp (ví dụ: `https://main.xxxx.amplifyapp.com`).
-3. Xác nhận ứng dụng tải nhanh chóng, người dùng có thể đăng nhập qua Cognito và xem các dữ liệu chi tiêu trực tiếp từ DynamoDB.
+3. Xác nhận frontend đã triển khai có thể tải, đăng nhập bằng tài khoản Cognito đã xác nhận và đọc/tạo khoản chi qua API đã cấu hình. Nếu build thành công nhưng API lỗi, hãy kiểm tra biến môi trường, API URL, danh sách CORS allowlist và cấu hình JWT authorizer.
 
 {{% notice info %}}
 📸 **Pending Screenshot:** `static/images/5-Workshop/5.8-Monitoring-and-Amplify/amplify-03-deployed-overview.png`  

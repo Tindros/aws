@@ -30,8 +30,8 @@ Observability is essential for diagnosing issues, tracing API latencies, and und
 1. Click on `/aws/lambda/expenseTrackerFunction`.
 2. Under the **Log streams** tab, click the topmost (most recent) log stream.
 3. Observe the structured log events generated during API interactions:
-   + **Incoming Request:** Displays the `routeKey`, `httpMethod`, and decoded Cognito `sub` identifier.
-   + **Execution Trace:** Shows DynamoDB command execution (`QueryCommand`, `PutCommand`).
+   + **Request metadata:** The updated Lambda example logs `requestId`, `routeKey`, `rawPath`, and HTTP method only. It intentionally does not log Cognito `sub` or full JWT claims.
+   + **Execution behavior:** Use the application’s success/error responses and the Lambda `REPORT` line to correlate activity. The sample does not emit a separate log line for every DynamoDB command.
    + **Standard AWS REPORT Line:** Shows performance and billing metrics for each invocation:
      ```
      REPORT RequestId: 4f1a2b3c-... Duration: 42.15 ms Billed Duration: 43 ms Memory Size: 128 MB Max Memory Used: 78 MB
@@ -51,7 +51,7 @@ Observability is essential for diagnosing issues, tracing API latencies, and und
 2. Select **Lambda** -> **By Function Name**.
 3. Locate `expenseTrackerFunction` and select the following metrics:
    + **Invocations:** Aggregates total API request volume.
-   + **Duration:** Measures execution time in milliseconds. Notice how subsequent warm invocations drop to under 30ms.
+   + **Duration:** Measures Lambda execution time in milliseconds. Compare the observed values; do not assume a specific duration because cold starts, data volume, and runtime conditions vary.
    + **Errors:** Displays unhandled execution exceptions (should remain zero).
    + **Throttles:** Indicates if concurrent execution limits were reached.
 
@@ -62,5 +62,5 @@ Observability is essential for diagnosing issues, tracing API latencies, and und
 <!-- ![CloudWatch Lambda Metrics](/images/5-Workshop/5.8-Monitoring-and-Amplify/cloudwatch-03-lambda-metrics.png) -->
 
 {{% notice tip %}}
-**Operational Insight:** Because DynamoDB and Lambda scale horizontally on demand, execution times remain stable even under simultaneous user requests.
+**Operational Insight:** Lambda and DynamoDB can scale with demand within configured service quotas and limits. Measure latency and errors under your own test workload rather than assuming performance will remain constant.
 {{% /notice %}}

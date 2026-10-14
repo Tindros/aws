@@ -6,7 +6,7 @@ chapter : false
 pre : " <b> 5.7.2 </b> "
 ---
 
-Trong phần này, bạn sẽ thay thế toàn bộ mảng dữ liệu giả lập trong tệp `src/services/expenseService.ts` bằng các yêu cầu HTTP bất đồng bộ thực tế gửi đến **Amazon API Gateway HTTP API**, truyền kèm mã định danh JWT và lưu trữ dữ liệu thực vào **Amazon DynamoDB**.
+Trong phần này, bạn sẽ thay thế toàn bộ mảng dữ liệu giả lập trong tệp `src/services/expenseService.ts` bằng các yêu cầu HTTP bất đồng bộ thực tế gửi đến **Amazon API Gateway HTTP API**, truyền kèm Cognito Access Token và lưu trữ dữ liệu thực vào **Amazon DynamoDB**.
 
 ---
 
@@ -25,6 +25,10 @@ import type {
 } from '../types/expense';
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || '';
+
+if (!API_BASE_URL) {
+  throw new Error('VITE_API_BASE_URL is missing. Configure it in the frontend .env file.');
+}
 
 /**
  * Hàm bổ trợ gửi các yêu cầu HTTPS có gắn kèm tiêu đề xác thực JWT
@@ -49,6 +53,8 @@ async function apiRequest<T>(endpoint: string, options: RequestInit = {}): Promi
   if (response.status === 401) {
     // Token đã hết hạn hoặc không hợp lệ - xóa phiên làm việc và chuyển hướng về trang đăng nhập
     localStorage.removeItem('auth_token');
+    localStorage.removeItem('access_token');
+    localStorage.removeItem('user_email');
     window.location.href = '/login';
     throw new Error('Phiên làm việc đã hết hạn. Vui lòng đăng nhập lại.');
   }
@@ -128,8 +134,12 @@ export const expenseService = {
         category: item.category,
         date: item.date
       };
-    } catch {
-      return null;
+    } catch (error) {
+      // Treat only a genuine 404/not-found response as a missing expense; do not hide auth or network failures.
+      if (error instanceof Error && error.message === 'Expense not found') {
+        return null;
+      }
+      throw error;
     }
   },
 

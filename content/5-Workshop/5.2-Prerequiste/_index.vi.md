@@ -12,7 +12,7 @@ Trước khi bắt đầu thực hành bài workshop này, vui lòng đảm bả
 
 #### 1. Tài khoản AWS & Lựa chọn Region
 
-+ Một **Tài khoản AWS** đang hoạt động có quyền quản trị hoặc quyền triển khai tài nguyên.
++ Một **Tài khoản AWS** đang hoạt động. Sử dụng người dùng IAM Identity Center, IAM role hoặc danh tính khác được quản trị viên phê duyệt, chỉ có các quyền cần thiết cho workshop. Không dùng tài khoản root để thao tác thường ngày.
 + **Vùng triển khai (Region):** Khuyến nghị triển khai toàn bộ tài nguyên của workshop tại **US East (N. Virginia) `us-east-1`** để đảm bảo tính đồng nhất và khả năng tương thích giữa các dịch vụ.
 
 ---
@@ -21,7 +21,7 @@ Trước khi bắt đầu thực hành bài workshop này, vui lòng đảm bả
 
 Để tạo và cấu hình các dịch vụ AWS trong bài thực hành (Cognito, DynamoDB, Lambda, API Gateway, IAM, CloudWatch và Amplify), người dùng hoặc vai trò IAM của bạn cần được cấp các quyền tương ứng.
 
-Nếu bạn sử dụng tài khoản IAM có giới hạn quyền thay vì tài khoản Administrator, hãy gán chính sách (IAM Policy) sau vào người dùng của bạn:
+Chính sách dưới đây chỉ là ví dụ khởi đầu cho tài khoản học tập riêng, không bảo đảm đầy đủ mọi quyền và cũng chưa phải chính sách least-privilege hoàn chỉnh. Một số thao tác trên AWS Console có thể cần quyền bổ sung; ví dụ này vẫn có quyền API Gateway khá rộng. Ưu tiên dùng IAM role sandbox tạm thời do quản trị viên phê duyệt. Không gán chính sách này cho danh tính production. Trước khi sử dụng, thay mọi placeholder `<ACCOUNT_ID>` bằng AWS Account ID gồm 12 chữ số của bạn.
 
 ```json
 {
@@ -60,7 +60,7 @@ Nếu bạn sử dụng tài khoản IAM có giới hạn quyền thay vì tài 
         "dynamodb:Query",
         "dynamodb:Scan"
       ],
-      "Resource": "arn:aws:dynamodb:us-east-1:*:table/ExpenseTable*"
+      "Resource": "arn:aws:dynamodb:us-east-1:<ACCOUNT_ID>:table/ExpenseTable*"
     },
     {
       "Sid": "LambdaManagement",
@@ -74,7 +74,7 @@ Nếu bạn sử dụng tài khoản IAM có giới hạn quyền thay vì tài 
         "lambda:AddPermission",
         "lambda:RemovePermission"
       ],
-      "Resource": "arn:aws:lambda:us-east-1:*:function:expenseTrackerFunction*"
+      "Resource": "arn:aws:lambda:us-east-1:<ACCOUNT_ID>:function:expenseTrackerFunction*"
     },
     {
       "Sid": "ApiGatewayManagement",
@@ -97,7 +97,7 @@ Nếu bạn sử dụng tài khoản IAM có giới hạn quyền thay vì tài 
         "iam:PutRolePolicy",
         "iam:DeleteRolePolicy"
       ],
-      "Resource": "arn:aws:iam::*:role/ExpenseTrackerLambdaRole*"
+      "Resource": "arn:aws:iam::<ACCOUNT_ID>:role/ExpenseTrackerLambdaRole*"
     },
     {
       "Sid": "CloudWatchLogsObservability",
@@ -110,7 +110,7 @@ Nếu bạn sử dụng tài khoản IAM có giới hạn quyền thay vì tài 
         "logs:GetLogEvents",
         "logs:FilterLogEvents"
       ],
-      "Resource": "arn:aws:logs:us-east-1:*:log-group:/aws/lambda/expenseTrackerFunction*:*"
+      "Resource": "arn:aws:logs:us-east-1:<ACCOUNT_ID>:log-group:/aws/lambda/expenseTrackerFunction*:*"
     },
     {
       "Sid": "AmplifyHostingManagement",
@@ -129,9 +129,13 @@ Nếu bạn sử dụng tài khoản IAM có giới hạn quyền thay vì tài 
 }
 ```
 
+{{% notice warning %}}
+**Lưu ý quan trọng:** Ví dụ này dùng `apigateway:*` và wildcard cho một số thao tác tạo/liệt kê tài nguyên, vì vậy chưa phải policy least-privilege nghiêm ngặt. Hãy rà soát và thu hẹp quyền cùng quản trị viên trước khi sử dụng. Không cấp quyền này cho tài khoản root hoặc danh tính production.
+{{% /notice %}}
+
 {{% notice info %}}
 📸 **Pending Screenshot:** `static/images/5-Workshop/5.2-Prerequiste/prereq-iam-policy.png`  
-*(Cần chụp khi triển khai: Giao diện IAM Console hiển thị chính sách cấp quyền thực hành được gán vào tài khoản)*
+*(Cần chụp khi triển khai: IAM Console hiển thị quyền workshop đã được phê duyệt gắn với role hoặc danh tính phù hợp)*
 {{% /notice %}}
 <!-- ![Thiết lập IAM Policy](/images/5-Workshop/5.2-Prerequiste/prereq-iam-policy.png) -->
 
