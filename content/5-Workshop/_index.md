@@ -14,7 +14,7 @@ The **Serverless Personal Expense Tracker** is a cloud-based application designe
 
 In this hands-on workshop, you will step through the planned cloud architecture to implement and integrate every layer of the serverless application:
 + **Authentication & Identity:** Provision an **Amazon Cognito User Pool** with an App Client configured for Single Page Applications (SPA) using secure JWT authentication.
-+ **Database Design:** Model and create an **Amazon DynamoDB** table with an On-Demand capacity mode, using partitioned keys for single-tenant data isolation (`userId`) and expense identification (`expenseId`).
++ **Database Design:** Model and create an **Amazon DynamoDB** table with an On-Demand capacity mode, using partitioned keys for per-user data isolation (`userId`) and expense identification (`expenseId`).
 + **Compute & Business Logic:** Implement an **AWS Lambda** function in Node.js 22.x with the AWS SDK v3, bounded by an **IAM Execution Role** enforcing the principle of least privilege.
 + **API Management:** Build an **Amazon API Gateway HTTP API** protected with a native Cognito **JWT Authorizer**, configuring Cross-Origin Resource Sharing (CORS) and integrating Lambda proxy routes.
 + **Frontend Integration:** Connect a modern **React + Vite + TypeScript** frontend MVP with real authentication and REST API endpoints.
