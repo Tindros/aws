@@ -19,7 +19,8 @@ Kiểm tra một yêu cầu API mang token JWT hợp lệ từ Cognito có thể
 
 ```bash
 curl -i -X GET "https://<API_ID>.execute-api.us-east-1.amazonaws.com/expenses" \
-  -H "Authorization: Bearer <ACCESS_TOKEN>"
+  -H "Authorization: Bearer <ACCESS_TOKEN>" \
+  -H "Origin: http://localhost:5173"
 ```
 
 3. **Kết quả Kỳ vọng:**
