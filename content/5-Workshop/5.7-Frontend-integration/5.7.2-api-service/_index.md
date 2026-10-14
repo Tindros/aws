@@ -26,6 +26,10 @@ import type {
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || '';
 
+if (!API_BASE_URL) {
+  throw new Error('VITE_API_BASE_URL is missing. Configure it in the frontend .env file.');
+}
+
 /**
  * Helper to dispatch authenticated HTTPS requests with JWT Authorization headers
  */
@@ -49,6 +53,8 @@ async function apiRequest<T>(endpoint: string, options: RequestInit = {}): Promi
   if (response.status === 401) {
     // Token expired or invalid - clear session and redirect to login
     localStorage.removeItem('auth_token');
+    localStorage.removeItem('access_token');
+    localStorage.removeItem('user_email');
     window.location.href = '/login';
     throw new Error('Session expired. Please log in again.');
   }
