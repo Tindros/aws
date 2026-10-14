@@ -10,7 +10,7 @@ pre : " <b> 5.9. </b> "
 
 Before completing the workshop, you must verify that the deployed serverless architecture satisfies both functional requirements and security isolation standards. Finally, executing an orderly cleanup avoids ongoing AWS charges for retained resources.
 
-+ **End-to-End & Security Verification:** Validates that API Gateway correctly enforces JWT authorization barriers, returns `401 Unauthorized` for unauthenticated or malformed requests, and guarantees strict tenant isolation in DynamoDB.
++ **End-to-End & Security Verification:** Tests that API Gateway enforces JWT authorization, returns `401 Unauthorized` for requests with missing or invalid tokens, and checks that DynamoDB operations are scoped to the authenticated user.
 + **Resource Cleanup:** Provides an explicit, dependency-ordered teardown checklist across all 7 provisioned AWS components (Amplify App, API Gateway HTTP API, Lambda function, IAM Role & policies, DynamoDB table, Cognito User Pool, and CloudWatch Log Groups).
 
 ---
