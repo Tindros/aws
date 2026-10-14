@@ -20,7 +20,7 @@ Bạn có thể chủ động tạo một tài khoản người dùng trực ti�
    + Chọn **Don't send an email invite** (để thử nghiệm nhanh cục bộ).
    + **Email address:** Nhập `demo-user@example.com`.
    + Đánh dấu tích vào **Mark email address as verified**.
-   + Tại mục **Temporary password**, chọn **Set a permanent password** và nhập mật khẩu thỏa mãn chính sách (ví dụ: `ExpenseTracker2026!`).
+   + Tại mục **Temporary password**, chọn **Set a permanent password** và nhập mật khẩu riêng, đủ mạnh và thỏa mãn chính sách. Không dùng lại mật khẩu ví dụ trong tài liệu hoặc commit thông tin đăng nhập vào repository.
 
 {{% notice info %}}
 📸 **Pending Screenshot:** `static/images/5-Workshop/5.3-Cognito/cognito-06-create-test-user.png`  
