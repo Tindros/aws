@@ -19,7 +19,8 @@ Verify that an API request with a valid Cognito JWT token successfully reaches t
 
 ```bash
 curl -i -X GET "https://<API_ID>.execute-api.us-east-1.amazonaws.com/expenses" \
-  -H "Authorization: Bearer <ACCESS_TOKEN>"
+  -H "Authorization: Bearer <ACCESS_TOKEN>" \
+  -H "Origin: http://localhost:5173"
 ```
 
 3. **Expected Result:**
