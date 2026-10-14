@@ -25,11 +25,7 @@ Trong phần này, bạn sẽ từng bước tạo và cấu hình **Amazon Cogn
    + Người dùng sẽ dùng địa chỉ email làm tên đăng nhập duy nhất khi đăng ký và đăng nhập vào ứng dụng.
    + Bỏ chọn các ô *User name* và *Phone number*.
 
-{{% notice info %}}
-📸 **Pending Screenshot:** `static/images/5-Workshop/5.3-Cognito/cognito-01-sign-in-experience.png`  
-*(Cần chụp khi triển khai: Giao diện Cognito bước 1 với tùy chọn Email được chọn)*
-{{% /notice %}}
-<!-- ![Cấu hình Sign-in Experience](/images/5-Workshop/5.3-Cognito/cognito-01-sign-in-experience.png) -->
+![Cấu hình Sign-in Experience](/images/5-Workshop/5.3-Cognito/cognito-01-sign-in-experience.png)
 
 3. Nhấn **Next**.
 
@@ -44,11 +40,7 @@ Trong phần này, bạn sẽ từng bước tạo và cấu hình **Amazon Cogn
    + *Lưu ý:* Mặc dù MFA rất cần thiết cho môi trường thực tế, việc chọn No MFA giúp đơn giản hóa quy trình và tránh phát sinh chi phí SMS trong phạm vi bài thực hành.
 3. **Khôi phục tài khoản (User account recovery):** Giữ chọn **Self-service account recovery** qua phương thức **Email**.
 
-{{% notice info %}}
-📸 **Pending Screenshot:** `static/images/5-Workshop/5.3-Cognito/cognito-02-security-requirements.png`  
-*(Cần chụp khi triển khai: Thiết lập mật khẩu mặc định và MFA ở chế độ No MFA)*
-{{% /notice %}}
-<!-- ![Cấu hình Security Requirements](/images/5-Workshop/5.3-Cognito/cognito-02-security-requirements.png) -->
+![Cấu hình Security Requirements](/images/5-Workshop/5.3-Cognito/cognito-02-security-requirements.png)
 
 4. Nhấn **Next**.
 
@@ -75,11 +67,7 @@ Trong phần này, bạn sẽ từng bước tạo và cấu hình **Amazon Cogn
 
 1. **User pool name:** Nhập `expense-tracker-user-pool`.
 
-{{% notice info %}}
-📸 **Pending Screenshot:** `static/images/5-Workshop/5.3-Cognito/cognito-03-user-pool-name.png`  
-*(Cần chụp khi triển khai: Đặt tên User Pool là expense-tracker-user-pool)*
-{{% /notice %}}
-<!-- ![Đặt tên User Pool](/images/5-Workshop/5.3-Cognito/cognito-03-user-pool-name.png) -->
+![Đặt tên User Pool](/images/5-Workshop/5.3-Cognito/cognito-03-user-pool-name.png)
 
 2. Tại mục **Initial app client**:
    + **App client name:** Nhập `expense-tracker-web-client`.
@@ -89,11 +77,7 @@ Trong phần này, bạn sẽ từng bước tạo và cấu hình **Amazon Cogn
 **Nguyên tắc Kiến trúc Quan trọng:** Tuyệt đối không tạo Client Secret cho ứng dụng Single Page Application (SPA) chạy trực tiếp trên trình duyệt. Mã chạy trên trình duyệt người dùng không thể bảo mật mã bí mật này. Việc không tạo Client Secret cho phép React app tương tác trực tiếp với Cognito qua các luồng xác thực công khai an toàn.
 {{% /notice %}}
 
-{{% notice info %}}
-📸 **Pending Screenshot:** `static/images/5-Workshop/5.3-Cognito/cognito-04-app-client.png`  
-*(Cần chụp khi triển khai: Cấu hình App Client chọn "Don't generate a client secret")*
-{{% /notice %}}
-<!-- ![Cấu hình App Client](/images/5-Workshop/5.3-Cognito/cognito-04-app-client.png) -->
+![Cấu hình App Client](/images/5-Workshop/5.3-Cognito/cognito-04-app-client.png)
 
 3. Mở rộng phần **Advanced app client settings**:
    + Đảm bảo danh sách **Authentication flows** có các tùy chọn:
@@ -113,8 +97,4 @@ Trong phần này, bạn sẽ từng bước tạo và cấu hình **Amazon Cogn
    + **User pool ID:** (Ví dụ: `us-east-1_xxxxxxxxx`)
    + Chuyển sang thẻ **App integration**, cuộn xuống mục **App clients and analytics** và sao chép **Client ID** (chuỗi 26 ký tự chữ và số).
 
-{{% notice info %}}
-📸 **Pending Screenshot:** `static/images/5-Workshop/5.3-Cognito/cognito-05-user-pool-overview.png`  
-*(Cần chụp khi triển khai: Trang tổng quan User pool hiển thị User pool ID và App client ID)*
-{{% /notice %}}
-<!-- ![Tổng quan User Pool](/images/5-Workshop/5.3-Cognito/cognito-05-user-pool-overview.png) -->
+![Tổng quan User Pool](/images/5-Workshop/5.3-Cognito/cognito-05-user-pool-overview.png)

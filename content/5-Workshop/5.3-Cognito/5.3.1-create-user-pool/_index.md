@@ -25,11 +25,7 @@ In this module, you will create and configure the **Amazon Cognito User Pool** a
    + Users will use their email address as their unique username when signing up and logging in.
    + Uncheck *User name* and *Phone number*.
 
-{{% notice info %}}
-📸 **Pending Screenshot:** `static/images/5-Workshop/5.3-Cognito/cognito-01-sign-in-experience.png`  
-*(To be captured during deployment: Cognito console step 1 showing Email selected under sign-in options)*
-{{% /notice %}}
-<!-- ![Configure Sign-in Experience](/images/5-Workshop/5.3-Cognito/cognito-01-sign-in-experience.png) -->
+![Configure Sign-in Experience](/images/5-Workshop/5.3-Cognito/cognito-01-sign-in-experience.png)
 
 3. Click **Next**.
 
@@ -44,11 +40,7 @@ In this module, you will create and configure the **Amazon Cognito User Pool** a
    + *Note:* While MFA is recommended for production environments, selecting No MFA minimizes SMS and authenticator app configuration overhead during workshop testing.
 3. **User account recovery:** Keep **Self-service account recovery** checked with delivery mechanism set to **Email**.
 
-{{% notice info %}}
-📸 **Pending Screenshot:** `static/images/5-Workshop/5.3-Cognito/cognito-02-security-requirements.png`  
-*(To be captured during deployment: Cognito password policy and MFA set to No MFA)*
-{{% /notice %}}
-<!-- ![Configure Security Requirements](/images/5-Workshop/5.3-Cognito/cognito-02-security-requirements.png) -->
+![Configure Security Requirements](/images/5-Workshop/5.3-Cognito/cognito-02-security-requirements.png)
 
 4. Click **Next**.
 
@@ -75,11 +67,7 @@ In this module, you will create and configure the **Amazon Cognito User Pool** a
 
 1. **User pool name:** Enter `expense-tracker-user-pool`.
 
-{{% notice info %}}
-📸 **Pending Screenshot:** `static/images/5-Workshop/5.3-Cognito/cognito-03-user-pool-name.png`  
-*(To be captured during deployment: Specifying expense-tracker-user-pool as the User pool name)*
-{{% /notice %}}
-<!-- ![User Pool Name](/images/5-Workshop/5.3-Cognito/cognito-03-user-pool-name.png) -->
+![User Pool Name](/images/5-Workshop/5.3-Cognito/cognito-03-user-pool-name.png)
 
 2. Under **Initial app client**:
    + **App client name:** Enter `expense-tracker-web-client`.
@@ -89,11 +77,7 @@ In this module, you will create and configure the **Amazon Cognito User Pool** a
 **Critical Architecture Requirement:** Never generate a client secret for a public Single Page Application (SPA) running in client browsers. SPAs cannot protect a secret key from browser inspection. Leaving the client secret disabled allows the React app to communicate directly with Cognito using standard public authorization flows.
 {{% /notice %}}
 
-{{% notice info %}}
-📸 **Pending Screenshot:** `static/images/5-Workshop/5.3-Cognito/cognito-04-app-client.png`  
-*(To be captured during deployment: App client configuration with "Don't generate a client secret" selected)*
-{{% /notice %}}
-<!-- ![Configure App Client](/images/5-Workshop/5.3-Cognito/cognito-04-app-client.png) -->
+![Configure App Client](/images/5-Workshop/5.3-Cognito/cognito-04-app-client.png)
 
 3. Expand **Advanced app client settings**:
    + Verify **Authentication flows** includes:
@@ -113,8 +97,4 @@ In this module, you will create and configure the **Amazon Cognito User Pool** a
    + **User pool ID:** (Format: `us-east-1_xxxxxxxxx`)
    + Under the **App integration** tab, scroll down to **App clients and analytics** and copy the **Client ID** (26-character alphanumeric string).
 
-{{% notice info %}}
-📸 **Pending Screenshot:** `static/images/5-Workshop/5.3-Cognito/cognito-05-user-pool-overview.png`  
-*(To be captured during deployment: User pool overview displaying the User pool ID and App client ID)*
-{{% /notice %}}
-<!-- ![User Pool Overview](/images/5-Workshop/5.3-Cognito/cognito-05-user-pool-overview.png) -->
+![User Pool Overview](/images/5-Workshop/5.3-Cognito/cognito-05-user-pool-overview.png)
