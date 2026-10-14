@@ -10,7 +10,7 @@ pre: " <b> 5. </b> "
 
 #### Overview
 
-The **Serverless Personal Expense Tracker** is a full-stack, cloud-native application designed to help individuals log, categorize, track, and summarize their personal expenditures. Built upon modern AWS serverless architecture, this solution removes the need to provision, manage, or pay for idle virtual machines or container instances, scaling automatically to zero when inactive and delivering cost-effective high availability.
+The **Serverless Personal Expense Tracker** is a cloud-based application designed to help individuals log, categorize, track, and summarize personal expenditures. It uses managed AWS services so you do not need to provision or maintain virtual machines for the application. Actual availability, scaling behavior, and cost depend on service configuration and usage; serverless does not mean every resource is always free when idle.
 
 In this hands-on workshop, you will step through the planned cloud architecture to implement and integrate every layer of the serverless application:
 + **Authentication & Identity:** Provision an **Amazon Cognito User Pool** with an App Client configured for Single Page Applications (SPA) using secure JWT authentication.
@@ -22,7 +22,7 @@ In this hands-on workshop, you will step through the planned cloud architecture 
 + **Verification & Cleanup:** Perform end-to-end verification, test unauthorized access protections, and execute an orderly resource teardown.
 
 {{% notice info %}}
-**Deployment Status Note:** This workshop serves as the step-by-step implementation guide for the Serverless Personal Expense Tracker. All architectural patterns, code handlers, and IAM policies are concrete and reproducible. Missing screenshots for unexecuted steps are clearly designated as **`[Pending Deployment]`** and will be populated upon live cloud deployment.
+**Deployment Status Note:** This workshop serves as the step-by-step implementation guide for the Serverless Personal Expense Tracker. The workshop provides implementation examples and configuration guidance that must be validated in your own AWS account. Review IAM permissions before applying them, and do not deploy resources until you understand the expected costs and cleanup steps. Missing screenshots for unexecuted steps are clearly designated as **`[Pending Deployment]`** and will be populated upon live cloud deployment.
 {{% /notice %}}
 
 #### Content
