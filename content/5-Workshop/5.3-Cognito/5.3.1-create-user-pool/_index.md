@@ -77,7 +77,7 @@ To ensure consistency with project naming standards and infrastructure documenta
    + Under **User pool name**, enter `expense-tracker-user-pool`.
    + Click **Save changes**.
 
-![Rename User Pool to expense-tracker-user-pool](/images/5-Workshop/5.3-Cognito/cognito-03-user-pool-name.png)
+![User Pool Rename Dialog](/images/5-Workshop/5.3-Cognito/cognito-03-user-pool-name.png)
 
 ---
 
@@ -152,7 +152,7 @@ Return to the **Overview** page of `expense-tracker-user-pool` to verify the pro
 
 {{% notice info %}}
 **Resource Provisioning Checkpoint:**  
-At this stage, the Amazon Cognito User Pool and public App Client are successfully created and configured in `us-east-1`. Creating these resources sets up the authentication infrastructure but does not mean the web frontend is integrated or that users have authenticated yet. User provisioning and JWT token verification will be verified in the next section, followed by database and API setup.
+At this stage, the Amazon Cognito User Pool and public App Client should be created and configured in `us-east-1`. Confirm the saved pool name on the Overview page before continuing. Creating these resources sets up the authentication infrastructure but does not mean the web frontend is integrated or that users have authenticated yet. User provisioning and JWT token verification will be verified in the next section, followed by database and API setup.
 {{% /notice %}}
 
 Proceed to the next module: [5.3.2 User Registration, Authentication & JWT Verification](../5.3.2-test-auth/) to test user creation and inspect issued JWT claims.
