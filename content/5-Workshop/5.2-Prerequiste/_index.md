@@ -12,7 +12,7 @@ Before beginning this workshop, ensure that you have configured the required AWS
 
 #### 1. AWS Account & Region Selection
 
-+ An active **AWS Account** with administrative or deployment privileges.
++ An active **AWS Account**. Use an IAM Identity Center user, IAM role, or other administrator-approved identity with only the permissions needed for this workshop. Do not use the AWS account root user for routine work.
 + **Target Region:** All workshop resources should be deployed in **US East (N. Virginia) `us-east-1`** for consistent service availability and cross-service integration compatibility.
 
 ---
@@ -21,7 +21,7 @@ Before beginning this workshop, ensure that you have configured the required AWS
 
 To create and manage the AWS services involved in this workshop (Cognito, DynamoDB, Lambda, API Gateway, IAM, CloudWatch, and Amplify), your IAM user or role must possess adequate permissions.
 
-If you are using a scoped IAM User rather than an Administrator account, attach the following custom policy to your identity:
+The policy below is an illustrative starting point for a dedicated training account, not a guaranteed complete or least-privilege policy. Some AWS Console operations require additional permissions, and broad API Gateway permissions are included here. Prefer a temporary, administrator-approved sandbox role. Do not attach this example to a production identity. Before using it, replace every `<ACCOUNT_ID>` placeholder with your 12-digit AWS account ID.
 
 ```json
 {
@@ -60,7 +60,7 @@ If you are using a scoped IAM User rather than an Administrator account, attach 
         "dynamodb:Query",
         "dynamodb:Scan"
       ],
-      "Resource": "arn:aws:dynamodb:us-east-1:*:table/ExpenseTable*"
+      "Resource": "arn:aws:dynamodb:us-east-1:<ACCOUNT_ID>:table/ExpenseTable*"
     },
     {
       "Sid": "LambdaManagement",
@@ -74,7 +74,7 @@ If you are using a scoped IAM User rather than an Administrator account, attach 
         "lambda:AddPermission",
         "lambda:RemovePermission"
       ],
-      "Resource": "arn:aws:lambda:us-east-1:*:function:expenseTrackerFunction*"
+      "Resource": "arn:aws:lambda:us-east-1:<ACCOUNT_ID>:function:expenseTrackerFunction*"
     },
     {
       "Sid": "ApiGatewayManagement",
@@ -97,7 +97,7 @@ If you are using a scoped IAM User rather than an Administrator account, attach 
         "iam:PutRolePolicy",
         "iam:DeleteRolePolicy"
       ],
-      "Resource": "arn:aws:iam::*:role/ExpenseTrackerLambdaRole*"
+      "Resource": "arn:aws:iam::<ACCOUNT_ID>:role/ExpenseTrackerLambdaRole*"
     },
     {
       "Sid": "CloudWatchLogsObservability",
@@ -110,7 +110,7 @@ If you are using a scoped IAM User rather than an Administrator account, attach 
         "logs:GetLogEvents",
         "logs:FilterLogEvents"
       ],
-      "Resource": "arn:aws:logs:us-east-1:*:log-group:/aws/lambda/expenseTrackerFunction*:*"
+      "Resource": "arn:aws:logs:us-east-1:<ACCOUNT_ID>:log-group:/aws/lambda/expenseTrackerFunction*:*"
     },
     {
       "Sid": "AmplifyHostingManagement",
@@ -128,6 +128,10 @@ If you are using a scoped IAM User rather than an Administrator account, attach 
   ]
 }
 ```
+
+{{% notice warning %}}
+**Important:** This example uses `apigateway:*` and wildcard resources for some create/list operations, so it is not a strict least-privilege policy. Review and reduce permissions with your AWS administrator before use. Never grant these permissions to the root user or a production identity.
+{{% /notice %}}
 
 {{% notice info %}}
 📸 **Pending Screenshot:** `static/images/5-Workshop/5.2-Prerequiste/prereq-iam-policy.png`  
