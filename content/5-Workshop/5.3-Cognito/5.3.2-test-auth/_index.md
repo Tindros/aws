@@ -39,7 +39,7 @@ You can provision a test account directly from the AWS Console without requiring
 
 ---
 
-#### Step 2: Test Authentication via CLI
+#### Step 2: Test Authentication via the React SPA
 
 The App Client in this workshop is configured for **choice-based sign-in** and **Secure Remote Password (SRP)**. It does not enable the legacy `USER_PASSWORD_AUTH` flow, so do not use a `USER_PASSWORD_AUTH` CLI example here. That command will fail unless you change the App Client configuration, which is not part of this workshop.
 
