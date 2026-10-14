@@ -134,8 +134,12 @@ export const expenseService = {
         category: item.category,
         date: item.date
       };
-    } catch {
-      return null;
+    } catch (error) {
+      // Treat only a genuine 404/not-found response as a missing expense; do not hide auth or network failures.
+      if (error instanceof Error && error.message === 'Expense not found') {
+        return null;
+      }
+      throw error;
     }
   },
 
