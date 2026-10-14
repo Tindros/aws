@@ -1,33 +1,38 @@
 ---
 title: "Workshop"
-date: 2024-01-01
+date: 2026-10-14
 weight: 5
 chapter: false
 pre: " <b> 5. </b> "
 ---
 
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
-
-
-# Đảm bảo truy cập Hybrid an toàn đến S3 bằng cách sử dụng VPC endpoint
+# Ứng dụng Theo dõi Chi tiêu Cá nhân Không máy chủ (Serverless Personal Expense Tracker) trên AWS
 
 #### Tổng quan
 
-**AWS PrivateLink** cung cấp kết nối riêng tư đến các dịch vụ aws từ VPCs hoặc trung tâm dữ liệu (on-premise) mà không làm lộ lưu lượng truy cập ra ngoài public internet.
+**Serverless Personal Expense Tracker** là một ứng dụng web đám mây (cloud-native) hoàn chỉnh được thiết kế để hỗ trợ người dùng ghi chép, phân loại, theo dõi và tổng hợp các khoản chi tiêu cá nhân hằng ngày. Được xây dựng dựa trên kiến trúc Serverless hiện đại của AWS, giải pháp này loại bỏ hoàn toàn gánh nặng quản lý máy chủ hoặc chi phí duy trì tài nguyên nhàn rỗi, tự động co giãn về 0 khi không có lưu lượng và tối ưu hóa chi phí vận hành.
 
-Trong bài lab này, chúng ta sẽ học cách tạo, cấu hình, và kiểm tra VPC endpoints để cho phép workload của bạn tiếp cận các dịch vụ AWS mà không cần đi qua Internet công cộng.
+Trong bài workshop thực hành này, bạn sẽ từng bước triển khai và tích hợp toàn diện các thành phần trong kiến trúc:
++ **Quản lý Định danh & Xác thực:** Khởi tạo **Amazon Cognito User Pool** cùng App Client dành cho Single Page Application (SPA), bảo mật bằng cơ chế JWT token.
++ **Thiết kế Cơ sở Dữ liệu:** Xây dựng bảng **Amazon DynamoDB** theo chế độ On-Demand, phân vùng dữ liệu an toàn dựa trên khóa phân vùng (`userId`) và khóa sắp xếp (`expenseId`).
++ **Xử lý Logic Nghiệp vụ:** Triển khai hàm **AWS Lambda** (Node.js 22.x, AWS SDK v3) được cấp quyền tối thiểu thông qua **IAM Execution Role**.
++ **Cổng Giao tiếp API:** Thiết lập **Amazon API Gateway HTTP API** bảo vệ bằng **JWT Authorizer** liên kết với Cognito, cấu hình CORS và tích hợp Lambda proxy.
++ **Tích hợp Ứng dụng Frontend:** Kết nối giao diện người dùng xây dựng bằng **React + Vite + TypeScript** với luồng xác thực và API thực tế.
++ **Giám sát & Triển khai Hosting:** Thu thập nhật ký và theo dõi chỉ số vận hành với **Amazon CloudWatch**, đồng thời phát hành ứng dụng lên môi trường Internet bằng **AWS Amplify Hosting**.
++ **Kiểm thử & Dọn dẹp:** Thực hiện kiểm thử toàn trình (E2E), xác thực cơ chế chặn truy cập trái phép và tiến hành giải phóng tài nguyên AWS.
 
-Chúng ta sẽ tạo hai loại endpoints để truy cập đến Amazon S3: gateway vpc endpoint và interface vpc endpoint. Hai loại vpc endpoints này mang đến nhiều lợi ích tùy thuộc vào việc bạn truy cập đến S3 từ môi trường cloud hay từ trung tâm dữ liệu (on-premise).
-+ **Gateway** - Tạo gateway endpoint để gửi lưu lượng đến Amazon S3 hoặc DynamoDB using private IP addresses. Bạn điều hướng lưu lượng từ VPC của bạn đến gateway endpoint bằng các bảng định tuyến (route tables)
-+ **Interface** - Tạo interface endpoint để gửi lưu lượng đến các dịch vụ điểm cuối (endpoints) sử dụng Network Load Balancer để phân phối lưu lượng. Lưu lượng dành cho dịch vụ điểm cuối được resolved bằng DNS.
+{{% notice info %}}
+**Lưu ý về Trạng thái Triển khai:** Tài liệu workshop này là hướng dẫn thực hành chi tiết theo kế hoạch kiến trúc của dự án. Mọi thông số kỹ thuật, cấu hình IAM, mã nguồn Lambda và định tuyến API đều là các thiết kế thực tế và có thể tái tạo. Các ảnh chụp màn hình tương ứng với các bước chưa thao tác trên AWS Console được đánh dấu rõ ràng là **`[Pending Deployment]`** và sẽ được bổ sung khi triển khai thực tế.
+{{% /notice %}}
 
 #### Nội dung
 
-1. [Tổng quan về workshop](5.1-Workshop-overview/)
-2. [Chuẩn bị](5.2-Prerequiste/)
-3. [Truy cập đến S3 từ VPC](5.3-S3-vpc/)
-4. [Truy cập đến S3 từ TTDL On-premises](5.4-S3-onprem/)
-5. [VPC Endpoint Policies (làm thêm)](5.5-Policy/)
-6. [Dọn dẹp tài nguyên](5.6-Cleanup/)
+1. [Tổng quan về Workshop & Kiến trúc](5.1-Workshop-overview/)
+2. [Chuẩn bị & Thiết lập Môi trường](5.2-Prerequiste/)
+3. [Cấu hình Amazon Cognito & Xác thực Người dùng](5.3-Cognito/)
+4. [Thiết kế Bảng Dữ liệu Amazon DynamoDB](5.4-DynamoDB/)
+5. [Triển khai Hàm AWS Lambda & IAM Role](5.5-Lambda/)
+6. [Cấu hình API Gateway, JWT Authorizer & Tích hợp](5.6-APIGateway/)
+7. [Tích hợp Frontend React với Backend AWS](5.7-Frontend-integration/)
+8. [Giám sát với CloudWatch & Triển khai Amplify Hosting](5.8-Monitoring-and-Amplify/)
+9. [Kiểm thử Toàn trình, Bảo mật & Dọn dẹp Tài nguyên](5.9-Testing-and-Cleanup/)
