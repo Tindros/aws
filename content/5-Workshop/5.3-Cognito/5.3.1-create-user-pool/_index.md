@@ -142,7 +142,7 @@ Return to the **Overview** page of `expense-tracker-user-pool` to verify the pro
 {{% notice info %}}
 **Distinguishing User Pool ID vs. App Client ID:**  
 - **User Pool ID** (`us-east-1_...`): Identifies your entire Cognito user directory and serves as the OIDC token issuer (`iss`).
-- **App Client ID** (26 characters alphanumeric): Identifies the specific client application (React SPA) requesting tokens and appears in the token audience claim (`aud`).
+- **App Client ID** (typically a 26-character alphanumeric identifier): Identifies the client application requesting tokens. Cognito ID tokens normally contain this value in `aud`; Cognito access tokens commonly contain it in `client_id`. API Gateway HTTP API JWT authorizers check `aud` when present and can check `client_id` when `aud` is absent.
 - Do not confuse these two parameters or use them interchangeably.
 {{% /notice %}}
 
