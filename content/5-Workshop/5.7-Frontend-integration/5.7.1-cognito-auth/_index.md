@@ -6,7 +6,7 @@ chapter : false
 pre : " <b> 5.7.1 </b> "
 ---
 
-In this module, you will configure your local React frontend to authenticate directly with **Amazon Cognito User Pool**, replacing the developer prototype with production-grade SRP authentication.
+In this module, you will configure your local React frontend to authenticate directly with **Amazon Cognito User Pool**, replacing the developer prototype with Cognito SRP-compatible authentication.
 
 ---
 
@@ -145,6 +145,10 @@ export const authService = {
   }
 };
 ```
+
+---
+
+> **Registration confirmation:** This sample sends a confirmation-code message after sign-up but does not implement a confirmation-code screen or call `confirmRegistration`. For this workshop, use the confirmed test user created in Section 5.3.2 to verify sign-in. A complete self-registration flow needs a confirmation step before the new user can sign in.
 
 ---
 
