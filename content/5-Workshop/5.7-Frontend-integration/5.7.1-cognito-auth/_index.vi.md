@@ -6,7 +6,7 @@ chapter : false
 pre : " <b> 5.7.1 </b> "
 ---
 
-Trong phần này, bạn sẽ cấu hình ứng dụng React frontend tại máy cục bộ kết nối trực tiếp với **Amazon Cognito User Pool**, thay thế hoàn toàn dịch vụ giả lập bằng cơ chế xác thực SRP tiêu chuẩn.
+Trong phần này, bạn sẽ cấu hình ứng dụng React frontend tại máy cục bộ kết nối trực tiếp với **Amazon Cognito User Pool**, thay thế hoàn toàn dịch vụ giả lập bằng luồng xác thực tương thích SRP của Cognito.
 
 ---
 
@@ -145,6 +145,10 @@ export const authService = {
   }
 };
 ```
+
+---
+
+> **Xác nhận đăng ký:** Ví dụ này gửi thông báo mã xác nhận sau khi đăng ký nhưng chưa có màn hình nhập mã hoặc lời gọi `confirmRegistration`. Trong workshop này, hãy dùng tài khoản thử nghiệm đã ở trạng thái Confirmed được tạo ở Phần 5.3.2 để kiểm tra đăng nhập. Luồng tự đăng ký hoàn chỉnh cần có bước xác nhận trước khi người dùng mới có thể đăng nhập.
 
 ---
 
