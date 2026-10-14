@@ -57,6 +57,8 @@ The Node.js 22.x Lambda runtime comes pre-packaged with the AWS SDK for JavaScri
 1. Select the **Code** tab.
 2. In the code editor, double-click `index.mjs` and replace its entire contents with the following code:
 
+> **CORS:** Configure CORS in API Gateway (Section 5.6.1). This Lambda therefore does not add `Access-Control-Allow-Origin: *` or handle preflight `OPTIONS` itself. In a real deployment, allow only the frontend origins you need.
+
 ```javascript
 import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
 import { 
@@ -74,10 +76,41 @@ const docClient = DynamoDBDocumentClient.from(client);
 const TABLE_NAME = process.env.TABLE_NAME || "ExpenseTable";
 
 const corsHeaders = {
-  "Access-Control-Allow-Origin": "*",
-  "Access-Control-Allow-Headers": "Content-Type,Authorization",
-  "Access-Control-Allow-Methods": "GET,POST,PUT,DELETE,OPTIONS",
   "Content-Type": "application/json"
+};
+
+const validateExpensePayload = (payload, { partial = false } = {}) => {
+  if (!payload || typeof payload !== "object" || Array.isArray(payload)) {
+    return "Request body must be a JSON object";
+  }
+  const has = (key) => Object.prototype.hasOwnProperty.call(payload, key);
+
+  if (!partial || has("description")) {
+    if (typeof payload.description !== "string" || payload.description.trim().length === 0 || payload.description.trim().length > 200) {
+      return "description must be a non-empty string of at most 200 characters";
+    }
+  }
+  if (!partial || has("amount")) {
+    const amount = Number(payload.amount);
+    if (payload.amount === "" || payload.amount === null || !Number.isFinite(amount) || amount <= 0) {
+      return "amount must be a finite number greater than 0";
+    }
+  }
+  if (!partial || has("category")) {
+    if (typeof payload.category !== "string" || payload.category.trim().length === 0 || payload.category.trim().length > 50) {
+      return "category must be a non-empty string of at most 50 characters";
+    }
+  }
+  if (!partial || has("date")) {
+    if (typeof payload.date !== "string" || !/^\\d{4}-\\d{2}-\\d{2}$/.test(payload.date)) {
+      return "date must use YYYY-MM-DD format";
+    }
+    const parsedDate = new Date(`${payload.date}T00:00:00.000Z`);
+    if (Number.isNaN(parsedDate.getTime()) || parsedDate.toISOString().slice(0, 10) !== payload.date) {
+      return "date must be a valid calendar date";
+    }
+  }
+  return null;
 };
 
 const buildResponse = (statusCode, body) => ({
@@ -87,17 +120,15 @@ const buildResponse = (statusCode, body) => ({
 });
 
 export const handler = async (event) => {
+  // Log routing metadata only; do not log JWT claims or other identity details.
   console.log("Incoming request:", JSON.stringify({
+    requestId: event.requestContext?.requestId,
     routeKey: event.routeKey,
     rawPath: event.rawPath,
-    httpMethod: event.requestContext?.http?.method,
-    authorizer: event.requestContext?.authorizer
+    httpMethod: event.requestContext?.http?.method
   }));
 
-  // Handle pre-flight CORS OPTIONS request
-  if (event.requestContext?.http?.method === "OPTIONS") {
-    return buildResponse(200, { message: "OK" });
-  }
+  // HTTP API CORS is configured in API Gateway; it handles browser preflight requests.
 
   // Extract authenticated user ID exclusively from verified Cognito JWT claims
   const userId = event.requestContext?.authorizer?.jwt?.claims?.sub;
@@ -129,16 +160,17 @@ export const handler = async (event) => {
     // ROUTE: POST /expenses - Create a new expense
     if (routeKey === "POST /expenses" || (method === "POST" && path.endsWith("/expenses"))) {
       const payload = JSON.parse(event.body || "{}");
-      if (!payload.description || payload.amount === undefined || !payload.category || !payload.date) {
-        return buildResponse(400, { message: "Missing required fields: description, amount, category, date" });
+      const validationError = validateExpensePayload(payload);
+      if (validationError) {
+        return buildResponse(400, { message: validationError });
       }
 
       const newExpense = {
         userId,
         expenseId: randomUUID(),
-        description: String(payload.description).trim(),
+        description: payload.description.trim(),
         amount: Number(payload.amount),
-        category: payload.category,
+        category: payload.category.trim(),
         date: payload.date,
         createdAt: new Date().toISOString()
       };
@@ -166,6 +198,10 @@ export const handler = async (event) => {
     // ROUTE: PUT /expenses/{id} - Update an existing expense
     if (routeKey === "PUT /expenses/{id}" || (method === "PUT" && expenseId)) {
       const payload = JSON.parse(event.body || "{}");
+      const validationError = validateExpensePayload(payload, { partial: true });
+      if (validationError) {
+        return buildResponse(400, { message: validationError });
+      }
       const updateExp = [];
       const expValues = {};
       const expNames = {};
@@ -181,7 +217,7 @@ export const handler = async (event) => {
       }
       if (payload.category !== undefined) {
         updateExp.push("category = :cat");
-        expValues[":cat"] = payload.category;
+        expValues[":cat"] = payload.category.trim();
       }
       if (payload.date !== undefined) {
         updateExp.push("#dt = :dt");
@@ -267,7 +303,10 @@ export const handler = async (event) => {
     if (error.name === "ConditionalCheckFailedException") {
       return buildResponse(404, { message: "Expense not found" });
     }
-    return buildResponse(500, { message: "Internal server error", error: error.message });
+    if (error instanceof SyntaxError) {
+      return buildResponse(400, { message: "Request body must contain valid JSON" });
+    }
+    return buildResponse(500, { message: "Internal server error" });
   }
 };
 ```
