@@ -80,12 +80,10 @@ export const authService = {
 
       cognitoUser.authenticateUser(authenticationDetails, {
         onSuccess: (result) => {
-          const idToken = result.getIdToken().getJwtToken();
           const accessToken = result.getAccessToken().getJwtToken();
 
-          // Lưu token JWT vào localStorage để gắn vào tiêu đề Authorization của các request sau
+          // Lưu Access Token dùng cho các API yêu cầu xác thực
           localStorage.setItem('auth_token', accessToken);
-          localStorage.setItem('access_token', accessToken);
           localStorage.setItem('user_email', credentials.email);
 
           resolve({
@@ -159,7 +157,7 @@ export const authService = {
 2. Mở trình duyệt và truy cập `http://localhost:5173/login`.
 3. Nhập thông tin tài khoản thử nghiệm đã tạo ở Phần 5.3.2 (`demo-user@example.com` và mật khẩu tương ứng).
 4. Nhấn **Sign in**.
-5. Xác nhận quá trình đăng nhập thành công và Access Token dùng cho API được lưu trong `localStorage`. Với ứng dụng thực tế, nên cân nhắc thiết kế phiên an toàn hơn thay vì lưu token dài hạn trong `localStorage`; ví dụ này được đơn giản hóa cho mục đích học tập.
+5. Xác nhận quá trình đăng nhập thành công và Access Token dùng cho API được lưu trong `localStorage`. Ví dụ này chỉ kiểm tra sự tồn tại của chuỗi token và không chủ động làm mới phiên đã hết hạn. Khi Access Token hết hạn, API có thể trả `401` và ứng dụng chuyển hướng về trang đăng nhập. Với ứng dụng thực tế, hãy sử dụng thiết kế phiên an toàn hơn và tránh lưu token trong `localStorage` nếu có thể.
 
 {{% notice tip %}}
 **Xử lý Sự cố Tương thích Vite & Node Global:**  
