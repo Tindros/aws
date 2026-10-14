@@ -84,13 +84,13 @@ export const authService = {
           const accessToken = result.getAccessToken().getJwtToken();
 
           // Lưu token JWT vào localStorage để gắn vào tiêu đề Authorization của các request sau
-          localStorage.setItem('auth_token', idToken);
+          localStorage.setItem('auth_token', accessToken);
           localStorage.setItem('access_token', accessToken);
           localStorage.setItem('user_email', credentials.email);
 
           resolve({
             success: true,
-            token: idToken,
+            token: accessToken,
             message: 'Đăng nhập thành công'
           });
         },
@@ -159,7 +159,7 @@ export const authService = {
 2. Mở trình duyệt và truy cập `http://localhost:5173/login`.
 3. Nhập thông tin tài khoản thử nghiệm đã tạo ở Phần 5.3.2 (`demo-user@example.com` và mật khẩu tương ứng).
 4. Nhấn **Sign in**.
-5. Xác nhận quá trình đăng nhập thành công và mã token được lưu an toàn trong `localStorage` của trình duyệt.
+5. Xác nhận quá trình đăng nhập thành công và Access Token dùng cho API được lưu trong `localStorage`. Với ứng dụng thực tế, nên cân nhắc thiết kế phiên an toàn hơn thay vì lưu token dài hạn trong `localStorage`; ví dụ này được đơn giản hóa cho mục đích học tập.
 
 {{% notice tip %}}
 **Xử lý Sự cố Tương thích Vite & Node Global:**  
