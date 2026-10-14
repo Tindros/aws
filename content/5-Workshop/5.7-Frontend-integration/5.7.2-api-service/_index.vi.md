@@ -26,6 +26,10 @@ import type {
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || '';
 
+if (!API_BASE_URL) {
+  throw new Error('VITE_API_BASE_URL is missing. Configure it in the frontend .env file.');
+}
+
 /**
  * Hàm bổ trợ gửi các yêu cầu HTTPS có gắn kèm tiêu đề xác thực JWT
  */
@@ -49,6 +53,8 @@ async function apiRequest<T>(endpoint: string, options: RequestInit = {}): Promi
   if (response.status === 401) {
     // Token đã hết hạn hoặc không hợp lệ - xóa phiên làm việc và chuyển hướng về trang đăng nhập
     localStorage.removeItem('auth_token');
+    localStorage.removeItem('access_token');
+    localStorage.removeItem('user_email');
     window.location.href = '/login';
     throw new Error('Phiên làm việc đã hết hạn. Vui lòng đăng nhập lại.');
   }
