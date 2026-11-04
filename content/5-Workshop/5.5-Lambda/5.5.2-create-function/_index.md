@@ -354,6 +354,10 @@ export const handler = async (event) => {
 4. Review the **Execution results**:
    + Verify the response returns status code `201` with the saved item containing `userId` and generated `expenseId`.
 
+{{% notice note %}}
+**Important:** This is a Lambda unit-style console test using a manually constructed event. The `sub` claim in this test payload is synthetic; it does not prove that Cognito issued the token, that API Gateway validates it, or that the six API routes are connected correctly. Those checks belong to the API Gateway and end-to-end tests in Sections 5.6 and 5.9.
+{{% /notice %}}
+
 {{% notice info %}}
 📸 **Pending Screenshot:** `static/images/5-Workshop/5.5-Lambda/lambda-06-test-execution.png`  
 *(To be captured during deployment: Lambda test execution result returning status 201 Created)*
