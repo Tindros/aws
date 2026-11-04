@@ -36,14 +36,22 @@ if (!API_BASE_URL) {
 async function apiRequest<T>(endpoint: string, options: RequestInit = {}): Promise<T> {
   const token = localStorage.getItem('auth_token');
 
+  // Every Expense Tracker API route is protected by CognitoJWTAuthorizer.
+  // Do not send a request when the browser has no Access Token.
+  if (!token) {
+    localStorage.removeItem('auth_token');
+    localStorage.removeItem('access_token');
+    localStorage.removeItem('user_email');
+    window.location.href = '/login';
+    throw new Error('Authentication required. Please log in.');
+  }
+
   const headers: Record<string, string> = {
     'Content-Type': 'application/json',
     ...(options.headers as Record<string, string> || {}),
   };
 
-  if (token) {
-    headers['Authorization'] = `Bearer ${token}`;
-  }
+  headers['Authorization'] = `Bearer ${token}`;
 
   const response = await fetch(`${API_BASE_URL}${endpoint}`, {
     ...options,
