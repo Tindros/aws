@@ -12,7 +12,7 @@ The existing **Serverless Personal Expense Tracker** frontend is an interactive 
 
 In this section, you will wire the frontend codebase to the deployed AWS cloud infrastructure:
 1. **Environment Configuration:** Inject AWS deployment parameters into Vite environment variables (`.env`).
-2. **Real Authentication:** Replace the mock login/register logic with the official Amazon Cognito SDK (`amazon-cognito-identity-js` or AWS Amplify Auth), storing the returned JWT tokens in local browser storage.
+2. **Real Authentication:** Replace the mock sign-in logic with the Amazon Cognito SDK (`amazon-cognito-identity-js`). The example implements sign-in and sign-out; it submits sign-up requests but does not include the confirmation-code screen required to complete self-registration. It stores the Cognito Access Token in browser local storage for this learning prototype.
 3. **Real REST Endpoints:** Connect the expense service to the Amazon API Gateway HTTP API Invoke URL, automatically appending the `Authorization: Bearer <TOKEN>` header to all outgoing requests.
 
 ---

@@ -8,7 +8,7 @@ pre : " <b> 5.3. </b> "
 
 #### Vai trò của Amazon Cognito trong Kiến trúc Serverless
 
-Trong một ứng dụng đám mây an toàn, việc quản lý danh tính người dùng, mã hóa mật khẩu, duy trì phiên làm việc và phát hành token xác thực đòi hỏi phải tuân thủ nghiêm ngặt các tiêu chuẩn bảo mật khắt khe. **Amazon Cognito** cung cấp giải pháp quản lý danh tính và quyền truy cập khách hàng (CIAM) được quản lý toàn diện bởi AWS, có khả năng tự động mở rộng phục vụ hàng triệu người dùng mà không cần tự xây dựng bảng lưu trữ hay thuật toán băm mật khẩu phức tạp.
+Trong một ứng dụng đám mây an toàn, việc quản lý danh tính người dùng, mã hóa mật khẩu, duy trì phiên làm việc và phát hành token xác thực đòi hỏi phải tuân thủ nghiêm ngặt các tiêu chuẩn bảo mật khắt khe. **Amazon Cognito** cung cấp dịch vụ quản lý danh tính và quyền truy cập khách hàng (CIAM) do AWS quản lý, giúp ứng dụng không cần tự xây dựng thư mục người dùng hoặc triển khai logic băm mật khẩu và ký token.
 
 Trong dự án **Serverless Personal Expense Tracker**, Amazon Cognito đảm nhận các vai trò trọng yếu:
 + **Quản lý Thư mục Người dùng:** Cung cấp cơ sở dữ liệu định danh an toàn (User Pool) cho phép người dùng đăng ký và đăng nhập bằng địa chỉ email.

@@ -8,7 +8,7 @@ pre : " <b> 5.4. </b> "
 
 #### Why Amazon DynamoDB for Serverless Applications?
 
-**Amazon DynamoDB** is a fully managed, serverless, NoSQL database service that provides consistent, single-digit millisecond latency at any scale. Traditional relational databases (such as MySQL or PostgreSQL) require persistent connection pooling and running compute instances, which can become bottlenecks or cost drivers when coupled with ephemeral AWS Lambda invocations. DynamoDB integrates natively with AWS Lambda via HTTPS API calls and IAM authentication, making it the ideal persistent storage engine for serverless applications.
+**Amazon DynamoDB** is a fully managed, serverless, NoSQL database service that is designed for low-latency access, with actual performance depending on the access pattern and workload. Traditional relational databases (such as MySQL or PostgreSQL) require persistent connection pooling and running compute instances, which can become bottlenecks or cost drivers when coupled with ephemeral AWS Lambda invocations. DynamoDB integrates natively with AWS Lambda via HTTPS API calls and IAM authentication, making it the ideal persistent storage engine for serverless applications.
 
 ---
 
@@ -38,11 +38,11 @@ In DynamoDB, optimal performance and strict user isolation depend on key design:
 1. **List all expenses for the authenticated user:**
    + **Operation:** `Query`
    + **Condition:** `KeyConditionExpression: "userId = :uid"`
-   + **Efficiency:** Scans only the specific partition belonging to the authenticated user. Never inspects records of other users.
+   + **Efficiency:** Queries items matching the authenticated user's partition key; this is a `Query`, not a table-wide `Scan`. Isolation still depends on Lambda deriving `userId` from the verified token and using it for every operation.
 2. **Fetch a specific expense by ID:**
    + **Operation:** `GetItem`
    + **Key:** `{ userId: "<UID>", expenseId: "<EXPENSE_ID>" }`
-   + **Efficiency:** Direct O(1) point-lookup.
+   + **Efficiency:** Retrieves an item directly by its complete primary key (`userId` and `expenseId`); this avoids querying the whole table.
 3. **Add new expense record:**
    + **Operation:** `PutItem`
 4. **Update existing expense:**
@@ -75,7 +75,7 @@ In DynamoDB, optimal performance and strict user isolation depend on key design:
 1. Under **Table settings**, select **Customize settings**.
 2. Under **Capacity calculator**, select **On-demand**:
    + Automatically accommodates workloads as they ramp up or down.
-   + Charges only for read and write requests executed, ensuring zero cost when idle.
+   + On-demand mode bills read/write request usage and applicable storage or other charges. It does not guarantee zero cost when idle; check current AWS pricing and Billing.
 3. Keep default settings for **Secondary indexes**, **Encryption at rest** (Amazon DynamoDB owned key), and **Deletion protection**.
 
 {{% notice info %}}

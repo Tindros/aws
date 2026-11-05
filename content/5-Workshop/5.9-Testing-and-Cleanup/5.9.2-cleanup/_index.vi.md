@@ -8,7 +8,7 @@ pre : " <b> 5.9.2 </b> "
 
 Chúc mừng bạn đã hoàn thành bài workshop **Serverless Personal Expense Tracker**! 
 
-Qua bài thực hành này, bạn đã thiết kế và triển khai một hệ sinh thái đám mây không máy chủ hoàn chỉnh đạt chuẩn doanh nghiệp:
+Workshop này hướng dẫn bạn từng bước xây dựng và kiểm tra một kiến trúc serverless phục vụ mục đích học tập. Hãy hoàn thành việc cấu hình và xác minh từng dịch vụ trước khi kết luận hệ thống đã hoạt động đầy đủ:
 + Quản lý danh tính người dùng và cấp phát token JWT qua **Amazon Cognito**.
 + Cơ sở dữ liệu tài liệu NoSQL phân vùng hiệu năng cao với **Amazon DynamoDB**.
 + Xử lý logic nghiệp vụ hướng sự kiện bằng **AWS Lambda** dưới sự kiểm soát của chính sách **IAM phân quyền tối thiểu**.
@@ -16,7 +16,7 @@ Qua bài thực hành này, bạn đã thiết kế và triển khai một hệ 
 + Giám sát vận hành và theo dõi nhật ký thực thi thông qua **Amazon CloudWatch**.
 + Phát hành ứng dụng ra Internet toàn cầu với quy trình tự động hóa của **AWS Amplify Hosting**.
 
-Để tránh phát sinh chi phí duy trì tài nguyên lưu trữ và các điểm cuối dịch vụ trên tài khoản AWS của bạn, hãy thực hiện quy trình dọn dẹp theo đúng thứ tự phụ thuộc dưới đây.
+**Lưu ý quan trọng:** Xóa tài nguyên là thao tác có tính phá hủy và có thể khiến dữ liệu chi tiêu, tài khoản người dùng bị mất vĩnh viễn. Hãy xác nhận đây là các tài nguyên của workshop trong Region `us-east-1` và sao lưu dữ liệu cần giữ trước khi tiếp tục. Tên tài nguyên có thể khác nếu bạn đã tùy chỉnh workshop. Thực hiện quy trình dưới đây để xóa các tài nguyên được liệt kê; việc xóa chúng không bảo đảm mọi khoản phí AWS đều đã dừng, vì vậy hãy kiểm tra Billing và tìm các tài nguyên còn sót lại trong tài khoản.
 
 ---
 
@@ -130,5 +130,5 @@ Qua bài thực hành này, bạn đã thiết kế và triển khai một hệ 
 <!-- ![Xóa CloudWatch Log Group](/images/5-Workshop/5.9-Testing-and-Cleanup/cleanup-07-delete-cloudwatch.png) -->
 
 {{% notice tip %}}
-**Hoàn tất Dọn dẹp:** Toàn bộ các tài nguyên đám mây đã được xóa sạch hoàn toàn, đảm bảo không phát sinh bất kỳ khoản phí ngoài ý muốn nào trên tài khoản AWS của bạn.
+**Xác minh dọn dẹp:** Kiểm tra từng tài nguyên đã liệt kê trong Region `us-east-1` và xem lại AWS Billing, đồng thời tìm các tài nguyên workshop còn sót lại. Danh sách này chỉ bao gồm những tài nguyên nêu ở trên, không bảo đảm tài khoản không còn tài nguyên nào khác có thể phát sinh phí.
 {{% /notice %}}

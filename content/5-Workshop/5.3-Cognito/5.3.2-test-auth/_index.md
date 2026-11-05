@@ -20,7 +20,7 @@ You can provision a test account directly from the AWS Console without requiring
    + Check **Send an email invite** or select **Don't send an email invite** (for immediate local testing).
    + **Email address:** Enter `demo-user@example.com`.
    + Check **Mark email address as verified**.
-   + Under **Temporary password**, select **Set a permanent password** and enter a secure password satisfying the policy (e.g., `ExpenseTracker2026!`).
+   + Under **Temporary password**, select **Set a permanent password** and enter a unique password of your own that satisfies the policy. Do not reuse example passwords from documentation or commit credentials to the repository.
 
 {{% notice info %}}
 📸 **Pending Screenshot:** `static/images/5-Workshop/5.3-Cognito/cognito-06-create-test-user.png`  
@@ -39,19 +39,15 @@ You can provision a test account directly from the AWS Console without requiring
 
 ---
 
-#### Step 2: Test Authentication via CLI
+#### Step 2: Test Authentication via the React SPA
 
-You can simulate the client authentication call using the AWS CLI `initiate-auth` command with your Client ID:
+The App Client in this workshop is configured for **choice-based sign-in** and **Secure Remote Password (SRP)**. It does not enable the legacy `USER_PASSWORD_AUTH` flow, so do not use a `USER_PASSWORD_AUTH` CLI example here. That command will fail unless you change the App Client configuration, which is not part of this workshop.
 
-```bash
-aws cognito-idp initiate-auth \
-  --region us-east-1 \
-  --client-id <YOUR_APP_CLIENT_ID> \
-  --auth-flow USER_PASSWORD_AUTH \
-  --auth-parameters USERNAME=demo-user@example.com,PASSWORD=ExpenseTracker2026!
+```text
+Authentication is tested through the React SPA in Section 5.7.1, which uses Cognito's SRP-compatible client flow. This sample stores the Access Token in the browser's `localStorage` under `auth_token`; to confirm that a token exists, open Developer Tools → Application (or Storage) → Local Storage for `http://localhost:5173`. Do not copy, share, or screenshot the real token. The sample does not print tokens to the console or provide a token-debugging screen.
 ```
 
-Upon successful authentication, Cognito responds with an `AuthenticationResult` block:
+After successful sign-in through the SPA, Cognito returns an authentication result containing tokens. The exact response depends on the selected sign-in flow. Treat the following as a redacted illustration, not output to copy:
 
 ```json
 {
@@ -73,11 +69,12 @@ Amazon Cognito issues two distinct tokens upon successful sign-in:
 
 1. **Authentication vs. Authorization:**
    + **Authentication (AuthN - "Who you are"):** The **ID Token (`IdToken`)** proves the user's verified identity. It is an OpenID Connect (OIDC) token containing identity assertions such as `sub` (unique subject ID), `email`, and `email_verified`.
-   + **Authorization (AuthZ - "What you are allowed to do"):** The **Access Token (`AccessToken`)** proves granted permissions and OAuth 2.0 scopes (`token_use: "access"`).
+   + **Authorization (AuthZ - "What you are allowed to do"):** The **Access Token (`AccessToken`)** is intended for authorized API access and contains the `token_use: "access"` claim and any applicable scopes.
 
-2. **Why Our Architecture Passes the ID Token to API Gateway:**
-   + **Audience (`aud`) Verification:** In Amazon Cognito, the **ID Token** includes the Cognito App Client ID in the standard `aud` (Audience) claim (`"aud": "<YOUR_APP_CLIENT_ID>"`). In contrast, standard Cognito Access Tokens represent the caller via `client_id` and do not include an `aud` claim matching the App Client ID (unless custom resource servers and OAuth scopes are configured).
-   + Because our API Gateway HTTP API JWT Authorizer is configured with `Audience = <APP_CLIENT_ID>` to prevent tokens from other apps being accepted, API Gateway strictly validates tokens bearing the matching `aud` claim. Passing the ID Token ensures that API Gateway successfully authenticates the caller and forwards verified user identity claims (`sub`) directly to AWS Lambda.
+2. **Why Our Architecture Sends the Access Token to API Gateway:**
+   + The Cognito ID Token describes the authenticated user to the client application. The Access Token is the appropriate token to present to an API.
+   + For an HTTP API JWT authorizer, API Gateway checks the `aud` claim when present; if `aud` is absent, it can check `client_id`. Cognito access tokens commonly use `client_id`, so configure the authorizer audience with the App Client ID and send the Access Token in `Authorization: Bearer <TOKEN>`.
+   + API Gateway validates the token signature, issuer, expiration, and audience/client identifier before passing verified claims such as `sub` to Lambda.
 
 3. **Decoded ID Token Payload Example:**
    ```json
@@ -96,7 +93,7 @@ Amazon Cognito issues two distinct tokens upon successful sign-in:
    ```
 
 {{% notice tip %}}
-**Security Foundation:** Notice the `sub` claim (`"a1b2c3d4-e5f6-7a8b-9c0d-1e2f3a4b5c6d"`). This immutable UUID represents the user across the entire AWS backend. In subsequent modules, our Lambda function will extract this value directly from the verified token to enforce user data boundaries in DynamoDB.
+**Security Foundation:** The `sub` claim is the stable user identifier within the User Pool. Lambda must use the `sub` claim supplied by API Gateway after token validation—not a `userId` sent in the request body—to scope DynamoDB operations to the authenticated user.
 {{% /notice %}}
 
 ---

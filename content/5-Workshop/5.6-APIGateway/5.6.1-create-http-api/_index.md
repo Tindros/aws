@@ -35,12 +35,12 @@ In this module, you will initialize the **Amazon API Gateway HTTP API** and conf
 
 #### Step 2: Configure CORS (Cross-Origin Resource Sharing)
 
-Modern web browsers enforce the Same-Origin Policy. When your frontend application running on `http://localhost:5173` or a production AWS Amplify domain (`https://*.amplifyapp.com`) attempts to fetch data from the API Gateway domain, the browser dispatches an HTTP `OPTIONS` preflight check. Without explicit CORS headers, the browser drops the response.
+Modern web browsers enforce the Same-Origin Policy. When your frontend running on `http://localhost:5173` or an AWS Amplify domain calls API Gateway, the browser may send an HTTP `OPTIONS` preflight request. Configure CORS in API Gateway; when deploying, allow only the exact frontend origins you use rather than a broad wildcard.
 
 1. In the API Gateway navigation pane, select **CORS** under **Develop**.
 2. Click **Configure**.
 3. Configure the following parameters:
-   + **Access-Control-Allow-Origin:** Enter `*` (or enter specific origins like `http://localhost:5173` and your Amplify domain).
+   + **Access-Control-Allow-Origin:** For a local learning test, you may temporarily enter `*`; preferably enter exact origins such as `http://localhost:5173` and your deployed Amplify origin. Do not use a wildcard in production when you know the frontend origin(s).
    + **Access-Control-Allow-Headers:** Enter `Content-Type`, then press Enter. Enter `Authorization`, then press Enter.
    + **Access-Control-Allow-Methods:** Select `GET`, `POST`, `PUT`, `DELETE`, and `OPTIONS`.
    + **Access-Control-Max-Age:** Enter `300` (caches preflight responses for 5 minutes to reduce unnecessary OPTIONS calls).

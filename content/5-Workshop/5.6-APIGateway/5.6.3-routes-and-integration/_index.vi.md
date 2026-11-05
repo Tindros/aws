@@ -1,121 +1,219 @@
 ---
 title : "Tạo Tuyến đường (Routes) & Tích hợp Lambda Proxy"
-date : 2026-10-14 
-weight : 3 
+date : 2026-10-14
+weight : 3
 chapter : false
 pre : " <b> 5.6.3 </b> "
 ---
 
-Trong phần này, bạn sẽ định nghĩa các tuyến đường (routes) RESTful cho ứng dụng theo dõi chi tiêu, kết nối các tuyến đường này với hàm `expenseTrackerFunction` thông qua cơ chế tích hợp Lambda proxy và bảo vệ toàn bộ API bằng `CognitoJWTAuthorizer`.
+Trong bài này, bạn sẽ tạo sáu tuyến đường HTTP API cho ứng dụng Expense Tracker, kết nối từng tuyến đường với hàm Lambda `expenseTrackerFunction` đã tạo và yêu cầu tất cả các tuyến đường ứng dụng sử dụng `CognitoJWTAuthorizer`.
+
+Trước khi bắt đầu, hãy đảm bảo bạn đã hoàn thành:
+
+- [Tạo HTTP API & Cấu hình CORS](../5.6.1-create-http-api/).
+- [Cấu hình Cognito JWT Authorizer](../5.6.2-jwt-authorizer/).
+- [Tạo hàm Lambda](../../5.5-Lambda/).
 
 ---
 
-#### Sơ đồ Ánh xạ Tuyến đường API
+#### Bảng Ánh xạ Tuyến đường API
 
-| Phương thức HTTP | Đường dẫn Tuyến đường | Mục đích Xử lý | Cơ chế Ủy quyền |
-| :--- | :--- | :--- | :--- |
-| `GET` | `/expenses` | Lấy danh sách toàn bộ chi tiêu của người dùng | `CognitoJWTAuthorizer` |
-| `POST` | `/expenses` | Tạo mới một bản ghi chi tiêu vào DynamoDB | `CognitoJWTAuthorizer` |
-| `GET` | `/expenses/{id}` | Lấy thông tin chi tiết một khoản chi theo ID | `CognitoJWTAuthorizer` |
-| `PUT` | `/expenses/{id}` | Cập nhật thông tin khoản chi | `CognitoJWTAuthorizer` |
-| `DELETE` | `/expenses/{id}` | Xóa một khoản chi | `CognitoJWTAuthorizer` |
-| `GET` | `/summary` | Tính toán số liệu tổng hợp chi tiêu & phân loại | `CognitoJWTAuthorizer` |
+Tạo chính xác các route key như bảng dưới đây. Phương thức HTTP và đường dẫn phải khớp với những route mà hàm Lambda xử lý.
+
+| Phương thức HTTP | Đường dẫn | Mục đích |
+| :--- | :--- | :--- |
+| `GET` | `/expenses` | Lấy danh sách chi tiêu của người dùng đã xác thực |
+| `POST` | `/expenses` | Tạo một khoản chi tiêu mới |
+| `GET` | `/expenses/{id}` | Lấy một khoản chi tiêu theo ID |
+| `PUT` | `/expenses/{id}` | Cập nhật một khoản chi tiêu |
+| `DELETE` | `/expenses/{id}` | Xóa một khoản chi tiêu |
+| `GET` | `/summary` | Lấy báo cáo tổng hợp chi tiêu của người dùng đã xác thực |
+
+Cả sáu tuyến đường đều phải sử dụng `CognitoJWTAuthorizer`. Không tạo route công khai cho các thao tác này.
 
 ---
 
-#### Bước 1: Khởi tạo các Tuyến đường (Routes)
+#### Bước 1: Tạo các API Routes
 
-1. Tại [Amazon API Gateway Console](https://us-east-1.console.aws.amazon.com/apigateway/main/apis?region=us-east-1), mở `ExpenseTrackerApi`.
-2. Tại menu bên trái dưới mục **Develop**, chọn **Routes**.
-3. Nhấn **Create**:
-   + Phương thức (Method): Chọn `GET`
-   + Đường dẫn (Path): Nhập `/expenses`
-   + Nhấn **Create**.
-4. Lặp lại thao tác trên để tạo lần lượt 5 tuyến đường còn lại:
-   + `POST /expenses`
-   + `GET /expenses/{id}`
-   + `PUT /expenses/{id}`
-   + `DELETE /expenses/{id}`
-   + `GET /summary`
+1. Mở [Amazon API Gateway Console](https://us-east-1.console.aws.amazon.com/apigateway/main/apis?region=us-east-1).
+2. Chọn API `ExpenseTrackerApi`.
+3. Trong menu điều hướng, tại mục **Develop**, chọn **Routes**.
+4. Nhấn **Create**.
+5. Cấu hình tuyến đường đầu tiên:
+   - **Method:** `GET`
+   - **Path:** `/expenses`
+6. Nhấn **Create**.
+7. Lặp lại thao tác để tạo năm route key còn lại:
+   - `POST /expenses`
+   - `GET /expenses/{id}`
+   - `PUT /expenses/{id}`
+   - `DELETE /expenses/{id}`
+   - `GET /summary`
+
+Kiểm tra danh sách Routes và đảm bảo cả sáu route key xuất hiện chính xác như bảng phía trên.
 
 {{% notice info %}}
 📸 **Pending Screenshot:** `static/images/5-Workshop/5.6-APIGateway/apigw-04-routes-list.png`  
-*(Cần chụp khi triển khai: Bảng Routes hiển thị đầy đủ 6 tuyến đường API đã khởi tạo)*
+*(Chụp trang Routes hiển thị đầy đủ sáu route key sau khi tạo.)*
 {{% /notice %}}
 <!-- ![Danh sách Routes](/images/5-Workshop/5.6-APIGateway/apigw-04-routes-list.png) -->
 
 ---
 
-#### Bước 2: Gán Tích hợp Lambda Proxy (Lambda Integration)
+#### Bước 2: Tạo Lambda Proxy Integration
 
-1. Tại menu bên trái, chọn **Integrations**.
-2. Chọn thẻ **Manage integrations**, sau đó bấm **Create**:
-   + **Integration target:** Chọn **Lambda function**.
-   + **Integration method:** Chọn **POST** (phương thức gọi nội bộ tiêu chuẩn của Lambda proxy).
-   + **Lambda function:** Chọn `expenseTrackerFunction`.
-   + Đảm bảo **Payload format version** là `2.0`.
-3. Nhấn **Create**.
-4. Quay lại danh sách **Routes**. Chọn từng route (`GET /expenses`, `POST /expenses`, v.v.), nhấn **Attach integration** và chọn `expenseTrackerFunction`.
+1. Trong menu điều hướng của API, chọn **Integrations**.
+2. Mở **Manage integrations**, sau đó nhấn **Create**.
+3. Cấu hình integration:
+   - **Integration type / target:** Chọn **Lambda function**.
+   - **Lambda function:** Chọn `expenseTrackerFunction` trong cùng AWS Region.
+   - **Payload format version:** Chọn `2.0`.
+4. Nếu giao diện yêu cầu chọn integration method, giữ phương thức gọi Lambda là `POST`. Đây là phương thức API Gateway sử dụng nội bộ để gọi Lambda; nó không làm thay đổi các HTTP method mà API route cung cấp cho client.
+5. Nhấn **Create**.
+
+{{% notice note %}}
+**Tại sao sử dụng payload format version 2.0?** Lambda handler trong workshop này đọc các trường của HTTP API v2 event, bao gồm `event.requestContext.http.method`, `event.rawPath`, `event.pathParameters` và `event.requestContext.authorizer.jwt.claims.sub`. Vì vậy integration cần sử dụng payload format version `2.0`.
+{{% /notice %}}
 
 {{% notice info %}}
 📸 **Pending Screenshot:** `static/images/5-Workshop/5.6-APIGateway/apigw-05-lambda-integration.png`  
-*(Cần chụp khi triển khai: Gán tích hợp Lambda proxy vào các tuyến đường)*
+*(Chụp thông tin Lambda integration, thể hiện expenseTrackerFunction và payload format version 2.0.)*
 {{% /notice %}}
-<!-- ![Tích hợp Lambda](/images/5-Workshop/5.6-APIGateway/apigw-05-lambda-integration.png) -->
+<!-- ![Lambda Integration](/images/5-Workshop/5.6-APIGateway/apigw-05-lambda-integration.png) -->
 
-{{% notice note %}}
-**Xác minh Quyền Gọi Hàm của API Gateway:**
-Khi bạn tạo tích hợp Lambda thông qua AWS Management Console, API Gateway sẽ tự động tạo một **Lambda Resource-Based Policy** (Chính sách dựa trên tài nguyên) cấp quyền cho dịch vụ API Gateway (`apigateway.amazonaws.com`) thực thi hành động `lambda:InvokeFunction`.
+---
 
-Bạn có thể kiểm tra quyền này trong [AWS Lambda Console](https://us-east-1.console.aws.amazon.com/lambda/home?region=us-east-1#/functions) tại mục **Configuration** -> **Permissions** -> **Resource-based policy statements**.
+#### Bước 3: Gán Integration cho Tất cả Routes
 
-Nếu cấu hình qua AWS CLI hoặc nếu bị thiếu quyền, bạn có thể cấp quyền gọi hàm có phạm vi giới hạn chính xác cho HTTP API của mình bằng lệnh:
-```bash
-aws lambda add-permission \
-  --function-name expenseTrackerFunction \
-  --statement-id apigateway-invoke-permission \
-  --action lambda:InvokeFunction \
-  --principal apigateway.amazonaws.com \
-  --source-arn "arn:aws:execute-api:us-east-1:<YOUR_ACCOUNT_ID>:<API_ID>/*/*"
-```
+Việc tạo integration không tự động kết nối integration đó với mọi route. Bạn cần gán integration cho từng route:
+
+1. Quay lại **Develop → Routes**.
+2. Chọn route `GET /expenses`.
+3. Trong phần chi tiết route, chọn **Attach integration**.
+4. Chọn integration của `expenseTrackerFunction`, sau đó xác nhận.
+5. Lặp lại thao tác cho năm route còn lại:
+   - `POST /expenses`
+   - `GET /expenses/{id}`
+   - `PUT /expenses/{id}`
+   - `DELETE /expenses/{id}`
+   - `GET /summary`
+
+Sau khi gán xong, mở từng route để xác minh integration đều trỏ đến `expenseTrackerFunction`. Mỗi route phải có integration thì mới có thể gọi hàm Lambda.
+
+{{% notice info %}}
+📸 **Pending Screenshot:** `static/images/5-Workshop/5.6-APIGateway/apigw-05b-route-integrations.png`  
+*(Chụp trang Routes hoặc chi tiết route thể hiện Lambda integration đã được gán.)*
 {{% /notice %}}
 
 ---
 
-#### Bước 3: Gán JWT Authorizer Bảo vệ các Tuyến đường
+#### Bước 4: Xác minh API Gateway Có Quyền Gọi Lambda
 
-1. Tại menu bên trái dưới mục **Develop**, chọn **Authorization**.
-2. Trong thẻ **Routes**, bấm chọn tuyến đường đầu tiên: `GET /expenses`.
-3. Tại ô **Attach an authorizer to this route**, chọn `CognitoJWTAuthorizer`, sau đó nhấn **Attach authorizer**.
-4. Lặp lại thao tác gán authorizer này cho toàn bộ các tuyến đường còn lại (`POST /expenses`, `GET /expenses/{id}`, `PUT /expenses/{id}`, `DELETE /expenses/{id}` và `GET /summary`).
+Khi tạo Lambda integration bằng API Gateway Console, thông thường console sẽ tự động thêm resource-based permission vào hàm Lambda để API Gateway có thể gọi hàm đó.
+
+Để kiểm tra quyền:
+
+1. Mở [AWS Lambda Console](https://us-east-1.console.aws.amazon.com/lambda/home?region=us-east-1#/functions).
+2. Chọn `expenseTrackerFunction`.
+3. Mở **Configuration → Permissions**.
+4. Trong mục **Resource-based policy statements**, tìm policy cho phép service principal `apigateway.amazonaws.com` thực hiện hành động `lambda:InvokeFunction`.
+
+Nếu bạn tạo integration bằng AWS Console và quyền này đã tồn tại, **không cần thêm permission khác**. Nếu bạn tạo integration bằng phương thức khác hoặc permission còn thiếu, hãy thêm quyền với phạm vi giới hạn cho API và stage mặc định. Thay các placeholder bằng thông tin của bạn:
+
+```bash
+aws lambda add-permission \
+  --function-name expenseTrackerFunction \
+  --statement-id apigateway-invoke-expensetracker-api \
+  --action lambda:InvokeFunction \
+  --principal apigateway.amazonaws.com \
+  --source-arn "arn:aws:execute-api:us-east-1:<YOUR_ACCOUNT_ID>:<API_ID>/$default/*/*"
+```
+
+{{% notice warning %}}
+Chỉ chạy lệnh khi permission cần thiết đang bị thiếu. Giá trị `statement-id` phải là duy nhất trong resource policy của hàm Lambda. Không thay thế permission đang có hoặc mở rộng source ARN quá mức cần thiết.
+{{% /notice %}}
+
+---
+
+#### Bước 5: Gán Cognito JWT Authorizer cho Từng Route
+
+Authorizer cần được gán riêng cho từng route. Việc tạo authorizer trong Phần 5.6.2 không tự động bảo vệ các route.
+
+1. Trong menu điều hướng của API, tại mục **Develop**, chọn **Authorization**.
+2. Mở thẻ **Routes**.
+3. Chọn route `GET /expenses`.
+4. Trong phần cài đặt authorizer của route đã chọn, chọn `CognitoJWTAuthorizer`.
+5. Nhấn **Attach authorizer**.
+6. Lặp lại cho năm route còn lại:
+   - `POST /expenses`
+   - `GET /expenses/{id}`
+   - `PUT /expenses/{id}`
+   - `DELETE /expenses/{id}`
+   - `GET /summary`
+
+Quay lại trang Routes trong phần Authorization và xác nhận cả sáu route đều hiển thị `CognitoJWTAuthorizer`, không phải `NONE`.
 
 {{% notice info %}}
 📸 **Pending Screenshot:** `static/images/5-Workshop/5.6-APIGateway/apigw-06-authorizer-attached.png`  
-*(Cần chụp khi triển khai: Bảng Authorization hiển thị CognitoJWTAuthorizer được gán cho toàn bộ routes)*
+*(Chụp phần cấu hình Authorization thể hiện CognitoJWTAuthorizer đã được gán cho cả sáu route.)*
 {{% /notice %}}
 <!-- ![Gán Authorizer](/images/5-Workshop/5.6-APIGateway/apigw-06-authorizer-attached.png) -->
 
 ---
 
-#### Bước 4: Lấy Địa chỉ Invoke URL của Stage
+#### Bước 6: Kiểm tra lại CORS và Default Stage
 
-1. Tại menu bên trái dưới mục **Deploy**, chọn **Stages**.
+1. Mở **Develop → CORS** và kiểm tra lại cấu hình đã thực hiện ở Phần 5.6.1.
+2. Đảm bảo danh sách allowed origins có origin frontend chính xác mà bạn sẽ sử dụng, ví dụ `http://localhost:5173` và domain Amplify sau khi triển khai.
+3. Đảm bảo allowed headers có `Authorization` và `Content-Type`; allowed methods có `GET`, `POST`, `PUT` và `DELETE`.
+4. Khi CORS đã được cấu hình cho HTTP API, API Gateway sẽ xử lý các yêu cầu preflight. Workshop này không cần tạo riêng một route ứng dụng `OPTIONS`.
+5. Trong **Deploy → Stages**, chọn `$default` và xác nhận **Auto-deploy** đang được bật.
+
+{{% notice note %}}
+Khi CORS được cấu hình ở cấp API, API Gateway sẽ quản lý phản hồi preflight. Hãy giới hạn allowed origins ở các domain frontend mà bạn tin cậy. Hàm Lambda trong workshop này không cần tự thêm CORS response headers.
+{{% /notice %}}
+
+---
+
+#### Bước 7: Sao chép API Invoke URL
+
+1. Trong menu điều hướng, tại mục **Deploy**, chọn **Stages**.
 2. Chọn stage `$default`.
-3. Tìm và sao chép đường dẫn **Invoke URL**:
-   + Định dạng: `https://<API_ID>.execute-api.us-east-1.amazonaws.com`
+3. Sao chép **Invoke URL**. URL có định dạng:
+
+```text
+https://<API_ID>.execute-api.us-east-1.amazonaws.com
+```
+
+4. Lưu lại giá trị này. Frontend React sẽ sử dụng nó làm API base URL trong Phần 5.7.
 
 {{% notice info %}}
 📸 **Pending Screenshot:** `static/images/5-Workshop/5.6-APIGateway/apigw-07-stage-invoke-url.png`  
-*(Cần chụp khi triển khai: Trang tổng quan Stage hiển thị địa chỉ công khai Invoke URL)*
+*(Chụp trang tổng quan stage $default hiển thị Invoke URL.)*
 {{% /notice %}}
 <!-- ![Invoke URL của Stage](/images/5-Workshop/5.6-APIGateway/apigw-07-stage-invoke-url.png) -->
 
-{{% notice tip %}}
-**Lưu ý quan trọng:** Hãy ghi lại địa chỉ Invoke URL này, đây là endpoint gốc mà ứng dụng frontend React sẽ gọi đến trong phần tiếp theo.
+---
+
+#### Danh sách Kiểm tra Cấu hình
+
+Trước khi chuyển sang phần tiếp theo, hãy xác minh:
+
+- [ ] API có tên `ExpenseTrackerApi` và sử dụng stage `$default`.
+- [ ] Cả sáu route key khớp với bảng ánh xạ API.
+- [ ] Tất cả route đều được gán Lambda integration `expenseTrackerFunction`.
+- [ ] Lambda integration sử dụng payload format version `2.0`.
+- [ ] Tất cả route đều sử dụng `CognitoJWTAuthorizer`; không có route chi tiêu nào để authorization type là `NONE`.
+- [ ] API Gateway có quyền gọi `expenseTrackerFunction`.
+- [ ] CORS cho phép frontend origin, hai header `Authorization` và `Content-Type`, cùng các HTTP method cần thiết.
+- [ ] Đã lưu API Invoke URL để cấu hình frontend.
+
+{{% notice warning %}}
+**Lưu ý về kiểm thử:** Danh sách này chỉ xác nhận các bước cấu hình, không có nghĩa API đã được triển khai hoặc kiểm thử trên tài khoản AWS thực tế. Sau khi hoàn thành tích hợp frontend, hãy thực hiện các bài kiểm thử request có token hợp lệ, thiếu token, token không hợp lệ và cô lập dữ liệu giữa người dùng tại Phần 5.9. Không đánh dấu screenshot hoặc kiểm thử thực tế là hoàn thành nếu bạn chưa thực sự thực hiện.
 {{% /notice %}}
 
 ---
 
 #### Bước Tiếp theo
 
-Chuyển sang phần [Tích hợp Frontend React với Backend AWS](../../5.7-Frontend-integration/) để kết nối giao diện người dùng với hạ tầng backend đám mây.
+Chuyển sang phần [Tích hợp Frontend React](../../5.7-Frontend-integration/) để cấu hình frontend gọi API bằng Cognito Access Token.

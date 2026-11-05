@@ -12,7 +12,7 @@ Giao diện người dùng của **Serverless Personal Expense Tracker** là m�
 
 Trong phần này, bạn sẽ kết nối toàn diện mã nguồn frontend với hạ tầng đám mây AWS đã triển khai:
 1. **Cấu hình Biến Môi trường:** Khai báo các tham số triển khai AWS vào tệp biến môi trường Vite (`.env`).
-2. **Xác thực Thực tế:** Thay thế logic đăng nhập/đăng ký giả lập bằng thư viện chuẩn của Amazon Cognito (`amazon-cognito-identity-js` hoặc AWS Amplify Auth), lưu trữ các token JWT trả về vào bộ nhớ trình duyệt.
+2. **Xác thực Thực tế:** Thay thế logic đăng nhập giả lập bằng thư viện Amazon Cognito (`amazon-cognito-identity-js`). Ví dụ triển khai đăng nhập và đăng xuất; chức năng gửi yêu cầu đăng ký có hoạt động nhưng chưa có màn hình nhập mã xác nhận cần thiết để hoàn tất tự đăng ký. Cognito Access Token được lưu trong local storage của trình duyệt trong prototype học tập này.
 3. **Kết nối REST API Thực tế:** Liên kết dịch vụ quản lý chi tiêu với địa chỉ Invoke URL của API Gateway, tự động đính kèm tiêu đề `Authorization: Bearer <TOKEN>` vào mọi yêu cầu gửi đi.
 
 ---

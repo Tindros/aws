@@ -14,17 +14,18 @@ In this module, you will execute a series of functional and security verificatio
 
 Verify that an API request with a valid Cognito JWT token successfully reaches the Lambda function and queries DynamoDB:
 
-1. Obtain a fresh `idToken` from your active Cognito session.
+1. Obtain a fresh Cognito **Access Token** from your active session. Send it as `Authorization: Bearer <ACCESS_TOKEN>` when calling the protected API.
 2. In your terminal, issue an HTTP `GET` request to your API Gateway Invoke URL:
 
 ```bash
 curl -i -X GET "https://<API_ID>.execute-api.us-east-1.amazonaws.com/expenses" \
-  -H "Authorization: Bearer <VALID_ID_TOKEN>"
+  -H "Authorization: Bearer <ACCESS_TOKEN>" \
+  -H "Origin: http://localhost:5173"
 ```
 
 3. **Expected Result:**
    + HTTP status code: `200 OK`.
-   + Response headers include CORS headers (`Access-Control-Allow-Origin: *`).
+   + Response headers include the `Access-Control-Allow-Origin` value configured in API Gateway (for a restricted setup, it should match the frontend origin).
    + Body contains an array of the user's expense objects retrieved from DynamoDB.
 
 {{% notice info %}}
@@ -66,7 +67,7 @@ curl -i -X GET "https://<API_ID>.execute-api.us-east-1.amazonaws.com/expenses" \
 <!-- ![Unauthorized Request Rejection](/images/5-Workshop/5.9-Testing-and-Cleanup/test-02-curl-unauthorized.png) -->
 
 {{% notice tip %}}
-**Zero Compute Billing:** Open CloudWatch Logs for `expenseTrackerFunction`. Notice that no log stream event was generated for the 401 requests. API Gateway rejected the unauthorized requests at the perimeter, incurring zero Lambda invocation charges.
+**Verify that Lambda was not invoked:** Open CloudWatch Logs for `expenseTrackerFunction` and check the timestamps around your test. Requests rejected by the API Gateway JWT authorizer should not invoke Lambda or create Lambda log entries. API Gateway requests may still incur charges; this is not a claim of zero total cost.
 {{% /notice %}}
 
 ---
@@ -80,5 +81,7 @@ Verify that users cannot inspect, modify, or delete another user's expenses:
 3. Add a new expense (e.g., Description: `User B Lunch`, Amount: `20.00`).
 4. Sign out and sign back in as `demo-user@example.com`.
 5. Observe the **Expenses** table and **Dashboard**:
-   + `demo-user@example.com` sees only their own expense records. The record created by User B is completely invisible.
-   + **Security Architecture Explanation:** The Lambda function queries DynamoDB strictly using `KeyConditionExpression: "userId = :uid"`, where `:uid` is injected by the trusted JWT authorizer from `event.requestContext.authorizer.jwt.claims.sub`. Because clients cannot modify the cryptographic JWT signature, tenant isolation is mathematically guaranteed.
+   + `demo-user@example.com` sees only their own expense records. The record created by User B is not listed.
+6. Copy the `expenseId` of User B’s test expense from a trusted test response or the DynamoDB console. While signed in as User A, try `GET /expenses/<USER_B_EXPENSE_ID>`, then try `PUT` and `DELETE` for that same ID. Each request must use User A’s Access Token. Expect no access to User B’s item (GET should return `404`; update should return `404`; delete may return success with this tutorial handler, but must not delete User B’s item).
+7. Sign back in as User B and verify that the item still exists. This confirms the negative update/delete checks did not affect User B’s data.
+   + **Security Architecture Explanation:** The Lambda function uses `event.requestContext.authorizer.jwt.claims.sub`, supplied by the configured JWT authorizer, as the partition key for reads, updates, and deletes. Isolation depends on every operation consistently using this verified identity and never accepting `userId` from the request body.

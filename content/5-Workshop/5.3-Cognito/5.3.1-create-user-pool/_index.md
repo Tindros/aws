@@ -77,7 +77,7 @@ To ensure consistency with project naming standards and infrastructure documenta
    + Under **User pool name**, enter `expense-tracker-user-pool`.
    + Click **Save changes**.
 
-![Rename User Pool to expense-tracker-user-pool](/images/5-Workshop/5.3-Cognito/cognito-03-user-pool-name.png)
+![User Pool Rename Dialog](/images/5-Workshop/5.3-Cognito/cognito-03-user-pool-name.png)
 
 ---
 
@@ -142,7 +142,7 @@ Return to the **Overview** page of `expense-tracker-user-pool` to verify the pro
 {{% notice info %}}
 **Distinguishing User Pool ID vs. App Client ID:**  
 - **User Pool ID** (`us-east-1_...`): Identifies your entire Cognito user directory and serves as the OIDC token issuer (`iss`).
-- **App Client ID** (26 characters alphanumeric): Identifies the specific client application (React SPA) requesting tokens and appears in the token audience claim (`aud`).
+- **App Client ID** (typically a 26-character alphanumeric identifier): Identifies the client application requesting tokens. Cognito ID tokens normally contain this value in `aud`; Cognito access tokens commonly contain it in `client_id`. API Gateway HTTP API JWT authorizers check `aud` when present and can check `client_id` when `aud` is absent.
 - Do not confuse these two parameters or use them interchangeably.
 {{% /notice %}}
 
@@ -152,7 +152,7 @@ Return to the **Overview** page of `expense-tracker-user-pool` to verify the pro
 
 {{% notice info %}}
 **Resource Provisioning Checkpoint:**  
-At this stage, the Amazon Cognito User Pool and public App Client are successfully created and configured in `us-east-1`. Creating these resources sets up the authentication infrastructure but does not mean the web frontend is integrated or that users have authenticated yet. User provisioning and JWT token verification will be verified in the next section, followed by database and API setup.
+At this stage, the Amazon Cognito User Pool and public App Client should be created and configured in `us-east-1`. Confirm the saved pool name on the Overview page before continuing. Creating these resources sets up the authentication infrastructure but does not mean the web frontend is integrated or that users have authenticated yet. User provisioning and JWT token verification will be verified in the next section, followed by database and API setup.
 {{% /notice %}}
 
 Proceed to the next module: [5.3.2 User Registration, Authentication & JWT Verification](../5.3.2-test-auth/) to test user creation and inspect issued JWT claims.

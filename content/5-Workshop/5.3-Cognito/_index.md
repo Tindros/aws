@@ -8,7 +8,7 @@ pre : " <b> 5.3. </b> "
 
 #### Role of Amazon Cognito in Serverless Architecture
 
-In a secure cloud application, user identity management, credential hashing, session persistence, and token issuance should adhere to rigorous industry security standards. **Amazon Cognito** delivers a fully managed customer identity and access management (CIAM) service that scales automatically to millions of users without requiring custom database tables or cryptographic implementations.
+In a secure cloud application, user identity management, credential hashing, session persistence, and token issuance should adhere to rigorous industry security standards. **Amazon Cognito** provides a managed customer identity and access management (CIAM) service, so the application does not need to build its own user directory or implement password hashing and token-signing logic.
 
 In the **Serverless Personal Expense Tracker**, Amazon Cognito fulfills several critical functions:
 + **User Directory & Registration:** Provides a secure directory (User Pool) where users register and authenticate using their email address.

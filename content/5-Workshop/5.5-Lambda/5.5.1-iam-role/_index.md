@@ -63,7 +63,7 @@ AWS Lambda functions assume an **IAM Execution Role** at runtime to determine wh
 
 1. From the Roles list, click on the newly created role: `ExpenseTrackerLambdaRole`.
 2. Under the **Permissions** tab, click **Add permissions** and choose **Create inline policy**.
-3. In the Policy editor, switch to the **JSON** tab and replace the default content with the following policy:
+3. In the Policy editor, switch to the **JSON** tab and replace the default content with the following policy. Replace `<YOUR_ACCOUNT_ID>` with your 12-digit AWS account ID before saving:
 
 ```json
 {
@@ -79,7 +79,7 @@ AWS Lambda functions assume an **IAM Execution Role** at runtime to determine wh
         "dynamodb:DeleteItem",
         "dynamodb:Query"
       ],
-      "Resource": "arn:aws:dynamodb:us-east-1:*:table/ExpenseTable"
+      "Resource": "arn:aws:dynamodb:us-east-1:<YOUR_ACCOUNT_ID>:table/ExpenseTable"
     }
   ]
 }
@@ -88,7 +88,7 @@ AWS Lambda functions assume an **IAM Execution Role** at runtime to determine wh
 {{% notice tip %}}
 **Security Audit:**
 + The policy limits actions to standard single-item CRUD operations and partitioned `Query`. Dangerous operations like `dynamodb:DeleteTable` or unrestricted full-database `dynamodb:Scan` are blocked.
-+ The `Resource` ARN restricts access specifically to `ExpenseTable` in `us-east-1`, preventing cross-table access.
++ The `Resource` ARN scopes access to the named `ExpenseTable` in `us-east-1` and your account. Replace the account-ID placeholder; do not leave `*` as the account segment.
 {{% /notice %}}
 
 4. Click **Next**.

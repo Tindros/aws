@@ -10,7 +10,7 @@ pre : " <b> 5.1. </b> "
 
 Quản lý tài chính cá nhân hiệu quả đòi hỏi khả năng ghi chép nhanh chóng, phân loại chi tiêu rõ ràng và cung cấp cái nhìn trực quan về thói quen chi tiêu hàng tháng. Các phương pháp thủ công như sổ tay ghi chép hay bảng tính Excel thường dễ gặp sai sót khi tổng hợp số liệu và thiếu tính linh hoạt khi truy cập trên nhiều thiết bị. Mặt khác, việc duy trì một máy chủ truyền thống luôn hoạt động (như máy chủ EC2 hay cụm container chạy liên tục) sẽ phát sinh chi phí vận hành nhàn rỗi không cần thiết đối với một ứng dụng quy mô cá nhân.
 
-Dự án **Serverless Personal Expense Tracker** giải quyết bài toán này bằng cách ứng dụng kiến trúc Không máy chủ (Serverless) hoàn toàn trên nền tảng điện toán đám mây AWS. Hệ thống tự động cấp phát tài nguyên tính toán và cơ sở dữ liệu chỉ khi có yêu cầu API từ người dùng, giảm thiểu tối đa chi phí khi không có lưu lượng truy cập nhưng vẫn đảm bảo tính sẵn sàng cao và tiêu chuẩn an toàn bảo mật cấp doanh nghiệp.
+Dự án **Serverless Personal Expense Tracker** giải quyết bài toán này bằng cách ứng dụng kiến trúc Không máy chủ (Serverless) hoàn toàn trên nền tảng điện toán đám mây AWS. Hệ thống tự động cấp phát tài nguyên tính toán và cơ sở dữ liệu chỉ khi có yêu cầu API từ người dùng, giảm nhu cầu tự quản lý máy chủ luôn bật. Chi phí thực tế phụ thuộc vào cấu hình và mức sử dụng; bảo mật phụ thuộc vào việc triển khai và kiểm thử đúng từng cơ chế kiểm soát.
 
 ---
 
@@ -22,7 +22,7 @@ Hệ thống được xây dựng theo mô hình kiến trúc đám mây 3 lớp
    + **Amazon Cognito:** Quản lý quy trình đăng ký, đăng nhập, chính sách mật khẩu và phát hành mã định danh JSON Web Token (JWT) theo chuẩn công nghiệp.
    + **Amazon API Gateway (HTTP API):** Đóng vai trò cổng API trung tâm, cung cấp các endpoint RESTful, kiểm soát chính sách CORS và xác thực quyền truy cập token người dùng thông qua cơ chế **JWT Authorizer** tích hợp sẵn.
 3. **Lớp Tính toán & Lưu trữ Dữ liệu (Compute & Data Persistence Layer):**
-   + **AWS Lambda:** Chứa toàn bộ logic nghiệp vụ xử lý dữ liệu chi tiêu (Node.js 22.x). Xác thực dữ liệu đầu vào, đảm bảo ranh giới dữ liệu người dùng dựa trên `userId` được cấp từ JWT và thực thi các thao tác CRUD và tổng hợp số liệu.
+   + **AWS Lambda:** Chứa logic nghiệp vụ backend (Node.js 22.x). Kiểm tra dữ liệu đầu vào, đọc claim Cognito `sub` đã được xác thực từ request context của API Gateway và dùng giá trị đó làm partition key `userId` trong DynamoDB cho các thao tác CRUD và tổng hợp.
    + **Amazon DynamoDB:** Cơ sở dữ liệu NoSQL được quản lý hoàn toàn hoạt động ở chế độ On-Demand, lưu trữ hồ sơ chi tiêu được phân vùng an toàn theo danh tính người dùng.
    + **Amazon CloudWatch:** Tự động thu thập nhật ký thực thi Lambda, các chỉ số vận hành hệ thống, tần suất gọi hàm và dấu vết lỗi.
    + **AWS IAM:** Gắn hàm Lambda với Execution Role tuân thủ nguyên tắc cấp quyền tối thiểu (Least Privilege).
@@ -34,11 +34,11 @@ Hệ thống được xây dựng theo mô hình kiến trúc đám mây 3 lớp
 #### Luồng Hoạt động & Luân chuyển Dữ liệu
 
 1. **Đăng nhập người dùng:** Người dùng truy cập ứng dụng web được lưu trữ trên AWS Amplify. Trình duyệt gửi thông tin xác thực trực tiếp đến **Amazon Cognito User Pool** thông qua giao thức SRP. Sau khi xác thực thành công, Cognito phản hồi về trình duyệt các token JWT bao gồm `idToken` và `accessToken`.
-2. **Gửi yêu cầu API:** Khi người dùng thực hiện các thao tác (ví dụ: thêm khoản chi hoặc xem bảng điều khiển tổng quan), ứng dụng frontend gửi yêu cầu HTTPS đến **Amazon API Gateway** kèm tiêu đề `Authorization: Bearer <JWT_TOKEN>`.
-3. **Xác thực JWT:** API Gateway tự động giải mã và kiểm tra tính hợp lệ của token với Issuer URL của Cognito User Pool và Client ID. Các yêu cầu không hợp lệ hoặc thiếu token sẽ bị từ chối ngay lập tức với mã lỗi HTTP `401 Unauthorized` mà không tiêu tốn tài nguyên xử lý của hàm Lambda.
+2. **Gửi yêu cầu API:** Khi người dùng thực hiện các thao tác (ví dụ: thêm khoản chi hoặc xem bảng điều khiển tổng quan), ứng dụng frontend gửi yêu cầu HTTPS đến **Amazon API Gateway** kèm tiêu đề `Authorization: Bearer <ACCESS_TOKEN>`. JWT authorizer trong workshop này được cấu hình để xác thực Cognito Access Token.
+3. **Xác thực JWT:** API Gateway tự động giải mã và kiểm tra tính hợp lệ của token với Issuer URL của Cognito User Pool và Client ID. Các yêu cầu thiếu hoặc có token không hợp lệ sẽ được JWT authorizer từ chối bằng HTTP `401 Unauthorized` trước khi gọi Lambda.
 4. **Thực thi Hàm Lambda:** Đối với các yêu cầu hợp lệ, API Gateway chuyển tiếp yêu cầu đến hàm **AWS Lambda** qua cơ chế proxy integration, cung cấp thông tin định danh người dùng (`sub`) trong đối tượng ngữ cảnh yêu cầu (request context).
-5. **Truy vấn Cơ sở dữ liệu:** Hàm Lambda thực hiện các câu lệnh đọc/ghi vào **Amazon DynamoDB** bằng cách sử dụng `userId` làm khóa phân vùng (partition key).
-6. **Ghi nhật ký Vận hành:** Toàn bộ quá trình thực thi được xuất ra **Amazon CloudWatch Logs** phục vụ mục đích kiểm toán và khắc phục sự cố.
+5. **Truy vấn Cơ sở dữ liệu:** Hàm Lambda thực hiện các câu lệnh đọc/ghi vào **Amazon DynamoDB** bằng cách sử dụng giá trị Cognito `sub` đã xác thực làm partition key `userId`.
+6. **Ghi nhật ký Vận hành:** Nhật ký thực thi Lambda và chỉ số dịch vụ có thể được xem trong **Amazon CloudWatch** để khắc phục sự cố. Không ghi access token, toàn bộ JWT claims, mật khẩu hoặc dữ liệu nhạy cảm khác vào log.
 
 ---
 

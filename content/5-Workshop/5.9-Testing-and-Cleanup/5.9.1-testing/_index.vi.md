@@ -6,7 +6,7 @@ chapter : false
 pre : " <b> 5.9.1 </b> "
 ---
 
-Trong phần này, bạn sẽ thực hiện một chuỗi các kịch bản kiểm thử chức năng và bảo mật nhằm xác minh cơ chế ủy quyền, xử lý mã lỗi và chứng minh tính cô lập dữ liệu tuyệt đối giữa các người dùng.
+Trong phần này, bạn sẽ thực hiện một chuỗi các kịch bản kiểm thử chức năng và bảo mật nhằm xác minh cơ chế ủy quyền, xử lý mã lỗi và kiểm tra tính cô lập dữ liệu giữa các người dùng.
 
 ---
 
@@ -14,17 +14,18 @@ Trong phần này, bạn sẽ thực hiện một chuỗi các kịch bản ki�
 
 Kiểm tra một yêu cầu API mang token JWT hợp lệ từ Cognito có thể truy cập thành công vào hàm Lambda và đọc dữ liệu từ DynamoDB:
 
-1. Lấy mã `idToken` từ phiên đăng nhập Cognito đang hoạt động của bạn.
+1. Lấy **Access Token** mới từ phiên Cognito đang hoạt động. Gửi token trong tiêu đề `Authorization: Bearer <ACCESS_TOKEN>` khi gọi API được bảo vệ.
 2. Mở cửa sổ dòng lệnh (terminal) và gửi một yêu cầu HTTP `GET` đến Invoke URL của API Gateway:
 
 ```bash
 curl -i -X GET "https://<API_ID>.execute-api.us-east-1.amazonaws.com/expenses" \
-  -H "Authorization: Bearer <VALID_ID_TOKEN>"
+  -H "Authorization: Bearer <ACCESS_TOKEN>" \
+  -H "Origin: http://localhost:5173"
 ```
 
 3. **Kết quả Kỳ vọng:**
    + Mã trạng thái HTTP: `200 OK`.
-   + Tiêu đề phản hồi chứa các trường CORS (`Access-Control-Allow-Origin: *`).
+   + Tiêu đề phản hồi có giá trị `Access-Control-Allow-Origin` do API Gateway cấu hình (nếu giới hạn origin, giá trị phải khớp với origin frontend).
    + Thân phản hồi chứa mảng JSON gồm các khoản chi tiêu của người dùng được truy xuất từ DynamoDB.
 
 {{% notice info %}}
@@ -66,7 +67,7 @@ curl -i -X GET "https://<API_ID>.execute-api.us-east-1.amazonaws.com/expenses" \
 <!-- ![Chặn Yêu cầu Trái phép](/images/5-Workshop/5.9-Testing-and-Cleanup/test-02-curl-unauthorized.png) -->
 
 {{% notice tip %}}
-**Không Tiêu Tốn Chi phí Tính toán:** Mở CloudWatch Logs của hàm `expenseTrackerFunction`. Bạn sẽ thấy không có bất kỳ luồng log nào phát sinh từ các yêu cầu bị chặn 401. API Gateway đã chủ động từ chối yêu cầu ngay tại vành đai bảo vệ, không kích hoạt hàm Lambda và không phát sinh chi phí tính toán.
+**Xác minh Lambda không được gọi:** Mở CloudWatch Logs của hàm `expenseTrackerFunction` và kiểm tra thời điểm bạn thực hiện kiểm thử. Các yêu cầu bị JWT authorizer của API Gateway từ chối sẽ không gọi Lambda hoặc tạo log từ lần gọi Lambda đó. API Gateway vẫn có thể tính phí cho request; điều này không có nghĩa tổng chi phí bằng 0.
 {{% /notice %}}
 
 ---
@@ -80,5 +81,7 @@ Chứng minh rằng người dùng không thể xem, chỉnh sửa hay xóa các
 3. Thêm một khoản chi mới (ví dụ: Mô tả: `Ăn trưa của User B`, Số tiền: `20.00`).
 4. Đăng xuất và đăng nhập lại bằng tài khoản ban đầu: `demo-user@example.com`.
 5. Quan sát bảng **Expenses** và **Dashboard**:
-   + `demo-user@example.com` chỉ nhìn thấy các khoản chi của chính mình. Khoản chi của User B hoàn toàn không hiển thị.
-   + **Nguyên lý Bảo mật:** Hàm Lambda truy vấn dữ liệu từ DynamoDB tuyệt đối dựa trên điều kiện `KeyConditionExpression: "userId = :uid"`, với `:uid` được lấy từ trường `sub` do JWT Authorizer tin cậy trích xuất. Vì client không thể can thiệp hay giả mạo chữ ký số của JWT, tính toàn vẹn và cô lập dữ liệu giữa các người dùng được bảo đảm tuyệt đối.
+   + `demo-user@example.com` chỉ nhìn thấy các khoản chi của chính mình. Khoản chi của User B không xuất hiện trong danh sách.
+6. Lấy `expenseId` của khoản chi thử nghiệm User B từ phản hồi kiểm thử đáng tin cậy hoặc DynamoDB Console. Khi vẫn đăng nhập bằng User A, thử `GET /expenses/<USER_B_EXPENSE_ID>`, sau đó thử `PUT` và `DELETE` với cùng ID. Mỗi request phải dùng Access Token của User A. Kết quả dự kiến: User A không thể truy cập dữ liệu của User B (`GET` trả `404`; `PUT` trả `404`; handler mẫu có thể trả thành công cho `DELETE`, nhưng tuyệt đối không được xóa dữ liệu của User B).
+7. Đăng nhập lại bằng User B và xác nhận khoản chi vẫn còn. Điều này xác nhận các bước kiểm tra cập nhật/xóa không làm thay đổi dữ liệu của User B.
+   + **Nguyên lý Bảo mật:** Hàm Lambda sử dụng `event.requestContext.authorizer.jwt.claims.sub` do JWT authorizer đã cấu hình cung cấp làm partition key khi đọc, cập nhật và xóa. Việc cô lập dữ liệu phụ thuộc vào việc mọi thao tác đều dùng nhất quán định danh đã xác thực này và không bao giờ nhận `userId` từ request body.

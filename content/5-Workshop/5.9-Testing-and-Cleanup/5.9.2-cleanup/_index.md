@@ -8,7 +8,7 @@ pre : " <b> 5.9.2 </b> "
 
 Congratulations on completing the **Serverless Personal Expense Tracker** workshop! 
 
-Through this hands-on workshop, you have planned and implemented an enterprise-grade cloud-native serverless architecture:
+This workshop walks through a learning implementation of a serverless architecture. Complete each service setup and verification step before describing the system as working:
 + User identity and JWT authentication managed through **Amazon Cognito**.
 + High-performance NoSQL partitioned document storage using **Amazon DynamoDB**.
 + Ephemeral, event-driven compute powered by **AWS Lambda** under strict **IAM least-privilege** permissions.
@@ -16,7 +16,7 @@ Through this hands-on workshop, you have planned and implemented an enterprise-g
 + Observability and error tracing enabled by **Amazon CloudWatch**.
 + Global frontend delivery and continuous deployment through **AWS Amplify Hosting**.
 
-To avoid incurring ongoing charges for stored data and managed endpoints, follow this dependency-ordered cleanup procedure.
+**Important:** Deleting resources is destructive and may permanently remove expense records and user accounts. Confirm that these are the workshop resources in `us-east-1` and back up anything you need before proceeding. Resource names can differ if you customized the workshop. Follow this cleanup procedure to remove the resources created in this tutorial; deletion does not guarantee that every possible AWS charge has stopped, so review the account's Billing console and check for any remaining resources.
 
 ---
 
@@ -130,5 +130,5 @@ To avoid incurring ongoing charges for stored data and managed endpoints, follow
 <!-- ![Delete CloudWatch Log Group](/images/5-Workshop/5.9-Testing-and-Cleanup/cleanup-07-delete-cloudwatch.png) -->
 
 {{% notice tip %}}
-**Teardown Completed:** All provisioned cloud resources have been cleanly removed, preventing unexpected recurring charges.
+**Verify cleanup:** Confirm each listed resource is deleted in `us-east-1`, then review AWS Billing and search for any remaining workshop resources. This checklist covers only the resources listed above and cannot guarantee that the account has no other billable resources.
 {{% /notice %}}

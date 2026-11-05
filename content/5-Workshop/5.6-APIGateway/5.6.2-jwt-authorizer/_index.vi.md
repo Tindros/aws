@@ -15,14 +15,13 @@ Amazon API Gateway HTTP APIs cung cấp cơ chế **JWT Authorizer** tích hợp
 Khi ứng dụng client gửi một yêu cầu HTTP có tiêu đề `Authorization: Bearer <TOKEN>`:
 1. **Kiểm tra Chữ ký Số (Signature Verification):** API Gateway tự động tải bộ khóa công khai JSON Web Key Set (JWKS) từ endpoint của Cognito (`https://cognito-idp.us-east-1.amazonaws.com/<USER_POOL_ID>/.well-known/jwks.json`) và kiểm tra tính toàn vẹn của chữ ký mật mã.
 2. **Kiểm tra Issuer & Thời hạn:** Xác nhận token chưa hết hạn (`exp`) và được phát hành đúng từ Cognito User Pool tin cậy (`iss`).
-3. **Kiểm tra Đối tượng Nhận (Audience Check):** Đảm bảo token được tạo dành riêng cho ứng dụng web frontend của bạn (giá trị `aud` trùng khớp với App Client ID).
+3. **Kiểm tra Audience / Client ID:** API Gateway kiểm tra `aud` nếu claim này tồn tại; nếu không có, nó có thể kiểm tra `client_id`. Access Token của Cognito thường sử dụng `client_id`, vì vậy hãy cấu hình Audience bằng App Client ID của Cognito và xác minh lại khi kiểm thử.
 4. **Đưa Dữ liệu vào Ngữ cảnh:** Trích xuất các claim đã xác thực (như `sub` và `email`) và truyền vào đối tượng sự kiện của Lambda tại `event.requestContext.authorizer.jwt.claims`.
 
 {{% notice note %}}
-**Tại sao Gửi ID Token? (Phân biệt Xác thực - Authentication và Phân quyền - Authorization)**
-* **ID Token so với Access Token:** Trong Amazon Cognito, **ID Token** chứa trường `aud` (Audience) mang giá trị App Client ID theo chuẩn danh tính OpenID Connect (OIDC). Ngược lại, Cognito **Access Token** chứa trường `client_id` thay vì `aud` (trừ khi cấu hình Resource Server và OAuth scope tùy chỉnh). Do HTTP API JWT Authorizer của API Gateway bắt buộc kiểm tra trường `aud` khớp với cấu hình Audience, ứng dụng frontend cần gửi Cognito ID Token trong tiêu đề `Authorization: Bearer <TOKEN>`.
+**Sử dụng Access Token cho API:** ID Token truyền thông tin danh tính người dùng cho ứng dụng client; Access Token được thiết kế để dùng khi gọi API. HTTP API JWT Authorizer của API Gateway kiểm tra `aud` nếu claim này tồn tại và có thể kiểm tra `client_id` khi không có `aud`. Access Token của Cognito thường chứa `client_id`, vì vậy hãy đặt Audience của authorizer bằng App Client ID và gửi Access Token trong tiêu đề `Authorization: Bearer <TOKEN>`. Không dùng ID Token thay thế Access Token.
 * **Xác thực (Authentication - AuthN):** Được thực hiện tại tầng biên API Gateway thông qua JWT Authorizer. Cơ chế này xác nhận *bạn là ai* bằng cách kiểm tra chữ ký số, nhà phát hành (issuer) và thời hạn token, ngăn chặn triệt để các yêu cầu nặc danh chạm tới Lambda.
-* **Phân quyền (Authorization - AuthZ):** Được thực hiện trong mã nguồn Lambda và thiết kế DynamoDB. Cơ chế này quyết định *bạn được phép thao tác gì*. Hàm Lambda trích xuất `sub` (User ID) đã được xác minh từ ngữ cảnh yêu cầu và giới hạn mọi truy vấn/thay đổi dữ liệu trong DynamoDB chỉ thuộc về người dùng đó, bảo đảm cô lập dữ liệu người dùng tuyệt đối.
+* **Phân quyền (Authorization - AuthZ):** Được thực hiện trong mã nguồn Lambda và thiết kế DynamoDB. Cơ chế này quyết định *bạn được phép thao tác gì*. Hàm Lambda trích xuất `sub` (User ID) đã được xác minh từ ngữ cảnh yêu cầu và giới hạn từng thao tác dữ liệu vào phân vùng của người dùng đó. Cách làm này hỗ trợ cô lập dữ liệu giữa các người dùng, với điều kiện mọi thao tác đọc, cập nhật và xóa đều nhất quán sử dụng claim `sub` đã xác thực.
 {{% /notice %}}
 
 ---

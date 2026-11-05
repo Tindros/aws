@@ -63,7 +63,7 @@ Hàm AWS Lambda sử dụng một vai trò thực thi **IAM Execution Role** tro
 
 1. Trong danh sách Roles, bấm vào vai trò vừa tạo: `ExpenseTrackerLambdaRole`.
 2. Tại thẻ **Permissions**, bấm **Add permissions** và chọn **Create inline policy**.
-3. Tại trình soạn thảo chính sách, chuyển sang thẻ **JSON** và dán đoạn chính sách sau:
+3. Tại trình soạn thảo chính sách, chuyển sang thẻ **JSON** và dán đoạn chính sách sau. Thay `<YOUR_ACCOUNT_ID>` bằng AWS Account ID gồm 12 chữ số của bạn trước khi lưu:
 
 ```json
 {
@@ -79,7 +79,7 @@ Hàm AWS Lambda sử dụng một vai trò thực thi **IAM Execution Role** tro
         "dynamodb:DeleteItem",
         "dynamodb:Query"
       ],
-      "Resource": "arn:aws:dynamodb:us-east-1:*:table/ExpenseTable"
+      "Resource": "arn:aws:dynamodb:us-east-1:<YOUR_ACCOUNT_ID>:table/ExpenseTable"
     }
   ]
 }
@@ -88,7 +88,7 @@ Hàm AWS Lambda sử dụng một vai trò thực thi **IAM Execution Role** tro
 {{% notice tip %}}
 **Đánh giá An toàn Bảo mật:**
 + Chính sách giới hạn chỉ các thao tác CRUD cơ bản và lệnh `Query` phân vùng. Các thao tác nguy hiểm như xóa bảng (`dynamodb:DeleteTable`) hay quét toàn bộ dữ liệu (`dynamodb:Scan`) đều bị chặn hoàn toàn.
-+ Trường `Resource` chỉ định rõ ARN của bảng `ExpenseTable` tại vùng `us-east-1`, ngăn chặn việc hàm vô tình truy cập vào bảng dữ liệu khác.
++ ARN trong `Resource` giới hạn quyền vào bảng `ExpenseTable` trong vùng `us-east-1` và tài khoản của bạn. Hãy thay placeholder bằng Account ID thật; không để `*` ở phần tài khoản.
 {{% /notice %}}
 
 4. Nhấn **Next**.

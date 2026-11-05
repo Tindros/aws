@@ -10,11 +10,11 @@ pre: " <b> 5. </b> "
 
 #### Overview
 
-The **Serverless Personal Expense Tracker** is a full-stack, cloud-native application designed to help individuals log, categorize, track, and summarize their personal expenditures. Built upon modern AWS serverless architecture, this solution removes the need to provision, manage, or pay for idle virtual machines or container instances, scaling automatically to zero when inactive and delivering cost-effective high availability.
+The **Serverless Personal Expense Tracker** is a cloud-based application designed to help individuals log, categorize, track, and summarize personal expenditures. It uses managed AWS services so you do not need to provision or maintain virtual machines for the application. Actual availability, scaling behavior, and cost depend on service configuration and usage; serverless does not mean every resource is always free when idle.
 
 In this hands-on workshop, you will step through the planned cloud architecture to implement and integrate every layer of the serverless application:
 + **Authentication & Identity:** Provision an **Amazon Cognito User Pool** with an App Client configured for Single Page Applications (SPA) using secure JWT authentication.
-+ **Database Design:** Model and create an **Amazon DynamoDB** table with an On-Demand capacity mode, using partitioned keys for single-tenant data isolation (`userId`) and expense identification (`expenseId`).
++ **Database Design:** Model and create an **Amazon DynamoDB** table with an On-Demand capacity mode, using partitioned keys for per-user data isolation (`userId`) and expense identification (`expenseId`).
 + **Compute & Business Logic:** Implement an **AWS Lambda** function in Node.js 22.x with the AWS SDK v3, bounded by an **IAM Execution Role** enforcing the principle of least privilege.
 + **API Management:** Build an **Amazon API Gateway HTTP API** protected with a native Cognito **JWT Authorizer**, configuring Cross-Origin Resource Sharing (CORS) and integrating Lambda proxy routes.
 + **Frontend Integration:** Connect a modern **React + Vite + TypeScript** frontend MVP with real authentication and REST API endpoints.
@@ -22,7 +22,7 @@ In this hands-on workshop, you will step through the planned cloud architecture 
 + **Verification & Cleanup:** Perform end-to-end verification, test unauthorized access protections, and execute an orderly resource teardown.
 
 {{% notice info %}}
-**Deployment Status Note:** This workshop serves as the step-by-step implementation guide for the Serverless Personal Expense Tracker. All architectural patterns, code handlers, and IAM policies are concrete and reproducible. Missing screenshots for unexecuted steps are clearly designated as **`[Pending Deployment]`** and will be populated upon live cloud deployment.
+**Deployment Status Note:** This workshop serves as the step-by-step implementation guide for the Serverless Personal Expense Tracker. The workshop provides implementation examples and configuration guidance that must be validated in your own AWS account. Review IAM permissions before applying them, and do not deploy resources until you understand the expected costs and cleanup steps. Missing screenshots for unexecuted steps are clearly designated as **`[Pending Deployment]`** and will be populated upon live cloud deployment.
 {{% /notice %}}
 
 #### Content

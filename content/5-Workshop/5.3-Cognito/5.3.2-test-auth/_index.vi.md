@@ -20,7 +20,7 @@ Bạn có thể chủ động tạo một tài khoản người dùng trực ti�
    + Chọn **Don't send an email invite** (để thử nghiệm nhanh cục bộ).
    + **Email address:** Nhập `demo-user@example.com`.
    + Đánh dấu tích vào **Mark email address as verified**.
-   + Tại mục **Temporary password**, chọn **Set a permanent password** và nhập mật khẩu thỏa mãn chính sách (ví dụ: `ExpenseTracker2026!`).
+   + Tại mục **Temporary password**, chọn **Set a permanent password** và nhập mật khẩu riêng, đủ mạnh và thỏa mãn chính sách. Không dùng lại mật khẩu ví dụ trong tài liệu hoặc commit thông tin đăng nhập vào repository.
 
 {{% notice info %}}
 📸 **Pending Screenshot:** `static/images/5-Workshop/5.3-Cognito/cognito-06-create-test-user.png`  
@@ -39,19 +39,15 @@ Bạn có thể chủ động tạo một tài khoản người dùng trực ti�
 
 ---
 
-#### Bước 2: Kiểm tra Đăng nhập Bằng AWS CLI
+#### Bước 2: Kiểm tra Đăng nhập qua React SPA
 
-Bạn có thể giả lập luồng đăng nhập từ ứng dụng client thông qua lệnh AWS CLI `initiate-auth` cùng Client ID đã tạo:
+App Client trong workshop này được cấu hình với **Choice-based sign-in** và **Secure Remote Password (SRP)**. Luồng cũ `USER_PASSWORD_AUTH` không được bật, vì vậy không sử dụng ví dụ AWS CLI `USER_PASSWORD_AUTH` tại đây. Lệnh đó sẽ thất bại nếu bạn không thay đổi cấu hình App Client, điều không nằm trong phạm vi workshop này.
 
-```bash
-aws cognito-idp initiate-auth \
-  --region us-east-1 \
-  --client-id <YOUR_APP_CLIENT_ID> \
-  --auth-flow USER_PASSWORD_AUTH \
-  --auth-parameters USERNAME=demo-user@example.com,PASSWORD=ExpenseTracker2026!
+```text
+Việc đăng nhập sẽ được kiểm thử thông qua React SPA ở Phần 5.7.1, sử dụng luồng client tương thích SRP của Cognito. Mẫu này lưu Access Token trong `localStorage` của trình duyệt với khóa `auth_token`; để xác nhận token đã được lưu, mở Developer Tools → Application (hoặc Storage) → Local Storage của `http://localhost:5173`. Không sao chép, chia sẻ hoặc chụp ảnh token thật. Mẫu này không in token ra console và không có màn hình debug token.
 ```
 
-Khi thông tin đăng nhập chính xác, Cognito sẽ trả về khối `AuthenticationResult`:
+Sau khi đăng nhập thành công qua SPA, Cognito trả về kết quả xác thực chứa các token. Phản hồi chính xác phụ thuộc vào luồng đăng nhập được chọn. Ví dụ dưới đây chỉ minh họa đã lược bỏ dữ liệu nhạy cảm, không phải kết quả để sao chép:
 
 ```json
 {
@@ -73,11 +69,12 @@ Amazon Cognito phát hành hai loại token với mục đích hoàn toàn khác
 
 1. **Phân biệt Xác thực (Authentication) và Phân quyền (Authorization):**
    + **Xác thực (AuthN - "Bạn là ai?"):** **ID Token (`IdToken`)** là token định danh chuẩn OpenID Connect (OIDC) chứng minh danh tính của người dùng. Token này chứa các thông tin cá nhân như `sub` (mã định danh người dùng duy nhất), `email` và `email_verified`.
-   + **Phân quyền (AuthZ - "Bạn được phép làm gì?"):** **Access Token (`AccessToken`)** chứng minh các quyền hạn và phạm vi truy cập (OAuth 2.0 scopes) được cấp cho ứng dụng (`token_use: "access"`).
+   + **Phân quyền (AuthZ - "Bạn được phép làm gì?"):** **Access Token (`AccessToken`)** là token phù hợp để gửi yêu cầu đến API và chứa claim `token_use: "access"` cùng các scope nếu được cấu hình.
 
-2. **Tại sao Kiến trúc này Sử dụng ID Token gửi đến API Gateway:**
-   + **Kiểm tra Đối tượng Nhận (Audience `aud`):** Trong Amazon Cognito, **ID Token** chứa mã Client ID của App Client trong trường `aud` chuẩn (`"aud": "<YOUR_APP_CLIENT_ID>"`). Ngược lại, Cognito Access Token tiêu chuẩn định danh client qua trường `client_id` và không chứa trường `aud` tương ứng với App Client ID (trừ khi cấu hình Resource Server và OAuth scope tùy chỉnh).
-   + Do cơ chế JWT Authorizer của API Gateway HTTP API được cấu hình kiểm tra `Audience = <APP_CLIENT_ID>` nhằm chặn token từ các ứng dụng khác, API Gateway yêu cầu token gửi lên phải có trường `aud` tương ứng. Việc gửi ID Token giúp API Gateway xác thực thành công danh tính người gọi và chuyển tiếp thông tin `sub` an toàn sang hàm AWS Lambda.
+2. **Tại sao Kiến trúc này Sử dụng Access Token gửi đến API Gateway:**
+   + ID Token mô tả danh tính người dùng đã đăng nhập cho ứng dụng client. Access Token là token phù hợp để gửi đến API.
+   + Với HTTP API JWT Authorizer, API Gateway kiểm tra claim `aud` nếu có; nếu không có `aud`, API Gateway có thể kiểm tra `client_id`. Access Token của Cognito thường sử dụng `client_id`, vì vậy hãy cấu hình Audience bằng App Client ID và gửi Access Token trong tiêu đề `Authorization: Bearer <TOKEN>`.
+   + API Gateway xác minh chữ ký, issuer, thời hạn và audience/mã client trước khi chuyển các claim đã xác thực như `sub` đến Lambda.
 
 3. **Ví dụ Payload của ID Token sau khi giải mã:**
    ```json
@@ -96,7 +93,7 @@ Amazon Cognito phát hành hai loại token với mục đích hoàn toàn khác
    ```
 
 {{% notice tip %}}
-**Nền tảng Bảo mật:** Giá trị trường `sub` (`"a1b2c3d4-e5f6-7a8b-9c0d-1e2f3a4b5c6d"`) là một chuỗi UUID bất biến đại diện cho người dùng trên toàn bộ hệ thống backend AWS. Trong các phần sau, hàm Lambda sẽ trích xuất trực tiếp giá trị này từ token đã được xác thực để làm khóa phân vùng dữ liệu trong DynamoDB, ngăn chặn tuyệt đối tình trạng người dùng truy cập nhầm dữ liệu của nhau.
+**Nền tảng Bảo mật:** Claim `sub` là định danh ổn định của người dùng trong User Pool. Lambda phải sử dụng `sub` do API Gateway cung cấp sau khi xác thực token, không sử dụng `userId` do client gửi trong request body để xác định phạm vi dữ liệu DynamoDB.
 {{% /notice %}}
 
 ---
