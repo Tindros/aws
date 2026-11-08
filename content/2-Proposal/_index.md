@@ -360,42 +360,36 @@ The project will be developed throughout the **12-week internship**, combining A
 
 **Milestone:** Complete and present the Serverless Personal Expense Tracker.
 
-### 6. Budget Estimation
-The cost of the system depends on the number of authenticated users, API requests, Lambda execution time, DynamoDB storage and requests, frontend hosting usage, and CloudWatch logs and metrics.
+## 6. Budget Estimate
 
-The AWS Pricing Calculator will be used to estimate the expected monthly and yearly cost based on the actual project workload.
+The estimated cost can be viewed on the [AWS Pricing Calculator](https://calculator.aws/#/estimate?id=d3feb73b825d0a1424aee2bcbb91b80078f5523d).
 
-### Infrastructure Costs
-- AWS Lambda: Cost depends on the number of API requests and Lambda execution time.
+### Infrastructure Cost
 
-- Amazon API Gateway: Cost depends on the number of HTTP API requests.
+- **Amazon Cognito:** 0.00 USD/month.
+- **Amazon DynamoDB:** 0.00 USD/month.
+- **AWS Lambda:** 0.00 USD/month.
+- **Amazon API Gateway:** 0.00 USD/month.
+- **Amazon CloudWatch:** 0.00 USD/month.
+- **AWS Amplify:** 0.25 USD/month.
 
-- Amazon DynamoDB: Cost depends on storage and database read/write usage.
+**Total:** **0.28 USD/month**, **3.36 USD/12 months**.
 
-- Amazon Cognito: Cost depends on the number of monthly active users and authentication usage.
-
-- AWS Amplify: Cost depends on frontend hosting, storage, and data transfer.
-
-- Amazon CloudWatch: Cost depends on the amount of logs and metrics generated and retained.
-
-- AWS IAM: IAM roles do not have a separate charge.
+> The above cost is an estimate based on the configuration and expected usage of the project in the AWS Pricing Calculator. The actual cost may vary depending on resource usage, deployment region, AWS pricing policies, and any additional charges from AWS.
 
 ### Cost Optimization
-Because the project is designed for a small-scale personal expense workload, the expected number of users and requests is relatively low. The serverless architecture avoids the cost of maintaining an EC2 instance continuously when the application is not receiving requests.
 
-Additional cost optimization can be achieved by:
+To reduce operating costs, the project applies the following measures:
 
-- Keeping the DynamoDB design simple and retrieving only the required expense data.
+- **Using AWS Free Tier:** Cognito, DynamoDB, Lambda, API Gateway, and CloudWatch are configured with low usage levels suitable for a learning project and may remain within the Free Tier depending on actual usage.
+- **AWS Lambda:** Uses a serverless model, so costs are based on the number of requests and execution time instead of maintaining continuously running servers.
+- **Amazon DynamoDB:** Uses DynamoDB for expense data with a serverless model, which is suitable for the application's small data volume and request traffic.
+- **Amazon API Gateway:** Uses an HTTP API instead of a REST API to reduce the cost of application requests.
+- **AWS Amplify:** Used only to host the React frontend with the resources required for the project, avoiding unnecessary features or resources that could generate additional costs.
+- **AWS CloudWatch:** Uses only the necessary logging and monitoring features to monitor Lambda and the system, avoiding unnecessary metrics or monitoring configurations.
+- **Resource Cleanup:** After completing the testing and evaluation process, unused AWS resources will be deleted to avoid unexpected or unnecessary charges.
 
-- Optimizing Lambda execution time and reducing unnecessary processing.
-
-- Setting an appropriate CloudWatch log retention period.
-
-- Monitoring Cognito, DynamoDB, API Gateway, Lambda, and Amplify usage.
-
-- Using AWS Budgets to monitor and control spending.
-
-The final monthly and annual cost will be calculated after defining the expected workload using the AWS Pricing Calculator.
+With the current configuration, the AWS Pricing Calculator estimates a cost of approximately **0.28 USD/month**, equivalent to **3.36 USD for 12 months**. The actual cost depends on resource usage and AWS pricing policies at the time of deployment.
 
 
 ### 7. Risk Assessment

@@ -387,47 +387,36 @@ Dự án sẽ được phát triển trong **12 tuần thực tập**, kết h�
 
 **Milestone:** Hoàn thành và trình bày Serverless Personal Expense Tracker.
 
-### 6. Ước tính ngân sách
+## 6. Ước tính ngân sách
 
-Chi phí của hệ thống phụ thuộc vào số lượng người dùng đã xác thực, số lượng API request, thời gian thực thi Lambda, dung lượng lưu trữ và số lần đọc/ghi trên DynamoDB, mức sử dụng frontend hosting và số lượng log/metric trên CloudWatch.
-
-AWS Pricing Calculator sẽ được sử dụng để ước tính chi phí hàng tháng và hàng năm dự kiến dựa trên workload thực tế của dự án.
+Có thể xem chi phí trên [AWS Pricing Calculator]\([https://calculator.aws/#/estimate?id=d3feb73b825d0a1424aee2bcbb91b80078f5523d](https://calculator.aws/#/estimate?id=d3feb73b825d0a1424aee2bcbb91b80078f5523d)).
 
 ### Chi phí hạ tầng
 
-- AWS Lambda: Chi phí phụ thuộc vào số lượng API request và thời gian thực thi Lambda.
+- **Amazon Cognito:** 0,00 USD/tháng.
+- **Amazon DynamoDB:** 0,00 USD/tháng.
+- **AWS Lambda:** 0,00 USD/tháng.
+- **Amazon API Gateway:** 0,00 USD/tháng.
+- **Amazon CloudWatch:** 0,00 USD/tháng.
+- **AWS Amplify:** 0,25 USD/tháng.
 
-- Amazon API Gateway: Chi phí phụ thuộc vào số lượng HTTP API request.
+**Tổng:** **0,28 USD/tháng**, **3,36 USD/12 tháng**.
 
-- Amazon DynamoDB: Chi phí phụ thuộc vào dung lượng lưu trữ và mức sử dụng đọc/ghi cơ sở dữ liệu.
-
-- Amazon Cognito: Chi phí phụ thuộc vào số lượng monthly active users và mức sử dụng authentication.
-
-- AWS Amplify: Chi phí phụ thuộc vào frontend hosting, storage và data transfer.
-
-- Amazon CloudWatch: Chi phí phụ thuộc vào lượng log và metric được tạo ra và thời gian lưu trữ.
-
-- AWS IAM: IAM roles không có khoản phí riêng.
+> Chi phí trên là mức ước tính dựa trên cấu hình và mức sử dụng dự kiến của project trong AWS Pricing Calculator. Chi phí thực tế có thể thay đổi tùy theo mức sử dụng tài nguyên, khu vực triển khai, chính sách giá và các khoản phí phát sinh của AWS.
 
 ### Tối ưu chi phí
 
-Do dự án được thiết kế cho workload quản lý chi tiêu cá nhân quy mô nhỏ, số lượng người dùng và request dự kiến tương đối thấp. Kiến trúc serverless tránh chi phí duy trì một EC2 instance liên tục khi ứng dụng không nhận request.
+Để giảm chi phí vận hành, project áp dụng các biện pháp sau:
 
-Các biện pháp tối ưu chi phí bổ sung có thể bao gồm:
+- **Sử dụng AWS Free Tier:** Cognito, DynamoDB, Lambda, API Gateway và CloudWatch được cấu hình ở mức sử dụng nhỏ, phù hợp với project học tập và có thể nằm trong phạm vi Free Tier tùy theo mức sử dụng thực tế.
+- **AWS Lambda:** Sử dụng mô hình serverless, chỉ phát sinh chi phí dựa trên số lần request và thời gian thực thi thay vì duy trì máy chủ chạy liên tục.
+- **Amazon DynamoDB:** Sử dụng DynamoDB cho dữ liệu expense với mô hình serverless, phù hợp với lượng dữ liệu và lưu lượng request nhỏ của ứng dụng.
+- **Amazon API Gateway:** Sử dụng HTTP API thay vì REST API để giảm chi phí cho các request của ứng dụng.
+- **AWS Amplify:** Chỉ sử dụng để hosting frontend React và cấu hình ở mức tài nguyên cần thiết cho project, tránh sử dụng các tính năng hoặc tài nguyên phát sinh thêm chi phí không cần thiết.
+- **AWS CloudWatch:** Chỉ sử dụng các log và monitoring cần thiết để theo dõi Lambda và hệ thống, tránh tạo thêm các metric hoặc cấu hình giám sát không cần thiết.
+- **Dọn dẹp tài nguyên sau khi hoàn thành:** Sau khi hoàn tất quá trình thử nghiệm và đánh giá project, các tài nguyên AWS không còn sử dụng sẽ được xóa để tránh phát sinh chi phí ngoài dự kiến.
 
-- Giữ thiết kế DynamoDB đơn giản và chỉ truy xuất các dữ liệu chi tiêu cần thiết.
-
-- Tối ưu thời gian thực thi Lambda và giảm các xử lý không cần thiết.
-
-- Thiết lập thời gian retention phù hợp cho CloudWatch logs.
-
-- Theo dõi mức sử dụng của Cognito, DynamoDB, API Gateway, Lambda và Amplify.
-
-- Sử dụng AWS Budgets để theo dõi và kiểm soát chi phí.
-
-Chi phí hàng tháng và hàng năm cuối cùng sẽ được tính toán sau khi xác định workload dự kiến bằng AWS Pricing Calculator.
-
-
+Với cấu hình hiện tại, AWS Pricing Calculator ước tính chi phí khoảng **0,28 USD/tháng**, tương đương **3,36 USD trong 12 tháng**. Chi phí thực tế phụ thuộc vào mức sử dụng tài nguyên và chính sách giá AWS tại thời điểm triển khai.
 
 
 
