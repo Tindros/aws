@@ -30,7 +30,7 @@ Tạo một tệp `.env` tại thư mục gốc của `frontend/` và điền c�
 VITE_AWS_REGION=us-east-1
 VITE_COGNITO_USER_POOL_ID=us-east-1_xxxxxxxxx
 VITE_COGNITO_CLIENT_ID=3xxxxxxxxxxxxxxxxxxxxxxxxx
-VITE_API_BASE_URL=https://<API_ID>.execute-api.us-east-1.amazonaws.com
+VITE_API_URL=https://<API_ID>.execute-api.us-east-1.amazonaws.com
 ```
 
 {{% notice warning %}}
@@ -163,18 +163,21 @@ export const authService = {
 4. Nhấn **Sign in**.
 5. Xác nhận quá trình đăng nhập thành công và Access Token dùng cho API được lưu trong `localStorage`. Ví dụ này chỉ kiểm tra sự tồn tại của chuỗi token và không chủ động làm mới phiên đã hết hạn. Khi Access Token hết hạn, API có thể trả `401` và ứng dụng chuyển hướng về trang đăng nhập. Với ứng dụng thực tế, hãy sử dụng thiết kế phiên an toàn hơn và tránh lưu token trong `localStorage` nếu có thể.
 
-{{% notice tip %}}
-**Xử lý Sự cố Tương thích Vite & Node Global:**  
-Nếu cửa sổ Console của trình duyệt xuất hiện lỗi `Uncaught ReferenceError: global is not defined` khi khởi chạy ứng dụng, môi trường Vite hiện đại có thể cần một shim nhẹ cho biến toàn cục Node.js mà thư viện `amazon-cognito-identity-js` tham chiếu đến.  
-Bạn có thể khắc phục bằng cách thêm đoạn mã shim sau vào dòng đầu tiên của tệp `src/main.tsx`:
+Nếu gặp lỗi `Uncaught ReferenceError: global is not defined` khi tải ứng dụng, hãy cấu hình Vite trong `vite.config.ts`:
+
 ```typescript
-// Khắc phục tương thích trình duyệt cho amazon-cognito-identity-js
-if (typeof window !== 'undefined' && !(window as any).global) {
-  (window as any).global = window;
-}
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+
+export default defineConfig({
+  plugins: [react()],
+  define: {
+    global: 'globalThis',
+  },
+})
 ```
-*Lưu ý: Chỉ áp dụng thay đổi này nếu bạn gặp đúng lỗi nêu trên trong trình duyệt.*
-{{% /notice %}}
+
+Đây là cấu hình đang được sử dụng bởi frontend của workshop.
 
 {{% notice info %}}
 📸 **Pending Screenshot:** `static/images/5-Workshop/5.7-Frontend-integration/frontend-02-login-success.png`  
