@@ -58,10 +58,8 @@ Once the user pool is provisioned, you can inspect and verify its security confi
 
 3. **Multi-factor authentication (MFA):**
    + In the console security settings, verify that **MFA enforcement** is set to **No MFA**.
-   + {{% notice info %}}
-     **Console Layout Note:** In the current Amazon Cognito console, the **Password policy** and **MFA enforcement** settings are displayed in separate cards and views. The screenshot above focuses on the Password policy card. For the scope of this workshop, keeping MFA set to **No MFA** eliminates SMS delivery costs and third-party authenticator setup overhead during testing.
-     {{% /notice %}}
-4. **Message delivery:**
+   +      **Console Layout Note:** In the current Amazon Cognito console, the **Password policy** and **MFA enforcement** settings are displayed in separate cards and views. The screenshot above focuses on the Password policy card. For the scope of this workshop, keeping MFA set to **No MFA** eliminates SMS delivery costs and third-party authenticator setup overhead during testing.
+     4. **Message delivery:**
    + Under message delivery settings, verify that the email provider is set to **Send email with Cognito**.
    + *Note:* This built-in service provides a daily email quota sufficient for development and workshop verification without requiring Amazon SES domain verification. SMS messaging is not configured.
 
@@ -92,10 +90,8 @@ Next, examine the public application client created for your React frontend:
    + **Client ID:** Copy the 26-character alphanumeric identifier (e.g., `6ngvi1al5pn81n534og2guvl27`).
    + **Client secret:** Displays `-` (None).
 
-{{% notice warning %}}
 **Critical Architecture Rule — No Client Secret for SPAs:**  
 A Single-Page Application runs directly in the end-user's browser. Any client secret bundled into frontend JavaScript code can be easily extracted by inspecting network traffic or application source bundles. Leaving the client secret disabled (`-`) allows the React application to use secure public authentication flows without compromising security.
-{{% /notice %}}
 
 4. Verify the active **Authentication flows**:
    + `Choice-based sign-in`
@@ -111,10 +107,8 @@ A Single-Page Application runs directly in the end-user's browser. Any client se
 
 ![App Client Details - ExpenseTrackerWebClient](/images/5-Workshop/5.3-Cognito/cognito-04-app-client.png)
 
-{{% notice tip %}}
 **Scope & Integration Boundaries:**  
 Do not configure Hosted UI callback URLs, sign-out URLs, or OAuth 2.0 scopes at this stage. Our React application communicates directly with Cognito APIs via AWS SDK / Amplify Auth libraries rather than Hosted UI redirects. Full client-side integration is implemented in [7. React Frontend Integration](../../5.7-Frontend-integration/).
-{{% /notice %}}
 
 ---
 
@@ -139,20 +133,16 @@ Return to the **Overview** page of `expense-tracker-user-pool` to verify the pro
 | **User Pool ID** | `us-east-1_xxxxxxxxx` | Identifies your user directory; required by API Gateway JWT Authorizer |
 | **App Client ID** | `6ngvi1al5pn81n534og2guvl27` | Public client identifier; required by API Gateway JWT Authorizer Audience & Frontend config |
 
-{{% notice info %}}
 **Distinguishing User Pool ID vs. App Client ID:**  
 - **User Pool ID** (`us-east-1_...`): Identifies your entire Cognito user directory and serves as the OIDC token issuer (`iss`).
 - **App Client ID** (typically a 26-character alphanumeric identifier): Identifies the client application requesting tokens. Cognito ID tokens normally contain this value in `aud`; Cognito access tokens commonly contain it in `client_id`. API Gateway HTTP API JWT authorizers check `aud` when present and can check `client_id` when `aud` is absent.
 - Do not confuse these two parameters or use them interchangeably.
-{{% /notice %}}
 
 ---
 
 #### Completion Status & Next Steps
 
-{{% notice info %}}
 **Resource Provisioning Checkpoint:**  
 At this stage, the Amazon Cognito User Pool and public App Client should be created and configured in `us-east-1`. Confirm the saved pool name on the Overview page before continuing. Creating these resources sets up the authentication infrastructure but does not mean the web frontend is integrated or that users have authenticated yet. User provisioning and JWT token verification will be verified in the next section, followed by database and API setup.
-{{% /notice %}}
 
 Proceed to the next module: [5.3.2 User Registration, Authentication & JWT Verification](../5.3.2-test-auth/) to test user creation and inspect issued JWT claims.
