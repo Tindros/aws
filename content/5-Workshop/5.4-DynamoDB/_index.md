@@ -61,11 +61,6 @@ In DynamoDB, optimal performance and strict user isolation depend on key design:
    + **Table name:** Enter `ExpenseTable`.
    + **Partition key:** Enter `userId` and select **String**.
    + **Sort key:** Enter `expenseId` and select **String**.
-
-📸 **Pending Screenshot:** `static/images/5-Workshop/5.4-DynamoDB/dynamodb-01-create-table.png`  
-*(To be captured during deployment: DynamoDB table creation screen showing ExpenseTable with userId and expenseId)*
-<!-- ![Create Table](/images/5-Workshop/5.4-DynamoDB/dynamodb-01-create-table.png) -->
-
 ---
 
 #### Step 2: Configure Capacity Mode
@@ -75,11 +70,6 @@ In DynamoDB, optimal performance and strict user isolation depend on key design:
    + Automatically accommodates workloads as they ramp up or down.
    + On-demand mode bills read/write request usage and applicable storage or other charges. It does not guarantee zero cost when idle; check current AWS pricing and Billing.
 3. Keep default settings for **Secondary indexes**, **Encryption at rest** (Amazon DynamoDB owned key), and **Deletion protection**.
-
-📸 **Pending Screenshot:** `static/images/5-Workshop/5.4-DynamoDB/dynamodb-02-capacity-settings.png`  
-*(To be captured during deployment: Setting table capacity mode to On-demand)*
-<!-- ![Configure Capacity Mode](/images/5-Workshop/5.4-DynamoDB/dynamodb-02-capacity-settings.png) -->
-
 4. Scroll down and choose **Create table**.
 
 ---
@@ -90,16 +80,7 @@ In DynamoDB, optimal performance and strict user isolation depend on key design:
 2. Click on `ExpenseTable` to view the **General information** panel.
 3. Note down the **Amazon Resource Name (ARN)**:
    + Format: `arn:aws:dynamodb:us-east-1:<ACCOUNT_ID>:table/ExpenseTable`
-
-📸 **Pending Screenshot:** `static/images/5-Workshop/5.4-DynamoDB/dynamodb-03-table-active.png`  
-*(To be captured during deployment: ExpenseTable overview showing Active status and table ARN)*
-<!-- ![Table Active](/images/5-Workshop/5.4-DynamoDB/dynamodb-03-table-active.png) -->
-
 4. Select the **Explore items** tab to observe the empty table state ready to receive incoming items.
-
-📸 **Pending Screenshot:** `static/images/5-Workshop/5.4-DynamoDB/dynamodb-04-explore-items.png`  
-*(To be captured during deployment: Explore items tab showing empty ExpenseTable schema)*
-<!-- ![Explore Items](/images/5-Workshop/5.4-DynamoDB/dynamodb-04-explore-items.png) -->
 
 ---
 

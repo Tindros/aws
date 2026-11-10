@@ -62,9 +62,7 @@ Trong DynamoDB, hiệu năng truy vấn tối ưu và cơ chế cô lập dữ l
    + **Partition key:** Nhập `userId` và chọn kiểu **String**.
    + **Sort key:** Nhập `expenseId` và chọn kiểu **String**.
 
-📸 **Pending Screenshot:** `static/images/5-Workshop/5.4-DynamoDB/dynamodb-01-create-table.png`  
-*(Cần chụp khi triển khai: Màn hình tạo bảng DynamoDB ExpenseTable với userId và expenseId)*
-<!-- ![Tạo Bảng DynamoDB](/images/5-Workshop/5.4-DynamoDB/dynamodb-01-create-table.png) -->
+
 
 ---
 
@@ -76,9 +74,6 @@ Trong DynamoDB, hiệu năng truy vấn tối ưu và cơ chế cô lập dữ l
    + Chế độ On-demand tính phí theo lượng request đọc/ghi cùng chi phí lưu trữ và các khoản phí áp dụng khác. Chế độ này không bảo đảm chi phí bằng 0 khi nhàn rỗi; hãy kiểm tra bảng giá AWS và Billing hiện hành.
 3. Giữ nguyên các thiết lập mặc định về **Secondary indexes**, **Encryption at rest** (Amazon DynamoDB owned key) và **Deletion protection**.
 
-📸 **Pending Screenshot:** `static/images/5-Workshop/5.4-DynamoDB/dynamodb-02-capacity-settings.png`  
-*(Cần chụp khi triển khai: Cấu hình bảng ở chế độ dung lượng On-demand)*
-<!-- ![Cấu hình Capacity Mode](/images/5-Workshop/5.4-DynamoDB/dynamodb-02-capacity-settings.png) -->
 
 4. Cuộn xuống cuối trang và nhấn **Create table**.
 
@@ -90,16 +85,8 @@ Trong DynamoDB, hiệu năng truy vấn tối ưu và cơ chế cô lập dữ l
 2. Bấm vào tên bảng `ExpenseTable` để xem bảng thông tin tổng quan **General information**.
 3. Sao chép và lưu lại chuỗi **Amazon Resource Name (ARN)**:
    + Định dạng: `arn:aws:dynamodb:us-east-1:<ACCOUNT_ID>:table/ExpenseTable`
-
-📸 **Pending Screenshot:** `static/images/5-Workshop/5.4-DynamoDB/dynamodb-03-table-active.png`  
-*(Cần chụp khi triển khai: Bảng ExpenseTable ở trạng thái Active kèm chuỗi ARN)*
-<!-- ![Bảng Hoạt động](/images/5-Workshop/5.4-DynamoDB/dynamodb-03-table-active.png) -->
-
 4. Chuyển sang thẻ **Explore items** để kiểm tra bảng đã sẵn sàng tiếp nhận các bản ghi đầu tiên.
 
-📸 **Pending Screenshot:** `static/images/5-Workshop/5.4-DynamoDB/dynamodb-04-explore-items.png`  
-*(Cần chụp khi triển khai: Thẻ Explore items hiển thị cấu trúc bảng ExpenseTable sẵn sàng)*
-<!-- ![Khám phá Items](/images/5-Workshop/5.4-DynamoDB/dynamodb-04-explore-items.png) -->
 
 ---
 
