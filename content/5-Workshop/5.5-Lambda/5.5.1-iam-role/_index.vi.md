@@ -17,10 +17,8 @@ Hàm AWS Lambda sử dụng một vai trò thực thi **IAM Execution Role** tro
 3. Tại mục **Trusted entity type**, chọn **AWS service**.
 4. Tại mục **Use case**, chọn dịch vụ **Lambda** từ danh sách các ca sử dụng phổ biến.
 
-{{% notice info %}}
 📸 **Pending Screenshot:** `static/images/5-Workshop/5.5-Lambda/lambda-01-iam-role-create.png`  
 *(Cần chụp khi triển khai: Giao diện IAM Create Role chọn thực thể tin cậy là dịch vụ Lambda)*
-{{% /notice %}}
 <!-- ![Tạo IAM Role](/images/5-Workshop/5.5-Lambda/lambda-01-iam-role-create.png) -->
 
 5. Nhấn **Next**.
@@ -85,18 +83,14 @@ Hàm AWS Lambda sử dụng một vai trò thực thi **IAM Execution Role** tro
 }
 ```
 
-{{% notice tip %}}
 **Đánh giá An toàn Bảo mật:**
 + Chính sách giới hạn chỉ các thao tác CRUD cơ bản và lệnh `Query` phân vùng. Các thao tác nguy hiểm như xóa bảng (`dynamodb:DeleteTable`) hay quét toàn bộ dữ liệu (`dynamodb:Scan`) đều bị chặn hoàn toàn.
 + ARN trong `Resource` giới hạn quyền vào bảng `ExpenseTable` trong vùng `us-east-1` và tài khoản của bạn. Hãy thay placeholder bằng Account ID thật; không để `*` ở phần tài khoản.
-{{% /notice %}}
 
 4. Nhấn **Next**.
 5. **Policy name:** Nhập `ExpenseTrackerDynamoDBPolicy`.
 6. Nhấn **Create policy**.
 
-{{% notice info %}}
 📸 **Pending Screenshot:** `static/images/5-Workshop/5.5-Lambda/lambda-02-iam-policies.png`  
 *(Cần chụp khi triển khai: Thẻ Permissions của ExpenseTrackerLambdaRole hiển thị đầy đủ các chính sách)*
-{{% /notice %}}
 <!-- ![Chính sách IAM đã gán](/images/5-Workshop/5.5-Lambda/lambda-02-iam-policies.png) -->
