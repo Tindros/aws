@@ -16,10 +16,10 @@ pre: " <b> 1.12. </b> "
 
 | Thứ | Công việc | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu |
 | --- | --- | --- | --- | --- |
-| 2 | - Kiểm tra lần cuối Cognito authentication, CRUD và data isolation.<br>- Rà soát luồng dữ liệu giữa Lambda và DynamoDB. | 24/11/2026 | 24/11/2026 | [Authentication with Amazon Cognito](https://000081.awsstudygroup.com/) · [Serverless CRUD with Lambda and DynamoDB](https://000133.awsstudygroup.com/) |
-| 3 | - Hoàn thiện screenshot và nội dung Workshop.<br>- Kiểm tra các trang song ngữ và liên kết nội bộ. | 25/11/2026 | 25/11/2026 | [The First Cloud Journey](https://cloudjourney.awsstudygroup.com/) |
-| 4 | - Rà soát Proposal, Worklog và Workshop.<br>- Kiểm tra cấu trúc repository và các thay đổi cuối cùng. | 26/11/2026 | 26/11/2026 | [The First Cloud Journey](https://cloudjourney.awsstudygroup.com/) |
-| 5 | - Chuẩn bị project và tài liệu cho việc đánh giá, cleanup và nộp báo cáo. | 27/11/2026 | 27/11/2026 | [CloudWatch](https://000008.awsstudygroup.com/) · [Frontend Integration with API Gateway](https://000135.awsstudygroup.com/) |
+| 2 | - Kiểm tra lần cuối Cognito authentication, CRUD và data isolation.<br>- Rà soát luồng dữ liệu giữa Lambda và DynamoDB. | 24/11/2026 | 24/11/2026 | [Authentication with Amazon Cognito](https://cloudjourney.awsfcaj.com/) · [Serverless CRUD with Lambda and DynamoDB](https://cloudjourney.awsfcaj.com/) |
+| 3 | - Hoàn thiện screenshot và nội dung Workshop.<br>- Kiểm tra các trang song ngữ và liên kết nội bộ. | 25/11/2026 | 25/11/2026 | [The First Cloud Journey](https://cloudjourney.awsfcaj.com/) |
+| 4 | - Rà soát Proposal, Worklog và Workshop.<br>- Kiểm tra cấu trúc repository và các thay đổi cuối cùng. | 26/11/2026 | 26/11/2026 | [The First Cloud Journey](https://cloudjourney.awsfcaj.com/) |
+| 5 | - Chuẩn bị project và tài liệu cho việc đánh giá, cleanup và nộp báo cáo. | 27/11/2026 | 27/11/2026 | [CloudWatch](https://cloudjourney.awsfcaj.com/) · [Frontend Integration with API Gateway](https://cloudjourney.awsfcaj.com/) |
 
 **Kết quả đạt được tuần 12:**
 
