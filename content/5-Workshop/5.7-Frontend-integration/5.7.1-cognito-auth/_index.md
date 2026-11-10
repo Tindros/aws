@@ -30,7 +30,7 @@ Create a `.env` file in the root of the `frontend/` folder with your AWS resourc
 VITE_AWS_REGION=us-east-1
 VITE_COGNITO_USER_POOL_ID=us-east-1_xxxxxxxxx
 VITE_COGNITO_CLIENT_ID=3xxxxxxxxxxxxxxxxxxxxxxxxx
-VITE_API_BASE_URL=https://<API_ID>.execute-api.us-east-1.amazonaws.com
+VITE_API_URL=https://<API_ID>.execute-api.us-east-1.amazonaws.com
 ```
 
 {{% notice warning %}}
@@ -163,18 +163,21 @@ export const authService = {
 4. Click **Sign in**.
 5. Verify that authentication succeeds and the browser stores the Access Token used for API requests. This sample checks only whether a token string exists; it does not proactively refresh expired sessions. When the Access Token expires, API calls may return `401` and the app redirects to login. For production apps, use a stronger session design and avoid persisting tokens in `localStorage` where possible.
 
-{{% notice tip %}}
-**Troubleshooting Vite & Node Global Compatibility:**  
-If your browser developer console shows `Uncaught ReferenceError: global is not defined` when loading the application, modern Vite environments may need a lightweight browser shim for legacy cryptographic routines in `amazon-cognito-identity-js`.  
-You can resolve this by adding the following shim at the very top of `src/main.tsx`:
+If you encounter `Uncaught ReferenceError: global is not defined` when loading the application, configure Vite in `vite.config.ts`:
+
 ```typescript
-// Browser compatibility shim for amazon-cognito-identity-js
-if (typeof window !== 'undefined' && !(window as any).global) {
-  (window as any).global = window;
-}
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+
+export default defineConfig({
+  plugins: [react()],
+  define: {
+    global: 'globalThis',
+  },
+})
 ```
-*Note: Apply this change only if you encounter this specific runtime error.*
-{{% /notice %}}
+
+This is the configuration used by the workshop frontend.
 
 {{% notice info %}}
 📸 **Pending Screenshot:** `static/images/5-Workshop/5.7-Frontend-integration/frontend-02-login-success.png`  
