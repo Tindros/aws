@@ -6,13 +6,13 @@ chapter: false
 pre: " <b> 1.5. </b> "
 ---
 
-**### Week 5 Objectives:**
+**Week 5 Objectives:**
 
 * Finalize the new project direction after changing the project topic.
 * Build the basic frontend for the Serverless Personal Expense Tracker.
 * Implement and test the main expense management functions locally.
 
-**### Tasks to be completed this week:**
+**Tasks to be completed this week:**
 
 | Day | Task | Start Date | Completion Date | Reference Material |
 | --- | --- | --- | --- | --- |
@@ -21,7 +21,7 @@ pre: " <b> 1.5. </b> "
 | 4 | - Build the Login, Register, and Dashboard pages.<br>- Build the expense management interface and related components. | 08/10/2026 | 08/10/2026 | [Build Frontend to call API Gateway](https://000079.awsstudygroup.com/) |
 | 5 | - Create mock authentication and expense services.<br>- Test the Add → Dashboard → Edit → Dashboard → Delete → Dashboard workflow locally. | 09/10/2026 | 09/10/2026 | [Build Frontend to call API Gateway](https://000079.awsstudygroup.com/) |
 
-**### Results achieved in Week 5:**
+**Results achieved in Week 5:**
 
 * Changed the project topic to the **Serverless Personal Expense Tracker**.
 * Completed the basic frontend using **React + Vite + TypeScript**.
