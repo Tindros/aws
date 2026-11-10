@@ -28,10 +28,8 @@ Workshop này hướng dẫn bạn từng bước xây dựng và kiểm tra m�
 4. Cuộn xuống cuối trang và bấm **Delete app**.
 5. Nhập chữ `delete` để xác nhận và nhấn nút **Delete**.
 
-{{% notice info %}}
 📸 **Pending Screenshot:** `static/images/5-Workshop/5.9-Testing-and-Cleanup/cleanup-01-delete-amplify.png`  
 *(Cần chụp khi triển khai: Thao tác xóa ứng dụng frontend trên giao diện AWS Amplify Console)*
-{{% /notice %}}
 <!-- ![Xóa Amplify App](/images/5-Workshop/5.9-Testing-and-Cleanup/cleanup-01-delete-amplify.png) -->
 
 ---
@@ -44,10 +42,8 @@ Workshop này hướng dẫn bạn từng bước xây dựng và kiểm tra m�
 4. Bấm nút **Delete** trên thanh công cụ phía trên.
 5. Xác nhận xóa bằng cách nhập tên API hoặc nhấn **Confirm**.
 
-{{% notice info %}}
 📸 **Pending Screenshot:** `static/images/5-Workshop/5.9-Testing-and-Cleanup/cleanup-02-delete-apigw.png`  
 *(Cần chụp khi triển khai: Thao tác xóa ExpenseTrackerApi trên API Gateway Console)*
-{{% /notice %}}
 <!-- ![Xóa API Gateway](/images/5-Workshop/5.9-Testing-and-Cleanup/cleanup-02-delete-apigw.png) -->
 
 ---
@@ -59,10 +55,8 @@ Workshop này hướng dẫn bạn từng bước xây dựng và kiểm tra m�
 3. Chọn menu **Actions** -> **Delete**.
 4. Nhập chữ `delete` vào hộp thoại xác nhận và bấm **Delete**.
 
-{{% notice info %}}
 📸 **Pending Screenshot:** `static/images/5-Workshop/5.9-Testing-and-Cleanup/cleanup-03-delete-lambda.png`  
 *(Cần chụp khi triển khai: Thao tác xóa hàm expenseTrackerFunction trên Lambda Console)*
-{{% /notice %}}
 <!-- ![Xóa Hàm Lambda](/images/5-Workshop/5.9-Testing-and-Cleanup/cleanup-03-delete-lambda.png) -->
 
 ---
@@ -77,10 +71,8 @@ Workshop này hướng dẫn bạn từng bước xây dựng và kiểm tra m�
 4. Tại góc trên cùng của trang thông tin vai trò, bấm nút **Delete role**.
 5. Xác nhận xóa vai trò.
 
-{{% notice info %}}
 📸 **Pending Screenshot:** `static/images/5-Workshop/5.9-Testing-and-Cleanup/cleanup-04-delete-iam-role.png`  
 *(Cần chụp khi triển khai: Thao tác xóa vai trò ExpenseTrackerLambdaRole trên IAM Console)*
-{{% /notice %}}
 <!-- ![Xóa IAM Role](/images/5-Workshop/5.9-Testing-and-Cleanup/cleanup-04-delete-iam-role.png) -->
 
 ---
@@ -92,10 +84,8 @@ Workshop này hướng dẫn bạn từng bước xây dựng và kiểm tra m�
 3. Nhấn nút **Delete**.
 4. Nhập `confirm` (hoặc `delete`) vào ô xác nhận và chọn **Delete table**.
 
-{{% notice info %}}
 📸 **Pending Screenshot:** `static/images/5-Workshop/5.9-Testing-and-Cleanup/cleanup-05-delete-dynamodb.png`  
 *(Cần chụp khi triển khai: Thao tác xóa bảng ExpenseTable trên DynamoDB Console)*
-{{% /notice %}}
 <!-- ![Xóa Bảng DynamoDB](/images/5-Workshop/5.9-Testing-and-Cleanup/cleanup-05-delete-dynamodb.png) -->
 
 ---
@@ -107,10 +97,8 @@ Workshop này hướng dẫn bạn từng bước xây dựng và kiểm tra m�
 3. Chọn mục **Delete user pool**.
 4. Nhập tên user pool `expense-tracker-user-pool` vào ô xác nhận và bấm **Delete**.
 
-{{% notice info %}}
 📸 **Pending Screenshot:** `static/images/5-Workshop/5.9-Testing-and-Cleanup/cleanup-06-delete-cognito.png`  
 *(Cần chụp khi triển khai: Thao tác xóa user pool expense-tracker-user-pool trên Cognito Console)*
-{{% /notice %}}
 <!-- ![Xóa Cognito User Pool](/images/5-Workshop/5.9-Testing-and-Cleanup/cleanup-06-delete-cognito.png) -->
 
 ---
@@ -123,12 +111,8 @@ Workshop này hướng dẫn bạn từng bước xây dựng và kiểm tra m�
 4. Chọn menu **Actions** -> **Delete log group(s)**.
 5. Xác nhận xóa bằng cách nhấn **Delete**.
 
-{{% notice info %}}
 📸 **Pending Screenshot:** `static/images/5-Workshop/5.9-Testing-and-Cleanup/cleanup-07-delete-cloudwatch.png`  
 *(Cần chụp khi triển khai: Thao tác xóa nhóm nhật ký /aws/lambda/expenseTrackerFunction)*
-{{% /notice %}}
 <!-- ![Xóa CloudWatch Log Group](/images/5-Workshop/5.9-Testing-and-Cleanup/cleanup-07-delete-cloudwatch.png) -->
 
-{{% notice tip %}}
 **Xác minh dọn dẹp:** Kiểm tra từng tài nguyên đã liệt kê trong Region `us-east-1` và xem lại AWS Billing, đồng thời tìm các tài nguyên workshop còn sót lại. Danh sách này chỉ bao gồm những tài nguyên nêu ở trên, không bảo đảm tài khoản không còn tài nguyên nào khác có thể phát sinh phí.
-{{% /notice %}}
