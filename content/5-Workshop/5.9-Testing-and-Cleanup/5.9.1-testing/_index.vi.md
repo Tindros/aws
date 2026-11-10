@@ -28,10 +28,8 @@ curl -i -X GET "https://<API_ID>.execute-api.us-east-1.amazonaws.com/expenses" \
    + Tiêu đề phản hồi có giá trị `Access-Control-Allow-Origin` do API Gateway cấu hình (nếu giới hạn origin, giá trị phải khớp với origin frontend).
    + Thân phản hồi chứa mảng JSON gồm các khoản chi tiêu của người dùng được truy xuất từ DynamoDB.
 
-{{% notice info %}}
 📸 **Pending Screenshot:** `static/images/5-Workshop/5.9-Testing-and-Cleanup/test-01-curl-authorized.png`  
 *(Cần chụp khi triển khai: Terminal hoặc Postman hiển thị phản hồi HTTP 200 OK khi gửi kèm token JWT hợp lệ)*
-{{% /notice %}}
 <!-- ![Xác thực Yêu cầu Hợp lệ](/images/5-Workshop/5.9-Testing-and-Cleanup/test-01-curl-authorized.png) -->
 
 ---
@@ -60,15 +58,11 @@ curl -i -X GET "https://<API_ID>.execute-api.us-east-1.amazonaws.com/expenses" \
 4. **Kết quả Kỳ vọng:**
    + Mã trạng thái HTTP: `401 Unauthorized`.
 
-{{% notice info %}}
 📸 **Pending Screenshot:** `static/images/5-Workshop/5.9-Testing-and-Cleanup/test-02-curl-unauthorized.png`  
 *(Cần chụp khi triển khai: Terminal hiển thị lỗi HTTP 401 Unauthorized khi gửi request thiếu hoặc sai token)*
-{{% /notice %}}
 <!-- ![Chặn Yêu cầu Trái phép](/images/5-Workshop/5.9-Testing-and-Cleanup/test-02-curl-unauthorized.png) -->
 
-{{% notice tip %}}
 **Xác minh Lambda không được gọi:** Mở CloudWatch Logs của hàm `expenseTrackerFunction` và kiểm tra thời điểm bạn thực hiện kiểm thử. Các yêu cầu bị JWT authorizer của API Gateway từ chối sẽ không gọi Lambda hoặc tạo log từ lần gọi Lambda đó. API Gateway vẫn có thể tính phí cho request; điều này không có nghĩa tổng chi phí bằng 0.
-{{% /notice %}}
 
 ---
 
