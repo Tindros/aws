@@ -22,16 +22,10 @@ Bạn có thể chủ động tạo một tài khoản người dùng trực ti�
    + Đánh dấu tích vào **Mark email address as verified**.
    + Tại mục **Temporary password**, chọn **Set a permanent password** và nhập mật khẩu riêng, đủ mạnh và thỏa mãn chính sách. Không dùng lại mật khẩu ví dụ trong tài liệu hoặc commit thông tin đăng nhập vào repository.
 
-📸 **Pending Screenshot:** `static/images/5-Workshop/5.3-Cognito/cognito-06-create-test-user.png`  
-*(Cần chụp khi triển khai: Thao tác tạo tài khoản thử nghiệm có email đã xác thực trên Cognito)*
-<!-- ![Tạo người dùng thử nghiệm](/images/5-Workshop/5.3-Cognito/cognito-06-create-test-user.png) -->
 
 4. Nhấn **Create user**.
 5. Xác nhận tài khoản `demo-user@example.com` xuất hiện trong danh sách người dùng với trạng thái **Confirmed**.
 
-📸 **Pending Screenshot:** `static/images/5-Workshop/5.3-Cognito/cognito-07-test-user-confirmed.png`  
-*(Cần chụp khi triển khai: Danh sách người dùng hiển thị demo-user@example.com ở trạng thái Confirmed)*
-<!-- ![Người dùng được xác nhận](/images/5-Workshop/5.3-Cognito/cognito-07-test-user-confirmed.png) -->
 
 ---
 

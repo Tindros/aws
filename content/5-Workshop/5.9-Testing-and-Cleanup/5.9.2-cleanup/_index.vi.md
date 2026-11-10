@@ -29,7 +29,7 @@ Workshop này hướng dẫn bạn từng bước xây dựng và kiểm tra m�
 5. Nhập chữ `delete` để xác nhận và nhấn nút **Delete**.
 
 
-![Xóa Amplify App](/images/5-Workshop/5.9-Testing-and-Cleanup/cleanup-01-delete-amplify.png)
+![Xóa Amplify App](/aws/images/5-Workshop/5.9-Testing-and-Cleanup/cleanup-01-delete-amplify.png)
 
 ---
 
@@ -80,7 +80,7 @@ Workshop này hướng dẫn bạn từng bước xây dựng và kiểm tra m�
 3. Chọn mục **Delete user pool**.
 4. Nhập tên user pool `expense-tracker-user-pool` vào ô xác nhận và bấm **Delete**.
 
-![Xóa Cognito User Pool](/images/5-Workshop/5.9-Testing-and-Cleanup/cleanup-06-delete-cognito.png)
+![Xóa Cognito User Pool](/aws/images/5-Workshop/5.9-Testing-and-Cleanup/cleanup-06-delete-cognito.png)
 
 ---
 

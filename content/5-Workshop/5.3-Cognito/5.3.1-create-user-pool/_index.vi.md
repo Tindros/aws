@@ -36,7 +36,7 @@ Trình hướng dẫn thiết lập của Amazon Cognito hiện nay tích hợp 
    + Tại danh sách thuộc tính bắt buộc, chọn **`email`**.
    + Người dùng bắt buộc phải cung cấp địa chỉ email hợp lệ khi đăng ký tài khoản.
 
-![Cấu hình Wizard SPA & Tùy chọn Đăng nhập](/images/5-Workshop/5.3-Cognito/cognito-01-sign-in-experience.png)
+![Cấu hình Wizard SPA & Tùy chọn Đăng nhập](/aws/images/5-Workshop/5.3-Cognito/cognito-01-sign-in-experience.png)
 
 6. Nhấn nút xác nhận khởi tạo để hoàn tất việc tạo User Pool.
    + *Lưu ý về thiết lập mặc định:* Trình hướng dẫn SPA sẽ tự động áp dụng các thiết lập mặc định tối ưu: chính sách mật khẩu tiêu chuẩn, No MFA, gửi email qua dịch vụ mặc định của Cognito, và tạo một App Client công khai không dùng client secret.
@@ -54,7 +54,7 @@ Sau khi User Pool được khởi tạo thành công, bạn có thể kiểm tra
    + **Temporary passwords set by administrators expire in (Mật khẩu tạm thời do admin tạo hết hạn sau):** `7 day(s)` (7 ngày).
    + **Password reuse (Tái sử dụng mật khẩu):** Cho phép tái sử dụng mật khẩu cũ (Allow reuse of previous passwords).
 
-![Thiết lập Chính sách Mật khẩu](/images/5-Workshop/5.3-Cognito/cognito-02-security-requirements.png)
+![Thiết lập Chính sách Mật khẩu](/aws/images/5-Workshop/5.3-Cognito/cognito-02-security-requirements.png)
 
 3. **Multi-factor authentication (Xác thực đa yếu tố - MFA):**
    + Tại phần cấu hình bảo mật, xác nhận **MFA enforcement** đang ở chế độ **No MFA**.
@@ -75,7 +75,7 @@ Sau khi User Pool được khởi tạo thành công, bạn có thể kiểm tra
    + Tại mục **User pool name**, nhập `expense-tracker-user-pool`.
    + Nhấn **Save changes** để lưu thay đổi.
 
-![Hộp thoại Đổi tên User Pool](/images/5-Workshop/5.3-Cognito/cognito-03-user-pool-name.png)
+![Hộp thoại Đổi tên User Pool](/aws/images/5-Workshop/5.3-Cognito/cognito-03-user-pool-name.png)
 
 ---
 
@@ -105,7 +105,7 @@ Tiếp theo, kiểm tra thông số của App Client công khai được tạo c
    + **Authentication flow session duration:** `3 minutes` (3 phút).
 6. Cài đặt nâng cao: Xác nhận hai tùy chọn **Enable token revocation** và **Enable prevent user existence errors** đang được kích hoạt.
 
-![Chi tiết App Client - ExpenseTrackerWebClient](/images/5-Workshop/5.3-Cognito/cognito-04-app-client.png)
+![Chi tiết App Client - ExpenseTrackerWebClient](/aws/images/5-Workshop/5.3-Cognito/cognito-04-app-client.png)
 
 **Phạm vi & Giới hạn Tích hợp:**  
 Bạn chưa cần cấu hình Hosted UI callback URLs, sign-out URLs hay OAuth 2.0 scopes ở bước này. Ứng dụng React của chúng ta giao tiếp trực tiếp với Cognito APIs thông qua thư viện AWS SDK / Amplify Auth thay vì chuyển hướng trang đăng nhập Hosted UI. Việc tích hợp hoàn chỉnh sẽ được thực hiện tại phần [7. Tích hợp React Frontend](../../5.7-Frontend-integration/).
@@ -123,7 +123,7 @@ Quay lại trang **Overview** của `expense-tracker-user-pool` để xác nhậ
    + **OpenID Connect configuration URL:** Endpoint định danh OIDC tiêu chuẩn của Cognito.
    + **Token signing key URL:** Đường dẫn JSON Web Key Set (JWKS) dùng bởi các dịch vụ backend (như API Gateway) để giải mã và xác thực chữ ký số của token.
 
-![Tổng quan User Pool](/images/5-Workshop/5.3-Cognito/cognito-05-user-pool-overview.png)
+![Tổng quan User Pool](/aws/images/5-Workshop/5.3-Cognito/cognito-05-user-pool-overview.png)
 
 2. Ghi lại hai thông số quan trọng bắt buộc cho các bài thực hành tiếp theo:
 

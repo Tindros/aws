@@ -36,7 +36,7 @@ The current Amazon Cognito creation flow provides a streamlined application setu
    + Under **Required attributes for sign-up**, select **`email`**.
    + Users must provide a valid email address during account registration.
 
-![Configure SPA Creation Wizard & Sign-in Options](/images/5-Workshop/5.3-Cognito/cognito-01-sign-in-experience.png)
+![Configure SPA Creation Wizard & Sign-in Options](/aws/images/5-Workshop/5.3-Cognito/cognito-01-sign-in-experience.png)
 
 6. Click the creation confirmation button to provision the user pool.
    + *Note on automated defaults:* The SPA setup wizard automatically provisions your user pool with recommended cloud-native defaults: standard password policies, No MFA, default Cognito email delivery, and an initial public App Client without a client secret.
@@ -54,7 +54,7 @@ Once the user pool is provisioned, you can inspect and verify its security confi
    + **Temporary passwords set by administrators expire in:** `7 day(s)`.
    + **Password reuse:** Allow reuse of previous passwords.
 
-![Password Policy Settings](/images/5-Workshop/5.3-Cognito/cognito-02-security-requirements.png)
+![Password Policy Settings](/aws/images/5-Workshop/5.3-Cognito/cognito-02-security-requirements.png)
 
 3. **Multi-factor authentication (MFA):**
    + In the console security settings, verify that **MFA enforcement** is set to **No MFA**.
@@ -75,7 +75,7 @@ To ensure consistency with project naming standards and infrastructure documenta
    + Under **User pool name**, enter `expense-tracker-user-pool`.
    + Click **Save changes**.
 
-![User Pool Rename Dialog](/images/5-Workshop/5.3-Cognito/cognito-03-user-pool-name.png)
+![User Pool Rename Dialog](/aws/images/5-Workshop/5.3-Cognito/cognito-03-user-pool-name.png)
 
 ---
 
@@ -105,7 +105,7 @@ A Single-Page Application runs directly in the end-user's browser. Any client se
    + **Authentication flow session duration:** `3 minutes`.
 6. Advanced settings: Confirm that **Enable token revocation** and **Enable prevent user existence errors** are active.
 
-![App Client Details - ExpenseTrackerWebClient](/images/5-Workshop/5.3-Cognito/cognito-04-app-client.png)
+![App Client Details - ExpenseTrackerWebClient](/aws/images/5-Workshop/5.3-Cognito/cognito-04-app-client.png)
 
 **Scope & Integration Boundaries:**  
 Do not configure Hosted UI callback URLs, sign-out URLs, or OAuth 2.0 scopes at this stage. Our React application communicates directly with Cognito APIs via AWS SDK / Amplify Auth libraries rather than Hosted UI redirects. Full client-side integration is implemented in [7. React Frontend Integration](../../5.7-Frontend-integration/).
@@ -123,7 +123,7 @@ Return to the **Overview** page of `expense-tracker-user-pool` to verify the pro
    + **OpenID Connect configuration URL:** Cognito's standard discovery endpoint.
    + **Token signing key URL:** JSON Web Key Set (JWKS) URL used by downstream services (such as API Gateway) to cryptographically verify token signatures.
 
-![User Pool Overview](/images/5-Workshop/5.3-Cognito/cognito-05-user-pool-overview.png)
+![User Pool Overview](/aws/images/5-Workshop/5.3-Cognito/cognito-05-user-pool-overview.png)
 
 2. Note down the two critical identifiers needed across subsequent workshop modules:
 

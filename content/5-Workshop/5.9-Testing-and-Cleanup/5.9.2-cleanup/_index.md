@@ -29,7 +29,7 @@ This workshop walks through a learning implementation of a serverless architectu
 5. Type `delete` to confirm and click **Delete**.
 
 
-![Delete Amplify App](/images/5-Workshop/5.9-Testing-and-Cleanup/cleanup-01-delete-amplify.png)
+![Delete Amplify App](/aws/images/5-Workshop/5.9-Testing-and-Cleanup/cleanup-01-delete-amplify.png)
 
 ---
 
@@ -80,7 +80,7 @@ This workshop walks through a learning implementation of a serverless architectu
 3. Choose **Delete user pool**.
 4. Type the user pool name `expense-tracker-user-pool` in the confirmation dialog and click **Delete**.
 
-![Delete Cognito User Pool](/images/5-Workshop/5.9-Testing-and-Cleanup/cleanup-06-delete-cognito.png)
+![Delete Cognito User Pool](/aws/images/5-Workshop/5.9-Testing-and-Cleanup/cleanup-06-delete-cognito.png)
 
 ---
 

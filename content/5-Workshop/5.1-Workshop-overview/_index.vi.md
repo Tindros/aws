@@ -27,7 +27,7 @@ Hệ thống được xây dựng theo mô hình kiến trúc đám mây 3 lớp
    + **Amazon CloudWatch:** Tự động thu thập nhật ký thực thi Lambda, các chỉ số vận hành hệ thống, tần suất gọi hàm và dấu vết lỗi.
    + **AWS IAM:** Gắn hàm Lambda với Execution Role tuân thủ nguyên tắc cấp quyền tối thiểu (Least Privilege).
 
-![Kiến trúc Serverless Personal Expense Tracker](/images/5-Workshop/5.1-Workshop-overview/architecture.jpeg)
+![Kiến trúc Serverless Personal Expense Tracker](/aws/images/5-Workshop/5.1-Workshop-overview/architecture.jpeg)
 
 ---
 

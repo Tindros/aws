@@ -27,7 +27,7 @@ The system follows a decoupled, three-tier cloud-native architecture:
    + **Amazon CloudWatch:** Automatically collects Lambda execution logs, runtime metrics, invocation rates, and error traces.
    + **AWS IAM:** Binds the Lambda function to an execution role implementing least-privilege security policies.
 
-![Serverless Personal Expense Tracker Architecture](/images/5-Workshop/5.1-Workshop-overview/architecture.jpeg)
+![Serverless Personal Expense Tracker Architecture](/aws/images/5-Workshop/5.1-Workshop-overview/architecture.jpeg)
 
 ---
 
