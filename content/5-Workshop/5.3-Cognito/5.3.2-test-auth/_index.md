@@ -22,19 +22,15 @@ You can provision a test account directly from the AWS Console without requiring
    + Check **Mark email address as verified**.
    + Under **Temporary password**, select **Set a permanent password** and enter a unique password of your own that satisfies the policy. Do not reuse example passwords from documentation or commit credentials to the repository.
 
-{{% notice info %}}
 📸 **Pending Screenshot:** `static/images/5-Workshop/5.3-Cognito/cognito-06-create-test-user.png`  
 *(To be captured during deployment: Creating a test user with verified email in Cognito Console)*
-{{% /notice %}}
 <!-- ![Create Test User](/images/5-Workshop/5.3-Cognito/cognito-06-create-test-user.png) -->
 
 4. Click **Create user**.
 5. Confirm that `demo-user@example.com` appears in the user list with status **Confirmed**.
 
-{{% notice info %}}
 📸 **Pending Screenshot:** `static/images/5-Workshop/5.3-Cognito/cognito-07-test-user-confirmed.png`  
 *(To be captured during deployment: User list showing demo-user@example.com with status Confirmed)*
-{{% /notice %}}
 <!-- ![Test User Confirmed](/images/5-Workshop/5.3-Cognito/cognito-07-test-user-confirmed.png) -->
 
 ---
@@ -92,9 +88,7 @@ Amazon Cognito issues two distinct tokens upon successful sign-in:
    }
    ```
 
-{{% notice tip %}}
 **Security Foundation:** The `sub` claim is the stable user identifier within the User Pool. Lambda must use the `sub` claim supplied by API Gateway after token validation—not a `userId` sent in the request body—to scope DynamoDB operations to the authenticated user.
-{{% /notice %}}
 
 ---
 
