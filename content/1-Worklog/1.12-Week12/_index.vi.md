@@ -6,13 +6,13 @@ chapter: false
 pre: " <b> 1.12. </b> "
 ---
 
-**### Mục tiêu tuần 12:**
+**Mục tiêu tuần 12:**
 
 * Hoàn thiện Personal Expense Tracker và tài liệu Workshop.
 * Kiểm tra lần cuối project và repository.
 * Chuẩn bị project cho việc đánh giá và nộp báo cáo.
 
-**### Các công việc cần triển khai trong tuần này:**
+**Các công việc cần triển khai trong tuần này:**
 
 | Thứ | Công việc | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu |
 | --- | --- | --- | --- | --- |
@@ -21,7 +21,7 @@ pre: " <b> 1.12. </b> "
 | 4 | - Rà soát Proposal, Worklog và Workshop.<br>- Kiểm tra cấu trúc repository và các thay đổi cuối cùng. | 26/11/2026 | 26/11/2026 | [The First Cloud Journey](https://cloudjourney.awsstudygroup.com/) |
 | 5 | - Chuẩn bị project và tài liệu cho việc đánh giá, cleanup và nộp báo cáo. | 27/11/2026 | 27/11/2026 | [CloudWatch](https://000008.awsstudygroup.com/) · [Frontend Integration with API Gateway](https://000135.awsstudygroup.com/) |
 
-**### Kết quả đạt được tuần 12:**
+**Kết quả đạt được tuần 12:**
 
 * Hoàn thiện Serverless Personal Expense Tracker.
 * Hoàn thiện authentication và các chức năng quản lý expense.
