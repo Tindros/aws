@@ -6,13 +6,13 @@ chapter: false
 pre: " <b> 1.12. </b> "
 ---
 
-**### Week 12 Objectives:**
+**Week 12 Objectives:**
 
 * Finalize the Personal Expense Tracker and Workshop documentation.
 * Perform the final project and repository checks.
 * Prepare the project for evaluation and report submission.
 
-**### Tasks to be completed this week:**
+**Tasks to be completed this week:**
 
 | Day | Task | Start Date | Completion Date | Reference Material |
 | --- | --- | --- | --- | --- |
@@ -21,7 +21,7 @@ pre: " <b> 1.12. </b> "
 | 4 | - Review the Proposal, Worklog, and Workshop.<br>- Verify the repository structure and final changes. | 26/11/2026 | 26/11/2026 | [The First Cloud Journey](https://cloudjourney.awsstudygroup.com/) |
 | 5 | - Prepare the project and documentation for evaluation, cleanup, and report submission. | 27/11/2026 | 27/11/2026 | [CloudWatch](https://000008.awsstudygroup.com/) · [Frontend Integration with API Gateway](https://000135.awsstudygroup.com/) |
 
-**### Results achieved in Week 12:**
+**Results achieved in Week 12:**
 
 * Finalized the Serverless Personal Expense Tracker.
 * Completed the authentication and expense management functions.
