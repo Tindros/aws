@@ -6,13 +6,13 @@ chapter: false
 pre: " <b> 1.10. </b> "
 ---
 
-**### Week 10 Objectives:**
+**Week 10 Objectives:**
 
 * Review and stabilize the Workshop documentation.
 * Verify that the instructions match the actual project implementation.
 * Prepare the documentation and screenshots for the final project.
 
-**### Tasks to be completed this week:**
+**Tasks to be completed this week:**
 
 | Day | Task | Start Date | Completion Date | Reference Material |
 | --- | --- | --- | --- | --- |
@@ -21,7 +21,7 @@ pre: " <b> 1.10. </b> "
 | 4 | - Remove unnecessary notice blocks.<br>- Check and correct image paths in the Proposal and Workshop. | 12/11/2026 | 12/11/2026 | [Build Frontend to call API Gateway](https://000079.awsstudygroup.com/) |
 | 5 | - Review the Vietnamese and English Workshop pages.<br>- Prepare the required screenshot list and deployment checklist. | 13/11/2026 | 13/11/2026 | [The First Cloud Journey](https://cloudjourney.awsstudygroup.com/) |
 
-**### Results achieved in Week 10:**
+**Results achieved in Week 10:**
 
 * Reviewed the Workshop content from 5.1 to 5.9.
 * Updated the documentation to match the actual project configuration.
