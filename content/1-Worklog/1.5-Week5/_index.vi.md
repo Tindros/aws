@@ -6,13 +6,13 @@ chapter: false
 pre: " <b> 1.5. </b> "
 ---
 
-**### Mục tiêu tuần 5:**
+**Mục tiêu tuần 5:**
 
 * Hoàn thiện định hướng project sau khi chuyển sang đề tài mới.
 * Xây dựng frontend cơ bản cho ứng dụng Serverless Personal Expense Tracker.
 * Triển khai và kiểm thử các chức năng quản lý chi tiêu ở mức frontend.
 
-**### Các công việc cần triển khai trong tuần này:**
+**Các công việc cần triển khai trong tuần này:**
 
 | Thứ | Công việc | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu |
 | --- | --- | --- | --- | --- |
@@ -21,7 +21,7 @@ pre: " <b> 1.5. </b> "
 | 4 | - Xây dựng các giao diện Login, Register và Dashboard.<br>- Xây dựng giao diện quản lý expense và các component liên quan. | 08/10/2026 | 08/10/2026 | [Build Frontend to call API Gateway](https://000079.awsstudygroup.com/) |
 | 5 | - Tạo mock service cho authentication và expense.<br>- Kiểm thử luồng Add → Dashboard → Edit → Dashboard → Delete → Dashboard trên môi trường local. | 09/10/2026 | 09/10/2026 | [Build Frontend to call API Gateway](https://000079.awsstudygroup.com/) |
 
-**### Kết quả đạt được tuần 5:**
+**Kết quả đạt được tuần 5:**
 
 * Chuyển project sang đề tài **Serverless Personal Expense Tracker**.
 * Hoàn thiện frontend cơ bản bằng **React + Vite + TypeScript**.
