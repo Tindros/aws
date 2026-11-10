@@ -199,28 +199,22 @@ export const expenseService = {
 3. Quan sát trang **Dashboard** thời gian thực:
    + Các chỉ số tài chính được tải động từ endpoint `/summary` của API Gateway.
 
-{{% notice info %}}
 📸 **Pending Screenshot:** `static/images/5-Workshop/5.7-Frontend-integration/frontend-03-dashboard-live.png`  
 *(Cần chụp khi triển khai: Giao diện Dashboard hiển thị số liệu tài chính thực tế tải từ API Gateway)*
-{{% /notice %}}
 <!-- ![Dashboard Thực tế](/images/5-Workshop/5.7-Frontend-integration/frontend-03-dashboard-live.png) -->
 
 4. Chuyển sang mục **New Expense** (`/expenses/new`), điền thông tin (ví dụ: Mô tả: `Văn phòng phẩm`, Số tiền: `35.00`, Danh mục: `Shopping`, Ngày: `2026-10-14`), sau đó nhấn **Save Expense**:
    + Frontend sẽ gửi yêu cầu `POST /expenses` đến API Gateway để lưu vào DynamoDB.
 
-{{% notice info %}}
 📸 **Pending Screenshot:** `static/images/5-Workshop/5.7-Frontend-integration/frontend-04-add-expense.png`  
 *(Cần chụp khi triển khai: Thao tác tạo mới khoản chi tiêu qua biểu mẫu React frontend)*
-{{% /notice %}}
 <!-- ![Biểu mẫu Tạo Chi tiêu](/images/5-Workshop/5.7-Frontend-integration/frontend-04-add-expense.png) -->
 
 5. Chuyển sang mục **Expenses** (`/expenses`):
    + Bảng danh sách hiển thị bản ghi chi tiêu vừa tạo được lưu trữ an toàn trong DynamoDB.
 
-{{% notice info %}}
 📸 **Pending Screenshot:** `static/images/5-Workshop/5.7-Frontend-integration/frontend-05-expenses-table.png`  
 *(Cần chụp khi triển khai: Bảng danh sách hiển thị các bản ghi chi tiêu thực tế từ DynamoDB)*
-{{% /notice %}}
 <!-- ![Bảng Danh sách Chi tiêu](/images/5-Workshop/5.7-Frontend-integration/frontend-05-expenses-table.png) -->
 
 ---
