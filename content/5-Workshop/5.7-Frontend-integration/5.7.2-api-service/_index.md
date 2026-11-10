@@ -199,28 +199,22 @@ export const expenseService = {
 3. Observe the live **Dashboard**:
    + Metrics load dynamically from the `/summary` API Gateway endpoint.
 
-{{% notice info %}}
 📸 **Pending Screenshot:** `static/images/5-Workshop/5.7-Frontend-integration/frontend-03-dashboard-live.png`  
 *(To be captured during deployment: Dashboard view displaying real financial summaries fetched from API Gateway)*
-{{% /notice %}}
 <!-- ![Live Dashboard](/images/5-Workshop/5.7-Frontend-integration/frontend-03-dashboard-live.png) -->
 
 4. Navigate to **New Expense** (`/expenses/new`), fill out the form (e.g., Description: `Office Supplies`, Amount: `35.00`, Category: `Shopping`, Date: `2026-10-14`), and click **Save Expense**:
    + The frontend dispatches a `POST /expenses` request to API Gateway.
 
-{{% notice info %}}
 📸 **Pending Screenshot:** `static/images/5-Workshop/5.7-Frontend-integration/frontend-04-add-expense.png`  
 *(To be captured during deployment: Adding a new expense via the React frontend form)*
-{{% /notice %}}
 <!-- ![Add Expense Form](/images/5-Workshop/5.7-Frontend-integration/frontend-04-add-expense.png) -->
 
 5. Navigate to **Expenses** (`/expenses`):
    + The table displays the newly created record persisted in DynamoDB.
 
-{{% notice info %}}
 📸 **Pending Screenshot:** `static/images/5-Workshop/5.7-Frontend-integration/frontend-05-expenses-table.png`  
 *(To be captured during deployment: Expenses list page populated with live records from DynamoDB)*
-{{% /notice %}}
 <!-- ![Expenses Table](/images/5-Workshop/5.7-Frontend-integration/frontend-05-expenses-table.png) -->
 
 ---
