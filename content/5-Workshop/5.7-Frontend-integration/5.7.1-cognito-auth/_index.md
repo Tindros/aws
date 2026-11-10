@@ -33,14 +33,10 @@ VITE_COGNITO_CLIENT_ID=3xxxxxxxxxxxxxxxxxxxxxxxxx
 VITE_API_URL=https://<API_ID>.execute-api.us-east-1.amazonaws.com
 ```
 
-{{% notice warning %}}
 **Security Reminder:** Replace placeholder values with your actual User Pool ID and App Client ID. Because the App Client does not use a client secret, these public configuration values can be safely built into client bundles. Never commit private AWS access keys or passwords to version control.
-{{% /notice %}}
 
-{{% notice info %}}
 📸 **Pending Screenshot:** `static/images/5-Workshop/5.7-Frontend-integration/frontend-01-env-file.png`  
 *(To be captured during deployment: Frontend .env configuration showing Cognito and API Gateway parameters)*
-{{% /notice %}}
 <!-- ![Configure Frontend Environment](/images/5-Workshop/5.7-Frontend-integration/frontend-01-env-file.png) -->
 
 ---
@@ -179,8 +175,6 @@ export default defineConfig({
 
 This is the configuration used by the workshop frontend.
 
-{{% notice info %}}
 📸 **Pending Screenshot:** `static/images/5-Workshop/5.7-Frontend-integration/frontend-02-login-success.png`  
 *(To be captured during deployment: React frontend successfully logged in with active Cognito session)*
-{{% /notice %}}
 <!-- ![Login Success](/images/5-Workshop/5.7-Frontend-integration/frontend-02-login-success.png) -->
