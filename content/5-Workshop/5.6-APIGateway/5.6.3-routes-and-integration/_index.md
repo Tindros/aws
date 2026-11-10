@@ -52,10 +52,8 @@ All six routes will use `CognitoJWTAuthorizer`. Do not create a public route for
 
 Check the Routes list and make sure all six route keys appear exactly as shown in the table.
 
-{{% notice info %}}
 📸 **Pending Screenshot:** `static/images/5-Workshop/5.6-APIGateway/apigw-04-routes-list.png`  
 *(Capture the Routes page showing all six route keys after they have been created.)*
-{{% /notice %}}
 <!-- ![Routes List](/images/5-Workshop/5.6-APIGateway/apigw-04-routes-list.png) -->
 
 ---
@@ -71,14 +69,10 @@ Check the Routes list and make sure all six route keys appear exactly as shown i
 4. If the console asks for an integration method, keep the Lambda invocation method as `POST`. This is the method API Gateway uses to invoke Lambda; it does not change the HTTP methods exposed by your API routes.
 5. Choose **Create**.
 
-{{% notice note %}}
 **Why use payload format version 2.0?** The Lambda handler in this workshop reads HTTP API v2 event fields, including `event.requestContext.http.method`, `event.rawPath`, `event.pathParameters`, and `event.requestContext.authorizer.jwt.claims.sub`. The integration must therefore use payload format version `2.0`.
-{{% /notice %}}
 
-{{% notice info %}}
 📸 **Pending Screenshot:** `static/images/5-Workshop/5.6-APIGateway/apigw-05-lambda-integration.png`  
 *(Capture the Lambda integration details showing expenseTrackerFunction and payload format version 2.0.)*
-{{% /notice %}}
 <!-- ![Lambda Integration](/images/5-Workshop/5.6-APIGateway/apigw-05-lambda-integration.png) -->
 
 ---
@@ -100,10 +94,8 @@ Creating an integration does not automatically connect it to every route. Attach
 
 After attaching, inspect each route and verify that its integration points to `expenseTrackerFunction`. Every route must have an integration before it can invoke the Lambda function.
 
-{{% notice info %}}
 📸 **Pending Screenshot:** `static/images/5-Workshop/5.6-APIGateway/apigw-05b-route-integrations.png`  
 *(Capture the Routes page or route details showing the Lambda integration attached to the routes.)*
-{{% /notice %}}
 
 ---
 
@@ -129,9 +121,7 @@ aws lambda add-permission \
   --source-arn "arn:aws:execute-api:us-east-1:<YOUR_ACCOUNT_ID>:<API_ID>/$default/*/*"
 ```
 
-{{% notice warning %}}
 Use the command only if the required permission is missing. The `statement-id` must be unique in the Lambda function's resource policy. Do not replace an existing permission or broaden the source ARN unnecessarily.
-{{% /notice %}}
 
 ---
 
@@ -153,10 +143,8 @@ The authorizer must be attached to each route individually. Creating the authori
 
 Return to the Routes authorization view and confirm that all six routes show `CognitoJWTAuthorizer`, not `NONE`.
 
-{{% notice info %}}
 📸 **Pending Screenshot:** `static/images/5-Workshop/5.6-APIGateway/apigw-06-authorizer-attached.png`  
 *(Capture the authorization settings showing CognitoJWTAuthorizer attached to all six routes.)*
-{{% /notice %}}
 <!-- ![Authorizer Attached](/images/5-Workshop/5.6-APIGateway/apigw-06-authorizer-attached.png) -->
 
 ---
@@ -169,9 +157,7 @@ Return to the Routes authorization view and confirm that all six routes show `Co
 4. API Gateway handles CORS preflight requests for an HTTP API when CORS is configured. You do not need to create a separate application `OPTIONS` route for this workshop.
 5. Under **Deploy → Stages**, select `$default` and confirm that **Auto-deploy** is enabled.
 
-{{% notice note %}}
 When API-level CORS is configured, API Gateway manages the preflight response. Keep the allowed origins limited to the frontend domains you trust. The Lambda function in this workshop does not need to add its own CORS response headers.
-{{% /notice %}}
 
 ---
 
@@ -187,10 +173,8 @@ https://<API_ID>.execute-api.us-east-1.amazonaws.com
 
 4. Save this value. The React frontend will use it as its API base URL in Section 5.7.
 
-{{% notice info %}}
 📸 **Pending Screenshot:** `static/images/5-Workshop/5.6-APIGateway/apigw-07-stage-invoke-url.png`  
 *(Capture the $default stage overview showing the Invoke URL.)*
-{{% /notice %}}
 <!-- ![Stage Invoke URL](/images/5-Workshop/5.6-APIGateway/apigw-07-stage-invoke-url.png) -->
 
 ---
@@ -208,9 +192,7 @@ Before proceeding, verify that:
 - [ ] CORS allows the frontend origin, `Authorization` and `Content-Type` headers, and the required HTTP methods.
 - [ ] You have saved the API Invoke URL for the frontend configuration.
 
-{{% notice warning %}}
 **Testing note:** This checklist verifies the configuration steps; it does not mean that the API has been deployed or tested in a live AWS account. Perform the authorized-request, missing-token, invalid-token, and user-data-isolation tests in Section 5.9 after completing the frontend integration. Do not mark screenshots or live tests as completed until you have actually performed them.
-{{% /notice %}}
 
 ---
 
