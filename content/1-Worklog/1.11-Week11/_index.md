@@ -6,13 +6,13 @@ chapter: false
 pre: " <b> 1.11. </b> "
 ---
 
-**### Week 11 Objectives:**
+**Week 11 Objectives:**
 
 * Deploy and verify the frontend.
 * Capture the required screenshots for the Workshop.
 * Perform a final review of the documentation before submission.
 
-**### Tasks to be completed this week:**
+**Tasks to be completed this week:**
 
 | Day | Task | Start Date | Completion Date | Reference Material |
 | --- | --- | --- | --- | --- |
@@ -21,7 +21,7 @@ pre: " <b> 1.11. </b> "
 | 4 | - Check the Workshop image paths and GitHub Pages rendering.<br>- Verify that the deployed documentation displays the screenshots correctly. | 19/11/2026 | 19/11/2026 | [CloudWatch Monitoring](https://000085.awsstudygroup.com/) · [Frontend Integration with API Gateway](https://000135.awsstudygroup.com/) |
 | 5 | - Perform a final review of the Proposal, Workshop, and project configuration.<br>- Prepare the repository for evaluation. | 20/11/2026 | 20/11/2026 | [The First Cloud Journey](https://cloudjourney.awsstudygroup.com/) |
 
-**### Results achieved in Week 11:**
+**Results achieved in Week 11:**
 
 * Verified the deployed frontend and the main application functions.
 * Captured and organized the required AWS screenshots.
