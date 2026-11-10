@@ -18,11 +18,9 @@ When a client sends an HTTP request containing an `Authorization: Bearer <TOKEN>
 3. **Audience / Client ID Check:** API Gateway checks `aud` when present; if it is absent, it can check `client_id`. Cognito Access Tokens commonly use `client_id`, so configure the authorizer Audience with the Cognito App Client ID and verify this during testing.
 4. **Context Injection:** Extracts the verified claims (such as `sub` and `email`) and injects them into the Lambda event payload at `event.requestContext.authorizer.jwt.claims`.
 
-{{% notice note %}}
 **Use the Access Token for API Requests:** The ID Token communicates user identity to the client application; the Access Token is intended for API authorization. API Gateway HTTP API JWT authorizers check `aud` when present and can check `client_id` when `aud` is absent. Cognito Access Tokens commonly contain `client_id`, so set the authorizer's Audience to the Cognito App Client ID and send the Access Token in `Authorization: Bearer <TOKEN>`. Do not send the ID Token as a substitute for the Access Token.
 * **Authentication (AuthN):** Handled at the gateway boundary by the JWT Authorizer. It verifies *who you are* by checking token signature, issuer, and expiration, and blocks unauthenticated requests from reaching Lambda.
 * **Authorization (AuthZ):** Handled in the Lambda business logic and DynamoDB design. It determines *what you can access*. Lambda extracts the verified `sub` (User ID) from the request context and scopes each database operation to that user's partition. This pattern supports tenant isolation, provided every read, update, and delete operation consistently uses the verified `sub` claim.
-{{% /notice %}}
 
 ---
 
@@ -39,12 +37,8 @@ When a client sends an HTTP request containing an `Authorization: Bearer <TOKEN>
    + **Audience:** Click **Add audience**, then enter your Cognito **App Client ID** (from Section 5.3.1).
 5. Choose **Create**.
 
-{{% notice info %}}
 📸 **Pending Screenshot:** `static/images/5-Workshop/5.6-APIGateway/apigw-03-jwt-authorizer.png`  
 *(To be captured during deployment: Creating JWT Authorizer configured with Cognito Issuer URL and Client ID audience)*
-{{% /notice %}}
 <!-- ![Configure JWT Authorizer](/images/5-Workshop/5.6-APIGateway/apigw-03-jwt-authorizer.png) -->
 
-{{% notice tip %}}
 **Authorizer Ready:** The authorizer is now configured and ready to be attached to your application routes in the next module.
-{{% /notice %}}
