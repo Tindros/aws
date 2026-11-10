@@ -129,14 +129,10 @@ The policy below is an illustrative starting point for a dedicated training acco
 }
 ```
 
-{{% notice warning %}}
 **Important:** This example uses `apigateway:*` and wildcard resources for some create/list operations, so it is not a strict least-privilege policy. Review and reduce permissions with your AWS administrator before use. Never grant these permissions to the root user or a production identity.
-{{% /notice %}}
 
-{{% notice info %}}
 📸 **Pending Screenshot:** `static/images/5-Workshop/5.2-Prerequiste/prereq-iam-policy.png`  
 *(To be captured during deployment: IAM Console showing the approved workshop permissions attached to the intended role or identity)*
-{{% /notice %}}
 <!-- ![IAM Policy Setup](/images/5-Workshop/5.2-Prerequiste/prereq-iam-policy.png) -->
 
 ---
@@ -162,10 +158,8 @@ To work with and test the frontend code and API endpoints locally:
 3. **API Testing Utility:**
    + **cURL** (built into Windows PowerShell and macOS/Linux terminals) or **Postman** / **Thunder Client** to issue authenticated HTTP requests with JWT tokens.
 
-{{% notice info %}}
 📸 **Pending Screenshot:** `static/images/5-Workshop/5.2-Prerequiste/prereq-terminal-env.png`  
 *(To be captured during deployment: Terminal output confirming Node.js/npm versions and local frontend setup)*
-{{% /notice %}}
 <!-- ![Local Environment Setup](/images/5-Workshop/5.2-Prerequiste/prereq-terminal-env.png) -->
 
 ---
