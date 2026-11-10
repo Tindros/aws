@@ -16,10 +16,10 @@ pre: " <b> 1.9. </b> "
 
 | Day | Task | Start Date | Completion Date | Reference Material |
 | --- | --- | --- | --- | --- |
-| 2 | - Test Lambda with GET, POST, PUT, DELETE, and summary operations.<br>- Review DynamoDB data access. | 03/11/2026 | 03/11/2026 | [Serverless CRUD with Lambda and DynamoDB](https://000133.awsstudygroup.com/) |
-| 3 | - Test JWT authentication and the API Gateway authorizer.<br>- Verify requests with valid and invalid authentication. | 04/11/2026 | 04/11/2026 | [Authentication with Amazon Cognito](https://000081.awsstudygroup.com/) |
-| 4 | - Test data isolation between users.<br>- Verify that Lambda uses the Cognito sub claim to access the correct user's data. | 05/11/2026 | 05/11/2026 | [Authentication with Amazon Cognito](https://000081.awsstudygroup.com/) · [Serverless CRUD with Lambda and DynamoDB](https://000133.awsstudygroup.com/) |
-| 5 | - Review Workshop pages from 5.1 to 5.9.<br>- Check consistency between the Vietnamese and English versions. | 06/11/2026 | 06/11/2026 | [The First Cloud Journey](https://cloudjourney.awsstudygroup.com/) |
+| 2 | - Test Lambda with GET, POST, PUT, DELETE, and summary operations.<br>- Review DynamoDB data access. | 03/11/2026 | 03/11/2026 | [Serverless CRUD with Lambda and DynamoDB](https://cloudjourney.awsfcaj.com/) |
+| 3 | - Test JWT authentication and the API Gateway authorizer.<br>- Verify requests with valid and invalid authentication. | 04/11/2026 | 04/11/2026 | [Authentication with Amazon Cognito](https://cloudjourney.awsfcaj.com/) |
+| 4 | - Test data isolation between users.<br>- Verify that Lambda uses the Cognito sub claim to access the correct user's data. | 05/11/2026 | 05/11/2026 | [Authentication with Amazon Cognito](https://cloudjourney.awsfcaj.com/) · [Serverless CRUD with Lambda and DynamoDB](https://cloudjourney.awsfcaj.com/) |
+| 5 | - Review Workshop pages from 5.1 to 5.9.<br>- Check consistency between the Vietnamese and English versions. | 06/11/2026 | 06/11/2026 | [The First Cloud Journey](https://cloudjourney.awsfcaj.com/) |
 
 **Results achieved in Week 9:**
 
