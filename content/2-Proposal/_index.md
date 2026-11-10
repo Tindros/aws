@@ -34,7 +34,7 @@ In addition, a web-based expense management application requires an appropriate 
 
 
 ### The Solution
-he project proposes a Serverless Personal Expense Tracker using AWS services.
+The project proposes a Serverless Personal Expense Tracker using AWS services.
 
 Users access the web application through a browser. AWS Amplify hosts and deploys the frontend application, while the browser communicates directly with Amazon Cognito for user registration and login. After successful authentication, Cognito returns JWT tokens to the browser.
 
@@ -172,193 +172,136 @@ The project focuses on building a complete serverless expense management applica
 - **Monitoring:** Amazon CloudWatch Logs and Metrics.
 ### 5. Timeline & Milestones
 **Project Timeline**
-The project will be developed throughout the **12-week internship**, combining AWS learning, Machine Learning development, serverless implementation, testing, and documentation.
+The project is developed throughout the **12-week internship**, combining AWS learning, project design, serverless implementation, frontend integration, testing, documentation, and final evaluation.
 
 ### Week 1 – AWS Fundamentals
 
 - Create and configure an AWS account.
-
 - Learn AWS cost management and AWS Support.
-
 - Study AWS IAM and access management.
-
 - Learn networking fundamentals with Amazon VPC.
+- Study the basic AWS infrastructure and cloud service concepts.
 
-- Study Amazon EC2 fundamentals.
-
-- Understand the basic concepts of AWS infrastructure and cloud services.
-
-**Milestone:** Complete the fundamental AWS learning modules and understand the basic AWS environment.
+**Milestone:** Complete the fundamental AWS learning modules and understand the AWS environment.
 
 ### Week 2 – AWS Compute, Storage & Database Services
 
 - Learn IAM Roles for EC2.
-
 - Study AWS Cloud9.
-
 - Learn Amazon S3 and static website hosting.
-
 - Study Amazon RDS.
-
 - Learn AWS Lambda and serverless computing.
+- Understand how AWS storage, database, and serverless services can support application development.
 
-- Understand how AWS storage, database, and serverless services can be used in a project.
+**Milestone:** Build foundational knowledge of the AWS services relevant to the project.
 
-**Milestone:** Build foundational knowledge of the AWS services relevant to the serverless project.
-
-### Week 3 – AWS Serverless Learning & Project Direction
+### Week 3 – Serverless Learning & Project Direction
 
 - Continue studying AWS serverless and API-related services.
-
 - Review AWS Lambda and API Gateway concepts.
-
-- Identify the requirements for the Personal Expense Tracker.
-
-- Compare possible project architectures and confirm the serverless approach.
-
-- Start defining the core application features.
+- Review possible project directions.
+- Define the requirements and core features of the Personal Expense Tracker.
+- Confirm the serverless approach.
 
 **Milestone:** Confirm the Serverless Personal Expense Tracker concept and the main AWS services.
 
 ### Week 4 – Project Requirements & Architecture Design
 
 - Finalize the project requirements.
-
 - Finalize the AWS architecture.
-
 - Define the authentication flow using Amazon Cognito.
-
 - Design the DynamoDB expense data structure.
-
 - Define the API endpoints for expense management.
-
 - Document the browser, authentication, API, backend, database, IAM, and monitoring flows.
 
 **Milestone:** Complete the initial project architecture and technical design.
 
-### Week 5 – AWS Cognito & Frontend Foundation
+### Week 5 – Frontend Foundation
 
-- Configure the Amazon Cognito User Pool.
+- Change the project direction from the initial House Price Prediction idea to the Serverless Personal Expense Tracker.
+- Create the frontend using React, Vite, and TypeScript.
+- Build the Login, Register, and Dashboard pages.
+- Build the main expense management components.
+- Create mock authentication and expense services for local development.
+- Test the local add, view, edit, and delete workflow.
 
-- Implement user registration and sign in.
+**Milestone:** Complete the basic frontend structure and local expense management workflow.
 
-- Test JWT token generation and authentication.
+### Week 6 – Cognito, DynamoDB & IAM Foundation
 
-- Create the initial frontend application.
-
-- Configure AWS Amplify for frontend hosting and deployment.
-
-**Milestone:** Complete the authentication flow and establish the initial frontend environment.
-
-### Week 6 – API Gateway, Lambda & DynamoDB
-
-- Create the Amazon API Gateway HTTP API.
-
-- Configure the JWT authorizer using Amazon Cognito.
-
+- Configure the Amazon Cognito User Pool and App Client.
+- Review the Cognito authentication flow and JWT tokens.
 - Create the DynamoDB ExpenseTable.
+- Design the partition key and sort key using userId and expenseId.
+- Create the Lambda Execution Role.
+- Configure the required permissions for DynamoDB and CloudWatch Logs.
 
-- Develop AWS Lambda functions for expense management.
+**Milestone:** Complete the authentication, data storage, and IAM foundation for the backend.
 
-- Implement create, read, update, and delete operations.
+### Week 7 – Lambda & API Gateway Backend
 
-- Test authenticated API requests.
+- Create the expenseTrackerFunction Lambda function.
+- Implement GET, POST, GET by ID, PUT, DELETE, and summary operations.
+- Connect Lambda to DynamoDB.
+- Create the API Gateway HTTP API and Lambda integration.
+- Configure expense routes and CORS.
+- Configure the Cognito JWT Authorizer and protect the API routes.
 
-**Milestone:** Complete the core authenticated serverless backend.
+**Milestone:** Complete the main authenticated serverless backend.
 
-### Week 7 – Expense Management Frontend
+### Week 8 – Frontend & Backend Integration
 
-- Build the expense entry interface.
+- Integrate Amazon Cognito into the React frontend.
+- Implement sign-in and token handling.
+- Replace the mock expense service with the real API Gateway service.
+- Send the Cognito JWT Access Token in the Authorization header.
+- Connect the Dashboard to real expense and summary data.
+- Test the complete add, view, edit, and delete workflow.
 
-- Implement forms for amount, category, date, and description.
+**Milestone:** Complete the frontend integration with the real AWS backend.
 
-- Connect the frontend directly to API Gateway using authenticated requests.
+### Week 9 – System Testing & User Isolation
 
-- Implement expense listing, editing, and deletion.
+- Test Lambda GET, POST, PUT, DELETE, and summary operations.
+- Test API Gateway JWT authentication and authorization.
+- Verify valid and invalid authentication requests.
+- Verify data isolation between users using the Cognito sub claim.
+- Test unauthorized access and DELETE behavior for data outside the user's ownership.
+- Review the Workshop documentation from 5.1 to 5.9.
 
-- Implement frontend validation and error handling.
+**Milestone:** Verify the main security, authorization, and data-isolation behavior and stabilize the system.
 
-**Milestone:** Complete the main expense management features.
+### Week 10 – Workshop & Documentation Review
 
-### Week 8 – Filtering & Dashboard
+- Review the Workshop pages from 5.1 to 5.9.
+- Verify that the documented AWS service configuration matches the actual project.
+- Synchronize the Vietnamese and English Workshop pages.
+- Update frontend API configuration references.
+- Review the Amplify hosting instructions and frontend repository structure.
+- Check image paths and prepare the screenshot and deployment checklist.
 
-- Implement filtering by date or month.
+**Milestone:** Stabilize the Workshop documentation and align it with the actual project implementation.
 
-- Implement filtering by expense category.
+### Week 11 – Deployment & Screenshot Verification
 
-- Calculate total expense information.
+- Deploy the frontend using the configured hosting workflow.
+- Verify authentication and expense management after deployment.
+- Capture the required screenshots for Cognito, DynamoDB, Lambda, API Gateway, CloudWatch, and Amplify.
+- Store the screenshots under the Workshop image directory.
+- Check image paths and GitHub Pages rendering.
+- Perform a final review of the Proposal, Workshop, and project configuration.
 
-- Create a dashboard for spending summaries.
+**Milestone:** Verify the deployed application and complete the required project evidence.
 
-- Display category-based expense breakdowns.
+### Week 12 – Finalization & Evaluation Preparation
 
-- Improve the usability of the frontend.
+- Perform a final functional test of Cognito authentication, CRUD operations, and user data isolation.
+- Finalize the Workshop screenshots and bilingual documentation.
+- Review the Proposal, Worklog, Workshop, and repository structure.
+- Perform AWS resource cleanup after verification where appropriate.
+- Prepare the project and documentation for evaluation and report submission.
 
-**Milestone:** Complete the main expense review and summary functions.
-
-### Week 9 – Security & Monitoring
-
-- Configure the Lambda Execution Role using IAM.
-
-- Apply the principle of least privilege.
-
-- Verify Lambda access to DynamoDB.
-
-- Verify Lambda permissions required for CloudWatch logging.
-
-- Review Amazon CloudWatch logs and metrics.
-
-- Test unauthorized and invalid API requests.
-
-**Milestone:** Complete the security and monitoring configuration.
-
-### Week 10 – System Testing & Error Handling
-
-- Perform end-to-end testing.
-
-- Test user registration and authentication.
-
-- Test expense CRUD operations.
-
-- Test filtering and summary functions.
-
-- Test invalid, missing, and unauthorized requests.
-
-- Identify and fix frontend, API Gateway, Lambda, and DynamoDB issues.
-
-**Milestone:** Complete system testing and resolve major application issues.
-
-### Week 11 – Optimization & Production Deployment
-
-- Optimize Lambda functions and API processing.
-
-- Review DynamoDB access patterns and data retrieval.
-
-- Review CloudWatch logs and monitoring.
-
-- Deploy the latest frontend version using AWS Amplify.
-
-- Test the application through the production web interface.
-
-- Review expected AWS resource usage and costs.
-
-**Milestone:** Deploy a stable production version of the Personal Expense Tracker.
-
-### Week 12 – Finalization & Documentation
-
-- Finalize the AWS architecture and system implementation.
-
-- Review the complete application.
-
-- Evaluate project results against the original objectives.
-
-- Document the implementation process.
-
-- Complete the internship Worklog and project documentation.
-
-- Prepare the final project presentation and demonstration.
-
-**Milestone:** Complete and present the Serverless Personal Expense Tracker.
+**Milestone:** Complete the Serverless Personal Expense Tracker documentation and prepare the repository for final evaluation.
 
 ## 6. Budget Estimate
 
