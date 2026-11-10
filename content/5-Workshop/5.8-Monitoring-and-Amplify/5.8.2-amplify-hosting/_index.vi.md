@@ -15,8 +15,8 @@ Trong phần này, bạn sẽ triển khai bản phát hành hoàn thiện của
 1. Truy cập [AWS Amplify Console](https://us-east-1.console.aws.amazon.com/amplify/home?region=us-east-1).
 2. Nhấn nút **Deploy an app** (hoặc **Host web app**).
 3. Lựa chọn nguồn mã nguồn triển khai:
-   + **Triển khai qua Git (khuyến nghị cho workshop này):** Kết nối nhà cung cấp Git chứa repository. Ứng dụng React nằm trong thư mục con `frontend/`, vì vậy hãy cấu hình monorepo app root của Amplify là `frontend` và thêm biến môi trường `AMPLIFY_MONOREPO_APP_ROOT=frontend` trong phần environment settings của ứng dụng.
-   + **Phương án tải lên trực tiếp:** Chạy `npm run build` trong thư mục `frontend/`, sau đó tải nội dung build trong `frontend/dist/` lên theo quy trình manual deployment hiện hành của Amplify. Tệp `amplify.yml` dưới đây dành cho build qua Git, không dùng cho phương án ZIP.
+   + **Triển khai qua Git (khuyến nghị cho workshop này):** Kết nối nhà cung cấp Git chứa repository. Repository này chứa trực tiếp mã nguồn React frontend ở thư mục gốc, vì vậy không cần cấu hình monorepo app root.
+   + **Phương án tải lên trực tiếp:** Chạy `npm run build` trong repository `expense-tracker-frontend`, sau đó tải thư mục `dist/` lên theo quy trình manual deployment hiện hành của Amplify. Tệp `amplify.yml` dưới đây dành cho build qua Git, không dùng cho phương án ZIP.
 4. **App name:** Nhập `expense-tracker-frontend`.
 
 {{% notice info %}}
@@ -29,13 +29,11 @@ Trong phần này, bạn sẽ triển khai bản phát hành hoàn thiện của
 
 #### Bước 2: Cấu hình Quá trình Xây dựng (`amplify.yml`)
 
-1. Vì ứng dụng nằm trong thư mục con `frontend/` của repository, hãy đặt app root của Amplify là `frontend` và dùng cấu hình build sau cho triển khai qua Git:
+1. Vì `expense-tracker-frontend` là repository chỉ chứa một ứng dụng, hãy sử dụng cấu hình build sau cho triển khai qua Git:
 
 ```yaml
 version: 1
-applications:
-  - appRoot: frontend
-    frontend:
+frontend:
       phases:
         preBuild:
           commands:
@@ -64,10 +62,9 @@ applications:
 
 1. Mở rộng phần **Advanced settings** (hoặc chuyển sang mục **App settings** -> **Environment variables**).
 2. Khai báo 4 biến môi trường của dự án:
-   + `VITE_AWS_REGION`: `us-east-1`
    + `VITE_COGNITO_USER_POOL_ID`: `<YOUR_USER_POOL_ID>`
    + `VITE_COGNITO_CLIENT_ID`: `<YOUR_APP_CLIENT_ID>`
-   + `VITE_API_BASE_URL`: `<YOUR_API_GATEWAY_INVOKE_URL>`
+   + `VITE_API_URL`: `<YOUR_API_GATEWAY_INVOKE_URL>`
 
 > Mọi biến `VITE_*` đều được đóng gói vào frontend và người dùng có thể xem được. Chỉ đặt các cấu hình công khai như Region, User Pool ID, App Client ID và API URL ở đây—tuyệt đối không đặt access key, client secret, mật khẩu hoặc thông tin xác thực khác.
 3. Nhấn **Save and deploy**.
