@@ -6,13 +6,13 @@ chapter: false
 pre: " <b> 1.6. </b> "
 ---
 
-**### Week 6 Objectives:**
+**Week 6 Objectives:**
 
 * Design the AWS architecture for the Serverless Personal Expense Tracker.
 * Configure the AWS services required for authentication and data storage.
 * Prepare the backend foundation for the application.
 
-**### Tasks to be completed this week:**
+**Tasks to be completed this week:**
 
 | Day | Task | Start Date | Completion Date | Reference Material |
 | --- | --- | --- | --- | --- |
@@ -21,7 +21,7 @@ pre: " <b> 1.6. </b> "
 | 4 | - Create the DynamoDB table for expense data.<br>- Design the partition key and sort key using userId and expenseId. | 15/10/2026 | 15/10/2026 | [Work with Amazon DynamoDB](https://000060.awsstudygroup.com/) |
 | 5 | - Create the IAM role for Lambda.<br>- Configure permissions for DynamoDB and CloudWatch Logs. | 16/10/2026 | 16/10/2026 | [IAM](https://000002.awsstudygroup.com/) · [CloudWatch](https://000008.awsstudygroup.com/) |
 
-**### Results achieved in Week 6:**
+**Results achieved in Week 6:**
 
 * Completed the Serverless architecture for the Personal Expense Tracker.
 * Successfully created the Cognito User Pool and App Client.
