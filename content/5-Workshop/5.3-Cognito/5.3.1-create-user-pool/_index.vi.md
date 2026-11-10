@@ -58,10 +58,8 @@ Sau khi User Pool được khởi tạo thành công, bạn có thể kiểm tra
 
 3. **Multi-factor authentication (Xác thực đa yếu tố - MFA):**
    + Tại phần cấu hình bảo mật, xác nhận **MFA enforcement** đang ở chế độ **No MFA**.
-   + {{% notice info %}}
-     **Lưu ý về Giao diện Bảng điều khiển:** Trên console Amazon Cognito hiện tại, thiết lập **Password policy** và **MFA enforcement** nằm ở hai thẻ/khung hiển thị riêng biệt. Ảnh chụp màn hình phía trên tập trung vào khung Password policy. Trong khuôn khổ bài thực hành, việc chọn **No MFA** giúp tránh phát sinh chi phí gửi tin nhắn SMS và đơn giản hóa quy trình thử nghiệm.
-     {{% /notice %}}
-4. **Message delivery (Phương thức gửi thư thông báo):**
+   +      **Lưu ý về Giao diện Bảng điều khiển:** Trên console Amazon Cognito hiện tại, thiết lập **Password policy** và **MFA enforcement** nằm ở hai thẻ/khung hiển thị riêng biệt. Ảnh chụp màn hình phía trên tập trung vào khung Password policy. Trong khuôn khổ bài thực hành, việc chọn **No MFA** giúp tránh phát sinh chi phí gửi tin nhắn SMS và đơn giản hóa quy trình thử nghiệm.
+     4. **Message delivery (Phương thức gửi thư thông báo):**
    + Tại phần cấu hình gửi tin nhắn, xác nhận email provider được đặt là **Send email with Cognito**.
    + *Lưu ý:* Dịch vụ email tích hợp sẵn này cung cấp hạn mức gửi thư miễn phí hằng ngày đủ cho quá trình phát triển và kiểm thử mà không cần cấu hình xác thực tên miền trên Amazon SES. Dịch vụ gửi SMS không được cấu hình.
 
@@ -92,10 +90,8 @@ Tiếp theo, kiểm tra thông số của App Client công khai được tạo c
    + **Client ID:** Sao chép chuỗi mã định danh 26 ký tự chữ và số (ví dụ: `6ngvi1al5pn81n534og2guvl27`).
    + **Client secret:** Hiển thị dấu `-` (Không có mã bí mật).
 
-{{% notice warning %}}
 **Quy tắc Kiến trúc Quan trọng — Tuyệt đối không tạo Client Secret cho SPA:**  
 Ứng dụng Single-Page Application chạy hoàn toàn trên trình duyệt người dùng. Mọi mã bí mật (client secret) nhúng vào mã nguồn JavaScript đều có thể bị lộ khi người dùng xem mã nguồn hoặc theo dõi lưu lượng mạng qua công cụ Developer Tools. Việc giữ Client secret ở trạng thái không kích hoạt (`-`) cho phép React app tương tác trực tiếp với Cognito qua các luồng xác thực công khai an toàn.
-{{% /notice %}}
 
 4. Kiểm tra danh sách các luồng xác thực (**Authentication flows**) đang kích hoạt:
    + `Choice-based sign-in`
@@ -111,10 +107,8 @@ Tiếp theo, kiểm tra thông số của App Client công khai được tạo c
 
 ![Chi tiết App Client - ExpenseTrackerWebClient](/images/5-Workshop/5.3-Cognito/cognito-04-app-client.png)
 
-{{% notice tip %}}
 **Phạm vi & Giới hạn Tích hợp:**  
 Bạn chưa cần cấu hình Hosted UI callback URLs, sign-out URLs hay OAuth 2.0 scopes ở bước này. Ứng dụng React của chúng ta giao tiếp trực tiếp với Cognito APIs thông qua thư viện AWS SDK / Amplify Auth thay vì chuyển hướng trang đăng nhập Hosted UI. Việc tích hợp hoàn chỉnh sẽ được thực hiện tại phần [7. Tích hợp React Frontend](../../5.7-Frontend-integration/).
-{{% /notice %}}
 
 ---
 
@@ -139,20 +133,16 @@ Quay lại trang **Overview** của `expense-tracker-user-pool` để xác nhậ
 | **User Pool ID** | `us-east-1_xxxxxxxxx` | Định danh thư mục người dùng; bắt buộc cấu hình tại API Gateway JWT Authorizer |
 | **App Client ID** | `6ngvi1al5pn81n534og2guvl27` | Định danh công khai của client app; cấu hình tại API Gateway Authorizer Audience & Frontend |
 
-{{% notice info %}}
 **Phân biệt User Pool ID và App Client ID:**  
 - **User Pool ID** (`us-east-1_...`): Định danh toàn bộ thư mục tài khoản người dùng và đóng vai trò là nhà phát hành token OIDC (`iss`).
 - **App Client ID** (thường là chuỗi 26 ký tự chữ và số): Định danh ứng dụng client yêu cầu token. ID token của Cognito thường chứa giá trị này trong claim `aud`; Access Token của Cognito thường chứa nó trong `client_id`. JWT authorizer của API Gateway HTTP API kiểm tra `aud` nếu claim này tồn tại và có thể kiểm tra `client_id` nếu không có `aud`.
 - Không nhầm lẫn hoặc hoán đổi vị trí của hai giá trị này khi cấu hình hệ thống.
-{{% /notice %}}
 
 ---
 
 #### Tình trạng Hoàn thành & Bước Tiếp theo
 
-{{% notice info %}}
 **Điểm Kiểm soát Triển khai Tài nguyên:**  
 Tại bước này, Amazon Cognito User Pool và App Client công khai cần được tạo và cấu hình tại `us-east-1`. Hãy xác nhận tên User Pool đã được lưu trên trang Overview trước khi tiếp tục. Việc tạo các tài nguyên này chỉ mới thiết lập hạ tầng danh tính, chưa bao gồm việc tích hợp mã nguồn frontend hay xác thực người dùng thực tế. Việc tạo tài khoản thử nghiệm và kiểm tra cấu trúc JWT token sẽ được thực hiện trong bài học kế tiếp.
-{{% /notice %}}
 
 Chuyển sang phần tiếp theo: [5.3.2 Đăng ký Người dùng, Xác thực & Kiểm tra JWT Token](../5.3.2-test-auth/) để tiến hành tạo tài khoản người dùng thử nghiệm và phân tích cấu trúc token JWT.
