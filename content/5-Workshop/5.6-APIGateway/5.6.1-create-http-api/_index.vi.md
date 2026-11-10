@@ -25,10 +25,8 @@ Trong phần này, bạn sẽ khởi tạo dịch vụ **Amazon API Gateway HTTP
    + Đảm bảo tùy chọn **Auto-deploy** được bật (tự động cập nhật các thay đổi cấu hình mà không cần triển khai thủ công).
 8. Nhấn **Next**, kiểm tra lại các thông số và nhấn **Create**.
 
-{{% notice info %}}
 📸 **Pending Screenshot:** `static/images/5-Workshop/5.6-APIGateway/apigw-01-create-http-api.png`  
 *(Cần chụp khi triển khai: Màn hình tạo HTTP API mang tên ExpenseTrackerApi với stage $default)*
-{{% /notice %}}
 <!-- ![Khởi tạo HTTP API](/images/5-Workshop/5.6-APIGateway/apigw-01-create-http-api.png) -->
 
 ---
@@ -46,8 +44,6 @@ Các trình duyệt web hiện đại tuân thủ chính sách Same-Origin Polic
    + **Access-Control-Max-Age:** Nhập `300` (lưu đệm kết quả kiểm tra trước trong 5 phút để giảm thiểu số lượng cuộc gọi OPTIONS lặp lại).
 4. Nhấn **Save**.
 
-{{% notice info %}}
 📸 **Pending Screenshot:** `static/images/5-Workshop/5.6-APIGateway/apigw-02-cors-configuration.png`  
 *(Cần chụp khi triển khai: Giao diện cấu hình CORS trong API Gateway với danh sách origins, headers và methods)*
-{{% /notice %}}
 <!-- ![Cấu hình CORS](/images/5-Workshop/5.6-APIGateway/apigw-02-cors-configuration.png) -->
