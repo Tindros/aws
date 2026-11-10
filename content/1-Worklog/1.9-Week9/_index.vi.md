@@ -6,13 +6,13 @@ chapter: false
 pre: " <b> 1.9. </b> "
 ---
 
-**### Mục tiêu tuần 9:**
+**Mục tiêu tuần 9:**
 
 * Kiểm thử và ổn định toàn bộ hệ thống.
 * Kiểm tra JWT authentication, authorization và data isolation.
 * Rà soát và hoàn thiện nội dung Workshop.
 
-**### Các công việc cần triển khai trong tuần này:**
+**Các công việc cần triển khai trong tuần này:**
 
 | Thứ | Công việc | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu |
 | --- | --- | --- | --- | --- |
@@ -21,7 +21,7 @@ pre: " <b> 1.9. </b> "
 | 4 | - Kiểm tra data isolation giữa các user.<br>- Xác nhận Lambda sử dụng Cognito sub để truy cập đúng dữ liệu của user. | 05/11/2026 | 05/11/2026 | [Authentication with Amazon Cognito](https://000081.awsstudygroup.com/) · [Serverless CRUD with Lambda and DynamoDB](https://000133.awsstudygroup.com/) |
 | 5 | - Rà soát các trang Workshop từ 5.1 đến 5.9.<br>- Kiểm tra tính nhất quán giữa phiên bản tiếng Việt và tiếng Anh. | 06/11/2026 | 06/11/2026 | [The First Cloud Journey](https://cloudjourney.awsstudygroup.com/) |
 
-**### Kết quả đạt được tuần 9:**
+**Kết quả đạt được tuần 9:**
 
 * Kiểm thử thành công các API CRUD và API summary.
 * Kiểm tra thành công JWT authentication và API Gateway authorization.
