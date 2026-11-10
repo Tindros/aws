@@ -85,12 +85,16 @@ pre: " <b> 4.1. </b> "
 
 ### Application to My Work
 
-* **Developing a Serverless House Price Prediction API**: Apply Cloud and Data Science knowledge to the project I am planning during my internship.
-* **Amazon S3**: Use it to store the trained model or required data files.
-* **AWS Lambda**: Handle prediction logic without directly managing servers.
-* **Amazon API Gateway**: Provide an API that allows the frontend to send house information and receive prediction results.
-* **IAM**: Manage permissions between AWS services and control access to resources.
-* **Frontend integration**: Connect the frontend with the API to build a complete application instead of only running the model in a notebook.
+
+
+* **Developing a Serverless Personal Expense Tracker**: Apply the Cloud and AWS knowledge from the event to my internship project and build a practical serverless application for personal expense management.
+* **Amazon Cognito**: Use it to provide user registration, sign in, and JWT-based authentication.
+* **Amazon DynamoDB**: Use it to store expense records associated with the authenticated user.
+* **AWS Lambda**: Handle expense management business logic without directly managing servers.
+* **Amazon API Gateway**: Provide authenticated APIs for the frontend to create, read, update, delete, and summarize expenses.
+* **IAM**: Manage permissions between AWS services and apply least-privilege access.
+* **Amazon CloudWatch**: Monitor Lambda execution and troubleshoot the application.
+* **Frontend integration**: Connect the React frontend with Cognito and API Gateway to build a complete application instead of keeping the project as a local-only implementation.
 * Continue learning how to combine AWS services to build a **scalable and cost-effective** system.
 
 ### Experience at the Event
@@ -109,7 +113,7 @@ Participating in **AWS Cloud & AI Day Vietnam 2026 – Watch Party** was a valua
 * Learned about **Agentic AI, Cloud Computing, Data & Analytics, and Modern Applications**.
 * Gained a broader perspective on how AI is moving from experimentation toward real-world implementation.
 * Understood more clearly that building a complete AI product requires multiple components, including **data, models, infrastructure, APIs, and applications**.
-* These topics helped me connect what I learned from the event with my **Serverless House Price Prediction API** project during my internship.
+* These topics helped me connect what I learned from the event with my **Serverless Personal Expense Tracker** project during my internship.
 
 #### Networking and Knowledge Exchange
 
@@ -123,7 +127,7 @@ Participating in **AWS Cloud & AI Day Vietnam 2026 – Watch Party** was a valua
 * A good **Machine Learning model** is not enough to create a real-world product; deployment, infrastructure, APIs, security, and scalability must also be considered.
 * Learning AWS services individually should be combined with the ability to **design architectures and solve real-world problems**.
 * As a **Data Science student**, I need to continue developing my Cloud knowledge so that I can bring Machine Learning models and products into real-world environments.
-* The knowledge gained from the event provides additional direction for developing the **Serverless House Price Prediction API** in the following weeks.
+* The knowledge gained from the event provides additional direction for developing the **Serverless Personal Expense Tracker** in the following weeks.
 
 #### Some Photos from the Event
 

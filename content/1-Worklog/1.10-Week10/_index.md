@@ -1,57 +1,33 @@
 ---
 title: "Week 10 Worklog"
-date: 2024-01-01
-weight: 2
+date: 2026-11-09
+weight: 10
 chapter: false
 pre: " <b> 1.10. </b> "
 ---
-{{% notice warning %}} 
-⚠️ **Note:** The following information is for reference purposes only. Please **do not copy verbatim** for your own report, including this warning.
-{{% /notice %}}
 
+**Week 10 Objectives:**
 
-### Week 10 Objectives:
+* Review and stabilize the Workshop documentation.
+* Verify that the instructions match the actual project implementation.
+* Prepare the documentation and screenshots for the final project.
 
-* Connect and get acquainted with members of First Cloud AI Journey.
-* Understand basic AWS services, how to use the console & CLI.
+**Tasks to be completed this week:**
 
-### Tasks to be carried out this week:
-| Day | Task                                                                                                                                                                                                   | Start Date | Completion Date | Reference Material                        |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------- | --------------- | ----------------------------------------- |
-| 2   | - Get acquainted with FCAJ members <br> - Read and take note of internship unit rules and regulations                                                                                                   | 08/11/2025 | 08/11/2025      |
-| 3   | - Learn about AWS and its types of services <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                              | 08/12/2025 | 08/12/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Create AWS Free Tier account <br> - Learn about AWS Console & AWS CLI <br> - **Practice:** <br>&emsp; + Create AWS account <br>&emsp; + Install & configure AWS CLI <br> &emsp; + How to use AWS CLI | 08/13/2025 | 08/13/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Learn basic EC2: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - SSH connection methods to EC2 <br> - Learn about Elastic IP   <br>                            | 08/14/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Practice:** <br>&emsp; + Launch an EC2 instance <br>&emsp; + Connect via SSH <br>&emsp; + Attach an EBS volume                                                                                     | 08/15/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
+| Day | Task | Start Date | Completion Date | Reference Material |
+| --- | --- | --- | --- | --- |
+| 2 | - Review Workshop pages from 5.1 to 5.9.<br>- Check the architecture, AWS service descriptions, and implementation steps. | 10/11/2026 | 10/11/2026 | [The First Cloud Journey](https://cloudjourney.awsfcaj.com/) |
+| 3 | - Review the Cognito, Lambda, DynamoDB, API Gateway, frontend, CloudWatch, and Amplify sections.<br>- Synchronize the documentation with the actual project configuration. | 11/11/2026 | 11/11/2026 | [Authentication with Amazon Cognito](https://cloudjourney.awsfcaj.com/) · [Serverless CRUD with Lambda and DynamoDB](https://cloudjourney.awsfcaj.com/) · [Frontend Integration with API Gateway](https://cloudjourney.awsfcaj.com/) |
+| 4 | - Remove unnecessary notice blocks.<br>- Check and correct image paths in the Proposal and Workshop. | 12/11/2026 | 12/11/2026 | [Build Frontend to call API Gateway](https://cloudjourney.awsfcaj.com/) |
+| 5 | - Review the Vietnamese and English Workshop pages.<br>- Prepare the required screenshot list and deployment checklist. | 13/11/2026 | 13/11/2026 | [The First Cloud Journey](https://cloudjourney.awsfcaj.com/) |
 
+**Results achieved in Week 10:**
 
-### Week 10 Achievements:
-
-* Understood what AWS is and mastered the basic service groups: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
-
-* Successfully created and configured an AWS Free Tier account.
-
-* Became familiar with the AWS Management Console and learned how to find, access, and use services via the web interface.
-
-* Installed and configured AWS CLI on the computer, including:
-  * Access Key
-  * Secret Key
-  * Default Region
-  * ...
-
-* Used AWS CLI to perform basic operations such as:
-
-  * Check account & configuration information
-  * Retrieve the list of regions
-  * View EC2 service
-  * Create and manage key pairs
-  * Check information about running services
-  * ...
-
-* Acquired the ability to connect between the web interface and CLI to manage AWS resources in parallel.
-* ...
+* Reviewed the Workshop content from 5.1 to 5.9.
+* Updated the documentation to match the actual project configuration.
+* Synchronized the Vietnamese and English versions.
+* Updated frontend API configuration references.
+* Updated the Amplify hosting instructions according to the actual frontend repository structure.
+* Removed unnecessary notice blocks from the Workshop.
+* Corrected image path issues on GitHub Pages.
+* Prepared the screenshot and deployment checklist.

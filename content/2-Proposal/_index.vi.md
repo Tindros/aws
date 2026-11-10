@@ -196,196 +196,125 @@ Dự án tập trung xây dựng một ứng dụng quản lý chi tiêu serverl
 - **Monitoring:** Amazon CloudWatch Logs và Metrics.
 
 ### 5. Tiến độ & các mốc quan trọng
-
 **Tiến độ dự án**
+Dự án được triển khai trong **12 tuần thực tập**, kết hợp quá trình học AWS, thiết kế project, xây dựng hệ thống serverless, tích hợp frontend, kiểm thử, hoàn thiện tài liệu và chuẩn bị đánh giá cuối kỳ.
 
-Dự án sẽ được phát triển trong **12 tuần thực tập**, kết hợp việc học AWS, phát triển Machine Learning, triển khai serverless, testing và documentation.
+### Tuần 1 – Kiến thức nền tảng AWS
+- Tạo và cấu hình AWS Account.
+- Tìm hiểu AWS Cost Management và AWS Support.
+- Tìm hiểu IAM và quản lý quyền truy cập.
+- Tìm hiểu kiến thức networking với Amazon VPC.
+- Tìm hiểu các khái niệm cơ bản về hạ tầng và dịch vụ AWS.
 
-### Tuần 1 – AWS Fundamentals
+**Milestone:** Hoàn thành các nội dung AWS nền tảng và hiểu môi trường AWS.
 
-- Tạo và cấu hình tài khoản AWS.
+### Tuần 2 – Compute, Storage và Database trên AWS
+- Tìm hiểu IAM Role cho EC2.
+- Tìm hiểu AWS Cloud9.
+- Tìm hiểu Amazon S3 và static website hosting.
+- Tìm hiểu Amazon RDS.
+- Tìm hiểu AWS Lambda và serverless computing.
+- Hiểu cách storage, database và serverless services có thể hỗ trợ phát triển ứng dụng.
 
-- Học về quản lý chi phí AWS và AWS Support.
+**Milestone:** Xây dựng kiến thức nền tảng về các AWS services liên quan đến project.
 
-- Nghiên cứu AWS IAM và quản lý quyền truy cập.
+### Tuần 3 – Serverless Learning và định hướng Project
+- Tiếp tục tìm hiểu các dịch vụ AWS serverless và API.
+- Ôn tập AWS Lambda và API Gateway.
+- Rà soát các hướng phát triển project.
+- Xác định requirements và các chức năng chính của Personal Expense Tracker.
+- Xác nhận hướng triển khai serverless.
 
-- Học các kiến thức nền tảng về networking với Amazon VPC.
+**Milestone:** Xác định Serverless Personal Expense Tracker và các AWS services chính.
 
-- Nghiên cứu các kiến thức cơ bản về Amazon EC2.
+### Tuần 4 – Requirements và thiết kế Architecture
+- Hoàn thiện requirements của project.
+- Hoàn thiện AWS architecture.
+- Xác định authentication flow bằng Amazon Cognito.
+- Thiết kế cấu trúc dữ liệu expense trên DynamoDB.
+- Xác định các API endpoint cho quản lý expense.
+- Tài liệu hóa flow giữa browser, authentication, API, backend, database, IAM và monitoring.
 
-- Hiểu các khái niệm cơ bản về hạ tầng AWS và cloud services.
+**Milestone:** Hoàn thành architecture và technical design ban đầu.
 
-**Milestone:** Hoàn thành các module học tập AWS cơ bản và hiểu môi trường AWS.
+### Tuần 5 – Xây dựng Frontend cơ bản
+- Chuyển hướng project từ ý tưởng House Price Prediction ban đầu sang Serverless Personal Expense Tracker.
+- Khởi tạo frontend bằng React, Vite và TypeScript.
+- Xây dựng các trang Login, Register và Dashboard.
+- Xây dựng các component chính để quản lý expense.
+- Tạo mock authentication service và expense service để phát triển local.
+- Kiểm thử luồng thêm, xem, sửa và xóa expense trên local.
 
-### Tuần 2 – AWS Compute, Storage & Database Services
+**Milestone:** Hoàn thiện cấu trúc frontend cơ bản và luồng quản lý expense trên local.
 
-- Học IAM Roles cho EC2.
-
-- Nghiên cứu AWS Cloud9.
-
-- Học Amazon S3 và static website hosting.
-
-- Nghiên cứu Amazon RDS.
-
-- Học AWS Lambda và serverless computing.
-
-- Hiểu cách các dịch vụ storage, database và serverless của AWS có thể được sử dụng trong một dự án.
-
-**Milestone:** Xây dựng kiến thức nền tảng về các dịch vụ AWS liên quan đến dự án serverless.
-
-### Tuần 3 – AWS Serverless Learning & Project Direction
-
-- Tiếp tục nghiên cứu các dịch vụ AWS serverless và API liên quan.
-
-- Ôn tập các khái niệm về AWS Lambda và API Gateway.
-
-- Xác định yêu cầu của Personal Expense Tracker.
-
-- So sánh các kiến trúc dự án có thể sử dụng và xác nhận hướng tiếp cận serverless.
-
-- Bắt đầu xác định các chức năng cốt lõi của ứng dụng.
-
-**Milestone:** Xác nhận ý tưởng Serverless Personal Expense Tracker và các dịch vụ AWS chính.
-
-### Tuần 4 – Project Requirements & Architecture Design
-
-- Hoàn thiện yêu cầu dự án.
-
-- Hoàn thiện kiến trúc AWS.
-
-- Xác định luồng xác thực bằng Amazon Cognito.
-
-- Thiết kế cấu trúc dữ liệu chi tiêu trên DynamoDB.
-
-- Xác định các API endpoint cho việc quản lý chi tiêu.
-
-- Tài liệu hóa các luồng browser, authentication, API, backend, database, IAM và monitoring.
-
-**Milestone:** Hoàn thành kiến trúc ban đầu và thiết kế kỹ thuật của dự án.
-
-### Tuần 5 – AWS Cognito & Frontend Foundation
-
-- Cấu hình Amazon Cognito User Pool.
-
-- Triển khai đăng ký và đăng nhập người dùng.
-
-- Kiểm tra quá trình tạo JWT token và authentication.
-
-- Tạo frontend application ban đầu.
-
-- Cấu hình AWS Amplify cho frontend hosting và deployment.
-
-**Milestone:** Hoàn thành authentication flow và thiết lập môi trường frontend ban đầu.
-
-### Tuần 6 – API Gateway, Lambda & DynamoDB
-
-- Tạo Amazon API Gateway HTTP API.
-
-- Cấu hình JWT authorizer sử dụng Amazon Cognito.
-
+### Tuần 6 – Cognito, DynamoDB và IAM
+- Cấu hình Amazon Cognito User Pool và App Client.
+- Tìm hiểu authentication flow và JWT token của Cognito.
 - Tạo DynamoDB ExpenseTable.
+- Thiết kế partition key và sort key với userId và expenseId.
+- Tạo Lambda Execution Role.
+- Cấu hình các quyền cần thiết cho DynamoDB và CloudWatch Logs.
 
-- Phát triển các Lambda function cho quản lý chi tiêu.
+**Milestone:** Hoàn thiện nền tảng authentication, lưu trữ dữ liệu và IAM cho backend.
 
-- Triển khai các thao tác tạo, đọc, cập nhật và xóa.
+### Tuần 7 – Lambda và API Gateway Backend
+- Tạo Lambda function expenseTrackerFunction.
+- Xây dựng các API GET, POST, GET by ID, PUT, DELETE và summary.
+- Kết nối Lambda với DynamoDB.
+- Tạo API Gateway HTTP API và Lambda integration.
+- Cấu hình các expense route và CORS.
+- Cấu hình Cognito JWT Authorizer và bảo vệ các API route.
 
-- Kiểm tra các API request đã được xác thực.
+**Milestone:** Hoàn thiện backend serverless có authentication.
 
-**Milestone:** Hoàn thành serverless backend cốt lõi có authentication.
+### Tuần 8 – Tích hợp Frontend với Backend
+- Tích hợp Amazon Cognito vào React frontend.
+- Xử lý đăng nhập và token.
+- Thay thế mock expense service bằng API Gateway thực tế.
+- Gửi Cognito JWT Access Token trong Authorization header.
+- Kết nối Dashboard với dữ liệu expense và summary thực tế.
+- Kiểm thử đầy đủ luồng thêm, xem, sửa và xóa expense.
 
-### Tuần 7 – Expense Management Frontend
+**Milestone:** Hoàn thiện tích hợp frontend với AWS backend thực tế.
 
-- Xây dựng giao diện nhập chi tiêu.
+### Tuần 9 – Kiểm thử hệ thống và User Isolation
+- Kiểm thử Lambda với các API GET, POST, PUT, DELETE và summary.
+- Kiểm thử JWT authentication và authorization của API Gateway.
+- Kiểm tra request có và không có authentication hợp lệ.
+- Kiểm tra data isolation giữa các user thông qua Cognito sub.
+- Kiểm tra unauthorized access và DELETE đối với dữ liệu không thuộc quyền sở hữu.
+- Rà soát nội dung Workshop từ 5.1 đến 5.9.
 
-- Triển khai form cho amount, category, date và description.
+**Milestone:** Xác minh security, authorization và data isolation, đồng thời ổn định hệ thống.
 
-- Kết nối frontend trực tiếp với API Gateway bằng các request đã xác thực.
+### Tuần 10 – Rà soát Workshop và Documentation
+- Rà soát các trang Workshop từ 5.1 đến 5.9.
+- Kiểm tra cấu hình AWS trong tài liệu có khớp với project thực tế hay không.
+- Đồng bộ các trang Workshop tiếng Việt và tiếng Anh.
+- Cập nhật các nội dung liên quan đến API configuration của frontend.
+- Rà soát hướng dẫn Amplify và cấu trúc repository frontend.
+- Kiểm tra image paths và chuẩn bị screenshot/deployment checklist.
 
-- Triển khai chức năng xem danh sách, chỉnh sửa và xóa chi tiêu.
+**Milestone:** Ổn định tài liệu Workshop và đồng bộ với project thực tế.
 
-- Triển khai validation và error handling ở frontend.
+### Tuần 11 – Deployment và kiểm tra Screenshot
+- Deploy frontend theo hosting workflow đã cấu hình.
+- Kiểm tra authentication và các chức năng quản lý expense sau deployment.
+- Chụp các screenshot cần thiết cho Cognito, DynamoDB, Lambda, API Gateway, CloudWatch và Amplify.
+- Lưu screenshot vào thư mục hình ảnh của Workshop.
+- Kiểm tra image paths và hiển thị trên GitHub Pages.
+- Rà soát Proposal, Workshop và cấu hình project lần cuối.
 
-**Milestone:** Hoàn thành các chức năng quản lý chi tiêu chính.
+**Milestone:** Kiểm tra ứng dụng sau deployment và hoàn thiện các bằng chứng cần thiết cho project.
 
-### Tuần 8 – Filtering & Dashboard
+### Tuần 12 – Hoàn thiện và chuẩn bị đánh giá
+- Kiểm thử lần cuối Cognito authentication, CRUD và user data isolation.
+- Hoàn thiện screenshot và tài liệu Workshop song ngữ.
+- Rà soát Proposal, Worklog, Workshop và cấu trúc repository.
+- Thực hiện cleanup các AWS resources sau khi hoàn tất kiểm tra nếu phù hợp.
+- Chuẩn bị project và tài liệu cho việc đánh giá và nộp báo cáo.
 
-- Triển khai lọc theo ngày hoặc tháng.
-
-- Triển khai lọc theo danh mục chi tiêu.
-
-- Tính toán tổng chi tiêu.
-
-- Tạo dashboard cho các thông tin tổng hợp chi tiêu.
-
-- Hiển thị phân tích chi tiêu theo danh mục.
-
-- Cải thiện khả năng sử dụng của frontend.
-
-**Milestone:** Hoàn thành các chức năng xem xét và tổng hợp chi tiêu chính.
-
-### Tuần 9 – Security & Monitoring
-
-- Cấu hình Lambda Execution Role bằng IAM.
-
-- Áp dụng nguyên tắc quyền hạn tối thiểu.
-
-- Kiểm tra quyền truy cập DynamoDB của Lambda.
-
-- Kiểm tra các quyền Lambda cần thiết cho CloudWatch logging.
-
-- Xem xét log và metric trên Amazon CloudWatch.
-
-- Kiểm tra các API request không được xác thực và request không hợp lệ.
-
-**Milestone:** Hoàn thành cấu hình security và monitoring.
-
-### Tuần 10 – System Testing & Error Handling
-
-- Thực hiện end-to-end testing.
-
-- Kiểm tra đăng ký và authentication của người dùng.
-
-- Kiểm tra các thao tác CRUD của expense.
-
-- Kiểm tra filtering và summary functions.
-
-- Kiểm tra các request không hợp lệ, thiếu dữ liệu và không được phép.
-
-- Xác định và sửa các vấn đề liên quan đến frontend, API Gateway, Lambda và DynamoDB.
-
-**Milestone:** Hoàn thành system testing và xử lý các vấn đề lớn của ứng dụng.
-
-### Tuần 11 – Optimization & Production Deployment
-
-- Tối ưu Lambda functions và API processing.
-
-- Xem xét các access pattern và cách truy xuất dữ liệu trên DynamoDB.
-
-- Kiểm tra CloudWatch logs và monitoring.
-
-- Triển khai phiên bản frontend mới nhất bằng AWS Amplify.
-
-- Kiểm tra ứng dụng thông qua giao diện web production.
-
-- Xem xét mức sử dụng tài nguyên AWS và chi phí dự kiến.
-
-**Milestone:** Triển khai phiên bản production ổn định của Personal Expense Tracker.
-
-### Tuần 12 – Finalization & Documentation
-
-- Hoàn thiện kiến trúc AWS và hệ thống.
-
-- Xem xét toàn bộ ứng dụng.
-
-- Đánh giá kết quả dự án so với các mục tiêu ban đầu.
-
-- Tài liệu hóa quá trình triển khai.
-
-- Hoàn thành Worklog thực tập và tài liệu dự án.
-
-- Chuẩn bị phần trình bày và demo dự án cuối kỳ.
-
-**Milestone:** Hoàn thành và trình bày Serverless Personal Expense Tracker.
+**Milestone:** Hoàn thiện Serverless Personal Expense Tracker và chuẩn bị repository cho đánh giá cuối kỳ.
 
 ## 6. Ước tính ngân sách
 

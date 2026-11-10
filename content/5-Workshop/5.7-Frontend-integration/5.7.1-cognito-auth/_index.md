@@ -27,7 +27,6 @@ Create a `.env` file in the root of the `frontend/` folder with your AWS resourc
 
 ```ini
 # AWS Deployment Configuration
-VITE_AWS_REGION=us-east-1
 VITE_COGNITO_USER_POOL_ID=us-east-1_xxxxxxxxx
 VITE_COGNITO_CLIENT_ID=3xxxxxxxxxxxxxxxxxxxxxxxxx
 VITE_API_URL=https://<API_ID>.execute-api.us-east-1.amazonaws.com

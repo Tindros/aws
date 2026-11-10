@@ -84,12 +84,16 @@ pre: " <b> 4.1. </b> "
 
 ### Ứng Dụng Vào Công Việc
 
-- **Phát triển Serverless House Price Prediction API**: Áp dụng kiến thức Cloud và Data Science vào project đang thực hiện.
-- **Amazon S3**: Có thể sử dụng để lưu trữ model hoặc các file dữ liệu cần thiết cho project.
-- **AWS Lambda**: Sử dụng để xử lý logic prediction mà không cần quản lý server trực tiếp.
-- **Amazon API Gateway**: Xây dựng API để frontend có thể gửi thông tin căn nhà và nhận kết quả dự đoán.
-- **IAM**: Quản lý permissions giữa các AWS services và kiểm soát quyền truy cập.
-- **Frontend integration**: Kết nối frontend với API để tạo thành một ứng dụng hoàn chỉnh thay vì chỉ chạy model trong notebook.
+
+
+- **Phát triển Serverless Personal Expense Tracker**: Áp dụng kiến thức Cloud và AWS từ sự kiện vào project thực tập và xây dựng một ứng dụng serverless thực tế để quản lý chi tiêu cá nhân.
+- **Amazon Cognito**: Sử dụng để đăng ký, đăng nhập và xác thực bằng JWT.
+- **Amazon DynamoDB**: Sử dụng để lưu trữ các expense record gắn với user đã xác thực.
+- **AWS Lambda**: Xử lý business logic quản lý expense mà không cần trực tiếp quản lý server.
+- **Amazon API Gateway**: Cung cấp các API được bảo vệ để frontend thực hiện thêm, xem, sửa, xóa và tổng hợp expense.
+- **IAM**: Quản lý quyền giữa các AWS services và áp dụng nguyên tắc least privilege.
+- **Amazon CloudWatch**: Theo dõi Lambda execution và hỗ trợ troubleshooting.
+- **Frontend integration**: Kết nối React frontend với Cognito và API Gateway để xây dựng một ứng dụng hoàn chỉnh thay vì chỉ triển khai project ở local.
 - Tiếp tục tìm hiểu cách kết hợp các AWS services để xây dựng hệ thống **scalable và cost-effective**.
 
 ### Trải nghiệm trong event
@@ -108,7 +112,7 @@ Tham gia **AWS Cloud & AI Day Vietnam 2026 – Watch Party** là một trải ng
 - Được theo dõi các nội dung về **Agentic AI, Cloud Computing, Data & Analytics và Modern Applications**.
 - Có thêm góc nhìn về cách AI đang chuyển từ giai đoạn thử nghiệm sang việc được ứng dụng trong các hệ thống thực tế.
 - Hiểu rõ hơn rằng để xây dựng một sản phẩm AI hoàn chỉnh cần kết hợp nhiều thành phần như **data, model, infrastructure, APIs và application**.
-- Những kiến thức này giúp em liên hệ trực tiếp với project **Serverless House Price Prediction API** đang định hướng thực hiện trong quá trình thực tập.
+- Những kiến thức này giúp em liên hệ trực tiếp với project **Serverless Personal Expense Tracker** đang định hướng thực hiện trong quá trình thực tập.
 
 #### Kết nối và trao đổi
 
@@ -122,7 +126,7 @@ Tham gia **AWS Cloud & AI Day Vietnam 2026 – Watch Party** là một trải ng
 - Một **Machine Learning model** tốt chưa đủ để tạo ra một sản phẩm thực tế; cần quan tâm đến deployment, infrastructure, API, security và scalability.
 - Việc học AWS theo từng service cần được kết hợp với khả năng **thiết kế kiến trúc và giải quyết bài toán thực tế**.
 - Với định hướng **Data Science**, em cần tiếp tục phát triển thêm kiến thức Cloud để có thể đưa các model và sản phẩm Machine Learning vào môi trường thực tế.
-- Những kiến thức từ sự kiện giúp em có thêm định hướng để phát triển **Serverless House Price Prediction API** trong các tuần tiếp theo.
+- Những kiến thức từ sự kiện giúp em có thêm định hướng để phát triển **Serverless Personal Expense Tracker** trong các tuần tiếp theo.
 
 #### Một số hình ảnh khi tham gia sự kiện
 
