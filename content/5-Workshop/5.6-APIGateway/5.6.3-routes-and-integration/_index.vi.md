@@ -52,10 +52,8 @@ Cả sáu tuyến đường đều phải sử dụng `CognitoJWTAuthorizer`. Kh
 
 Kiểm tra danh sách Routes và đảm bảo cả sáu route key xuất hiện chính xác như bảng phía trên.
 
-{{% notice info %}}
 📸 **Pending Screenshot:** `static/images/5-Workshop/5.6-APIGateway/apigw-04-routes-list.png`  
 *(Chụp trang Routes hiển thị đầy đủ sáu route key sau khi tạo.)*
-{{% /notice %}}
 <!-- ![Danh sách Routes](/images/5-Workshop/5.6-APIGateway/apigw-04-routes-list.png) -->
 
 ---
@@ -71,14 +69,10 @@ Kiểm tra danh sách Routes và đảm bảo cả sáu route key xuất hiện 
 4. Nếu giao diện yêu cầu chọn integration method, giữ phương thức gọi Lambda là `POST`. Đây là phương thức API Gateway sử dụng nội bộ để gọi Lambda; nó không làm thay đổi các HTTP method mà API route cung cấp cho client.
 5. Nhấn **Create**.
 
-{{% notice note %}}
 **Tại sao sử dụng payload format version 2.0?** Lambda handler trong workshop này đọc các trường của HTTP API v2 event, bao gồm `event.requestContext.http.method`, `event.rawPath`, `event.pathParameters` và `event.requestContext.authorizer.jwt.claims.sub`. Vì vậy integration cần sử dụng payload format version `2.0`.
-{{% /notice %}}
 
-{{% notice info %}}
 📸 **Pending Screenshot:** `static/images/5-Workshop/5.6-APIGateway/apigw-05-lambda-integration.png`  
 *(Chụp thông tin Lambda integration, thể hiện expenseTrackerFunction và payload format version 2.0.)*
-{{% /notice %}}
 <!-- ![Lambda Integration](/images/5-Workshop/5.6-APIGateway/apigw-05-lambda-integration.png) -->
 
 ---
@@ -100,10 +94,8 @@ Việc tạo integration không tự động kết nối integration đó với 
 
 Sau khi gán xong, mở từng route để xác minh integration đều trỏ đến `expenseTrackerFunction`. Mỗi route phải có integration thì mới có thể gọi hàm Lambda.
 
-{{% notice info %}}
 📸 **Pending Screenshot:** `static/images/5-Workshop/5.6-APIGateway/apigw-05b-route-integrations.png`  
 *(Chụp trang Routes hoặc chi tiết route thể hiện Lambda integration đã được gán.)*
-{{% /notice %}}
 
 ---
 
@@ -129,9 +121,7 @@ aws lambda add-permission \
   --source-arn "arn:aws:execute-api:us-east-1:<YOUR_ACCOUNT_ID>:<API_ID>/$default/*/*"
 ```
 
-{{% notice warning %}}
 Chỉ chạy lệnh khi permission cần thiết đang bị thiếu. Giá trị `statement-id` phải là duy nhất trong resource policy của hàm Lambda. Không thay thế permission đang có hoặc mở rộng source ARN quá mức cần thiết.
-{{% /notice %}}
 
 ---
 
@@ -153,10 +143,8 @@ Authorizer cần được gán riêng cho từng route. Việc tạo authorizer 
 
 Quay lại trang Routes trong phần Authorization và xác nhận cả sáu route đều hiển thị `CognitoJWTAuthorizer`, không phải `NONE`.
 
-{{% notice info %}}
 📸 **Pending Screenshot:** `static/images/5-Workshop/5.6-APIGateway/apigw-06-authorizer-attached.png`  
 *(Chụp phần cấu hình Authorization thể hiện CognitoJWTAuthorizer đã được gán cho cả sáu route.)*
-{{% /notice %}}
 <!-- ![Gán Authorizer](/images/5-Workshop/5.6-APIGateway/apigw-06-authorizer-attached.png) -->
 
 ---
@@ -169,9 +157,7 @@ Quay lại trang Routes trong phần Authorization và xác nhận cả sáu rou
 4. Khi CORS đã được cấu hình cho HTTP API, API Gateway sẽ xử lý các yêu cầu preflight. Workshop này không cần tạo riêng một route ứng dụng `OPTIONS`.
 5. Trong **Deploy → Stages**, chọn `$default` và xác nhận **Auto-deploy** đang được bật.
 
-{{% notice note %}}
 Khi CORS được cấu hình ở cấp API, API Gateway sẽ quản lý phản hồi preflight. Hãy giới hạn allowed origins ở các domain frontend mà bạn tin cậy. Hàm Lambda trong workshop này không cần tự thêm CORS response headers.
-{{% /notice %}}
 
 ---
 
@@ -187,10 +173,8 @@ https://<API_ID>.execute-api.us-east-1.amazonaws.com
 
 4. Lưu lại giá trị này. Frontend React sẽ sử dụng nó làm API base URL trong Phần 5.7.
 
-{{% notice info %}}
 📸 **Pending Screenshot:** `static/images/5-Workshop/5.6-APIGateway/apigw-07-stage-invoke-url.png`  
 *(Chụp trang tổng quan stage $default hiển thị Invoke URL.)*
-{{% /notice %}}
 <!-- ![Invoke URL của Stage](/images/5-Workshop/5.6-APIGateway/apigw-07-stage-invoke-url.png) -->
 
 ---
@@ -208,9 +192,7 @@ Trước khi chuyển sang phần tiếp theo, hãy xác minh:
 - [ ] CORS cho phép frontend origin, hai header `Authorization` và `Content-Type`, cùng các HTTP method cần thiết.
 - [ ] Đã lưu API Invoke URL để cấu hình frontend.
 
-{{% notice warning %}}
 **Lưu ý về kiểm thử:** Danh sách này chỉ xác nhận các bước cấu hình, không có nghĩa API đã được triển khai hoặc kiểm thử trên tài khoản AWS thực tế. Sau khi hoàn thành tích hợp frontend, hãy thực hiện các bài kiểm thử request có token hợp lệ, thiếu token, token không hợp lệ và cô lập dữ liệu giữa người dùng tại Phần 5.9. Không đánh dấu screenshot hoặc kiểm thử thực tế là hoàn thành nếu bạn chưa thực sự thực hiện.
-{{% /notice %}}
 
 ---
 
