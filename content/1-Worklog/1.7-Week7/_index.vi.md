@@ -6,13 +6,13 @@ chapter: false
 pre: " <b> 1.7. </b> "
 ---
 
-**### Mục tiêu tuần 7:**
+**Mục tiêu tuần 7:**
 
 * Hoàn thiện backend Serverless cho Expense Tracker.
 * Xây dựng Lambda xử lý business logic và kết nối với DynamoDB.
 * Cấu hình API Gateway và JWT authentication.
 
-**### Các công việc cần triển khai trong tuần này:**
+**Các công việc cần triển khai trong tuần này:**
 
 | Thứ | Công việc | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu |
 | --- | --- | --- | --- | --- |
@@ -21,7 +21,7 @@ pre: " <b> 1.7. </b> "
 | 4 | - Tạo HTTP API bằng API Gateway.<br>- Tạo Lambda integration và các route cho expense.<br>- Cấu hình CORS. | 22/10/2026 | 22/10/2026 | [Build Frontend to call API Gateway](https://000079.awsstudygroup.com/) |
 | 5 | - Cấu hình Cognito JWT Authorizer.<br>- Thiết lập issuer và audience bằng Cognito User Pool và App Client. | 23/10/2026 | 23/10/2026 | [Authentication with Amazon Cognito](https://000081.awsstudygroup.com/) |
 
-**### Kết quả đạt được tuần 7:**
+**Kết quả đạt được tuần 7:**
 
 * Tạo và cấu hình thành công Lambda function expenseTrackerFunction.
 * Xây dựng backend xử lý CRUD với DynamoDB.
