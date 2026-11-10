@@ -246,7 +246,8 @@ export const handler = async (event) => {
     if (routeKey === "DELETE /expenses/{id}" || (method === "DELETE" && expenseId)) {
       await docClient.send(new DeleteCommand({
         TableName: TABLE_NAME,
-        Key: { userId, expenseId }
+        Key: { userId, expenseId },
+        ConditionExpression: "attribute_exists(userId)"
       }));
       return buildResponse(200, { message: "Expense deleted successfully", expenseId });
     }
