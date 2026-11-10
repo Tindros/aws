@@ -22,7 +22,7 @@ Trong bài workshop thực hành này, bạn sẽ từng bước triển khai v�
 + **Kiểm thử & Dọn dẹp:** Thực hiện kiểm thử toàn trình (E2E), xác thực cơ chế chặn truy cập trái phép và tiến hành giải phóng tài nguyên AWS.
 
 {{% notice info %}}
-**Lưu ý về Trạng thái Triển khai:** Tài liệu workshop này là hướng dẫn thực hành chi tiết theo kế hoạch kiến trúc của dự án. Tài liệu cung cấp ví dụ triển khai và hướng dẫn cấu hình cần được kiểm chứng trong tài khoản AWS của bạn. Hãy rà soát quyền IAM trước khi áp dụng và chỉ triển khai sau khi đã hiểu chi phí dự kiến cũng như các bước dọn dẹp tài nguyên. Các ảnh chụp màn hình tương ứng với các bước chưa thao tác trên AWS Console được đánh dấu rõ ràng là **`[Pending Deployment]`** và sẽ được bổ sung khi triển khai thực tế.
+**Lưu ý về Trạng thái Triển khai:** Tài liệu workshop này là hướng dẫn thực hành chi tiết theo kế hoạch kiến trúc của dự án. Tài liệu cung cấp ví dụ triển khai và hướng dẫn cấu hình cần được kiểm chứng trong tài khoản AWS của bạn. Hãy rà soát quyền IAM trước khi áp dụng và chỉ triển khai sau khi đã hiểu chi phí dự kiến cũng như các bước dọn dẹp tài nguyên.
 {{% /notice %}}
 
 #### Nội dung

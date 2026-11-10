@@ -22,7 +22,7 @@ In this hands-on workshop, you will step through the planned cloud architecture 
 + **Verification & Cleanup:** Perform end-to-end verification, test unauthorized access protections, and execute an orderly resource teardown.
 
 {{% notice info %}}
-**Deployment Status Note:** This workshop serves as the step-by-step implementation guide for the Serverless Personal Expense Tracker. The workshop provides implementation examples and configuration guidance that must be validated in your own AWS account. Review IAM permissions before applying them, and do not deploy resources until you understand the expected costs and cleanup steps. Missing screenshots for unexecuted steps are clearly designated as **`[Pending Deployment]`** and will be populated upon live cloud deployment.
+**Deployment Status Note:** This workshop serves as the step-by-step implementation guide for the Serverless Personal Expense Tracker. The workshop provides implementation examples and configuration guidance that must be validated in your own AWS account. Review IAM permissions before applying them, and do not deploy resources until you understand the expected costs and cleanup steps.
 {{% /notice %}}
 
 #### Content
