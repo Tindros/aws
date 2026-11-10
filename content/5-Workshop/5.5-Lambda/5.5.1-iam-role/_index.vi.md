@@ -16,11 +16,6 @@ Hàm AWS Lambda sử dụng một vai trò thực thi **IAM Execution Role** tro
 2. Tại menu bên trái, chọn **Roles**, sau đó bấm **Create role**.
 3. Tại mục **Trusted entity type**, chọn **AWS service**.
 4. Tại mục **Use case**, chọn dịch vụ **Lambda** từ danh sách các ca sử dụng phổ biến.
-
-📸 **Pending Screenshot:** `static/images/5-Workshop/5.5-Lambda/lambda-01-iam-role-create.png`  
-*(Cần chụp khi triển khai: Giao diện IAM Create Role chọn thực thể tin cậy là dịch vụ Lambda)*
-<!-- ![Tạo IAM Role](/images/5-Workshop/5.5-Lambda/lambda-01-iam-role-create.png) -->
-
 5. Nhấn **Next**.
 
 ---
@@ -90,7 +85,3 @@ Hàm AWS Lambda sử dụng một vai trò thực thi **IAM Execution Role** tro
 4. Nhấn **Next**.
 5. **Policy name:** Nhập `ExpenseTrackerDynamoDBPolicy`.
 6. Nhấn **Create policy**.
-
-📸 **Pending Screenshot:** `static/images/5-Workshop/5.5-Lambda/lambda-02-iam-policies.png`  
-*(Cần chụp khi triển khai: Thẻ Permissions của ExpenseTrackerLambdaRole hiển thị đầy đủ các chính sách)*
-<!-- ![Chính sách IAM đã gán](/images/5-Workshop/5.5-Lambda/lambda-02-iam-policies.png) -->

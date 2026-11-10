@@ -131,10 +131,6 @@ Chính sách dưới đây chỉ là ví dụ khởi đầu cho tài khoản h�
 
 **Lưu ý quan trọng:** Ví dụ này dùng `apigateway:*` và wildcard cho một số thao tác tạo/liệt kê tài nguyên, vì vậy chưa phải policy least-privilege nghiêm ngặt. Hãy rà soát và thu hẹp quyền cùng quản trị viên trước khi sử dụng. Không cấp quyền này cho tài khoản root hoặc danh tính production.
 
-📸 **Pending Screenshot:** `static/images/5-Workshop/5.2-Prerequiste/prereq-iam-policy.png`  
-*(Cần chụp khi triển khai: IAM Console hiển thị quyền workshop đã được phê duyệt gắn với role hoặc danh tính phù hợp)*
-<!-- ![Thiết lập IAM Policy](/images/5-Workshop/5.2-Prerequiste/prereq-iam-policy.png) -->
-
 ---
 
 #### 3. Môi trường Lập trình Cục bộ
@@ -158,9 +154,6 @@ Chính sách dưới đây chỉ là ví dụ khởi đầu cho tài khoản h�
 3. **Công cụ Kiểm thử API:**
    + **cURL** (tích hợp sẵn trong Windows PowerShell hoặc terminal macOS/Linux) hoặc công cụ như **Postman** / **Thunder Client** để gửi các HTTP request kèm mã JWT token.
 
-📸 **Pending Screenshot:** `static/images/5-Workshop/5.2-Prerequiste/prereq-terminal-env.png`  
-*(Cần chụp khi triển khai: Kết quả dòng lệnh hiển thị phiên bản Node.js/npm và mã nguồn frontend đã sẵn sàng)*
-<!-- ![Môi trường cục bộ](/images/5-Workshop/5.2-Prerequiste/prereq-terminal-env.png) -->
 
 ---
 

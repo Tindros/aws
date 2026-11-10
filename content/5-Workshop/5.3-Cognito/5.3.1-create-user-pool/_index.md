@@ -58,7 +58,7 @@ Once the user pool is provisioned, you can inspect and verify its security confi
 
 3. **Multi-factor authentication (MFA):**
    + In the console security settings, verify that **MFA enforcement** is set to **No MFA**.
-   +      **Console Layout Note:** In the current Amazon Cognito console, the **Password policy** and **MFA enforcement** settings are displayed in separate cards and views. The screenshot above focuses on the Password policy card. For the scope of this workshop, keeping MFA set to **No MFA** eliminates SMS delivery costs and third-party authenticator setup overhead during testing.
+   + *Console Layout Note:* In the current Amazon Cognito console, the **Password policy** and **MFA enforcement** settings are displayed in separate cards and views. The screenshot above focuses on the Password policy card. For the scope of this workshop, keeping MFA set to **No MFA** eliminates SMS delivery costs and third-party authenticator setup overhead during testing.
      4. **Message delivery:**
    + Under message delivery settings, verify that the email provider is set to **Send email with Cognito**.
    + *Note:* This built-in service provides a daily email quota sufficient for development and workshop verification without requiring Amazon SES domain verification. SMS messaging is not configured.

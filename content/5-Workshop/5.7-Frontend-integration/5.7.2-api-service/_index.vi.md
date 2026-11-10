@@ -30,14 +30,11 @@ if (!API_BASE_URL) {
   throw new Error('VITE_API_URL is missing. Configure it in the frontend .env file.');
 }
 
-/**
- * Hàm bổ trợ gửi các yêu cầu HTTPS có gắn kèm tiêu đề xác thực JWT
- */
+
 async function apiRequest<T>(endpoint: string, options: RequestInit = {}): Promise<T> {
   const token = localStorage.getItem('auth_token');
 
-  // Every Expense Tracker API route is protected by CognitoJWTAuthorizer.
-  // Do not send a request when the browser has no Access Token.
+
   if (!token) {
     localStorage.removeItem('auth_token');
     localStorage.removeItem('access_token');
@@ -59,7 +56,6 @@ async function apiRequest<T>(endpoint: string, options: RequestInit = {}): Promi
   });
 
   if (response.status === 401) {
-    // Token đã hết hạn hoặc không hợp lệ - xóa phiên làm việc và chuyển hướng về trang đăng nhập
     localStorage.removeItem('auth_token');
     localStorage.removeItem('access_token');
     localStorage.removeItem('user_email');
@@ -76,7 +72,6 @@ async function apiRequest<T>(endpoint: string, options: RequestInit = {}): Promi
 }
 
 export const expenseService = {
-  // Lấy dữ liệu phân tích thống kê theo thời gian thực cho bảng điều khiển
   async getDashboardSummary(): Promise<DashboardSummary> {
     const summary = await apiRequest<any>('/summary');
     return {
@@ -87,7 +82,6 @@ export const expenseService = {
     };
   },
 
-  // Lấy toàn bộ danh sách chi tiêu của người dùng từ DynamoDB
   async getExpenses(): Promise<Expense[]> {
     const items = await apiRequest<any[]>('/expenses');
     return items.map(item => ({
@@ -99,19 +93,16 @@ export const expenseService = {
     }));
   },
 
-  // Lấy danh sách các khoản chi gần đây nhất cho bảng điều khiển
   async getRecentExpenses(limit: number = 5): Promise<Expense[]> {
     const expenses = await this.getExpenses();
     return expenses.slice(0, limit);
   },
 
-  // Lấy dữ liệu phân bổ theo danh mục cho biểu đồ trực quan
   async getCategoryBreakdown(): Promise<CategorySummary[]> {
     const summary = await apiRequest<any>('/summary');
     return summary.categoryBreakdown || [];
   },
 
-  // Tạo dòng thời gian chi tiêu cho các tháng gần nhất
   async getSpendingOverview(): Promise<SpendingPeriod[]> {
     const expenses = await this.getExpenses();
     const periods: SpendingPeriod[] = [];
@@ -131,7 +122,6 @@ export const expenseService = {
     return periods;
   },
 
-  // Lấy thông tin một khoản chi theo ID
   async getExpenseById(id: string): Promise<Expense | null> {
     try {
       const item = await apiRequest<any>(`/expenses/${id}`);
@@ -143,7 +133,6 @@ export const expenseService = {
         date: item.date
       };
     } catch (error) {
-      // Treat only a genuine 404/not-found response as a missing expense; do not hide auth or network failures.
       if (error instanceof Error && error.message === 'Expense not found') {
         return null;
       }
@@ -151,7 +140,6 @@ export const expenseService = {
     }
   },
 
-  // Tạo mới một khoản chi tiêu
   async createExpense(input: CreateExpenseInput): Promise<Expense> {
     const item = await apiRequest<any>('/expenses', {
       method: 'POST',
@@ -166,7 +154,6 @@ export const expenseService = {
     };
   },
 
-  // Cập nhật thông tin khoản chi tiêu
   async updateExpense(id: string, input: UpdateExpenseInput): Promise<Expense> {
     const item = await apiRequest<any>(`/expenses/${id}`, {
       method: 'PUT',
@@ -181,7 +168,6 @@ export const expenseService = {
     };
   },
 
-  // Xóa khoản chi tiêu
   async deleteExpense(id: string): Promise<void> {
     await apiRequest<void>(`/expenses/${id}`, {
       method: 'DELETE'
@@ -198,24 +184,11 @@ export const expenseService = {
 2. Đăng nhập vào ứng dụng bằng tài khoản đã được xác thực của bạn.
 3. Quan sát trang **Dashboard** thời gian thực:
    + Các chỉ số tài chính được tải động từ endpoint `/summary` của API Gateway.
-
-📸 **Pending Screenshot:** `static/images/5-Workshop/5.7-Frontend-integration/frontend-03-dashboard-live.png`  
-*(Cần chụp khi triển khai: Giao diện Dashboard hiển thị số liệu tài chính thực tế tải từ API Gateway)*
-<!-- ![Dashboard Thực tế](/images/5-Workshop/5.7-Frontend-integration/frontend-03-dashboard-live.png) -->
-
 4. Chuyển sang mục **New Expense** (`/expenses/new`), điền thông tin (ví dụ: Mô tả: `Văn phòng phẩm`, Số tiền: `35.00`, Danh mục: `Shopping`, Ngày: `2026-10-14`), sau đó nhấn **Save Expense**:
    + Frontend sẽ gửi yêu cầu `POST /expenses` đến API Gateway để lưu vào DynamoDB.
-
-📸 **Pending Screenshot:** `static/images/5-Workshop/5.7-Frontend-integration/frontend-04-add-expense.png`  
-*(Cần chụp khi triển khai: Thao tác tạo mới khoản chi tiêu qua biểu mẫu React frontend)*
-<!-- ![Biểu mẫu Tạo Chi tiêu](/images/5-Workshop/5.7-Frontend-integration/frontend-04-add-expense.png) -->
-
 5. Chuyển sang mục **Expenses** (`/expenses`):
    + Bảng danh sách hiển thị bản ghi chi tiêu vừa tạo được lưu trữ an toàn trong DynamoDB.
 
-📸 **Pending Screenshot:** `static/images/5-Workshop/5.7-Frontend-integration/frontend-05-expenses-table.png`  
-*(Cần chụp khi triển khai: Bảng danh sách hiển thị các bản ghi chi tiêu thực tế từ DynamoDB)*
-<!-- ![Bảng Danh sách Chi tiêu](/images/5-Workshop/5.7-Frontend-integration/frontend-05-expenses-table.png) -->
 
 ---
 

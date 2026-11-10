@@ -25,11 +25,6 @@ In this module, you will initialize the **Amazon API Gateway HTTP API** and conf
    + Verify **Auto-deploy** is enabled (ensures configuration changes go live automatically without manual redeployment).
 8. Click **Next**, review the settings, and choose **Create**.
 
-📸 **Pending Screenshot:** `static/images/5-Workshop/5.6-APIGateway/apigw-01-create-http-api.png`  
-*(To be captured during deployment: Creating HTTP API named ExpenseTrackerApi with $default stage)*
-<!-- ![Create HTTP API](/images/5-Workshop/5.6-APIGateway/apigw-01-create-http-api.png) -->
-
----
 
 #### Step 2: Configure CORS (Cross-Origin Resource Sharing)
 
@@ -43,7 +38,3 @@ Modern web browsers enforce the Same-Origin Policy. When your frontend running o
    + **Access-Control-Allow-Methods:** Select `GET`, `POST`, `PUT`, `DELETE`, and `OPTIONS`.
    + **Access-Control-Max-Age:** Enter `300` (caches preflight responses for 5 minutes to reduce unnecessary OPTIONS calls).
 4. Click **Save**.
-
-📸 **Pending Screenshot:** `static/images/5-Workshop/5.6-APIGateway/apigw-02-cors-configuration.png`  
-*(To be captured during deployment: API Gateway CORS configuration showing allowed origins, headers, and methods)*
-<!-- ![Configure CORS](/images/5-Workshop/5.6-APIGateway/apigw-02-cors-configuration.png) -->

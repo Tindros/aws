@@ -35,11 +35,6 @@ VITE_API_URL=https://<API_ID>.execute-api.us-east-1.amazonaws.com
 
 **Security Reminder:** Replace placeholder values with your actual User Pool ID and App Client ID. Because the App Client does not use a client secret, these public configuration values can be safely built into client bundles. Never commit private AWS access keys or passwords to version control.
 
-📸 **Pending Screenshot:** `static/images/5-Workshop/5.7-Frontend-integration/frontend-01-env-file.png`  
-*(To be captured during deployment: Frontend .env configuration showing Cognito and API Gateway parameters)*
-<!-- ![Configure Frontend Environment](/images/5-Workshop/5.7-Frontend-integration/frontend-01-env-file.png) -->
-
----
 
 #### Step 3: Implement Real Authentication Service
 
@@ -78,7 +73,6 @@ export const authService = {
         onSuccess: (result) => {
           const accessToken = result.getAccessToken().getJwtToken();
 
-          // Store the Access Token used for protected API requests
           localStorage.setItem('auth_token', accessToken);
           localStorage.setItem('user_email', credentials.email);
 
@@ -172,9 +166,3 @@ export default defineConfig({
   },
 })
 ```
-
-This is the configuration used by the workshop frontend.
-
-📸 **Pending Screenshot:** `static/images/5-Workshop/5.7-Frontend-integration/frontend-02-login-success.png`  
-*(To be captured during deployment: React frontend successfully logged in with active Cognito session)*
-<!-- ![Login Success](/images/5-Workshop/5.7-Frontend-integration/frontend-02-login-success.png) -->

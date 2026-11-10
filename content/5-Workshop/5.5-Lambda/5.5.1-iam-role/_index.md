@@ -16,11 +16,6 @@ AWS Lambda functions assume an **IAM Execution Role** at runtime to determine wh
 2. In the navigation pane, choose **Roles**, then click **Create role**.
 3. Under **Trusted entity type**, select **AWS service**.
 4. Under **Use case**, select **Lambda** from the common use cases list.
-
-📸 **Pending Screenshot:** `static/images/5-Workshop/5.5-Lambda/lambda-01-iam-role-create.png`  
-*(To be captured during deployment: IAM Create Role screen selecting Lambda as the trusted entity)*
-<!-- ![Create IAM Role](/images/5-Workshop/5.5-Lambda/lambda-01-iam-role-create.png) -->
-
 5. Click **Next**.
 
 ---
@@ -90,7 +85,3 @@ AWS Lambda functions assume an **IAM Execution Role** at runtime to determine wh
 4. Click **Next**.
 5. **Policy name:** Enter `ExpenseTrackerDynamoDBPolicy`.
 6. Click **Create policy**.
-
-📸 **Pending Screenshot:** `static/images/5-Workshop/5.5-Lambda/lambda-02-iam-policies.png`  
-*(To be captured during deployment: ExpenseTrackerLambdaRole permissions tab showing attached policies)*
-<!-- ![Attached IAM Policies](/images/5-Workshop/5.5-Lambda/lambda-02-iam-policies.png) -->

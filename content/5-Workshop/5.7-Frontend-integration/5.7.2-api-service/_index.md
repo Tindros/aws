@@ -30,14 +30,9 @@ if (!API_BASE_URL) {
   throw new Error('VITE_API_URL is missing. Configure it in the frontend .env file.');
 }
 
-/**
- * Helper to dispatch authenticated HTTPS requests with JWT Authorization headers
- */
 async function apiRequest<T>(endpoint: string, options: RequestInit = {}): Promise<T> {
   const token = localStorage.getItem('auth_token');
 
-  // Every Expense Tracker API route is protected by CognitoJWTAuthorizer.
-  // Do not send a request when the browser has no Access Token.
   if (!token) {
     localStorage.removeItem('auth_token');
     localStorage.removeItem('access_token');
@@ -59,7 +54,6 @@ async function apiRequest<T>(endpoint: string, options: RequestInit = {}): Promi
   });
 
   if (response.status === 401) {
-    // Token expired or invalid - clear session and redirect to login
     localStorage.removeItem('auth_token');
     localStorage.removeItem('access_token');
     localStorage.removeItem('user_email');
@@ -76,7 +70,6 @@ async function apiRequest<T>(endpoint: string, options: RequestInit = {}): Promi
 }
 
 export const expenseService = {
-  // Fetch real-time dashboard analytics
   async getDashboardSummary(): Promise<DashboardSummary> {
     const summary = await apiRequest<any>('/summary');
     return {
@@ -87,7 +80,6 @@ export const expenseService = {
     };
   },
 
-  // Fetch all expenses for the authenticated user from DynamoDB
   async getExpenses(): Promise<Expense[]> {
     const items = await apiRequest<any[]>('/expenses');
     return items.map(item => ({
@@ -99,19 +91,16 @@ export const expenseService = {
     }));
   },
 
-  // Fetch recent expenses for the dashboard
   async getRecentExpenses(limit: number = 5): Promise<Expense[]> {
     const expenses = await this.getExpenses();
     return expenses.slice(0, limit);
   },
 
-  // Fetch category breakdown for visual charts
   async getCategoryBreakdown(): Promise<CategorySummary[]> {
     const summary = await apiRequest<any>('/summary');
     return summary.categoryBreakdown || [];
   },
 
-  // Generate spending timeline for recent months
   async getSpendingOverview(): Promise<SpendingPeriod[]> {
     const expenses = await this.getExpenses();
     const periods: SpendingPeriod[] = [];
@@ -131,7 +120,6 @@ export const expenseService = {
     return periods;
   },
 
-  // Get single expense by ID
   async getExpenseById(id: string): Promise<Expense | null> {
     try {
       const item = await apiRequest<any>(`/expenses/${id}`);
@@ -143,7 +131,6 @@ export const expenseService = {
         date: item.date
       };
     } catch (error) {
-      // Treat only a genuine 404/not-found response as a missing expense; do not hide auth or network failures.
       if (error instanceof Error && error.message === 'Expense not found') {
         return null;
       }
@@ -151,7 +138,6 @@ export const expenseService = {
     }
   },
 
-  // Create new expense record
   async createExpense(input: CreateExpenseInput): Promise<Expense> {
     const item = await apiRequest<any>('/expenses', {
       method: 'POST',
@@ -166,7 +152,6 @@ export const expenseService = {
     };
   },
 
-  // Update existing expense record
   async updateExpense(id: string, input: UpdateExpenseInput): Promise<Expense> {
     const item = await apiRequest<any>(`/expenses/${id}`, {
       method: 'PUT',
@@ -181,7 +166,6 @@ export const expenseService = {
     };
   },
 
-  // Delete expense record
   async deleteExpense(id: string): Promise<void> {
     await apiRequest<void>(`/expenses/${id}`, {
       method: 'DELETE'
@@ -198,24 +182,11 @@ export const expenseService = {
 2. Log into the application using your verified account.
 3. Observe the live **Dashboard**:
    + Metrics load dynamically from the `/summary` API Gateway endpoint.
-
-📸 **Pending Screenshot:** `static/images/5-Workshop/5.7-Frontend-integration/frontend-03-dashboard-live.png`  
-*(To be captured during deployment: Dashboard view displaying real financial summaries fetched from API Gateway)*
-<!-- ![Live Dashboard](/images/5-Workshop/5.7-Frontend-integration/frontend-03-dashboard-live.png) -->
-
 4. Navigate to **New Expense** (`/expenses/new`), fill out the form (e.g., Description: `Office Supplies`, Amount: `35.00`, Category: `Shopping`, Date: `2026-10-14`), and click **Save Expense**:
    + The frontend dispatches a `POST /expenses` request to API Gateway.
-
-📸 **Pending Screenshot:** `static/images/5-Workshop/5.7-Frontend-integration/frontend-04-add-expense.png`  
-*(To be captured during deployment: Adding a new expense via the React frontend form)*
-<!-- ![Add Expense Form](/images/5-Workshop/5.7-Frontend-integration/frontend-04-add-expense.png) -->
-
 5. Navigate to **Expenses** (`/expenses`):
    + The table displays the newly created record persisted in DynamoDB.
 
-📸 **Pending Screenshot:** `static/images/5-Workshop/5.7-Frontend-integration/frontend-05-expenses-table.png`  
-*(To be captured during deployment: Expenses list page populated with live records from DynamoDB)*
-<!-- ![Expenses Table](/images/5-Workshop/5.7-Frontend-integration/frontend-05-expenses-table.png) -->
 
 ---
 

@@ -37,8 +37,4 @@ When a client sends an HTTP request containing an `Authorization: Bearer <TOKEN>
    + **Audience:** Click **Add audience**, then enter your Cognito **App Client ID** (from Section 5.3.1).
 5. Choose **Create**.
 
-📸 **Pending Screenshot:** `static/images/5-Workshop/5.6-APIGateway/apigw-03-jwt-authorizer.png`  
-*(To be captured during deployment: Creating JWT Authorizer configured with Cognito Issuer URL and Client ID audience)*
-<!-- ![Configure JWT Authorizer](/images/5-Workshop/5.6-APIGateway/apigw-03-jwt-authorizer.png) -->
-
 **Authorizer Ready:** The authorizer is now configured and ready to be attached to your application routes in the next module.

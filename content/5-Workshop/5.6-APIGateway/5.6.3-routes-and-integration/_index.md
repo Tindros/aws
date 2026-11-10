@@ -52,12 +52,6 @@ All six routes will use `CognitoJWTAuthorizer`. Do not create a public route for
 
 Check the Routes list and make sure all six route keys appear exactly as shown in the table.
 
-📸 **Pending Screenshot:** `static/images/5-Workshop/5.6-APIGateway/apigw-04-routes-list.png`  
-*(Capture the Routes page showing all six route keys after they have been created.)*
-<!-- ![Routes List](/images/5-Workshop/5.6-APIGateway/apigw-04-routes-list.png) -->
-
----
-
 #### Step 2: Create a Lambda Proxy Integration
 
 1. In the API navigation pane, choose **Integrations**.
@@ -71,11 +65,6 @@ Check the Routes list and make sure all six route keys appear exactly as shown i
 
 **Why use payload format version 2.0?** The Lambda handler in this workshop reads HTTP API v2 event fields, including `event.requestContext.http.method`, `event.rawPath`, `event.pathParameters`, and `event.requestContext.authorizer.jwt.claims.sub`. The integration must therefore use payload format version `2.0`.
 
-📸 **Pending Screenshot:** `static/images/5-Workshop/5.6-APIGateway/apigw-05-lambda-integration.png`  
-*(Capture the Lambda integration details showing expenseTrackerFunction and payload format version 2.0.)*
-<!-- ![Lambda Integration](/images/5-Workshop/5.6-APIGateway/apigw-05-lambda-integration.png) -->
-
----
 
 #### Step 3: Attach the Integration to All Routes
 
@@ -94,10 +83,6 @@ Creating an integration does not automatically connect it to every route. Attach
 
 After attaching, inspect each route and verify that its integration points to `expenseTrackerFunction`. Every route must have an integration before it can invoke the Lambda function.
 
-📸 **Pending Screenshot:** `static/images/5-Workshop/5.6-APIGateway/apigw-05b-route-integrations.png`  
-*(Capture the Routes page or route details showing the Lambda integration attached to the routes.)*
-
----
 
 #### Step 4: Verify API Gateway Can Invoke Lambda
 
@@ -143,11 +128,6 @@ The authorizer must be attached to each route individually. Creating the authori
 
 Return to the Routes authorization view and confirm that all six routes show `CognitoJWTAuthorizer`, not `NONE`.
 
-📸 **Pending Screenshot:** `static/images/5-Workshop/5.6-APIGateway/apigw-06-authorizer-attached.png`  
-*(Capture the authorization settings showing CognitoJWTAuthorizer attached to all six routes.)*
-<!-- ![Authorizer Attached](/images/5-Workshop/5.6-APIGateway/apigw-06-authorizer-attached.png) -->
-
----
 
 #### Step 6: Review CORS and the Default Stage
 
@@ -173,11 +153,6 @@ https://<API_ID>.execute-api.us-east-1.amazonaws.com
 
 4. Save this value. The React frontend will use it as its API base URL in Section 5.7.
 
-📸 **Pending Screenshot:** `static/images/5-Workshop/5.6-APIGateway/apigw-07-stage-invoke-url.png`  
-*(Capture the $default stage overview showing the Invoke URL.)*
-<!-- ![Stage Invoke URL](/images/5-Workshop/5.6-APIGateway/apigw-07-stage-invoke-url.png) -->
-
----
 
 #### Configuration Checklist
 

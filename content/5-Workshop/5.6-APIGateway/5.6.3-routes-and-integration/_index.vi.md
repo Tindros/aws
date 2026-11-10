@@ -52,12 +52,6 @@ Cả sáu tuyến đường đều phải sử dụng `CognitoJWTAuthorizer`. Kh
 
 Kiểm tra danh sách Routes và đảm bảo cả sáu route key xuất hiện chính xác như bảng phía trên.
 
-📸 **Pending Screenshot:** `static/images/5-Workshop/5.6-APIGateway/apigw-04-routes-list.png`  
-*(Chụp trang Routes hiển thị đầy đủ sáu route key sau khi tạo.)*
-<!-- ![Danh sách Routes](/images/5-Workshop/5.6-APIGateway/apigw-04-routes-list.png) -->
-
----
-
 #### Bước 2: Tạo Lambda Proxy Integration
 
 1. Trong menu điều hướng của API, chọn **Integrations**.
@@ -71,11 +65,6 @@ Kiểm tra danh sách Routes và đảm bảo cả sáu route key xuất hiện 
 
 **Tại sao sử dụng payload format version 2.0?** Lambda handler trong workshop này đọc các trường của HTTP API v2 event, bao gồm `event.requestContext.http.method`, `event.rawPath`, `event.pathParameters` và `event.requestContext.authorizer.jwt.claims.sub`. Vì vậy integration cần sử dụng payload format version `2.0`.
 
-📸 **Pending Screenshot:** `static/images/5-Workshop/5.6-APIGateway/apigw-05-lambda-integration.png`  
-*(Chụp thông tin Lambda integration, thể hiện expenseTrackerFunction và payload format version 2.0.)*
-<!-- ![Lambda Integration](/images/5-Workshop/5.6-APIGateway/apigw-05-lambda-integration.png) -->
-
----
 
 #### Bước 3: Gán Integration cho Tất cả Routes
 
@@ -94,10 +83,6 @@ Việc tạo integration không tự động kết nối integration đó với 
 
 Sau khi gán xong, mở từng route để xác minh integration đều trỏ đến `expenseTrackerFunction`. Mỗi route phải có integration thì mới có thể gọi hàm Lambda.
 
-📸 **Pending Screenshot:** `static/images/5-Workshop/5.6-APIGateway/apigw-05b-route-integrations.png`  
-*(Chụp trang Routes hoặc chi tiết route thể hiện Lambda integration đã được gán.)*
-
----
 
 #### Bước 4: Xác minh API Gateway Có Quyền Gọi Lambda
 
@@ -143,11 +128,6 @@ Authorizer cần được gán riêng cho từng route. Việc tạo authorizer 
 
 Quay lại trang Routes trong phần Authorization và xác nhận cả sáu route đều hiển thị `CognitoJWTAuthorizer`, không phải `NONE`.
 
-📸 **Pending Screenshot:** `static/images/5-Workshop/5.6-APIGateway/apigw-06-authorizer-attached.png`  
-*(Chụp phần cấu hình Authorization thể hiện CognitoJWTAuthorizer đã được gán cho cả sáu route.)*
-<!-- ![Gán Authorizer](/images/5-Workshop/5.6-APIGateway/apigw-06-authorizer-attached.png) -->
-
----
 
 #### Bước 6: Kiểm tra lại CORS và Default Stage
 
@@ -173,11 +153,7 @@ https://<API_ID>.execute-api.us-east-1.amazonaws.com
 
 4. Lưu lại giá trị này. Frontend React sẽ sử dụng nó làm API base URL trong Phần 5.7.
 
-📸 **Pending Screenshot:** `static/images/5-Workshop/5.6-APIGateway/apigw-07-stage-invoke-url.png`  
-*(Chụp trang tổng quan stage $default hiển thị Invoke URL.)*
-<!-- ![Invoke URL của Stage](/images/5-Workshop/5.6-APIGateway/apigw-07-stage-invoke-url.png) -->
 
----
 
 #### Danh sách Kiểm tra Cấu hình
 

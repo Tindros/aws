@@ -35,11 +35,6 @@ VITE_API_URL=https://<API_ID>.execute-api.us-east-1.amazonaws.com
 
 **Lưu ý An toàn Bảo mật:** Thay thế các giá trị giữ chỗ bằng ID User Pool và Client ID thực tế của bạn. Do App Client không sử dụng mã bí mật (Client Secret), các thông số cấu hình công khai này có thể được nhúng an toàn vào mã nguồn ứng dụng client. Tuyệt đối không lưu các khóa bí mật (AWS Access Key/Secret Key) hoặc mật khẩu vào tệp này.
 
-📸 **Pending Screenshot:** `static/images/5-Workshop/5.7-Frontend-integration/frontend-01-env-file.png`  
-*(Cần chụp khi triển khai: Tệp cấu hình .env của frontend hiển thị các thông số Cognito và API Gateway)*
-<!-- ![Cấu hình Môi trường Frontend](/images/5-Workshop/5.7-Frontend-integration/frontend-01-env-file.png) -->
-
----
 
 #### Bước 3: Cập nhật Dịch vụ Xác thực Thực tế
 
@@ -78,7 +73,6 @@ export const authService = {
         onSuccess: (result) => {
           const accessToken = result.getAccessToken().getJwtToken();
 
-          // Lưu Access Token dùng cho các API yêu cầu xác thực
           localStorage.setItem('auth_token', accessToken);
           localStorage.setItem('user_email', credentials.email);
 
@@ -172,9 +166,3 @@ export default defineConfig({
   },
 })
 ```
-
-Đây là cấu hình đang được sử dụng bởi frontend của workshop.
-
-📸 **Pending Screenshot:** `static/images/5-Workshop/5.7-Frontend-integration/frontend-02-login-success.png`  
-*(Cần chụp khi triển khai: Giao diện React frontend đăng nhập thành công với phiên xác thực Cognito)*
-<!-- ![Đăng nhập Thành công](/images/5-Workshop/5.7-Frontend-integration/frontend-02-login-success.png) -->

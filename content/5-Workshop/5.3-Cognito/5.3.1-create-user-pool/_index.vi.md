@@ -58,7 +58,7 @@ Sau khi User Pool được khởi tạo thành công, bạn có thể kiểm tra
 
 3. **Multi-factor authentication (Xác thực đa yếu tố - MFA):**
    + Tại phần cấu hình bảo mật, xác nhận **MFA enforcement** đang ở chế độ **No MFA**.
-   +      **Lưu ý về Giao diện Bảng điều khiển:** Trên console Amazon Cognito hiện tại, thiết lập **Password policy** và **MFA enforcement** nằm ở hai thẻ/khung hiển thị riêng biệt. Ảnh chụp màn hình phía trên tập trung vào khung Password policy. Trong khuôn khổ bài thực hành, việc chọn **No MFA** giúp tránh phát sinh chi phí gửi tin nhắn SMS và đơn giản hóa quy trình thử nghiệm.
+   + *Lưu ý về Giao diện Bảng điều khiển:* Trên console Amazon Cognito hiện tại, thiết lập **Password policy** và **MFA enforcement** nằm ở hai thẻ/khung hiển thị riêng biệt. Ảnh chụp màn hình phía trên tập trung vào khung Password policy. Trong khuôn khổ bài thực hành, việc chọn **No MFA** giúp tránh phát sinh chi phí gửi tin nhắn SMS và đơn giản hóa quy trình thử nghiệm.
      4. **Message delivery (Phương thức gửi thư thông báo):**
    + Tại phần cấu hình gửi tin nhắn, xác nhận email provider được đặt là **Send email with Cognito**.
    + *Lưu ý:* Dịch vụ email tích hợp sẵn này cung cấp hạn mức gửi thư miễn phí hằng ngày đủ cho quá trình phát triển và kiểm thử mà không cần cấu hình xác thực tên miền trên Amazon SES. Dịch vụ gửi SMS không được cấu hình.

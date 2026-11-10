@@ -37,8 +37,4 @@ Khi ứng dụng client gửi một yêu cầu HTTP có tiêu đề `Authorizati
    + **Audience:** Nhấn **Add audience**, sau đó nhập **App Client ID** của Cognito User Pool (lấy từ Phần 5.3.1).
 5. Nhấn **Create**.
 
-📸 **Pending Screenshot:** `static/images/5-Workshop/5.6-APIGateway/apigw-03-jwt-authorizer.png`  
-*(Cần chụp khi triển khai: Màn hình tạo JWT Authorizer liên kết với Issuer URL và Audience của Cognito)*
-<!-- ![Cấu hình JWT Authorizer](/images/5-Workshop/5.6-APIGateway/apigw-03-jwt-authorizer.png) -->
-
 **Bộ Xác thực Sẵn sàng:** JWT Authorizer hiện đã được thiết lập và sẵn sàng để gắn vào các tuyến đường của ứng dụng trong bài tiếp theo.

@@ -19,9 +19,6 @@ In this module, you will deploy the production build of your **React + Vite** fr
    + **Direct upload alternative:** Build the frontend locally with `npm run build` from the `expense-tracker-frontend` repository, then upload the generated `dist/` output using the current Amplify manual deployment flow. The `amplify.yml` below is for Git-based builds, not the ZIP upload path.
 4. Enter **App name:** `expense-tracker-frontend`.
 
-📸 **Pending Screenshot:** `static/images/5-Workshop/5.8-Monitoring-and-Amplify/amplify-01-create-app.png`  
-*(To be captured during deployment: AWS Amplify console starting web app hosting setup)*
-<!-- ![Initialize Amplify App](/images/5-Workshop/5.8-Monitoring-and-Amplify/amplify-01-create-app.png) -->
 
 ---
 
@@ -48,9 +45,6 @@ frontend:
           - node_modules/**/*
 ```
 
-📸 **Pending Screenshot:** `static/images/5-Workshop/5.8-Monitoring-and-Amplify/amplify-02-build-settings.png`  
-*(To be captured during deployment: Amplify build settings showing amplify.yml configuration for Vite)*
-<!-- ![Amplify Build Settings](/images/5-Workshop/5.8-Monitoring-and-Amplify/amplify-02-build-settings.png) -->
 
 ---
 
@@ -86,9 +80,6 @@ Because React Router handles client-side routing (`/login`, `/expenses`, `/dashb
 2. Once the build finishes, click the generated HTTPS URL (e.g., `https://main.xxxx.amplifyapp.com`).
 3. Verify that the deployed frontend loads, can sign in with a confirmed Cognito user, and can retrieve/create expenses through the configured API. If the build succeeds but API calls fail, check the environment variables, API URL, CORS allowlist, and JWT authorizer settings.
 
-📸 **Pending Screenshot:** `static/images/5-Workshop/5.8-Monitoring-and-Amplify/amplify-03-deployed-overview.png`  
-*(To be captured during deployment: Amplify Hosting overview showing successful build status and live domain)*
-<!-- ![Deployed App Overview](/images/5-Workshop/5.8-Monitoring-and-Amplify/amplify-03-deployed-overview.png) -->
 
 ---
 

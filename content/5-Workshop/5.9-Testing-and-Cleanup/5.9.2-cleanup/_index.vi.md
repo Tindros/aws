@@ -28,9 +28,8 @@ Workshop này hướng dẫn bạn từng bước xây dựng và kiểm tra m�
 4. Cuộn xuống cuối trang và bấm **Delete app**.
 5. Nhập chữ `delete` để xác nhận và nhấn nút **Delete**.
 
-📸 **Pending Screenshot:** `static/images/5-Workshop/5.9-Testing-and-Cleanup/cleanup-01-delete-amplify.png`  
-*(Cần chụp khi triển khai: Thao tác xóa ứng dụng frontend trên giao diện AWS Amplify Console)*
-<!-- ![Xóa Amplify App](/images/5-Workshop/5.9-Testing-and-Cleanup/cleanup-01-delete-amplify.png) -->
+
+![Xóa Amplify App](/images/5-Workshop/5.9-Testing-and-Cleanup/cleanup-01-delete-amplify.png)
 
 ---
 
@@ -38,13 +37,9 @@ Workshop này hướng dẫn bạn từng bước xây dựng và kiểm tra m�
 
 1. Truy cập [Amazon API Gateway Console](https://us-east-1.console.aws.amazon.com/apigateway/main/apis?region=us-east-1).
 2. Tìm `ExpenseTrackerApi` trong danh sách các API.
-3. Đánh dấu chọn vào ô vuông bên cạnh tên `ExpenseTrackerApi`.
+3. Đánh dấu chọn vào `ExpenseTrackerApi`.
 4. Bấm nút **Delete** trên thanh công cụ phía trên.
 5. Xác nhận xóa bằng cách nhập tên API hoặc nhấn **Confirm**.
-
-📸 **Pending Screenshot:** `static/images/5-Workshop/5.9-Testing-and-Cleanup/cleanup-02-delete-apigw.png`  
-*(Cần chụp khi triển khai: Thao tác xóa ExpenseTrackerApi trên API Gateway Console)*
-<!-- ![Xóa API Gateway](/images/5-Workshop/5.9-Testing-and-Cleanup/cleanup-02-delete-apigw.png) -->
 
 ---
 
@@ -54,10 +49,6 @@ Workshop này hướng dẫn bạn từng bước xây dựng và kiểm tra m�
 2. Tích chọn hàm `expenseTrackerFunction`.
 3. Chọn menu **Actions** -> **Delete**.
 4. Nhập chữ `delete` vào hộp thoại xác nhận và bấm **Delete**.
-
-📸 **Pending Screenshot:** `static/images/5-Workshop/5.9-Testing-and-Cleanup/cleanup-03-delete-lambda.png`  
-*(Cần chụp khi triển khai: Thao tác xóa hàm expenseTrackerFunction trên Lambda Console)*
-<!-- ![Xóa Hàm Lambda](/images/5-Workshop/5.9-Testing-and-Cleanup/cleanup-03-delete-lambda.png) -->
 
 ---
 
@@ -71,10 +62,6 @@ Workshop này hướng dẫn bạn từng bước xây dựng và kiểm tra m�
 4. Tại góc trên cùng của trang thông tin vai trò, bấm nút **Delete role**.
 5. Xác nhận xóa vai trò.
 
-📸 **Pending Screenshot:** `static/images/5-Workshop/5.9-Testing-and-Cleanup/cleanup-04-delete-iam-role.png`  
-*(Cần chụp khi triển khai: Thao tác xóa vai trò ExpenseTrackerLambdaRole trên IAM Console)*
-<!-- ![Xóa IAM Role](/images/5-Workshop/5.9-Testing-and-Cleanup/cleanup-04-delete-iam-role.png) -->
-
 ---
 
 #### Bước 5: Xóa Bảng Amazon DynamoDB
@@ -83,10 +70,6 @@ Workshop này hướng dẫn bạn từng bước xây dựng và kiểm tra m�
 2. Trong danh sách Tables, tích chọn bảng `ExpenseTable`.
 3. Nhấn nút **Delete**.
 4. Nhập `confirm` (hoặc `delete`) vào ô xác nhận và chọn **Delete table**.
-
-📸 **Pending Screenshot:** `static/images/5-Workshop/5.9-Testing-and-Cleanup/cleanup-05-delete-dynamodb.png`  
-*(Cần chụp khi triển khai: Thao tác xóa bảng ExpenseTable trên DynamoDB Console)*
-<!-- ![Xóa Bảng DynamoDB](/images/5-Workshop/5.9-Testing-and-Cleanup/cleanup-05-delete-dynamodb.png) -->
 
 ---
 
@@ -97,22 +80,17 @@ Workshop này hướng dẫn bạn từng bước xây dựng và kiểm tra m�
 3. Chọn mục **Delete user pool**.
 4. Nhập tên user pool `expense-tracker-user-pool` vào ô xác nhận và bấm **Delete**.
 
-📸 **Pending Screenshot:** `static/images/5-Workshop/5.9-Testing-and-Cleanup/cleanup-06-delete-cognito.png`  
-*(Cần chụp khi triển khai: Thao tác xóa user pool expense-tracker-user-pool trên Cognito Console)*
-<!-- ![Xóa Cognito User Pool](/images/5-Workshop/5.9-Testing-and-Cleanup/cleanup-06-delete-cognito.png) -->
+![Xóa Cognito User Pool](/images/5-Workshop/5.9-Testing-and-Cleanup/cleanup-06-delete-cognito.png)
 
 ---
 
 #### Bước 7: Xóa Nhóm Nhật ký CloudWatch
 
 1. Truy cập [Amazon CloudWatch Console](https://us-east-1.console.aws.amazon.com/cloudwatch/home?region=us-east-1).
-2. Tại menu bên trái, mở rộng mục **Logs** và chọn **Log groups**.
+2. Tại menu bên trái, mở rộng mục **Logs** và chọn **Log Management**.
 3. Tích chọn ô vuông bên cạnh nhóm `/aws/lambda/expenseTrackerFunction`.
 4. Chọn menu **Actions** -> **Delete log group(s)**.
 5. Xác nhận xóa bằng cách nhấn **Delete**.
 
-📸 **Pending Screenshot:** `static/images/5-Workshop/5.9-Testing-and-Cleanup/cleanup-07-delete-cloudwatch.png`  
-*(Cần chụp khi triển khai: Thao tác xóa nhóm nhật ký /aws/lambda/expenseTrackerFunction)*
-<!-- ![Xóa CloudWatch Log Group](/images/5-Workshop/5.9-Testing-and-Cleanup/cleanup-07-delete-cloudwatch.png) -->
 
 **Xác minh dọn dẹp:** Kiểm tra từng tài nguyên đã liệt kê trong Region `us-east-1` và xem lại AWS Billing, đồng thời tìm các tài nguyên workshop còn sót lại. Danh sách này chỉ bao gồm những tài nguyên nêu ở trên, không bảo đảm tài khoản không còn tài nguyên nào khác có thể phát sinh phí.
