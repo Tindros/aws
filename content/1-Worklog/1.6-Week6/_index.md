@@ -1,57 +1,31 @@
 ---
-title: "Week 6 Worklog"
-date: 2024-01-01
+title: "Worklog Week 6"
+date: 2026-10-12
 weight: 6
 chapter: false
 pre: " <b> 1.6. </b> "
 ---
-{{% notice warning %}} 
-⚠️ **Note:** The following information is for reference purposes only. Please **do not copy verbatim** for your own report, including this warning.
-{{% /notice %}}
 
+**### Week 6 Objectives:**
 
-### Week 6 Objectives:
+* Design the AWS architecture for the Serverless Personal Expense Tracker.
+* Start implementing the required AWS services.
+* Set up the database and user authentication mechanism.
 
-* Connect and get acquainted with members of First Cloud AI Journey.
-* Understand basic AWS services, how to use the console & CLI.
+**### Tasks to be completed this week:**
 
-### Tasks to be carried out this week:
-| Day | Task                                                                                                                                                                                                   | Start Date | Completion Date | Reference Material                        |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------- | --------------- | ----------------------------------------- |
-| 2   | - Get acquainted with FCAJ members <br> - Read and take note of internship unit rules and regulations                                                                                                   | 08/11/2025 | 08/11/2025      |
-| 3   | - Learn about AWS and its types of services <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                              | 08/12/2025 | 08/12/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Create AWS Free Tier account <br> - Learn about AWS Console & AWS CLI <br> - **Practice:** <br>&emsp; + Create AWS account <br>&emsp; + Install & configure AWS CLI <br> &emsp; + How to use AWS CLI | 08/13/2025 | 08/13/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Learn basic EC2: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - SSH connection methods to EC2 <br> - Learn about Elastic IP   <br>                            | 08/14/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Practice:** <br>&emsp; + Launch an EC2 instance <br>&emsp; + Connect via SSH <br>&emsp; + Attach an EBS volume                                                                                     | 08/15/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
+| Day | Task | Start Date | Completion Date | Resources |
+| --- | --- | --- | --- | --- |
+| 2 | - Review the Serverless Personal Expense Tracker architecture.<br>- Define the roles of Cognito, API Gateway, Lambda, DynamoDB, CloudWatch, and IAM. | 13/10/2026 | 13/10/2026 | |
+| 3 | - Create and configure an Amazon Cognito User Pool.<br>- Create an App Client and configure authentication for the frontend. | 14/10/2026 | 14/10/2026 | |
+| 4 | - Create an Amazon DynamoDB table for expense data.<br>- Design the partition key and sort key using userId and expenseId. | 15/10/2026 | 15/10/2026 | |
+| 5 | - Create an IAM Role for Lambda.<br>- Configure permissions for DynamoDB and CloudWatch Logs. | 16/10/2026 | 16/10/2026 | |
 
+**### Results achieved in Week 6:**
 
-### Week 6 Achievements:
-
-* Understood what AWS is and mastered the basic service groups: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
-
-* Successfully created and configured an AWS Free Tier account.
-
-* Became familiar with the AWS Management Console and learned how to find, access, and use services via the web interface.
-
-* Installed and configured AWS CLI on the computer, including:
-  * Access Key
-  * Secret Key
-  * Default Region
-  * ...
-
-* Used AWS CLI to perform basic operations such as:
-
-  * Check account & configuration information
-  * Retrieve the list of regions
-  * View EC2 service
-  * Create and manage key pairs
-  * Check information about running services
-  * ...
-
-* Acquired the ability to connect between the web interface and CLI to manage AWS resources in parallel.
-* ...
+* Completed the Serverless architecture for the Personal Expense Tracker.
+* Successfully created the Cognito User Pool and App Client.
+* Created the `ExpenseTable` DynamoDB table.
+* Designed the data structure using `userId` as the partition key and `expenseId` as the sort key.
+* Created the Lambda Execution Role and configured the required permissions.
+* Gained a clear understanding of the authentication flow from the frontend to Cognito and JWT-based API protection.
