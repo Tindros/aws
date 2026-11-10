@@ -6,13 +6,13 @@ chapter: false
 pre: " <b> 1.11. </b> "
 ---
 
-**### Mục tiêu tuần 11:**
+**Mục tiêu tuần 11:**
 
 * Triển khai và kiểm tra frontend.
 * Chụp các screenshot cần thiết cho Workshop.
 * Rà soát lần cuối tài liệu trước khi nộp.
 
-**### Các công việc cần triển khai trong tuần này:**
+**Các công việc cần triển khai trong tuần này:**
 
 | Thứ | Công việc | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu |
 | --- | --- | --- | --- | --- |
@@ -21,7 +21,7 @@ pre: " <b> 1.11. </b> "
 | 4 | - Kiểm tra đường dẫn hình ảnh và cách hiển thị Workshop trên GitHub Pages.<br>- Xác nhận các screenshot hiển thị đúng trên website. | 19/11/2026 | 19/11/2026 | [CloudWatch Monitoring](https://000085.awsstudygroup.com/) · [Frontend Integration with API Gateway](https://000135.awsstudygroup.com/) |
 | 5 | - Rà soát Proposal, Workshop và cấu hình project lần cuối.<br>- Chuẩn bị repository cho việc đánh giá. | 20/11/2026 | 20/11/2026 | [The First Cloud Journey](https://cloudjourney.awsstudygroup.com/) |
 
-**### Kết quả đạt được tuần 11:**
+**Kết quả đạt được tuần 11:**
 
 * Kiểm tra frontend sau khi triển khai và các chức năng chính của ứng dụng.
 * Chụp và sắp xếp các screenshot AWS cần thiết.
