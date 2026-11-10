@@ -24,10 +24,10 @@ import type {
   UpdateExpenseInput 
 } from '../types/expense';
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || '';
+const API_BASE_URL = import.meta.env.VITE_API_URL || '';
 
 if (!API_BASE_URL) {
-  throw new Error('VITE_API_BASE_URL is missing. Configure it in the frontend .env file.');
+  throw new Error('VITE_API_URL is missing. Configure it in the frontend .env file.');
 }
 
 /**
