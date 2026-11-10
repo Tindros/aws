@@ -16,10 +16,10 @@ pre: " <b> 1.6. </b> "
 
 | Day | Task | Start Date | Completion Date | Reference Material |
 | --- | --- | --- | --- | --- |
-| 2 | - Review the Serverless Personal Expense Tracker architecture.<br>- Define the roles of Cognito, API Gateway, Lambda, DynamoDB, CloudWatch, and IAM. | 13/10/2026 | 13/10/2026 | [The First Cloud Journey](https://cloudjourney.awsstudygroup.com/) |
-| 3 | - Create and configure an Amazon Cognito User Pool.<br>- Create an App Client for the web application.<br>- Review the authentication flow and JWT tokens. | 14/10/2026 | 14/10/2026 | [Authentication with Amazon Cognito](https://000081.awsstudygroup.com/) |
-| 4 | - Create the DynamoDB table for expense data.<br>- Design the partition key and sort key using userId and expenseId. | 15/10/2026 | 15/10/2026 | [Work with Amazon DynamoDB](https://000060.awsstudygroup.com/) |
-| 5 | - Create the IAM role for Lambda.<br>- Configure permissions for DynamoDB and CloudWatch Logs. | 16/10/2026 | 16/10/2026 | [IAM](https://000002.awsstudygroup.com/) · [CloudWatch](https://000008.awsstudygroup.com/) |
+| 2 | - Review the Serverless Personal Expense Tracker architecture.<br>- Define the roles of Cognito, API Gateway, Lambda, DynamoDB, CloudWatch, and IAM. | 13/10/2026 | 13/10/2026 | [The First Cloud Journey](https://cloudjourney.awsfcaj.com/) |
+| 3 | - Create and configure an Amazon Cognito User Pool.<br>- Create an App Client for the web application.<br>- Review the authentication flow and JWT tokens. | 14/10/2026 | 14/10/2026 | [Authentication with Amazon Cognito](https://cloudjourney.awsfcaj.com/) |
+| 4 | - Create the DynamoDB table for expense data.<br>- Design the partition key and sort key using userId and expenseId. | 15/10/2026 | 15/10/2026 | [Work with Amazon DynamoDB](https://cloudjourney.awsfcaj.com/) |
+| 5 | - Create the IAM role for Lambda.<br>- Configure permissions for DynamoDB and CloudWatch Logs. | 16/10/2026 | 16/10/2026 | [IAM](https://cloudjourney.awsfcaj.com/) · [CloudWatch](https://cloudjourney.awsfcaj.com/) |
 
 **Results achieved in Week 6:**
 
