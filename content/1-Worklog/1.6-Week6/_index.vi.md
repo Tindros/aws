@@ -6,13 +6,13 @@ chapter: false
 pre: " <b> 1.6. </b> "
 ---
 
-**### Mục tiêu tuần 6:**
+**Mục tiêu tuần 6:**
 
 * Xây dựng kiến trúc AWS cho Serverless Personal Expense Tracker.
 * Cấu hình các dịch vụ AWS cần thiết cho authentication và lưu trữ dữ liệu.
 * Chuẩn bị nền tảng backend cho ứng dụng.
 
-**### Các công việc cần triển khai trong tuần này:**
+**Các công việc cần triển khai trong tuần này:**
 
 | Thứ | Công việc | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu |
 | --- | --- | --- | --- | --- |
@@ -21,7 +21,7 @@ pre: " <b> 1.6. </b> "
 | 4 | - Tạo DynamoDB table cho dữ liệu expense.<br>- Thiết kế partition key và sort key theo userId và expenseId. | 15/10/2026 | 15/10/2026 | [Work with Amazon DynamoDB](https://000060.awsstudygroup.com/) |
 | 5 | - Tạo IAM Role cho Lambda.<br>- Cấu hình quyền truy cập DynamoDB và CloudWatch Logs. | 16/10/2026 | 16/10/2026 | [IAM](https://000002.awsstudygroup.com/) · [CloudWatch](https://000008.awsstudygroup.com/) |
 
-**### Kết quả đạt được tuần 6:**
+**Kết quả đạt được tuần 6:**
 
 * Hoàn thiện kiến trúc Serverless cho Personal Expense Tracker.
 * Tạo thành công Cognito User Pool và App Client.
