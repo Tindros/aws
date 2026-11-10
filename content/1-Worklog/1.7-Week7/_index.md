@@ -6,13 +6,13 @@ chapter: false
 pre: " <b> 1.7. </b> "
 ---
 
-**### Week 7 Objectives:**
+**Week 7 Objectives:**
 
 * Complete the Serverless backend for the Expense Tracker.
 * Build the Lambda business logic and connect it to DynamoDB.
 * Configure API Gateway and JWT authentication.
 
-**### Tasks to be completed this week:**
+**Tasks to be completed this week:**
 
 | Day | Task | Start Date | Completion Date | Reference Material |
 | --- | --- | --- | --- | --- |
@@ -21,7 +21,7 @@ pre: " <b> 1.7. </b> "
 | 4 | - Create an HTTP API with API Gateway.<br>- Create the Lambda integration and expense routes.<br>- Configure CORS. | 22/10/2026 | 22/10/2026 | [Build Frontend to call API Gateway](https://000079.awsstudygroup.com/) |
 | 5 | - Configure the Cognito JWT Authorizer.<br>- Set the issuer and audience using the Cognito User Pool and App Client. | 23/10/2026 | 23/10/2026 | [Authentication with Amazon Cognito](https://000081.awsstudygroup.com/) |
 
-**### Results achieved in Week 7:**
+**Results achieved in Week 7:**
 
 * Successfully created and configured the expenseTrackerFunction Lambda function.
 * Implemented CRUD operations with DynamoDB.
