@@ -16,10 +16,10 @@ pre: " <b> 1.7. </b> "
 
 | Day | Task | Start Date | Completion Date | Reference Material |
 | --- | --- | --- | --- | --- |
-| 2 | - Create the expenseTrackerFunction Lambda function.<br>- Configure the Node.js runtime and DynamoDB table environment variable. | 20/10/2026 | 20/10/2026 | [Serverless Backend with Lambda, S3, and DynamoDB](https://000078.awsstudygroup.com/) |
-| 3 | - Implement GET, POST, GET by ID, PUT, DELETE, and summary operations.<br>- Connect Lambda to DynamoDB. | 21/10/2026 | 21/10/2026 | [Serverless CRUD with Lambda and DynamoDB](https://000133.awsstudygroup.com/) |
-| 4 | - Create an HTTP API with API Gateway.<br>- Create the Lambda integration and expense routes.<br>- Configure CORS. | 22/10/2026 | 22/10/2026 | [Build Frontend to call API Gateway](https://000079.awsstudygroup.com/) |
-| 5 | - Configure the Cognito JWT Authorizer.<br>- Set the issuer and audience using the Cognito User Pool and App Client. | 23/10/2026 | 23/10/2026 | [Authentication with Amazon Cognito](https://000081.awsstudygroup.com/) |
+| 2 | - Create the expenseTrackerFunction Lambda function.<br>- Configure the Node.js runtime and DynamoDB table environment variable. | 20/10/2026 | 20/10/2026 | [Serverless Backend with Lambda, S3, and DynamoDB](https://cloudjourney.awsfcaj.com/) |
+| 3 | - Implement GET, POST, GET by ID, PUT, DELETE, and summary operations.<br>- Connect Lambda to DynamoDB. | 21/10/2026 | 21/10/2026 | [Serverless CRUD with Lambda and DynamoDB](https://cloudjourney.awsfcaj.com/) |
+| 4 | - Create an HTTP API with API Gateway.<br>- Create the Lambda integration and expense routes.<br>- Configure CORS. | 22/10/2026 | 22/10/2026 | [Build Frontend to call API Gateway](https://cloudjourney.awsfcaj.com/) |
+| 5 | - Configure the Cognito JWT Authorizer.<br>- Set the issuer and audience using the Cognito User Pool and App Client. | 23/10/2026 | 23/10/2026 | [Authentication with Amazon Cognito](https://cloudjourney.awsfcaj.com/) |
 
 **Results achieved in Week 7:**
 
