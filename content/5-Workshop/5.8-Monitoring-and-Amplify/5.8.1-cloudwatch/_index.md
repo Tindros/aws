@@ -17,10 +17,8 @@ Observability is essential for diagnosing issues, tracing API latencies, and und
 3. In the search box, enter `/aws/lambda/expenseTrackerFunction`:
    + This log group was automatically provisioned when the Lambda function made its initial log write.
 
-{{% notice info %}}
 📸 **Pending Screenshot:** `static/images/5-Workshop/5.8-Monitoring-and-Amplify/cloudwatch-01-log-groups.png`  
 *(To be captured during deployment: CloudWatch Log groups list showing /aws/lambda/expenseTrackerFunction)*
-{{% /notice %}}
 <!-- ![CloudWatch Log Groups](/images/5-Workshop/5.8-Monitoring-and-Amplify/cloudwatch-01-log-groups.png) -->
 
 ---
@@ -37,10 +35,8 @@ Observability is essential for diagnosing issues, tracing API latencies, and und
      REPORT RequestId: 4f1a2b3c-... Duration: 42.15 ms Billed Duration: 43 ms Memory Size: 128 MB Max Memory Used: 78 MB
      ```
 
-{{% notice info %}}
 📸 **Pending Screenshot:** `static/images/5-Workshop/5.8-Monitoring-and-Amplify/cloudwatch-02-log-stream-event.png`  
 *(To be captured during deployment: Detailed CloudWatch log stream showing incoming request context and REPORT line)*
-{{% /notice %}}
 <!-- ![Log Stream Events](/images/5-Workshop/5.8-Monitoring-and-Amplify/cloudwatch-02-log-stream-event.png) -->
 
 ---
@@ -55,12 +51,8 @@ Observability is essential for diagnosing issues, tracing API latencies, and und
    + **Errors:** Displays unhandled execution exceptions (should remain zero).
    + **Throttles:** Indicates if concurrent execution limits were reached.
 
-{{% notice info %}}
 📸 **Pending Screenshot:** `static/images/5-Workshop/5.8-Monitoring-and-Amplify/cloudwatch-03-lambda-metrics.png`  
 *(To be captured during deployment: CloudWatch Metrics graphs displaying Invocations, Duration, and Errors)*
-{{% /notice %}}
 <!-- ![CloudWatch Lambda Metrics](/images/5-Workshop/5.8-Monitoring-and-Amplify/cloudwatch-03-lambda-metrics.png) -->
 
-{{% notice tip %}}
 **Operational Insight:** Lambda and DynamoDB can scale with demand within configured service quotas and limits. Measure latency and errors under your own test workload rather than assuming performance will remain constant.
-{{% /notice %}}
