@@ -6,13 +6,13 @@ chapter: false
 pre: " <b> 1.10. </b> "
 ---
 
-**### Mục tiêu tuần 10:**
+**Mục tiêu tuần 10:**
 
 * Rà soát và ổn định nội dung Workshop.
 * Kiểm tra hướng dẫn có phù hợp với project thực tế hay không.
 * Chuẩn bị tài liệu và screenshot cho giai đoạn hoàn thiện project.
 
-**### Các công việc cần triển khai trong tuần này:**
+**Các công việc cần triển khai trong tuần này:**
 
 | Thứ | Công việc | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu |
 | --- | --- | --- | --- | --- |
@@ -21,7 +21,7 @@ pre: " <b> 1.10. </b> "
 | 4 | - Bỏ các notice không cần thiết.<br>- Kiểm tra và sửa đường dẫn hình ảnh trong Proposal và Workshop. | 12/11/2026 | 12/11/2026 | [Build Frontend to call API Gateway](https://000079.awsstudygroup.com/) |
 | 5 | - Rà soát các trang tiếng Việt và tiếng Anh.<br>- Chuẩn bị danh sách screenshot và checklist triển khai. | 13/11/2026 | 13/11/2026 | [The First Cloud Journey](https://cloudjourney.awsstudygroup.com/) |
 
-**### Kết quả đạt được tuần 10:**
+**Kết quả đạt được tuần 10:**
 
 * Rà soát nội dung Workshop từ 5.1 đến 5.9.
 * Cập nhật tài liệu theo cấu hình thực tế của project.
