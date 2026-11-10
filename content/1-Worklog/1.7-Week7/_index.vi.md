@@ -16,10 +16,10 @@ pre: " <b> 1.7. </b> "
 
 | Thứ | Công việc | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu |
 | --- | --- | --- | --- | --- |
-| 2 | - Tạo Lambda function expenseTrackerFunction.<br>- Cấu hình Node.js runtime và environment variable cho DynamoDB table. | 20/10/2026 | 20/10/2026 | [Serverless Backend with Lambda, S3, and DynamoDB](https://000078.awsstudygroup.com/) |
-| 3 | - Xây dựng các API GET, POST, GET by ID, PUT, DELETE và summary.<br>- Kết nối Lambda với DynamoDB. | 21/10/2026 | 21/10/2026 | [Serverless CRUD with Lambda and DynamoDB](https://000133.awsstudygroup.com/) |
-| 4 | - Tạo HTTP API bằng API Gateway.<br>- Tạo Lambda integration và các route cho expense.<br>- Cấu hình CORS. | 22/10/2026 | 22/10/2026 | [Build Frontend to call API Gateway](https://000079.awsstudygroup.com/) |
-| 5 | - Cấu hình Cognito JWT Authorizer.<br>- Thiết lập issuer và audience bằng Cognito User Pool và App Client. | 23/10/2026 | 23/10/2026 | [Authentication with Amazon Cognito](https://000081.awsstudygroup.com/) |
+| 2 | - Tạo Lambda function expenseTrackerFunction.<br>- Cấu hình Node.js runtime và environment variable cho DynamoDB table. | 20/10/2026 | 20/10/2026 | [Serverless Backend with Lambda, S3, and DynamoDB](https://cloudjourney.awsfcaj.com/) |
+| 3 | - Xây dựng các API GET, POST, GET by ID, PUT, DELETE và summary.<br>- Kết nối Lambda với DynamoDB. | 21/10/2026 | 21/10/2026 | [Serverless CRUD with Lambda and DynamoDB](https://cloudjourney.awsfcaj.com/) |
+| 4 | - Tạo HTTP API bằng API Gateway.<br>- Tạo Lambda integration và các route cho expense.<br>- Cấu hình CORS. | 22/10/2026 | 22/10/2026 | [Build Frontend to call API Gateway](https://cloudjourney.awsfcaj.com/) |
+| 5 | - Cấu hình Cognito JWT Authorizer.<br>- Thiết lập issuer và audience bằng Cognito User Pool và App Client. | 23/10/2026 | 23/10/2026 | [Authentication with Amazon Cognito](https://cloudjourney.awsfcaj.com/) |
 
 **Kết quả đạt được tuần 7:**
 
