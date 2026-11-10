@@ -23,10 +23,8 @@ In this module, you will create the **AWS Lambda function** in **Node.js 22.x** 
    + Select **Use an existing role**.
    + **Existing role:** Select `ExpenseTrackerLambdaRole` created in the previous step.
 
-{{% notice info %}}
 📸 **Pending Screenshot:** `static/images/5-Workshop/5.5-Lambda/lambda-03-create-function.png`  
 *(To be captured during deployment: Lambda function creation screen with Node.js 22.x and ExpenseTrackerLambdaRole selected)*
-{{% /notice %}}
 <!-- ![Create Lambda Function](/images/5-Workshop/5.5-Lambda/lambda-03-create-function.png) -->
 
 6. Choose **Create function**.
@@ -42,10 +40,8 @@ In this module, you will create the **AWS Lambda function** in **Node.js 22.x** 
    + **Value:** `ExpenseTable`
 4. Choose **Save**.
 
-{{% notice info %}}
 📸 **Pending Screenshot:** `static/images/5-Workshop/5.5-Lambda/lambda-04-env-variables.png`  
 *(To be captured during deployment: Lambda Environment variables showing TABLE_NAME = ExpenseTable)*
-{{% /notice %}}
 <!-- ![Configure Environment Variables](/images/5-Workshop/5.5-Lambda/lambda-04-env-variables.png) -->
 
 ---
@@ -314,17 +310,13 @@ export const handler = async (event) => {
 
 3. Click **Deploy** to save and compile your function changes.
 
-{{% notice info %}}
 📸 **Pending Screenshot:** `static/images/5-Workshop/5.5-Lambda/lambda-05-code-editor.png`  
 *(To be captured during deployment: Lambda code editor showing deployed index.mjs handler)*
-{{% /notice %}}
 <!-- ![Deploy Lambda Handler](/images/5-Workshop/5.5-Lambda/lambda-05-code-editor.png) -->
 
 ---
 
-{{% notice warning %}}
 **Query result limit:** The `GET /expenses` and `GET /summary` examples each issue one DynamoDB `Query` request. DynamoDB can stop a Query response at 1 MB and return `LastEvaluatedKey`; this sample does not paginate, so larger accounts may see incomplete lists or summaries. Add pagination before using this implementation with larger datasets.
-{{% /notice %}}
 
 #### Step 4: Test Function Execution
 
@@ -355,14 +347,10 @@ export const handler = async (event) => {
 4. Review the **Execution results**:
    + Verify the response returns status code `201` with the saved item containing `userId` and generated `expenseId`.
 
-{{% notice note %}}
 **Important:** This is a Lambda unit-style console test using a manually constructed event. The `sub` claim in this test payload is synthetic; it does not prove that Cognito issued the token, that API Gateway validates it, or that the six API routes are connected correctly. Those checks belong to the API Gateway and end-to-end tests in Sections 5.6 and 5.9.
-{{% /notice %}}
 
-{{% notice info %}}
 📸 **Pending Screenshot:** `static/images/5-Workshop/5.5-Lambda/lambda-06-test-execution.png`  
 *(To be captured during deployment: Lambda test execution result returning status 201 Created)*
-{{% /notice %}}
 <!-- ![Test Function Execution](/images/5-Workshop/5.5-Lambda/lambda-06-test-execution.png) -->
 
 ---
