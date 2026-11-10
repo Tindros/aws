@@ -28,10 +28,8 @@ This workshop walks through a learning implementation of a serverless architectu
 4. Scroll to the bottom and click **Delete app**.
 5. Type `delete` to confirm and click **Delete**.
 
-{{% notice info %}}
 📸 **Pending Screenshot:** `static/images/5-Workshop/5.9-Testing-and-Cleanup/cleanup-01-delete-amplify.png`  
 *(To be captured during deployment: Deleting the frontend application in the AWS Amplify Console)*
-{{% /notice %}}
 <!-- ![Delete Amplify App](/images/5-Workshop/5.9-Testing-and-Cleanup/cleanup-01-delete-amplify.png) -->
 
 ---
@@ -44,10 +42,8 @@ This workshop walks through a learning implementation of a serverless architectu
 4. Click **Delete** in the top action bar.
 5. Confirm deletion by typing the API name or clicking **Confirm**.
 
-{{% notice info %}}
 📸 **Pending Screenshot:** `static/images/5-Workshop/5.9-Testing-and-Cleanup/cleanup-02-delete-apigw.png`  
 *(To be captured during deployment: Deleting ExpenseTrackerApi in the API Gateway Console)*
-{{% /notice %}}
 <!-- ![Delete API Gateway](/images/5-Workshop/5.9-Testing-and-Cleanup/cleanup-02-delete-apigw.png) -->
 
 ---
@@ -59,10 +55,8 @@ This workshop walks through a learning implementation of a serverless architectu
 3. Choose **Actions** -> **Delete**.
 4. Type `delete` in the confirmation dialog and choose **Delete**.
 
-{{% notice info %}}
 📸 **Pending Screenshot:** `static/images/5-Workshop/5.9-Testing-and-Cleanup/cleanup-03-delete-lambda.png`  
 *(To be captured during deployment: Deleting expenseTrackerFunction in the Lambda Console)*
-{{% /notice %}}
 <!-- ![Delete Lambda Function](/images/5-Workshop/5.9-Testing-and-Cleanup/cleanup-03-delete-lambda.png) -->
 
 ---
@@ -77,10 +71,8 @@ This workshop walks through a learning implementation of a serverless architectu
 4. At the top of the role summary page, click **Delete role**.
 5. Confirm deletion.
 
-{{% notice info %}}
 📸 **Pending Screenshot:** `static/images/5-Workshop/5.9-Testing-and-Cleanup/cleanup-04-delete-iam-role.png`  
 *(To be captured during deployment: Deleting ExpenseTrackerLambdaRole in the IAM Console)*
-{{% /notice %}}
 <!-- ![Delete IAM Role](/images/5-Workshop/5.9-Testing-and-Cleanup/cleanup-04-delete-iam-role.png) -->
 
 ---
@@ -92,10 +84,8 @@ This workshop walks through a learning implementation of a serverless architectu
 3. Click **Delete**.
 4. In the confirmation dialog, type `confirm` (or `delete`) and choose **Delete table**.
 
-{{% notice info %}}
 📸 **Pending Screenshot:** `static/images/5-Workshop/5.9-Testing-and-Cleanup/cleanup-05-delete-dynamodb.png`  
 *(To be captured during deployment: Deleting ExpenseTable in the DynamoDB Console)*
-{{% /notice %}}
 <!-- ![Delete DynamoDB Table](/images/5-Workshop/5.9-Testing-and-Cleanup/cleanup-05-delete-dynamodb.png) -->
 
 ---
@@ -107,10 +97,8 @@ This workshop walks through a learning implementation of a serverless architectu
 3. Choose **Delete user pool**.
 4. Type the user pool name `expense-tracker-user-pool` in the confirmation dialog and click **Delete**.
 
-{{% notice info %}}
 📸 **Pending Screenshot:** `static/images/5-Workshop/5.9-Testing-and-Cleanup/cleanup-06-delete-cognito.png`  
 *(To be captured during deployment: Deleting expense-tracker-user-pool in the Cognito Console)*
-{{% /notice %}}
 <!-- ![Delete Cognito User Pool](/images/5-Workshop/5.9-Testing-and-Cleanup/cleanup-06-delete-cognito.png) -->
 
 ---
@@ -123,12 +111,8 @@ This workshop walks through a learning implementation of a serverless architectu
 4. Choose **Actions** -> **Delete log group(s)**.
 5. Confirm deletion by choosing **Delete**.
 
-{{% notice info %}}
 📸 **Pending Screenshot:** `static/images/5-Workshop/5.9-Testing-and-Cleanup/cleanup-07-delete-cloudwatch.png`  
 *(To be captured during deployment: Deleting /aws/lambda/expenseTrackerFunction log group)*
-{{% /notice %}}
 <!-- ![Delete CloudWatch Log Group](/images/5-Workshop/5.9-Testing-and-Cleanup/cleanup-07-delete-cloudwatch.png) -->
 
-{{% notice tip %}}
 **Verify cleanup:** Confirm each listed resource is deleted in `us-east-1`, then review AWS Billing and search for any remaining workshop resources. This checklist covers only the resources listed above and cannot guarantee that the account has no other billable resources.
-{{% /notice %}}
