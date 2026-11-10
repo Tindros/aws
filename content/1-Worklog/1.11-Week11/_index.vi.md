@@ -16,10 +16,10 @@ pre: " <b> 1.11. </b> "
 
 | Thứ | Công việc | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu |
 | --- | --- | --- | --- | --- |
-| 2 | - Triển khai frontend theo hosting workflow đã cấu hình.<br>- Kiểm tra authentication và các chức năng quản lý expense sau khi deploy. | 17/11/2026 | 17/11/2026 | [Serverless Storage and Auth with AWS Amplify](https://000134.awsstudygroup.com/) |
-| 3 | - Chụp screenshot cho Cognito, DynamoDB, Lambda, API Gateway, CloudWatch và Amplify.<br>- Lưu hình ảnh vào static/images/5-Workshop/. | 18/11/2026 | 18/11/2026 | [The First Cloud Journey](https://cloudjourney.awsstudygroup.com/) |
-| 4 | - Kiểm tra đường dẫn hình ảnh và cách hiển thị Workshop trên GitHub Pages.<br>- Xác nhận các screenshot hiển thị đúng trên website. | 19/11/2026 | 19/11/2026 | [CloudWatch Monitoring](https://000085.awsstudygroup.com/) · [Frontend Integration with API Gateway](https://000135.awsstudygroup.com/) |
-| 5 | - Rà soát Proposal, Workshop và cấu hình project lần cuối.<br>- Chuẩn bị repository cho việc đánh giá. | 20/11/2026 | 20/11/2026 | [The First Cloud Journey](https://cloudjourney.awsstudygroup.com/) |
+| 2 | - Triển khai frontend theo hosting workflow đã cấu hình.<br>- Kiểm tra authentication và các chức năng quản lý expense sau khi deploy. | 17/11/2026 | 17/11/2026 | [Serverless Storage and Auth with AWS Amplify](https://cloudjourney.awsfcaj.com/) |
+| 3 | - Chụp screenshot cho Cognito, DynamoDB, Lambda, API Gateway, CloudWatch và Amplify.<br>- Lưu hình ảnh vào static/images/5-Workshop/. | 18/11/2026 | 18/11/2026 | [The First Cloud Journey](https://cloudjourney.awsfcaj.com/) |
+| 4 | - Kiểm tra đường dẫn hình ảnh và cách hiển thị Workshop trên GitHub Pages.<br>- Xác nhận các screenshot hiển thị đúng trên website. | 19/11/2026 | 19/11/2026 | [CloudWatch Monitoring](https://cloudjourney.awsfcaj.com/) · [Frontend Integration with API Gateway](https://cloudjourney.awsfcaj.com/) |
+| 5 | - Rà soát Proposal, Workshop và cấu hình project lần cuối.<br>- Chuẩn bị repository cho việc đánh giá. | 20/11/2026 | 20/11/2026 | [The First Cloud Journey](https://cloudjourney.awsfcaj.com/) |
 
 **Kết quả đạt được tuần 11:**
 
