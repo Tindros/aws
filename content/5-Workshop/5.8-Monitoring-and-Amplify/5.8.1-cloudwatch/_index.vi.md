@@ -17,10 +17,8 @@ Khả năng quan sát (Observability) là yếu tố không thể thiếu để 
 3. Trong ô tìm kiếm, nhập `/aws/lambda/expenseTrackerFunction`:
    + Nhóm nhật ký này được AWS tự động khởi tạo khi hàm Lambda thực hiện lệnh ghi log đầu tiên.
 
-{{% notice info %}}
 📸 **Pending Screenshot:** `static/images/5-Workshop/5.8-Monitoring-and-Amplify/cloudwatch-01-log-groups.png`  
 *(Cần chụp khi triển khai: Danh sách CloudWatch Log groups hiển thị nhóm /aws/lambda/expenseTrackerFunction)*
-{{% /notice %}}
 <!-- ![Nhóm Nhật ký CloudWatch](/images/5-Workshop/5.8-Monitoring-and-Amplify/cloudwatch-01-log-groups.png) -->
 
 ---
@@ -37,10 +35,8 @@ Khả năng quan sát (Observability) là yếu tố không thể thiếu để 
      REPORT RequestId: 4f1a2b3c-... Duration: 42.15 ms Billed Duration: 43 ms Memory Size: 128 MB Max Memory Used: 78 MB
      ```
 
-{{% notice info %}}
 📸 **Pending Screenshot:** `static/images/5-Workshop/5.8-Monitoring-and-Amplify/cloudwatch-02-log-stream-event.png`  
 *(Cần chụp khi triển khai: Chi tiết luồng sự kiện CloudWatch hiển thị ngữ cảnh yêu cầu và dòng REPORT)*
-{{% /notice %}}
 <!-- ![Chi tiết Luồng Nhật ký](/images/5-Workshop/5.8-Monitoring-and-Amplify/cloudwatch-02-log-stream-event.png) -->
 
 ---
@@ -55,12 +51,8 @@ Khả năng quan sát (Observability) là yếu tố không thể thiếu để 
    + **Errors:** Số lượng lần gọi Lambda phát sinh lỗi. Hãy kiểm tra và xử lý lỗi quan sát được; không mặc định chỉ số này luôn bằng 0.
    + **Throttles:** Đánh dấu các trường hợp chạm ngưỡng giới hạn thực thi đồng thời.
 
-{{% notice info %}}
 📸 **Pending Screenshot:** `static/images/5-Workshop/5.8-Monitoring-and-Amplify/cloudwatch-03-lambda-metrics.png`  
 *(Cần chụp khi triển khai: Biểu đồ CloudWatch Metrics thể hiện Invocations, Duration và Errors)*
-{{% /notice %}}
 <!-- ![Chỉ số Vận hành Lambda](/images/5-Workshop/5.8-Monitoring-and-Amplify/cloudwatch-03-lambda-metrics.png) -->
 
-{{% notice tip %}}
 **Đánh giá Vận hành:** Lambda và DynamoDB có thể co giãn theo nhu cầu trong giới hạn quota và cấu hình dịch vụ. Hãy đo độ trễ và lỗi với tải kiểm thử thực tế thay vì mặc định hiệu năng luôn ổn định.
-{{% /notice %}}
