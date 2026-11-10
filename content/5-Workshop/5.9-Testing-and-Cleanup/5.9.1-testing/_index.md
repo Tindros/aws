@@ -28,10 +28,8 @@ curl -i -X GET "https://<API_ID>.execute-api.us-east-1.amazonaws.com/expenses" \
    + Response headers include the `Access-Control-Allow-Origin` value configured in API Gateway (for a restricted setup, it should match the frontend origin).
    + Body contains an array of the user's expense objects retrieved from DynamoDB.
 
-{{% notice info %}}
 📸 **Pending Screenshot:** `static/images/5-Workshop/5.9-Testing-and-Cleanup/test-01-curl-authorized.png`  
 *(To be captured during deployment: Terminal or Postman showing HTTP 200 OK response with valid JWT token)*
-{{% /notice %}}
 <!-- ![Authorized Request Verification](/images/5-Workshop/5.9-Testing-and-Cleanup/test-01-curl-authorized.png) -->
 
 ---
@@ -60,15 +58,11 @@ curl -i -X GET "https://<API_ID>.execute-api.us-east-1.amazonaws.com/expenses" \
 4. **Expected Result:**
    + HTTP status code: `401 Unauthorized`.
 
-{{% notice info %}}
 📸 **Pending Screenshot:** `static/images/5-Workshop/5.9-Testing-and-Cleanup/test-02-curl-unauthorized.png`  
 *(To be captured during deployment: Terminal showing HTTP 401 Unauthorized rejection for missing/invalid token)*
-{{% /notice %}}
 <!-- ![Unauthorized Request Rejection](/images/5-Workshop/5.9-Testing-and-Cleanup/test-02-curl-unauthorized.png) -->
 
-{{% notice tip %}}
 **Verify that Lambda was not invoked:** Open CloudWatch Logs for `expenseTrackerFunction` and check the timestamps around your test. Requests rejected by the API Gateway JWT authorizer should not invoke Lambda or create Lambda log entries. API Gateway requests may still incur charges; this is not a claim of zero total cost.
-{{% /notice %}}
 
 ---
 
