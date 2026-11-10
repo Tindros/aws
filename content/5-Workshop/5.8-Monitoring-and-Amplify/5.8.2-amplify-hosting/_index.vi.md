@@ -19,10 +19,8 @@ Trong phần này, bạn sẽ triển khai bản phát hành hoàn thiện của
    + **Phương án tải lên trực tiếp:** Chạy `npm run build` trong repository `expense-tracker-frontend`, sau đó tải thư mục `dist/` lên theo quy trình manual deployment hiện hành của Amplify. Tệp `amplify.yml` dưới đây dành cho build qua Git, không dùng cho phương án ZIP.
 4. **App name:** Nhập `expense-tracker-frontend`.
 
-{{% notice info %}}
 📸 **Pending Screenshot:** `static/images/5-Workshop/5.8-Monitoring-and-Amplify/amplify-01-create-app.png`  
 *(Cần chụp khi triển khai: Bắt đầu thiết lập lưu trữ ứng dụng web trên giao diện AWS Amplify)*
-{{% /notice %}}
 <!-- ![Khởi tạo Amplify App](/images/5-Workshop/5.8-Monitoring-and-Amplify/amplify-01-create-app.png) -->
 
 ---
@@ -50,10 +48,8 @@ frontend:
           - node_modules/**/*
 ```
 
-{{% notice info %}}
 📸 **Pending Screenshot:** `static/images/5-Workshop/5.8-Monitoring-and-Amplify/amplify-02-build-settings.png`  
 *(Cần chụp khi triển khai: Cấu hình xây dựng hiển thị tệp amplify.yml chuẩn cho dự án Vite)*
-{{% /notice %}}
 <!-- ![Cấu hình Build Amplify](/images/5-Workshop/5.8-Monitoring-and-Amplify/amplify-02-build-settings.png) -->
 
 ---
@@ -90,10 +86,8 @@ Vì React Router quản lý việc chuyển trang phía client (`/login`, `/expe
 2. Sau khi quá trình hoàn tất thành công, bấm vào đường dẫn HTTPS công khai được cấp (ví dụ: `https://main.xxxx.amplifyapp.com`).
 3. Xác nhận frontend đã triển khai có thể tải, đăng nhập bằng tài khoản Cognito đã xác nhận và đọc/tạo khoản chi qua API đã cấu hình. Nếu build thành công nhưng API lỗi, hãy kiểm tra biến môi trường, API URL, danh sách CORS allowlist và cấu hình JWT authorizer.
 
-{{% notice info %}}
 📸 **Pending Screenshot:** `static/images/5-Workshop/5.8-Monitoring-and-Amplify/amplify-03-deployed-overview.png`  
 *(Cần chụp khi triển khai: Trang tổng quan Amplify Hosting hiển thị trạng thái hoàn thành và tên miền hoạt động)*
-{{% /notice %}}
 <!-- ![Tổng quan Triển khai](/images/5-Workshop/5.8-Monitoring-and-Amplify/amplify-03-deployed-overview.png) -->
 
 ---
