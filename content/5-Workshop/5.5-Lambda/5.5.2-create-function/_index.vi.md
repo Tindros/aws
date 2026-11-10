@@ -23,10 +23,8 @@ Trong phần này, bạn sẽ tạo hàm **AWS Lambda** sử dụng môi trườ
    + Chọn **Use an existing role**.
    + **Existing role:** Chọn `ExpenseTrackerLambdaRole` đã tạo ở bước trước.
 
-{{% notice info %}}
 📸 **Pending Screenshot:** `static/images/5-Workshop/5.5-Lambda/lambda-03-create-function.png`  
 *(Cần chụp khi triển khai: Màn hình khởi tạo hàm Lambda với runtime Node.js 22.x và role ExpenseTrackerLambdaRole)*
-{{% /notice %}}
 <!-- ![Khởi tạo Hàm Lambda](/images/5-Workshop/5.5-Lambda/lambda-03-create-function.png) -->
 
 6. Nhấn nút **Create function**.
@@ -42,10 +40,8 @@ Trong phần này, bạn sẽ tạo hàm **AWS Lambda** sử dụng môi trườ
    + **Value:** `ExpenseTable`
 4. Nhấn **Save**.
 
-{{% notice info %}}
 📸 **Pending Screenshot:** `static/images/5-Workshop/5.5-Lambda/lambda-04-env-variables.png`  
 *(Cần chụp khi triển khai: Cấu hình biến môi trường TABLE_NAME = ExpenseTable trong Lambda)*
-{{% /notice %}}
 <!-- ![Cấu hình Biến Môi trường](/images/5-Workshop/5.5-Lambda/lambda-04-env-variables.png) -->
 
 ---
@@ -314,17 +310,13 @@ export const handler = async (event) => {
 
 3. Nhấn **Deploy** để lưu và biên dịch hàm.
 
-{{% notice info %}}
 📸 **Pending Screenshot:** `static/images/5-Workshop/5.5-Lambda/lambda-05-code-editor.png`  
 *(Cần chụp khi triển khai: Trình soạn thảo mã nguồn Lambda hiển thị tệp index.mjs đã deploy)*
-{{% /notice %}}
 <!-- ![Triển khai Mã nguồn Lambda](/images/5-Workshop/5.5-Lambda/lambda-05-code-editor.png) -->
 
 ---
 
-{{% notice warning %}}
 **Giới hạn kết quả Query:** Các ví dụ `GET /expenses` và `GET /summary` chỉ gửi một yêu cầu DynamoDB `Query`. DynamoDB có thể dừng phản hồi ở mức 1 MB và trả về `LastEvaluatedKey`; mã mẫu này chưa phân trang, vì vậy danh sách hoặc số liệu tổng hợp có thể không đầy đủ khi tài khoản có nhiều dữ liệu. Hãy bổ sung phân trang trước khi sử dụng với tập dữ liệu lớn hơn.
-{{% /notice %}}
 
 #### Bước 4: Kiểm thử Thực thi Hàm
 
@@ -355,10 +347,8 @@ export const handler = async (event) => {
 4. Quan sát kết quả trong bảng **Execution results**:
    + Kiểm tra hàm phản hồi mã trạng thái `201` cùng đối tượng chi tiêu mới đã được gán `userId` và sinh `expenseId`.
 
-{{% notice info %}}
 📸 **Pending Screenshot:** `static/images/5-Workshop/5.5-Lambda/lambda-06-test-execution.png`  
 *(Cần chụp khi triển khai: Kết quả kiểm thử hàm trả về mã HTTP 201 Created)*
-{{% /notice %}}
 <!-- ![Kiểm thử Thực thi](/images/5-Workshop/5.5-Lambda/lambda-06-test-execution.png) -->
 
 ---
