@@ -15,8 +15,8 @@ In this module, you will deploy the production build of your **React + Vite** fr
 1. Open the [AWS Amplify Console](https://us-east-1.console.aws.amazon.com/amplify/home?region=us-east-1).
 2. Choose **Deploy an app** (or **Host web app**).
 3. Select your deployment source:
-   + **Git-based deployment (recommended for this workshop):** Connect the Git provider that contains the repository. The React app is in the repository subdirectory `frontend/`, so configure Amplify's monorepo app root as `frontend` in the console and add the environment variable `AMPLIFY_MONOREPO_APP_ROOT=frontend` in the app's environment settings.
-   + **Direct upload alternative:** Build the frontend locally with `npm run build` from `frontend/`, then upload the generated `frontend/dist/` output using the current Amplify manual deployment flow. The `amplify.yml` below is for Git-based builds, not the ZIP upload path.
+   + **Git-based deployment (recommended for this workshop):** Connect the Git provider that contains the repository. This repository contains the React frontend at its root, so no monorepo app root is required.
+   + **Direct upload alternative:** Build the frontend locally with `npm run build` from the `expense-tracker-frontend` repository, then upload the generated `dist/` output using the current Amplify manual deployment flow. The `amplify.yml` below is for Git-based builds, not the ZIP upload path.
 4. Enter **App name:** `expense-tracker-frontend`.
 
 {{% notice info %}}
@@ -29,13 +29,11 @@ In this module, you will deploy the production build of your **React + Vite** fr
 
 #### Step 2: Configure Build Settings (`amplify.yml`)
 
-1. Because this repository is a monorepo-style layout with the app in `frontend/`, configure the app root as `frontend` and use this build specification for the Git-based deployment:
+1. Because `expense-tracker-frontend` is a single-application repository, use this build specification for the Git-based deployment:
 
 ```yaml
 version: 1
-applications:
-  - appRoot: frontend
-    frontend:
+frontend:
       phases:
         preBuild:
           commands:
@@ -64,10 +62,9 @@ applications:
 
 1. Expand **Advanced settings** (or navigate to **App settings** -> **Environment variables**).
 2. Add your four environment variables:
-   + `VITE_AWS_REGION`: `us-east-1`
    + `VITE_COGNITO_USER_POOL_ID`: `<YOUR_USER_POOL_ID>`
    + `VITE_COGNITO_CLIENT_ID`: `<YOUR_APP_CLIENT_ID>`
-   + `VITE_API_BASE_URL`: `<YOUR_API_GATEWAY_INVOKE_URL>`
+   + `VITE_API_URL`: `<YOUR_API_GATEWAY_INVOKE_URL>`
 
 > All `VITE_*` values are included in the browser build and are visible to users. Only put public configuration such as region, User Pool ID, App Client ID, and API URL here—never access keys, client secrets, passwords, or other credentials.
 3. Choose **Save and deploy**.
