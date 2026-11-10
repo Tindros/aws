@@ -6,13 +6,13 @@ chapter: false
 pre: " <b> 1.8. </b> "
 ---
 
-**### Week 8 Objectives:**
+**Week 8 Objectives:**
 
 * Integrate the React frontend with the AWS backend.
 * Replace mock services with the real API.
 * Complete authentication and CRUD functionality on the frontend.
 
-**### Tasks to be completed this week:**
+**Tasks to be completed this week:**
 
 | Day | Task | Start Date | Completion Date | Reference Material |
 | --- | --- | --- | --- | --- |
@@ -21,7 +21,7 @@ pre: " <b> 1.8. </b> "
 | 4 | - Connect the Dashboard to the real API.<br>- Integrate add, view, edit, and delete expense operations. | 29/10/2026 | 29/10/2026 | [Build Frontend to call API Gateway](https://000079.awsstudygroup.com/) |
 | 5 | - Test the complete frontend and backend flow.<br>- Verify Add → Dashboard → Edit → Dashboard → Delete → Dashboard. | 30/10/2026 | 30/10/2026 | [Frontend Integration with API Gateway](https://000135.awsstudygroup/) |
 
-**### Results achieved in Week 8:**
+**Results achieved in Week 8:**
 
 * Integrated Amazon Cognito into the frontend.
 * The frontend can authenticate users and receive JWT Access Tokens.
