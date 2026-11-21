@@ -1,21 +1,20 @@
 ---
 title: "Self-Assessment"
-date: 2024-01-01
+date: 2026-11-21
 weight: 6
 chapter: false
 pre: " <b> 6. </b> "
 ---
 
-{{% notice warning %}}
-⚠️ **Note:** The information below is for reference purposes only. Please **do not copy it verbatim** into your report, including this warning.
-{{% /notice %}}
+Throughout my internship at **Amazon Web Services Vietnam Company Limited** from **09/09/2026** to **23/11/2026**, I had the opportunity to learn, develop my skills, and apply the knowledge I acquired at university in a practical working environment.
 
-During my internship at **[Company/Organization Name]** from **[start date]** to **[end date]**, I had the opportunity to learn, practice, and apply the knowledge acquired in school to a real-world working environment.  
-I participated in **[briefly describe the main project or task]**, through which I improved my skills in **[list skills: programming, analysis, reporting, communication, etc.]**.  
+During the internship, I mainly focused on learning and practicing **AWS Cloud, Serverless Architecture, and application development on the AWS platform**. I worked on the **Serverless Personal Expense Tracker** project, where I explored and applied services such as **Amazon Cognito, AWS Lambda, Amazon API Gateway, Amazon DynamoDB, IAM, and Amazon S3**. In addition to developing the application, I also created Workshop content to guide the implementation of the project, completed bilingual documentation, and deployed and verified the application in the AWS environment.
 
-In terms of work ethic, I always strived to complete tasks well, complied with workplace regulations, and actively engaged with colleagues to improve work efficiency.
+Through this process, I had the opportunity to strengthen my knowledge of **programming, application development, serverless architecture, AWS services, source code management using Git/GitHub, technical documentation, and work presentation**. I also gradually improved my ability to independently research documentation, solve problems, and take initiative in completing my work.
 
-To objectively reflect on my internship period, I would like to evaluate myself based on the following criteria:
+Regarding my working attitude, I always tried to complete my assigned tasks, proactively learn about unfamiliar topics, and accept feedback to improve the quality of my work. Throughout the internship, I also recognized several areas that I need to continue improving, particularly **problem-solving skills, communication skills, and the ability to handle new situations in a professional working environment**.
+
+To provide an objective assessment of my internship performance, I would like to evaluate myself based on the following criteria:
 
 | No. | Criteria                            | Description                                                                                      | Good | Fair | Average |
 | --- | ----------------------------------- | ------------------------------------------------------------------------------------------------ | ---- | ---- | ------- |
@@ -23,7 +22,7 @@ To objectively reflect on my internship period, I would like to evaluate myself 
 | 2   | **Ability to learn**                | Ability to absorb new knowledge and learn quickly                                                | ☐    | ✅    | ☐       |
 | 3   | **Proactiveness**                   | Taking initiative, seeking out tasks without waiting for instructions                            | ✅    | ☐    | ☐       |
 | 4   | **Sense of responsibility**         | Completing tasks on time and ensuring quality                                                    | ✅    | ☐    | ☐       |
-| 5   | **Discipline**                      | Adhering to schedules, rules, and work processes                                                 | ☐    | ☐    | ✅       |
+| 5   | **Discipline**                      | Adhering to schedules, rules, and work processes                                                 | ✅    | ☐    | ☐       |
 | 6   | **Progressive mindset**             | Willingness to receive feedback and improve oneself                                              | ☐    | ✅    | ☐       |
 | 7   | **Communication**                   | Presenting ideas and reporting work clearly                                                      | ☐    | ✅    | ☐       |
 | 8   | **Teamwork**                        | Working effectively with colleagues and participating in teams                                   | ✅    | ☐    | ☐       |
@@ -34,6 +33,8 @@ To objectively reflect on my internship period, I would like to evaluate myself 
 
 ### Needs Improvement
 
-* Strengthen discipline and strictly comply with the rules and regulations of the company or any organization  
-* Improve problem-solving thinking  
-* Enhance communication skills in both daily interactions and professional contexts, including handling situations effectively
+- **Problem-Solving Skills:** I need to improve my ability to analyze problems systematically, especially when facing new issues or situations without a clearly defined solution. I will focus on identifying the root cause, analyzing possible approaches, and evaluating solutions before taking action.
+
+- **Communication Skills:** I will continue to improve my ability to present ideas, communicate about work, and handle situations in a professional working environment. I need to be more proactive in communicating when facing difficulties and practice expressing myself in a concise, clear, and appropriate manner depending on the situation.
+
+- **Practical Working Experience:** I will continue to gain experience through practical projects, proactively receive feedback, and learn from experienced individuals to improve my ability to work independently as well as collaborate effectively with other team members.
