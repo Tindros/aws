@@ -1,125 +1,85 @@
 ---
 title: "Event 2"
-date: 2024-01-01
+date: 2026-10-31
 weight: 1
 chapter: false
 pre: " <b> 4.2. </b> "
 ---
 
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
+# AWS First Cloud AI Journey Community Day 2026
 
-# Bài thu hoạch “GenAI-powered App-DB Modernization workshop”
+## 1. Tên sự kiện
 
-### Mục Đích Của Sự Kiện
+**AWS First Cloud AI Journey Community Day 2026**
 
-- Chia sẻ best practices trong thiết kế ứng dụng hiện đại
-- Giới thiệu phương pháp DDD và event-driven architecture
-- Hướng dẫn lựa chọn compute services phù hợp
-- Giới thiệu công cụ AI hỗ trợ development lifecycle
+Sự kiện nằm trong chương trình AWS First Cloud AI Journey, nhằm tạo cơ hội cho sinh viên và cộng đồng yêu thích công nghệ cập nhật kiến thức, trao đổi kinh nghiệm thực tế và mở rộng góc nhìn về Cloud Computing, AI và các công nghệ liên quan.
 
-### Danh Sách Diễn Giả
+## 2. Thời gian
 
-- **Jignesh Shah** - Director, Open Source Databases
-- **Erica Liu** - Sr. GTM Specialist, AppMod
-- **Fabrianne Effendi** - Assc. Specialist SA, Serverless Amazon Web Services
+**Thứ Bảy, ngày 31/10/2026**
 
-### Nội Dung Nổi Bật
+**Thời gian:** 09:00 – 12:00
 
-#### Đưa ra các ảnh hưởng tiêu cực của kiến trúc ứng dụng cũ
+## 3. Địa điểm
 
-- Thời gian release sản phẩm lâu → Mất doanh thu/bỏ lỡ cơ hội
-- Hoạt động kém hiệu quả → Mất năng suất, tốn kém chi phí
-- Không tuân thủ các quy định về bảo mật → Mất an ninh, uy tín
+**Bitexco Financial Tower**
 
-#### Chuyển đổi sang kiến trúc ứng dụng mới - Microservice Architecture
+02 Hải Triều, phường Sài Gòn, Thành phố Hồ Chí Minh.
 
-Chuyển đổi thành hệ thống modular – từng chức năng là một **dịch vụ độc lập** giao tiếp với nhau qua **sự kiện** với 3 trụ cột cốt lõi:
+## 4. Vai trò tham gia
 
-- **Queue Management**: Xử lý tác vụ bất đồng bộ
-- **Caching Strategy:** Tối ưu performance
-- **Message Handling:** Giao tiếp linh hoạt giữa services
+Tham gia với vai trò **học viên/sinh viên tham dự sự kiện AWS First Cloud AI Journey Community Day 2026**.
 
-#### Domain-Driven Design (DDD)
+Trong sự kiện, tôi tham gia các phiên chia sẻ về Cloud, Serverless Architecture, Amazon SQS, kinh nghiệm thực tập AWS và Open Source.
 
-- **Phương pháp 4 bước**: Xác định domain events → sắp xếp timeline → identify actors → xác định bounded contexts
-- **Case study bookstore**: Minh họa cách áp dụng DDD thực tế
-- **Context mapping**: 7 patterns tích hợp bounded contexts
+Các phiên chia sẻ chính tôi đã tham dự gồm:
 
-#### Event-Driven Architecture
+- **Lessons Learned from Building Software Factories**
+- **Education**
+- **AWS Lambda Web Functions: Rethinking Serverless Web Architecture**
+- **Amazon SQS: Building Asynchronous Systems**
+- **My 3-Month AWS Internship Journey**
+- **Start & Maintain Consistency with Open Source Contributing**
 
-- **3 patterns tích hợp**: Publish/Subscribe, Point-to-point, Streaming
-- **Lợi ích**: Loose coupling, scalability, resilience
-- **So sánh sync vs async**: Hiểu rõ trade-offs (sự đánh đổi)
+## 5. Nội dung chính tiếp thu
 
-#### Compute Evolution
+### AWS Lambda Web Functions
 
-- **Shared Responsibility Model**: Từ EC2 → ECS → Fargate → Lambda
-- **Serverless benefits**: No server management, auto-scaling, pay-for-value
-- **Functions vs Containers**: Criteria lựa chọn phù hợp
+Tìm hiểu về cách AWS Lambda có thể được sử dụng để xây dựng Web Architecture theo hướng Serverless. Nội dung tập trung vào native HTTP support, khả năng xử lý nhiều request đồng thời, tối ưu chi phí với Active CPU Billing và so sánh Serverless với mô hình Docker trên EC2/ECS.
 
-#### Amazon Q Developer
+Qua phiên này, tôi hiểu rõ hơn về khả năng ứng dụng AWS Lambda trong việc xây dựng các ứng dụng Web hiện đại và các yếu tố cần cân nhắc khi lựa chọn kiến trúc.
 
-- **SDLC automation**: Từ planning đến maintenance
-- **Code transformation**: Java upgrade, .NET modernization
-- **AWS Transform agents**: VMware, Mainframe, .NET migration
+### Amazon SQS – Asynchronous Systems
 
-### Những Gì Học Được
+Tìm hiểu về kiến trúc xử lý bất đồng bộ và vai trò của Amazon SQS trong việc kết nối các thành phần của hệ thống.
 
-#### Tư Duy Thiết Kế
+Tôi hiểu thêm cách sử dụng message queue để **decouple** các service, hỗ trợ khả năng mở rộng và giảm sự phụ thuộc trực tiếp giữa các thành phần.
 
-- **Business-first approach**: Luôn bắt đầu từ business domain, không phải technology
-- **Ubiquitous language**: Importance của common vocabulary giữa business và tech teams
-- **Bounded contexts**: Cách identify và manage complexity trong large systems
+### Kinh nghiệm thực tập AWS
 
-#### Kiến Trúc Kỹ Thuật
+Phiên **My 3-Month AWS Internship Journey** mang đến góc nhìn thực tế về quá trình thực tập, áp dụng các dịch vụ AWS vào project và những bài học cần chuẩn bị trước khi bước vào môi trường doanh nghiệp.
 
-- **Event storming technique**: Phương pháp thực tế để mô hình hóa quy trình kinh doanh
-- Sử dụng **Event-driven communication** thay vì synchronous calls
-- **Integration patterns**: Hiểu khi nào dùng sync, async, pub/sub, streaming
-- **Compute spectrum**: Criteria chọn từ VM → containers → serverless
+Nội dung này có liên hệ trực tiếp với quá trình tôi đang tham gia AWS First Cloud AI Journey và xây dựng project **Serverless Personal Expense Tracker**.
 
-#### Chiến Lược Hiện Đại Hóa
+### Open Source Contribution
 
-- **Phased approach**: Không rush, phải có roadmap rõ ràng
-- **7Rs framework**: Nhiều con đường khác nhau tùy thuộc vào đặc điểm của mỗi ứng dụng
-- **ROI measurement**: Cost reduction + business agility
+Tìm hiểu cách bắt đầu contribution cho các dự án Open Source, duy trì thói quen đóng góp và những lợi ích của Open Source đối với việc phát triển kỹ năng cũng như nghề nghiệp.
 
-### Ứng Dụng Vào Công Việc
+### Chuẩn bị cho ngành Cloud
 
-- **Áp dụng DDD** cho project hiện tại: Event storming sessions với business team
-- **Refactor microservices**: Sử dụng bounded contexts để identify service boundaries
-- **Implement event-driven patterns**: Thay thế một số sync calls bằng async messaging
-- **Serverless adoption**: Pilot AWS Lambda cho một số use cases phù hợp
-- **Try Amazon Q Developer**: Integrate vào development workflow để boost productivity
+Phiên **Education** giúp tôi hiểu thêm về những kiến thức và kỹ năng sinh viên cần chuẩn bị trước khi bước vào ngành, đồng thời nhận thức rõ hơn về khoảng cách giữa kiến thức tại trường đại học và yêu cầu thực tế của doanh nghiệp.
 
-### Trải nghiệm trong event
+## 6. Bài học rút ra / đóng góp cá nhân
 
-Tham gia workshop **“GenAI-powered App-DB Modernization”** là một trải nghiệm rất bổ ích, giúp tôi có cái nhìn toàn diện về cách hiện đại hóa ứng dụng và cơ sở dữ liệu bằng các phương pháp và công cụ hiện đại. Một số trải nghiệm nổi bật:
+Qua sự kiện, tôi nhận thấy việc học Cloud không chỉ tập trung vào việc ghi nhớ cách sử dụng từng AWS service mà còn cần hiểu **cách lựa chọn và kết hợp các dịch vụ để giải quyết vấn đề thực tế**.
 
-#### Học hỏi từ các diễn giả có chuyên môn cao
-- Các diễn giả đến từ AWS và các tổ chức công nghệ lớn đã chia sẻ **best practices** trong thiết kế ứng dụng hiện đại.
-- Qua các case study thực tế, tôi hiểu rõ hơn cách áp dụng **Domain-Driven Design (DDD)** và **Event-Driven Architecture** vào các project lớn.
+Đặc biệt, kiến thức về AWS Lambda và Amazon SQS giúp tôi có thêm góc nhìn để áp dụng vào project **Serverless Personal Expense Tracker**, cũng như hiểu rõ hơn về Serverless Architecture và asynchronous processing.
 
-#### Trải nghiệm kỹ thuật thực tế
-- Tham gia các phiên trình bày về **event storming** giúp tôi hình dung cách **mô hình hóa quy trình kinh doanh** thành các domain events.
-- Học cách **phân tách microservices** và xác định **bounded contexts** để quản lý sự phức tạp của hệ thống lớn.
-- Hiểu rõ trade-offs giữa **synchronous và asynchronous communication** cũng như các pattern tích hợp như **pub/sub, point-to-point, streaming**.
+Bên cạnh kiến thức kỹ thuật, sự kiện giúp tôi nhận thức được tầm quan trọng của việc chủ động học hỏi, tham gia các hoạt động cộng đồng, thực hành qua project thực tế và xây dựng kỹ năng thông qua Open Source.
 
-#### Ứng dụng công cụ hiện đại
-- Trực tiếp tìm hiểu về **Amazon Q Developer**, công cụ AI hỗ trợ SDLC từ lập kế hoạch đến maintenance.
-- Học cách **tự động hóa code transformation** và pilot serverless với **AWS Lambda**, từ đó nâng cao năng suất phát triển.
-
-#### Kết nối và trao đổi
-- Workshop tạo cơ hội trao đổi trực tiếp với các chuyên gia, đồng nghiệp và team business, giúp **nâng cao ngôn ngữ chung (ubiquitous language)** giữa business và tech.
-- Qua các ví dụ thực tế, tôi nhận ra tầm quan trọng của **business-first approach**, luôn bắt đầu từ nhu cầu kinh doanh thay vì chỉ tập trung vào công nghệ.
-
-#### Bài học rút ra
-- Việc áp dụng DDD và event-driven patterns giúp giảm **coupling**, tăng **scalability** và **resilience** cho hệ thống.
-- Chiến lược hiện đại hóa cần **phased approach** và đo lường **ROI**, không nên vội vàng chuyển đổi toàn bộ hệ thống.
-- Các công cụ AI như Amazon Q Developer có thể **boost productivity** nếu được tích hợp vào workflow phát triển hiện tại.
-
-#### Một số hình ảnh khi tham gia sự kiện
-* Thêm các hình ảnh của các bạn tại đây
-> Tổng thể, sự kiện không chỉ cung cấp kiến thức kỹ thuật mà còn giúp tôi thay đổi cách tư duy về thiết kế ứng dụng, hiện đại hóa hệ thống và phối hợp hiệu quả hơn giữa các team.
+**Hình ảnh check-in tham gia sự kiện:**
+![Hinh1](/aws/images/4-Event/4.2.1.jpg)
+![Hinh2](/aws/images/4-Event/4.2.2.jpg)
+![Hinh3](/aws/images/4-Event/4.2.3.jpg)
+![Hinh4](/aws/images/4-Event/4.2.4.jpg)
+![Hinh5](/aws/images/4-Event/4.2.5.jpg)

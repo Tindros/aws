@@ -1,126 +1,85 @@
 ---
 title: "Event 2"
-date: 2024-01-01
+date: 2026-10-31
 weight: 1
 chapter: false
 pre: " <b> 4.2. </b> "
 ---
 
-{{% notice warning %}}
-⚠️ **Note:** The information below is for reference purposes only. Please **do not copy it verbatim** into your report, including this warning.
-{{% /notice %}}
+# AWS First Cloud AI Journey Community Day 2026
 
-# Summary Report: “GenAI-powered App-DB Modernization workshop”
+## 1. Event Name
 
-### Event Objectives
+**AWS First Cloud AI Journey Community Day 2026**
 
-- Share best practices in modern application design
-- Introduce Domain-Driven Design (DDD) and event-driven architecture
-- Provide guidance on selecting the right compute services
-- Present AI tools to support the development lifecycle
+The event was part of the AWS First Cloud AI Journey program, providing students and technology enthusiasts with an opportunity to update their knowledge, exchange practical experiences, and gain broader perspectives on Cloud Computing, AI, and related technologies.
 
-### Speakers
+## 2. Time
 
-- **Jignesh Shah** – Director, Open Source Databases
-- **Erica Liu** – Sr. GTM Specialist, AppMod
-- **Fabrianne Effendi** – Assc. Specialist SA, Serverless Amazon Web Services
+**Saturday, October 31, 2026**
 
-### Key Highlights
+**Time:** 09:00 AM – 12:00 PM
 
-#### Identifying the drawbacks of legacy application architecture
+## 3. Location
 
-- Long product release cycles → Lost revenue/missed opportunities  
-- Inefficient operations → Reduced productivity, higher costs  
-- Non-compliance with security regulations → Security breaches, loss of reputation  
+**Bitexco Financial Tower**
 
-#### Transitioning to modern application architecture – Microservices
+02 Hai Trieu Street, Saigon Ward, Ho Chi Minh City, Vietnam.
 
-Migrating to a modular system — each function is an **independent service** communicating via **events**, built on three core pillars:
+## 4. Participation Role
 
-- **Queue Management**: Handle asynchronous tasks  
-- **Caching Strategy**: Optimize performance  
-- **Message Handling**: Flexible inter-service communication  
+I participated as a **student/learner attending the AWS First Cloud AI Journey Community Day 2026**.
 
-#### Domain-Driven Design (DDD)
+During the event, I attended sessions covering Cloud, Serverless Architecture, Amazon SQS, AWS internship experiences, and Open Source.
 
-- **Four-step method**: Identify domain events → arrange timeline → identify actors → define bounded contexts  
-- **Bookstore case study**: Demonstrates real-world DDD application  
-- **Context mapping**: 7 patterns for integrating bounded contexts  
+The main sessions I attended included:
 
-#### Event-Driven Architecture
+- **Lessons Learned from Building Software Factories**
+- **Education**
+- **AWS Lambda Web Functions: Rethinking Serverless Web Architecture**
+- **Amazon SQS: Building Asynchronous Systems**
+- **My 3-Month AWS Internship Journey**
+- **Start & Maintain Consistency with Open Source Contributing**
 
-- **3 integration patterns**: Publish/Subscribe, Point-to-point, Streaming  
-- **Benefits**: Loose coupling, scalability, resilience  
-- **Sync vs async comparison**: Understanding the trade-offs  
+## 5. Main Knowledge Gained
 
-#### Compute Evolution
+### AWS Lambda Web Functions
 
-- **Shared Responsibility Model**: EC2 → ECS → Fargate → Lambda  
-- **Serverless benefits**: No server management, auto-scaling, pay-for-value  
-- **Functions vs Containers**: Criteria for appropriate choice  
+I learned how AWS Lambda can be used to build Web Architectures following a Serverless approach. The session focused on native HTTP support, handling multiple concurrent requests, cost optimization with Active CPU Billing, and comparing Serverless with Docker-based approaches on EC2/ECS.
 
-#### Amazon Q Developer
+Through this session, I gained a better understanding of how AWS Lambda can be applied to modern Web applications and the factors that should be considered when selecting an appropriate architecture.
 
-- **SDLC automation**: From planning to maintenance  
-- **Code transformation**: Java upgrade, .NET modernization  
-- **AWS Transform agents**: VMware, Mainframe, .NET migration  
+### Amazon SQS – Asynchronous Systems
 
-### Key Takeaways
+I learned about asynchronous processing architectures and the role of Amazon SQS in connecting different components of a system.
 
-#### Design Mindset
+I gained a better understanding of how message queues can be used to **decouple** services, support scalability, and reduce direct dependencies between system components.
 
-- **Business-first approach**: Always start from the business domain, not the technology  
-- **Ubiquitous language**: Importance of a shared vocabulary between business and tech teams  
-- **Bounded contexts**: Identifying and managing complexity in large systems  
+### AWS Internship Experience
 
-#### Technical Architecture
+The **My 3-Month AWS Internship Journey** session provided a practical perspective on the internship experience, applying AWS services to real-world projects, and the lessons that students should prepare for before entering the professional environment.
 
-- **Event storming technique**: Practical method for modeling business processes  
-- Use **event-driven communication** instead of synchronous calls  
-- **Integration patterns**: When to use sync, async, pub/sub, streaming  
-- **Compute spectrum**: Criteria for choosing between VM, containers, and serverless  
+This content was directly relevant to my participation in the AWS First Cloud AI Journey program and my development of the **Serverless Personal Expense Tracker** project.
 
-#### Modernization Strategy
+### Open Source Contribution
 
-- **Phased approach**: No rushing — follow a clear roadmap  
-- **7Rs framework**: Multiple modernization paths depending on the application  
-- **ROI measurement**: Cost reduction + business agility  
+I learned how to get started with contributions to Open Source projects, maintain a consistent contribution habit, and understand the benefits of Open Source participation for skill development and career growth.
 
-### Applying to Work
+### Preparing for a Career in Cloud
 
-- **Apply DDD** to current projects: Event storming sessions with business teams  
-- **Refactor microservices**: Use bounded contexts to define service boundaries  
-- **Implement event-driven patterns**: Replace some sync calls with async messaging  
-- **Adopt serverless**: Pilot AWS Lambda for suitable use cases  
-- **Try Amazon Q Developer**: Integrate into the dev workflow to boost productivity  
+The **Education** session helped me understand the knowledge and skills that students should prepare before entering the industry. It also helped me recognize the gap between knowledge gained at university and the practical requirements of businesses.
 
-### Event Experience
+## 6. Lessons Learned / Personal Contribution
 
-Attending the **“GenAI-powered App-DB Modernization”** workshop was extremely valuable, giving me a comprehensive view of modernizing applications and databases using advanced methods and tools. Key experiences included:
+Through this event, I realized that learning Cloud is not only about memorizing how to use individual AWS services, but also about understanding **how to select and combine services to solve real-world problems**.
 
-#### Learning from highly skilled speakers
-- Experts from AWS and major tech organizations shared **best practices** in modern application design.  
-- Through real-world case studies, I gained a deeper understanding of applying **DDD** and **Event-Driven Architecture** to large projects.  
+In particular, the knowledge about AWS Lambda and Amazon SQS gave me additional perspectives that I can apply to my **Serverless Personal Expense Tracker** project, while also helping me better understand Serverless Architecture and asynchronous processing.
 
-#### Hands-on technical exposure
-- Participating in **event storming** sessions helped me visualize how to **model business processes** into domain events.  
-- Learned how to **split microservices** and define **bounded contexts** to manage large-system complexity.  
-- Understood trade-offs between **synchronous and asynchronous communication** and integration patterns like **pub/sub, point-to-point, streaming**.  
+In addition to technical knowledge, the event helped me recognize the importance of proactive learning, participating in technology communities, gaining practical experience through projects, and developing skills through Open Source contributions.
 
-#### Leveraging modern tools
-- Explored **Amazon Q Developer**, an AI tool for SDLC support from planning to maintenance.  
-- Learned to **automate code transformation** and pilot serverless with **AWS Lambda** to improve productivity.  
-
-#### Networking and discussions
-- The workshop offered opportunities to exchange ideas with experts, peers, and business teams, enhancing the **ubiquitous language** between business and tech.  
-- Real-world examples reinforced the importance of the **business-first approach** rather than focusing solely on technology.  
-
-#### Lessons learned
-- Applying DDD and event-driven patterns reduces **coupling** while improving **scalability** and **resilience**.  
-- Modernization requires a **phased approach** with **ROI measurement**; rushing the process can be risky.  
-- AI tools like Amazon Q Developer can significantly **boost productivity** when integrated into the current workflow.  
-
-#### Some event photos
-*Add your event photos here*  
-
-> Overall, the event not only provided technical knowledge but also helped me reshape my thinking about application design, system modernization, and cross-team collaboration.
+**Check-in photo from the event:**
+![image1](/aws/images/4-Event/4.2.1.jpg)
+![image2](/aws/images/4-Event/4.2.2.jpg)
+![image3](/aws/images/4-Event/4.2.3.jpg)
+![image4](/aws/images/4-Event/4.2.4.jpg)
+![image5](/aws/images/4-Event/4.2.5.jpg)

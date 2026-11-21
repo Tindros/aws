@@ -130,10 +130,9 @@ Tham gia **AWS Cloud & AI Day Vietnam 2026 – Watch Party** là một trải ng
 
 #### Một số hình ảnh khi tham gia sự kiện
 
-* Thêm hình ảnh tại đây
-
-* Thêm hình ảnh tại đây
-
-* Thêm hình ảnh tại đây
+![Hinh1](/aws/images/4-Event/4.1.1.jpg)
+![Hinh2](/aws/images/4-Event/4.1.2.jpg)
+![Hinh3](/aws/images/4-Event/4.1.3.jpg)
+![Hinh4](/aws/images/4-Event/4.1.4.jpg)
 
 > Tổng thể, AWS Cloud & AI Day Vietnam 2026 – Watch Party không chỉ giúp em cập nhật thêm những xu hướng mới về Cloud và AI mà còn giúp em hiểu rõ hơn cách kiến thức Data Science có thể được kết hợp với AWS để xây dựng các ứng dụng Machine Learning có khả năng triển khai và sử dụng trong thực tế.
